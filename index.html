@@ -3,9 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team 28 Ecommerce Website(Optique)</title>
+    <link rel=“stylesheet” href=“main.css”> 
+    <link href=“https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css” rel=“stylesheet” integrity=“sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC” crossorigin=“anonymous”>
+    <link href=“https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css” rel=“stylesheet”>
+    <title>Optique</title>
 </head>
 <body>
-    
+    <header class="bg-dark">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a class="navbar-brand" href="/">
+                    <ima src="logo.png" alt="logo" width="120">
+                </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                    </ul>
+                    <a href=“#”><i class=“fas fa-shopping-cart”></i></a>
+                    <section class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-center justify-content-center bg-warning text-white p-5">
+                                <div>
+                                    <h1>Frame your world, define your style</h1>
+                                    <p class="mb-4"><em>A digital solution for Opticians</em></p>
+                                    <a href="product.html" class="btn btn-primary">Order</a>
+                                    <p class="mt-2"><small>&#10142; Order from here</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Featured Products</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="product-1.jpg" class="card-img-top" alt="Product">
+                    <div class="card-body">
+                        <h5 class="card-title">Glasses</h5>
+                        <p class="card-text">££</p>
+                        <form action="cart.html" method="GET">
+                            <input type="hidden" name="product" value="Glasses">
+                            <input type="hidden" name="price" value="££">
+                            <input type="hidden" name="quantity" value="1">
+                            <input type="submit" class="btn btn-warning" value="Add to Cart">
+                        </form>
+                    </div>
+                </div>
+            </div>
+           <!--- Add More Products Here -->
+        </div>
+    </div>
+    <div class="container my-5">
+        <h2 class="text-center mb-4">View our range of categories</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <a href="product.html">
+                    <img src="product-1.jpg" class="img-fluid rounded" alt="Glasses">
+                    <h5 class="mt-2">Glasses</h5>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="product.html">
+                    <img src="product-2.jpg" class="img-fluid rounded" alt="Sunglasses">
+                    <h5 class="mt-2">Sunglasses</h5>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="product.html">
+                    <img src="product-3.jpg" class="img-fluid rounded" alt="Contact Lenses">
+                    <h5 class="mt-2">Contact Lenses</h5>
+                </a>    
+            </div>
+            <div class="col-md-4">
+                <a href="product.html">
+                    <img src="product-product-4.jpg" class="img-fluid rounded" alt="Frames">
+                    <h5 class="mt-2">Frames</h5>
+                </a>
+            </div>  
+            <div class="col-md-4">
+                <a href="product.html">
+                    <img src="product-5.jpg" class="img-fluid rounded" alt="Glasses Accessories">
+                    <h5 class="mt-2">Glasses Accessories</h5>
+                </a>
+            </div>  
+        </div>    
+    </div>
 </body>
 </html>
