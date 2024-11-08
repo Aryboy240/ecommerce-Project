@@ -1,0 +1,41 @@
+/* Made a new CSS sheet to test new background and text colour variables for more modular code */
+:root {
+  font-size: 20px;
+  font-family: "Dosis", sans-serif;
+  --text-primary: #ffffff;
+  --text-secondary: #e4e4e4;
+  --bg-primary: #0e0e0e;
+  --bg-secondary: black;
+  --mint: #00bfae;
+  --lighter: #00a68c;
+  --darker: #006d5d;
+  --transition-speed: 600ms;
+}
+
+/* Fancy scroll bar :) */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: black;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-radius: 50px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--darker);
+  border-radius: 50px;
+}

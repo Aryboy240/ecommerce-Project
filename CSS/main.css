@@ -8,9 +8,9 @@
 /* The body */
 
 body {
-  background-color: black;
+  background-color: var(--bg-primary);
   font-family: "Lato", sans-serif;
-  color: lightgrey;
+  color: var(--text-primary);
   margin: 0;
   padding: 0;
 }
@@ -18,7 +18,7 @@ body {
 /* Navbar */
 
 header {
-  background-color: black;
+  background-color: var(--bg-primary);
   padding: 10px 0;
 }
 
@@ -51,7 +51,7 @@ header {
 
 .navbar-links .nav-link {
   text-decoration: none;
-  color: lightgrey;
+  color: var(--text-primary);
 }
 
 .navbar-links .nav-link:hover {
@@ -59,7 +59,7 @@ header {
 }
 
 .fas {
-  color: lightgrey;
+  color: var(--text-primary);
   font-size: 20px;
 }
 
@@ -71,16 +71,16 @@ header {
   justify-content: center;
   width: 200px;
   padding: 8px 16px;
-  background-color: #f0f8ff;
+  background-color: var(--text-primary);
   border: 2px solid var(--mint);
-  color: black;
+  color: var(--text-primary);
   border-radius: 25px;
   outline: none;
   font-size: 1rem;
 }
 
 .search-bar input::placeholder {
-  color: lightgray;
+  color: black;
 }
 
 .search-bar input:focus {
@@ -90,24 +90,24 @@ header {
 /* Hero (Intro Title) */
 
 .hero {
-  background-color: black;
+  background-color: var(--bg-primary);
   padding: 60px 20px;
   text-align: center;
 }
 .hero-content h1 {
-  color: lightgrey;
+  color: var(--text-primary);
   font-family: "Montserrat", sans-serif;
 }
 
 .hero-content p {
-  color: lightgrey;
+  color: var(--text-primary);
 }
 
 /* Buttons in Hero */
 
 .btn-order {
   background-color: var(--mint);
-  color: lightgrey;
+  color: var(--text-primary);
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
@@ -122,13 +122,13 @@ header {
 
 .section-title {
   text-align: center;
-  color: lightgrey;
+  color: var(--text-primary);
   font-family: "Montserrat", sans-serif;
   margin-bottom: 30px;
 }
 
 .container {
-  /* The container class didn't exist before, but was used in the HTML */
+  padding-bottom: 2%;
 }
 
 /* Products */
@@ -142,11 +142,11 @@ header {
 }
 
 .product {
-  background-color: black;
-  color: lightgrey;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   border-radius: 8px;
   overflow: hidden;
-  padding-right: 10%;
+  padding-right: 5%;
 }
 
 .product:nth-child(1) {
@@ -164,18 +164,18 @@ header {
 
 .product-title {
   font-size: 1.2rem;
-  color: lightgrey;
+  color: var(--text-primary);
 }
 
 .product-price {
   font-size: 1rem;
-  color: lightgrey;
+  color: var(--text-primary);
   margin-bottom: 15px;
 }
 
 .product input[type="submit"] {
   background-color: var(--Lighter); /* Light mint */
-  color: black;
+  color: var(--bg-primary);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -188,17 +188,24 @@ header {
 /* Categories */
 
 .category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .category {
-  background-color: black;
-  color: lightgrey;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   border-radius: 8px;
   overflow: hidden;
   text-align: center;
+  padding-right: 5%;
+}
+
+.category:nth-child(1) {
+  padding-left: 5%;
 }
 
 .category-img {
@@ -207,7 +214,7 @@ header {
 }
 
 .category-title {
-  color: lightgrey;
+  color: var(--text-primary);
   padding: 10px;
 }
 
