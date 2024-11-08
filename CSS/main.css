@@ -1,95 +1,112 @@
-body{
+/* I stored the colours in variables for easier access */
+:root {
+  --mint: #00bfae;
+  --Lighter: #00a68c;
+  --darker: #006d5d;
+}
+
+/* The body */
+
+body {
   background-color: black;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   color: lightgrey;
   margin: 0;
   padding: 0;
 }
 
-header{
+/* Navbar */
+
+header {
   background-color: black;
   padding: 10px 0;
 }
 
-.navbar{
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.navbar-brand img{
+.navbar-brand img {
   width: 120px;
 }
 
-.navbar-links{
+.navbar-links {
   display: flex;
   justify-content: center;
   flex-grow: 1;
 }
 
-.navbar-links ul{
+.navbar-links ul {
   list-style: none;
   padding: 0;
   display: flex;
 }
 
-.navbar-links li{
+.navbar-links li {
   margin: 0 15px;
 }
 
-.navbar-links .nav-link{
+.navbar-links .nav-link {
   text-decoration: none;
   color: lightgrey;
 }
 
-.navbar-links .nav-link:hover{
-  color: #00bfae;
+.navbar-links .nav-link:hover {
+  color: var(--mint);
 }
 
-.search-bar{
+.fas {
+  color: lightgrey;
+  font-size: 20px;
+}
+
+/* Search bar */
+
+.search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 200px;
   padding: 8px 16px;
   background-color: #f0f8ff;
-  border: 2px solid #00bfae;
+  border: 2px solid var(--mint);
   color: black;
   border-radius: 25px;
   outline: none;
   font-size: 1rem;
 }
 
-.search-bar input::placeholder{
+.search-bar input::placeholder {
   color: lightgray;
 }
 
-.search-bar input:focus{
-  border-color: #00bfae;
+.search-bar input:focus {
+  border-color: var(--mint);
 }
 
-.fas{
-  color: lightgrey;
-  font-size: 20px;
-}
+/* Hero (Intro Title) */
 
 .hero {
   background-color: black;
   padding: 60px 20px;
   text-align: center;
 }
-.hero-content h1{
+.hero-content h1 {
   color: lightgrey;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-.hero-content p{
+.hero-content p {
   color: lightgrey;
 }
 
-.btn-order{
-  background-color: #00bfae;
+/* Buttons in Hero */
+
+.btn-order {
+  background-color: var(--mint);
   color: lightgrey;
   padding: 10px 20px;
   text-decoration: none;
@@ -97,21 +114,31 @@ header{
   font-weight: bold;
 }
 
-.btn-order:hover{
-  background-color: #00a68c;
+.btn-order:hover {
+  background-color: var(--Lighter);
 }
+
+/* Titles */
 
 .section-title {
   text-align: center;
   color: lightgrey;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-bottom: 30px;
 }
 
+.container {
+  /* The container class didn't exist before, but was used in the HTML */
+}
+
+/* Products */
+
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .product {
@@ -119,6 +146,11 @@ header{
   color: lightgrey;
   border-radius: 8px;
   overflow: hidden;
+  padding-right: 10%;
+}
+
+.product:nth-child(1) {
+  padding-left: 5%;
 }
 
 .product-img {
@@ -142,7 +174,7 @@ header{
 }
 
 .product input[type="submit"] {
-  background-color: #f0f8ff; /* Light mint */
+  background-color: var(--Lighter); /* Light mint */
   color: black;
   border: none;
   padding: 10px 20px;
@@ -150,8 +182,10 @@ header{
 }
 
 .product input[type="submit"]:hover {
-  background-color: #00a68c; /* Darker mint */
+  background-color: var(--darker); /* Darker mint */
 }
+
+/* Categories */
 
 .category-grid {
   display: grid;
@@ -179,5 +213,5 @@ header{
 
 .category a:hover .category-title,
 .product:hover .product-title {
-  color: #00bfae; /* Mint green */
+  color: var(--mint); /* Mint green */
 }
