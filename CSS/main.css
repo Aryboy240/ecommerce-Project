@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Lato:wght@400;700&display=swap');
 body{
   background-color: black;
   font-family: 'Lato', sans-serif;
@@ -12,77 +11,173 @@ header{
   padding: 10px 0;
 }
 
-nav .navbar-brand img{
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar-brand img{
   width: 120px;
 }
 
-.navbar-nav .nav-link{
-  color: lightgrey;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+.navbar-links{
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
 
-.navbar-nav .nav-link:hover{
+.navbar-links ul{
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.navbar-links li{
+  margin: 0 15px;
+}
+
+.navbar-links .nav-link{
+  text-decoration: none;
+  color: lightgrey;
+}
+
+.navbar-links .nav-link:hover{
   color: #00bfae;
 }
 
-.bg-warning{
-  background-color: #00bfae;
+.search-bar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  padding: 8px 16px;
+  background-color: #f0f8ff;
+  border: 2px solid #00bfae;
+  color: black;
+  border-radius: 25px;
+  outline: none;
+  font-size: 1rem;
 }
 
-h1, h2{
+.search-bar input::placeholder{
+  color: lightgray;
+}
+
+.search-bar input:focus{
+  border-color: #00bfae;
+}
+
+.fas{
+  color: lightgrey;
+  font-size: 20px;
+}
+
+.hero {
+  background-color: black;
+  padding: 60px 20px;
+  text-align: center;
+}
+.hero-content h1{
+  color: lightgrey;
   font-family: 'Montserrat', sans-serif;
+}
+
+.hero-content p{
   color: lightgrey;
 }
 
-p{
-  color: lightgrey;
-}
-
-a.btn{
+.btn-order{
   background-color: #00bfae;
   color: lightgrey;
-  font-family: 'Montserrat', sans-serif;
-  text-transform: uppercase;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
   font-weight: bold;
 }
 
-a.btn:hover{
+.btn-order:hover{
   background-color: #00a68c;
 }
 
-.card{
-  border: none;
-  background-color: black;
-  color: lightgrey
+.section-title {
+  text-align: center;
+  color: lightgrey;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 30px;
 }
 
-.card-body{
-  background-color: black;
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
 }
 
-.card-title, .card-text{
+.product {
+  background-color: black;
+  color: lightgrey;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.product-img {
+  width: 100%;
+  height: auto;
+}
+
+.product-body {
+  padding: 15px;
+}
+
+.product-title {
+  font-size: 1.2rem;
   color: lightgrey;
 }
 
-input[type="submit"].btn-warning{
-  background-color: #f0f8ff;
+.product-price {
+  font-size: 1rem;
+  color: lightgrey;
+  margin-bottom: 15px;
+}
+
+.product input[type="submit"] {
+  background-color: #f0f8ff; /* Light mint */
   color: black;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
-input[type="submit"].btn-warning:hover{
-  background-color: #00a68c;
+.product input[type="submit"]:hover {
+  background-color: #00a68c; /* Darker mint */
 }
 
-h5{
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.category {
+  background-color: black;
   color: lightgrey;
-  text-align:center;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
 }
 
-.col-md-4{
+.category-img {
+  width: 100%;
+  height: auto;
+}
+
+.category-title {
   color: lightgrey;
+  padding: 10px;
 }
 
-.col-md-4:hover{
-  color: #00bfae;
+.category a:hover .category-title,
+.product:hover .product-title {
+  color: #00bfae; /* Mint green */
 }
