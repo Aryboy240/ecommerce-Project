@@ -131,6 +131,23 @@ header {
   margin-bottom: 50px;
 }
 
+.hero a {
+  text-shadow: 0px 10px 10px rgba(0, 0, 0, 0);
+}
+
+.hero-content .pointer {
+  left: 50%;
+  right: 50%;
+  transform: scale(0.1) rotate(-25deg) translate(-200%, -650%);
+  filter: invert(100%);
+}
+
+.hero-content .pointer-text {
+  left: 50%;
+  right: 50%;
+  transform: scale(1) rotate(25deg) translate(20.5%, -720%);
+}
+
 /* Buttons in Hero */
 
 .btn-order {
