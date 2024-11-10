@@ -1,14 +1,25 @@
+/* This is an extra CSS file you can add to the pages to add a few extra touch ups.
+   
+   • Variables to save time (use it for the website colour scheme)
+   • I personally don't like the look of the default scroll bar so I hide it by changing its color to the same as the backgrounds'
+   • It then changes the colour accent of the scroll thumb and giving it a border radius (round edges)
+   • Sets the default body, text color and padding/margins for the page.
+   • Adding this code straight into the main.css file would probably be a good idea, as long as everyone likes these changes.
+
+*/
+
 /* Made a new CSS sheet to test new background and text colour variables for more modular code */
 :root {
-  font-size: 20px;
-  font-family: "Dosis", sans-serif;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
   --text-primary: #ffffff;
-  --text-secondary: #e4e4e4;
+  --text-secondary: lightGray;
   --bg-primary: #0e0e0e;
   --bg-secondary: black;
   --mint: #00bfae;
   --lighter: #00a68c;
   --darker: #006d5d;
+  --floater: #048181;
   --transition-speed: 600ms;
 }
 
@@ -19,7 +30,6 @@ html {
 }
 
 body {
-  color: black;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   margin: 0;

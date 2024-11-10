@@ -1,9 +1,8 @@
-/* Login Page */
+/*  Developer: Aryan Kora
+	  University ID: 230059030
+	  Function: CSS for the log in page ONLY */
 
-body {
-  margin: 0;
-  padding: 0;
-}
+/* If you want an explanation of the code, look at the Register page's CSS */
 
 #login-position {
   position: relative;

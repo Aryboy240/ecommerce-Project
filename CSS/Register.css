@@ -1,9 +1,9 @@
-/* Login Page */
-
-body {
-  margin: 0;
-  padding: 0;
-}
+/*  Developer: Aryan Kora
+	  University ID: 230059030
+	  Function: This is just a lazy copy of the log in CSS to reduce time implementing the register page 
+    Just ignore the fact that I kept all the names the same 😭
+    If it works, it works.
+    */
 
 #login-position {
   position: relative;
@@ -17,6 +17,8 @@ body {
   z-index: 0;
 }
 
+/* I flip the register page by floating the image to the right instead */
+
 .login-img {
   position: relative;
   display: flex;
@@ -27,6 +29,8 @@ body {
   object-fit: cover;
   transition: var(--transition-speed);
 }
+
+/* This adds the gradient of the background from the form over the image */
 
 .login-img::before {
   content: "";
@@ -40,6 +44,8 @@ body {
   z-index: 1;
 }
 
+/* The background image */
+
 .login-img img {
   position: absolute;
   top: 0;
@@ -49,6 +55,8 @@ body {
   object-fit: cover;
   transition: var(--transition-speed);
 }
+
+/* The contents of the form */
 
 .login-content {
   display: flex;
@@ -63,9 +71,20 @@ body {
   overflow-x: hidden;
 }
 
+/*  This hides the scroll bar for the form
+
+    This is because, if the screen is too small, you have to scroll to see the entire form.
+    This gives it a ugly scroll bar that appears on the side and messes with the look 🤮
+
+*/
+
 .login-content::-webkit-scrollbar {
   display: none;
 }
+
+/*  Rest is pretty self explanitory (I'm just lazy and cba to explain everything)
+    Just mess around with it to test it if you're curious (Don't ask me to fix it if you break it tho 💀)
+*/
 
 .form {
   width: 60%;
@@ -251,6 +270,13 @@ li {
 .login-socials li img {
   width: 60px;
 }
+
+/*  Okay, if you haven't worked with this before, I can breifly explain what kinda voodoo shit is going on here.
+    Esentailly, we have to make the website interactive for all devices, and therefore, all screen types.
+    What happens below is pretty simple. It just checks the screen size of the device being used and does stuff.
+    If its <= 768px, then it executes the code in the section.
+    You can test this by pressing F12 and toggling the device toolbar (CONTROL + SHIFT + M)
+*/
 
 @media only screen and (max-width: 768px) {
   .login-img {
