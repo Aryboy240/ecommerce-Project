@@ -1,0 +1,406 @@
+/*  Developer: Aryan Kora
+	  University ID: 230059030
+	  Function: Product Card CSS */
+
+.product-card-con {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.product-card {
+  position: relative;
+  width: 550px;
+  height: 350px;
+  border-radius: 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  transition: var(--transition-speed);
+}
+
+.card-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.15s ease-in;
+}
+
+.card-circle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--mint);
+  clip-path: circle(120px at center);
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .card-circle::before {
+  background: var(--mint);
+  clip-path: circle(400px at center);
+}
+
+.product-card:hover .card-circle {
+  transition: 1.1s ease;
+  box-shadow: -10px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+.product-card .product-card-content {
+  position: relative;
+  text-align: center;
+  width: 50%;
+  left: 20%;
+  padding: 20px 20px 20px 40px;
+  transition: 0.4s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.product-card:hover .product-card-content {
+  left: 0;
+  opacity: 1;
+  color: white;
+  visibility: visible;
+}
+
+.product-card .product-card-content h2 {
+  text-transform: uppercase;
+  pointer-events: none;
+  font-size: 2em;
+  line-height: 1em;
+  margin-bottom: 5px;
+}
+
+.product-card .product-card-content a {
+  position: relative;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: white;
+  color: #111;
+  margin-top: 10px;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* IMAGE SIZE VARIBLES */
+
+.imageSize-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-1 {
+  left: 78%;
+  height: 115px;
+}
+
+.imageSize-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 160px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-2 {
+  left: 78%;
+  height: 150px;
+}
+
+.imageSize-3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 50px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-3 {
+  left: 78%;
+  height: 40px;
+}
+
+.imageSize-4 {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-4 {
+  left: 77%;
+  height: 75px;
+}
+
+.imageSize-5 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-5 {
+  left: 78%;
+  height: 100px;
+}
+
+.imageSize-6 {
+  position: absolute;
+  top: 50%;
+  left: 49.5%;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-6 {
+  left: 77%;
+  height: 80px;
+}
+
+.imageSize-7 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 120px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-7 {
+  left: 77%;
+  height: 110px;
+}
+
+.imageSize-8 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-8 {
+  left: 78%;
+  height: 35px;
+}
+
+.imageSize-9 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .imageSize-9 {
+  left: 78%;
+  top: 52%;
+  height: 200px;
+}
+
+/* CARD COLOURS */
+
+.card-circle-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.15s ease-in;
+}
+
+.card-circle-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--floater);
+  clip-path: circle(120px at center);
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .card-circle-2::before {
+  background: var(--floater);
+  clip-path: circle(400px at center);
+}
+
+.product-card:hover .card-circle-2 {
+  transition: 1.1s ease;
+  box-shadow: -10px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+.card-circle-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.15s ease-in;
+}
+
+.card-circle-3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--lighter);
+  clip-path: circle(120px at center);
+  transition: var(--transition-speed);
+}
+
+.product-card:hover .card-circle-3::before {
+  background: var(--lighter);
+  clip-path: circle(400px at center);
+}
+
+.product-card:hover .card-circle-3 {
+  transition: 1.1s ease;
+  box-shadow: -10px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Little Boi Screens */
+@media only screen and (max-width: 991px) {
+  .product-card {
+    width: auto;
+    max-width: 350px;
+    align-items: flex-start;
+    margin: 10px;
+  }
+
+  .product-card:hover {
+    height: 600px;
+  }
+
+  .product-card .product-card-content {
+    width: 100%;
+    left: -9%;
+    padding: 30px;
+    transition: var(--transition-speed);
+  }
+
+  .product-card:hover .product-card-content {
+    left: -9%;
+  }
+
+  /* Menu Resizes */
+
+  .product-card:hover .imageSize-1 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 175px;
+  }
+
+  .product-card:hover .imageSize-2 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 250px;
+  }
+
+  .product-card:hover .imageSize-3 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 210px;
+  }
+
+  .product-card:hover .imageSize-4 {
+    top: 70%;
+    left: 51%;
+    padding-top: 25px;
+    height: 210px;
+  }
+
+  .product-card:hover .imageSize-5 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 250px;
+  }
+
+  .imageSize-5 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 210px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: var(--transition-speed);
+  }
+
+  .imageSize-6 {
+    left: 54%;
+  }
+
+  .product-card:hover .imageSize-6 {
+    top: 70%;
+    left: 54%;
+    padding-top: 25px;
+    height: 300px;
+  }
+
+  .product-card:hover .imageSize-7 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 300px;
+  }
+
+  .product-card:hover .imageSize-8 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 270px;
+  }
+
+  .product-card:hover .imageSize-9 {
+    top: 70%;
+    left: 50%;
+    padding-top: 25px;
+    height: 200px;
+  }
+}

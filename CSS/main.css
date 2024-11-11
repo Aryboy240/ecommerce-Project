@@ -26,10 +26,10 @@ header {
 }
 
 .logo {
-  width: 5%;
-  height:max-content;
+  max-width: 80px;
+  height: max-content;
   margin-top: 10px;
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .navbar-links {
@@ -66,13 +66,14 @@ header {
 /* Search bar */
 
 .search-bar {
-  display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   outline: none;
 }
 
-.search-bar input{
+.search-bar input {
+  margin-top: 13px;
   padding-left: 10px;
   color: var(--text-primary);
   background-color: var(--bg-primary);
@@ -91,14 +92,17 @@ header {
   color: var(--text-primary);
 }
 
-.search-icon{
-  position: absolute;
+/* The finiky search bar icon (It does nothing atm) */
+
+.search-icon {
+  position: relative;
   display: flex;
   place-items: center;
+  cursor: pointer;
   width: 15px;
   padding: 10px;
   background-color: var(--floater);
-  transform: translate(160%, 0%);
+  transform: translate(435%, -80%);
   border-radius: 100px;
   z-index: 100;
 }
@@ -108,14 +112,21 @@ header {
   filter: invert(100%);
 }
 
-.search-icon:hover{
+.search-icon img::selection {
+  visibility: hidden;
+}
+
+.search-icon:hover {
   background-color: var(--mint);
 }
 
-.cart-icon{
+/* The even more finiky Shopping Basket button (Also does nothing atm) */
+
+.cart-icon {
   position: relative;
   display: flex;
   place-items: center;
+  cursor: pointer;
   margin-top: 5px;
   width: 15px;
   height: 15px;
@@ -131,11 +142,17 @@ header {
   filter: invert(100%);
 }
 
-.cart-icon:hover{
+.cart-icon img::selection {
+  visibility: hidden;
+}
+
+.cart-icon:hover {
   background-color: var(--mint);
 }
 
-.cart-item-number{
+/* The most scuffed notification icon ever */
+
+.cart-item-number {
   position: absolute;
   display: flex;
   place-items: center;
@@ -144,17 +161,20 @@ header {
   font-size: 15px;
   padding: 5px;
   background-color: red;
-  box-shadow: 0px 0px 10px rgba(255,0,0, 0.75);
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.75); /* Gave it a cool glow tho ♥ */
   transform: translate(60%, -70%);
   border-radius: 100px;
   z-index: 101;
 }
 
-.cart-item-number p{
+.cart-item-number p {
   float: left;
   margin-left: 0.5px;
 }
 
+.cart-item-number p::selection {
+  visibility: hidden;
+}
 
 /* Hero (Intro Title) */
 
@@ -188,6 +208,7 @@ header {
 */
 
 .hero-content img {
+  pointer-events: none;
   position: absolute;
   z-index: -1;
   left: 50%;
@@ -196,8 +217,12 @@ header {
   filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
 }
 
+.hero-content img::selection {
+  visibility: hidden;
+}
+
 .hero-content p {
-  color: var(--text-primary);
+  color: var(--text-secondary);
   margin-bottom: 50px;
 }
 
@@ -205,10 +230,14 @@ header {
   text-shadow: 0px 10px 10px rgba(0, 0, 0, 0);
 }
 
+.pointer-wrapper {
+  pointer-events: none;
+}
+
 .hero-content .pointer-wrapper {
   left: 50%;
   right: 50%;
-  transform: translate(5%,-100%);
+  transform: translate(5%, -100%);
 }
 
 .hero-content .pointer-wrapper img {
@@ -220,20 +249,21 @@ header {
 }
 
 .hero-content .pointer-wrapper p {
-  transform: scale(1) rotate(27deg);
-  margin-left: 226px;
+  transform: scale(1) rotate(30deg);
+  margin-left: 233px;
 }
 
 /* Buttons in Hero */
 
 .btn-order {
   background-color: var(--floater);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   padding: 15px 40px;
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
-  box-shadow: 0px 0px 50px rgba(4, 129, 129,0.7);
+  box-shadow: 0px 0px 50px rgba(4, 129, 129, 0.7);
+  z-index: 1;
 }
 
 .btn-order:hover {
@@ -304,7 +334,8 @@ header {
 }
 
 .floaters p {
-  transform: scale(1.5);
+  margin-top: 17px;
+  transform: scale(1.6);
 }
 
 /* Titles */

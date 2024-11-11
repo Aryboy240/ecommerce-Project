@@ -3,8 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- JS -->
+    <script defer src="/js/ScrollReveal.js"></script>
+    <script src="/js/scrollreveal.min.js"></script>
+    <!-- CSS -->
     <link rel="stylesheet" href="CSS/main.css" />
     <link rel="stylesheet" href="CSS/Aryans_Extras.css" />
+    <link rel="stylesheet" href="CSS/Product_Card.css" />
     <title>Optique</title>
   </head>
   <body>
@@ -43,7 +48,7 @@
       <div class="hero-content">
         <div>
           <h1>FRAME YOUR WORLD<br>define your style</h1>
-          <img class="world" src="Images/Globe.gif">
+          <img class="world" src="Images/Gifs/Globe.gif">
           <p>
             This is a premium collection designed for thise who want to<br>
             eleveate their eye-wear style and enchance their vision<br><br>
@@ -63,147 +68,170 @@
       <div class="floater-body">
         <div class="floater-containter">
           <div class="floaters">
-            <image src="Images/Glasses.png">
+            <image src="Images/Gifs/Fire.gif">
+            <p>Hot Deals</p>
+          </div>
+          <div class="floaters">
+            <image src="Images/Gifs/Glasses.gif">
             <p>Glasses</p>
           </div>
           <div class="floaters">
-            <image src="Images/filler.webp">
-            <p>NULL</p>
-          </div>
-          <div class="floaters">
-            <image src="Images/filler.webp">
-            <p>NULL</p>
+            <image src="Images/Gifs/Sunglasses.gif">
+            <p>Sunglasses</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Featured Products Section -->
-    <section class="container">
-      <div class="container">
-        <h2 class="section-title">Featured Products</h2>
-        <div class="product-grid">
-          <div class="product">
-            <img src="Images/filler.webp" class="card-img-top" alt="Product" />
-            <div class="product-body">
-              <h5 class="card-title">Glasses</h5>
-              <p class="card-text">££</p>
-              <form action="" method="GET">
-                <input type="hidden" name="product" value="Glasses" />
-                <input type="hidden" name="price" value="££" />
-                <input type="hidden" name="quantity" value="1" />
-                <input
-                  type="submit"
-                  class="btn btn-warning"
-                  value="Add to Cart"
-                />
-              </form>
-            </div>
+    <section style="margin-top: 100px;">
+      <h2 class="section-title">Featured Products</h2>
+      <!--SECTION 1-->
+      <section class="product-card-con" style="padding-bottom: 50px">
+        <!--ADIDAS-->
+        <div class="product-card">
+          <div class="card-circle"></div>
+          <div class="product-card-content">
+            <h2>ADIDAS</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
           </div>
-          <div class="product">
-            <img src="Images/filler.webp" class="card-img-top" alt="Product" />
-            <div class="product-body">
-              <h5 class="card-title">Glasses</h5>
-              <p class="card-text">££</p>
-              <form action="" method="GET">
-                <input type="hidden" name="product" value="Glasses" />
-                <input type="hidden" name="price" value="££" />
-                <input type="hidden" name="quantity" value="1" />
-                <input
-                  type="submit"
-                  class="btn btn-warning"
-                  value="Add to Cart"
-                />
-              </form>
-            </div>
-          </div>
-          <div class="product">
-            <img src="Images/filler.webp" class="card-img-top" alt="Product" />
-            <div class="product-body">
-              <h5 class="card-title">Glasses</h5>
-              <p class="card-text">££</p>
-              <form action="" method="GET">
-                <input type="hidden" name="product" value="Glasses" />
-                <input type="hidden" name="price" value="££" />
-                <input type="hidden" name="quantity" value="1" />
-                <input
-                  type="submit"
-                  class="btn btn-warning"
-                  value="Add to Cart"
-                />
-              </form>
-            </div>
-          </div>
-          <div class="product">
-            <img src="Images/filler.webp" class="card-img-top" alt="Product" />
-            <div class="product-body">
-              <h5 class="card-title">Glasses</h5>
-              <p class="card-text">££</p>
-              <form action="" method="GET">
-                <input type="hidden" name="product" value="Glasses" />
-                <input type="hidden" name="price" value="££" />
-                <input type="hidden" name="quantity" value="1" />
-                <input
-                  type="submit"
-                  class="btn btn-warning"
-                  value="Add to Cart"
-                />
-              </form>
-            </div>
-          </div>
+          <img
+            class="imageSize-1"
+            src="/Images/Brands/Adidas_Logo.png"
+          />
         </div>
-      </div>
+        <!--HUGO-->
+        <div class="product-card">
+          <div class="card-circle"></div>
+          <div class="product-card-content">
+            <h2>HUGO</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-2"
+            src="/Images/Brands/Hugo.png"
+          />
+        </div>
+        <!--DKNY-->
+        <div class="product-card">
+          <div class="card-circle"></div>
+          <div class="product-card-content">
+            <h2>DKNY</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-3"
+            src="/Images/Brands/DNKY.png"
+          />
+        </div>
+      </section>
+      <!--SECTION 2-->
+      <section class="product-card-con" style="padding-bottom: 50px">
+        <!--Disney-->
+        <div class="product-card">
+          <div class="card-circle-2"></div>
+          <div class="product-card-content">
+            <h2>Disney</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-4"
+            src="/Images/Brands/Disney.png"
+          />
+        </div>
+        <!--Karen Millen-->
+        <div class="product-card">
+          <div class="card-circle-2"></div>
+          <div class="product-card-content">
+            <h2>Karen Millen</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-5"
+            src="/Images/Brands/Karen-Millen-logo.png"
+          />
+        </div>
+        <!--Jeff Banks-->
+        <div class="product-card">
+          <div class="card-circle-2"></div>
+          <div class="product-card-content">
+            <h2>Jeff Banks</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-6"
+            src="/Images/Brands/Jeff Banks.png"
+          />
+        </div>
+      </section>
+      <!--SECTION 3-->
+      <section class="product-card-con" style="padding-bottom: 50px">
+        <!--Harry Potter-->
+        <div class="product-card">
+          <div class="card-circle-3"></div>
+          <div class="product-card-content">
+            <h2>Harry Potter</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-7"
+            src="/Images/Brands/Harry Potter.png"
+          />
+        </div>
+        <!--Barbour-->
+        <div class="product-card">
+          <div class="card-circle-3"></div>
+          <div class="product-card-content">
+            <h2>Barbour</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-8"
+            src="/Images/Brands/Barbour.png"
+          />
+        </div>
+        <!--Comfit-->
+        <div class="product-card">
+          <div class="card-circle-3"></div>
+          <div class="product-card-content">
+            <h2>Comfit</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+            </p>
+            <a href="#">Starting from £100</a>
+          </div>
+          <img
+            class="imageSize-9"
+            src="/Images/Brands/Comfit.png"
+          />
+        </div>
+      </section>
     </section>
-
-    <!--Info Cards: Draft-->
-    <section class="container">
-      <div class="card-body">
-        <div class="card-con">
-          <div class="cards">
-            <div class="card-image">
-              <img src="Images/filler.webp" />
-            </div>
-            <div class="card-detail">
-              <h1>Boo</h1>
-              <p>
-                Someone please add images to the website, it looks so dead
-                inside 😭
-              </p>
-              <input type="submit" value="Add to Cart" />
-            </div>
-          </div>
-        </div>
-        <div class="card-con">
-          <div class="cards">
-            <div class="card-image">
-              <img src="Images/filler.webp" />
-            </div>
-            <div class="card-detail">
-              <h1>♥</h1>
-              <p>
-                Does anyone else think this colour scheme needs a little
-                altering? Maybe its just me, but the bright green is lasering my
-                retinas 💀
-              </p>
-              <input type="submit" value="Add to Cart" />
-            </div>
-          </div>
-        </div>
-        <div class="card-con">
-          <div class="cards">
-            <div class="card-image">
-              <img src="Images/filler.webp" />
-            </div>
-            <div class="card-detail">
-              <h1>git push origin main --f</h1>
-              <p>WAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
-              <input type="submit" value="Add to Cart" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--Info Cards End-->
+    <!--Product Cards End-->
 
     <!-- Categories Section -->
     <section class="container">
