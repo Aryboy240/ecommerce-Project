@@ -19,9 +19,17 @@
   --mint: #00bfae;
   --lighter: #00a68c;
   --darker: #006d5d;
-  --floater: #048181;
+  --floater: rgb(4, 129, 129);
   --transition-speed: 600ms;
 }
+
+/* Disables selection 
+
+*::selection{
+  visibility: hidden;
+}
+
+*/
 
 /* Fancy scroll bar :) */
 
@@ -29,11 +37,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Sets default page layouts and stops content from overflowing (scroll in the x axis) */
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {

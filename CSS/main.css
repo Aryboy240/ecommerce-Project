@@ -13,17 +13,16 @@ body {
 header {
   background-color: var(--bg-primary);
   padding: 10px 0;
+  margin-bottom: 10px;
 }
 
 .navbar {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-
-.navbar-brand img {
-  width: 120px;
+  font-size: 15px;
 }
 
 .navbar-links {
@@ -33,9 +32,10 @@ header {
 }
 
 .navbar-links ul {
+  display: flex;
+  flex-direction: row;
   list-style: none;
   padding: 0;
-  display: flex;
 }
 
 .navbar-links li {
@@ -51,34 +51,100 @@ header {
   color: var(--mint);
 }
 
-.fas {
-  color: var(--text-primary);
-  font-size: 20px;
+.navbar-links ul li a img {
+  width: 15px;
+  filter: invert(100%);
 }
 
-/* Search bar */
+/* Search bar - Needs major re working */
 
 .search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  padding: 8px 16px;
-  background-color: var(--text-primary);
-  border: 2px solid var(--mint);
-  color: var(--text-primary);
-  border-radius: 25px;
   outline: none;
-  font-size: 1rem;
+}
+
+.search-bar input{
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.search-bar img {
+  width: 10px;
 }
 
 .search-bar input::placeholder {
-  color: black;
+  display: flex;
+  position: absolute;
+  margin-left: 10px;
+  color: var(--text-primary);
 }
 
-.search-bar input:focus {
-  border-color: var(--mint);
+.search-icon{
+  position: absolute;
+  display: flex;
+  place-items: center;
+  width: 15px;
+  padding: 10px;
+  background-color: var(--floater);
+  transform: translate(110%, 0%);
+  border-radius: 100px;
+  z-index: 100;
 }
+
+.search-icon img {
+  width: 15px;
+  filter: invert(100%);
+}
+
+.search-icon:hover{
+  background-color: var(--mint);
+}
+
+.cart-icon{
+  position: relative;
+  display: flex;
+  place-items: center;
+  width: 15px;
+  padding: 10px;
+  background-color: var(--floater);
+  transform: translate(50%, 0%);
+  border-radius: 100px;
+  z-index: 100;
+}
+
+.cart-icon img {
+  width: 15px;
+  filter: invert(100%);
+}
+
+.cart-icon:hover{
+  background-color: var(--mint);
+}
+
+.cart-item-number{
+  position: absolute;
+  display: flex;
+  place-items: center;
+  width: 10px;
+  height: 10px;
+  font-size: 15px;
+  padding: 5px;
+  background-color: red;
+  transform: translate(590%, -60%);
+  border-radius: 100px;
+  z-index: 100;
+}
+
+.cart-item-number p{
+  float: left;
+  margin-top: 16.5px;
+  margin-left: 0.5px;
+}
+
 
 /* Hero (Intro Title) */
 
@@ -117,6 +183,7 @@ header {
   left: 50%;
   right: 50%;
   transform: scale(1) rotate(20deg) translate(0%, -105%);
+  filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
 }
 
 .hero-content p {
@@ -131,18 +198,20 @@ header {
 .hero-content .pointer-wrapper {
   left: 50%;
   right: 50%;
-  transform: translate(5%,-200%);
+  transform: translate(5%,-100%);
 }
 
 .hero-content .pointer-wrapper img {
-  max-width: 100px;
+  max-width: 90px;
   transform: rotate(-20deg);
   filter: invert(100%);
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .hero-content .pointer-wrapper p {
-  transform: scale(1.1) rotate(30deg);
-  margin-left: 240px;
+  transform: scale(1) rotate(27deg);
+  margin-left: 226px;
 }
 
 /* Buttons in Hero */
@@ -154,7 +223,7 @@ header {
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
-  box-shadow: 0px 0px 50px rgba(255,255,255,0.2);
+  box-shadow: 0px 0px 50px rgba(4, 129, 129,0.7);
 }
 
 .btn-order:hover {
