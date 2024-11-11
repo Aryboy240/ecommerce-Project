@@ -25,6 +25,13 @@ header {
   font-size: 15px;
 }
 
+.logo {
+  width: 5%;
+  height:max-content;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
 .navbar-links {
   display: flex;
   justify-content: center;
@@ -56,7 +63,7 @@ header {
   filter: invert(100%);
 }
 
-/* Search bar - Needs major re working */
+/* Search bar */
 
 .search-bar {
   display: flex;
@@ -66,10 +73,12 @@ header {
 }
 
 .search-bar input{
+  padding-left: 10px;
   color: var(--text-primary);
   background-color: var(--bg-primary);
   border-radius: 10px;
   box-sizing: border-box;
+  z-index: 99;
 }
 
 .search-bar img {
@@ -79,7 +88,6 @@ header {
 .search-bar input::placeholder {
   display: flex;
   position: absolute;
-  margin-left: 10px;
   color: var(--text-primary);
 }
 
@@ -90,7 +98,7 @@ header {
   width: 15px;
   padding: 10px;
   background-color: var(--floater);
-  transform: translate(110%, 0%);
+  transform: translate(160%, 0%);
   border-radius: 100px;
   z-index: 100;
 }
@@ -108,7 +116,9 @@ header {
   position: relative;
   display: flex;
   place-items: center;
+  margin-top: 5px;
   width: 15px;
+  height: 15px;
   padding: 10px;
   background-color: var(--floater);
   transform: translate(50%, 0%);
@@ -134,14 +144,14 @@ header {
   font-size: 15px;
   padding: 5px;
   background-color: red;
-  transform: translate(590%, -60%);
+  box-shadow: 0px 0px 10px rgba(255,0,0, 0.75);
+  transform: translate(60%, -70%);
   border-radius: 100px;
-  z-index: 100;
+  z-index: 101;
 }
 
 .cart-item-number p{
   float: left;
-  margin-top: 16.5px;
   margin-left: 0.5px;
 }
 
