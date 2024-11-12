@@ -1,5 +1,5 @@
 const sr = ScrollReveal({
-  origin: "top",
+  origin: "bottom",
   distance: "50px",
   duration: 1000,
   reset: false,
@@ -23,7 +23,20 @@ sr.reveal(".floaters", {
   delay: 100,
 });
 
+sr.reveal(".section-title", {
+  duration: 1000,
+  interval: 100,
+  delay: 100,
+});
+
 sr.reveal(".product-card-con", {
   duration: 1000,
   interval: 100,
+  delay: 150,
+});
+
+sr.reveal(".category-grid", {
+  duration: 1000,
+  interval: 100,
+  delay: 150,
 });
