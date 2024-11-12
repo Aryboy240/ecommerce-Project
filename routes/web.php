@@ -16,3 +16,8 @@ Route::get('/register', function () {
     return view('register'); // Refers to resources/views/register.blade.php
 })->name('register');
 
+
+Route::get('/welcome', function () {
+    return view('welcome'); // Refers to resources/views/welcome.blade.php
+})->name('welcome');
+

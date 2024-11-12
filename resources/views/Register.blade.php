@@ -42,7 +42,7 @@
     <div class="login-content">
       <div class="form">
         <div class="HomeIcon">
-          <a href="index.html">
+          <a href="{{ route('welcome') }}">
             <svg
               aria-hidden="true"
               focusable="false"
@@ -82,7 +82,7 @@
             <input type="date" name="Birthday" />
           </div>
           <div class="input">
-            <a href="index.html">
+            <a href="{{ route('welcome') }}">
               <input type="button" value="Register" name="Register" />
             </a>
           </div>
