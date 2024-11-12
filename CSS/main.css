@@ -249,7 +249,8 @@ header {
 }
 
 .hero-content .pointer-wrapper p {
-  transform: scale(1) rotate(30deg);
+  font-size: 16px;
+  transform: rotate(30deg);
   margin-left: 233px;
 }
 
