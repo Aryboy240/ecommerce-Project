@@ -1,0 +1,544 @@
+/* The body */
+
+body {
+  background-color: var(--bg-primary);
+  font-family: "Lato", sans-serif;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar */
+
+header {
+  background-color: var(--bg-primary);
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 15px;
+}
+
+.logo {
+  max-width: 80px;
+  height: max-content;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.navbar-links ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin: 0 15px;
+}
+
+.navbar-links .nav-link {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.navbar-links .nav-link:hover {
+  color: var(--mint);
+}
+
+.navbar-links ul li a img {
+  width: 15px;
+  filter: invert(100%);
+}
+
+/* Search bar */
+
+.search-bar {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.search-bar input {
+  margin-top: 13px;
+  padding-left: 10px;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  border-radius: 10px;
+  box-sizing: border-box;
+  z-index: 99;
+}
+
+.search-bar img {
+  width: 10px;
+}
+
+.search-bar input::placeholder {
+  display: flex;
+  position: absolute;
+  color: var(--text-primary);
+}
+
+/* The finiky search bar icon (It does nothing atm) */
+
+.search-icon {
+  position: relative;
+  display: flex;
+  place-items: center;
+  cursor: pointer;
+  width: 15px;
+  padding: 10px;
+  background-color: var(--floater);
+  transform: translate(435%, -80%);
+  border-radius: 100px;
+  z-index: 100;
+}
+
+.search-icon img {
+  width: 15px;
+  filter: invert(100%);
+}
+
+.search-icon img::selection {
+  visibility: hidden;
+}
+
+.search-icon:hover {
+  background-color: var(--mint);
+}
+
+/* The even more finiky Shopping Basket button (Also does nothing atm) */
+
+.cart-icon {
+  position: relative;
+  display: flex;
+  place-items: center;
+  cursor: pointer;
+  margin-top: 5px;
+  width: 15px;
+  height: 15px;
+  padding: 10px;
+  background-color: var(--floater);
+  transform: translate(50%, 0%);
+  border-radius: 100px;
+  z-index: 100;
+}
+
+.cart-icon img {
+  width: 15px;
+  filter: invert(100%);
+}
+
+.cart-icon img::selection {
+  visibility: hidden;
+}
+
+.cart-icon:hover {
+  background-color: var(--mint);
+}
+
+/* The most scuffed notification icon ever */
+
+.cart-item-number {
+  position: absolute;
+  display: flex;
+  place-items: center;
+  width: 10px;
+  height: 10px;
+  font-size: 15px;
+  padding: 5px;
+  background-color: red;
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.75); /* Gave it a cool glow tho ♥ */
+  transform: translate(60%, -70%);
+  border-radius: 100px;
+  z-index: 101;
+}
+
+.cart-item-number p {
+  float: left;
+  margin-left: 0.5px;
+}
+
+.cart-item-number p::selection {
+  visibility: hidden;
+}
+
+/* Hero (Intro Title) */
+
+.hero {
+  position: relative;
+  background-color: var(--bg-primary);
+  padding: 100px 20px 60px 20px;
+  text-align: center;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 100%;
+  font-weight: 100;
+  font-size: 15px;
+  justify-items: center;
+  z-index: 2;
+  text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
+}
+
+.hero-content h1 {
+  z-index: 2;
+  font-size: 80px;
+  margin-bottom: 30px;
+}
+
+/*  Sets the position of the gif just behind the "WORLD"
+    The left and right are set to 50% to place the "absolute" image in the middle of the page
+    Then I just use the "translate" transformation to move it to where I want.
+    Now it won't move when I resize the page and should stay there no matter the screen size.
+*/
+
+.hero-content img {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  transform: scale(1) rotate(20deg) translate(0%, -105%);
+  filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
+}
+
+.hero-content img::selection {
+  visibility: hidden;
+}
+
+.hero-content p {
+  color: var(--text-secondary);
+  margin-bottom: 50px;
+}
+
+.hero a {
+  text-shadow: 0px 10px 10px rgba(0, 0, 0, 0);
+}
+
+.pointer-wrapper {
+  pointer-events: none;
+}
+
+.hero-content .pointer-wrapper {
+  left: 50%;
+  right: 50%;
+  transform: translate(5%, -100%);
+}
+
+.hero-content .pointer-wrapper img {
+  max-width: 90px;
+  transform: rotate(-20deg);
+  filter: invert(100%);
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.hero-content .pointer-wrapper p {
+  transform: scale(1) rotate(30deg);
+  margin-left: 233px;
+}
+
+/* Buttons in Hero */
+
+.btn-order {
+  background-color: var(--floater);
+  color: var(--text-secondary);
+  padding: 15px 40px;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 0px 0px 50px rgba(4, 129, 129, 0.7);
+  z-index: 1;
+}
+
+.btn-order:hover {
+  background-color: var(--lighter);
+}
+
+/*  Developer: Aryan Kora
+	  University ID: 230059030
+	  Function: Floaters CSS */
+
+.floater-body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.floater-containter {
+  position: relative;
+  width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 7% 5% 5% 5%;
+}
+
+/* The middle floater controller (main floater) */
+
+.floaters {
+  position: absolute;
+  color: var(--text-secondary);
+  display: flex;
+  transform: rotate(-10deg);
+  width: 300px;
+  height: 50px;
+  background: #048181;
+  margin: 30px 10px;
+  padding: 20px 15px;
+  flex-direction: row;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
+  transition: 0.4s ease-in-out;
+  z-index: 2;
+}
+
+.floaters img {
+  max-height: 100%;
+  margin-right: 50px;
+}
+
+/* Floater children inside the floater container */
+
+.floaters:nth-child(2) {
+  bottom: -10px;
+  left: 13%;
+  transform: rotate(10deg);
+  z-index: 1;
+}
+
+.floaters:nth-child(3) {
+  bottom: 10px;
+  right: 10%;
+  transform: rotate(7deg);
+  z-index: 0;
+}
+
+.floaters p {
+  margin-top: 17px;
+  transform: scale(1.6);
+}
+
+/* Titles */
+
+.section-title {
+  text-align: center;
+  color: var(--text-primary);
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 30px;
+}
+
+.container {
+  padding-bottom: 2%;
+}
+
+/* Products */
+
+.product-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.product {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 8px;
+  overflow: hidden;
+  padding-right: 5%;
+}
+
+.product:nth-child(1) {
+  padding-left: 5%;
+}
+
+.product-img {
+  width: 100%;
+  height: auto;
+}
+
+.product-body {
+  padding: 15px;
+}
+
+.product-title {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.product-price {
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 15px;
+}
+
+.product input[type="submit"] {
+  background-color: var(--Lighter); /* Light mint */
+  color: var(--bg-primary);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.product input[type="submit"]:hover {
+  background-color: var(--darker); /* Darker mint */
+}
+
+/* Categories */
+
+.category-grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.category {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding-right: 5%;
+}
+
+.category:nth-child(1) {
+  padding-left: 5%;
+}
+
+.category-img {
+  width: 100%;
+  height: auto;
+}
+
+.category-title {
+  color: var(--text-primary);
+  padding: 10px;
+}
+
+.category a:hover .category-title,
+.product:hover .product-title {
+  color: var(--mint); /* Mint green */
+}
+
+/*  Developer: Aryan Kora
+	  University ID: 230059030
+	  Function: Card CSS */
+
+.card-body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-con {
+  position: relative;
+  width: 1100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+
+.cards {
+  position: relative;
+  min-width: 300px;
+  max-width: 300px;
+  height: 150px;
+  background: var(--lighter);
+  margin: 30px 10px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  transition: 0.4s ease-in-out;
+}
+
+.cards:hover {
+  height: 350px;
+}
+
+.card-image {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  position: relative;
+  max-width: 260px;
+  top: -60px;
+  left: 20px;
+  z-index: 1;
+  box-shadow: 0 3px 50px rgba(0, 0, 0, 0);
+}
+
+.card-image img {
+  justify-items: center;
+  align-items: center;
+  max-width: 75%;
+  border-radius: 6px;
+  top: -60px;
+}
+
+.card-detail {
+  position: relative;
+  margin-top: -140px;
+  padding: 10px 15px;
+  text-align: center;
+  color: var(--bg-secondary);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.card-detail input {
+  position: relative;
+  background-color: var(--mint);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.card-detail input:hover {
+  cursor: pointer;
+  background-color: var(--darker);
+}
+
+.cards:hover .card-detail {
+  transition: 0.4s ease-in-out;
+  visibility: visible;
+  opacity: 1;
+  margin-top: -50px;
+}
+
+.hyper-hider {
+  text-decoration: none;
+  color: var(--text-primary);
+}
