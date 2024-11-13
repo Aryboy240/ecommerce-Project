@@ -53,7 +53,7 @@
             eleveate their eye-wear style and enchance their vision<br><br>
             <em>A digital solution for Opticians</em>
           </p>
-          <a href="index.html" class="btn-order">Order</a>
+          <a href="" class="btn-order">Order</a>
           <div class="pointer-wrapper">
             <img src="{{ asset('Images/arrow.png') }}">
             <p>Order from<br> here</p>
