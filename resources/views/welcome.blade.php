@@ -7,7 +7,7 @@
     <script src="js/scrollreveal.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryans_extras.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}"> 
     <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
     <title>Optique</title>
   </head>

@@ -8,12 +8,12 @@ Route::get('/', function () {
 
 
 Route::get('/login', function () {
-    return view('login'); // Refers to resources/views/login.blade.php
+    return view('Login'); // Refers to resources/views/Login.blade.php
 })->name('login');
 
 
 Route::get('/register', function () {
-    return view('register'); // Refers to resources/views/register.blade.php
+    return view('Register'); // Refers to resources/views/Register.blade.php
 })->name('register');
 
 
