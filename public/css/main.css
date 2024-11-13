@@ -8,6 +8,159 @@ body {
     padding: 0;
 }
 
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Login Info CSS
+*/
+
+.AccountNavigation {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 60px;
+    background: var(--floater);
+    box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    transition: height 0.5s, width 0.5s;
+    transition-delay: 0s, 0.75s;
+    overflow: hidden;
+    border-radius: 15px;
+    z-index: 201;
+}
+
+.AccountNavigation.active {
+    width: 300px;
+    height: 400px;
+    transition: width 0.5s, height 0.5s;
+    transition-delay: 0s, 0.75s;
+}
+
+.AccountNavigation .userBox {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: var(--floater);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.AccountNavigation.active .userBox {
+    width: calc(100% - 60px);
+    transition-delay: 0s;
+}
+
+.AccountNavigation .userBox .AccountUsername {
+    white-space: nowrap;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.AccountNavigation .userBox .imgBox {
+    box-sizing: border-box;
+    position: relative;
+    min-width: 60px;
+    height: 60px;
+    overflow: hidden;
+    background: var(--floater);
+    border-radius: 50%;
+    border: 10px solid var(--floater);
+}
+
+.AccountNavigation .userBox .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+    transform: scale(1.35);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.AccountNavigation .menuToggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.AccountNavigation .menuToggle::before {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 2px;
+    background: var(--text-primary);
+    transform: translateY(-10px);
+    box-shadow: 0 10px var(--text-primary);
+    transition: 0.5s;
+}
+
+.AccountNavigation .menuToggle::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 2px;
+    background: var(--text-primary);
+    transform: translateY(10px);
+    transition: 0.5s;
+}
+
+.AccountNavigation.active .menuToggle::before {
+    transform: translateY(0px) rotate(45deg);
+    box-shadow: 0 0 var(--text-primary);
+}
+
+.AccountNavigation.active .menuToggle::after {
+    transform: translateY(0px) rotate(-45deg);
+    box-shadow: 0 0 var(--text-primary);
+}
+
+.UserMenu {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 60px);
+    margin-top: 60px;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.UserMenu li {
+    list-style: none;
+}
+
+.UserMenu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 5px;
+    font-size: 1em;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: 0.5s;
+}
+
+.UserMenu li a:nth-child(1) {
+    margin-top: 10px;
+}
+
+.UserMenu .child:last-child {
+    padding-left: 4px;
+}
+
+.UserMenu li a:hover {
+    color: var(--nav-colour);
+}
+
+.UserMenu li a ion-icon {
+    font-size: 1.5em;
+}
+
 /* Navbar */
 
 header {
@@ -542,4 +695,139 @@ header {
 .hyper-hider {
     text-decoration: none;
     color: var(--text-primary);
+}
+
+@media only screen and (max-width: 991px) {
+    .floater-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .floater-containter {
+        position: relative;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: 7% 0 5% 0;
+    }
+
+    /* The middle floater controller (main floater) */
+
+    .floaters {
+        position: relative;
+        transform: rotate(0);
+    }
+
+    .floaters img {
+        max-height: 100%;
+        margin-right: 50px;
+    }
+
+    /* Floater children inside the floater container */
+
+    .floaters:nth-child(2) {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: rotate(0);
+        z-index: 1;
+    }
+
+    .floaters:nth-child(3) {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        transform: rotate(0);
+        z-index: 0;
+    }
+
+    .floaters p {
+        margin-top: 17px;
+        transform: scale(1.6);
+    }
+
+    /* Hero (Intro Title) */
+
+    .hero {
+        position: relative;
+        background-color: var(--bg-primary);
+        padding: 100px 20px 60px 20px;
+        text-align: center;
+    }
+
+    .hero-content {
+        position: relative;
+        max-width: 100%;
+        font-weight: 100;
+        font-size: 15px;
+        justify-items: center;
+        z-index: 2;
+        text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
+    }
+
+    .hero-content h1 {
+        z-index: 2;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    .hero-content img {
+        pointer-events: none;
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        right: 50%;
+        transform: scale(0.75) rotate(20deg) translate(-30%, -110%);
+        filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
+    }
+}
+
+@media only screen and (max-width: 764px) {
+    body {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Hides PC Navbar */
+
+    .navbar {
+        visibility: hidden;
+        display: none;
+    }
+
+    .smol_nav {
+        visibility: visible;
+        display: flex;
+    }
+
+    /* Hero (Intro Title) */
+
+    .hero-content h1 {
+        z-index: 2;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .hero-content img {
+        transform: scale(0.6) rotate(0) translate(-80%, -135%);
+    }
+
+    /* Categories */
+
+    .category-grid {
+        flex-direction: column;
+    }
+
+    .category {
+        padding-right: 0;
+        font-size: 30px;
+    }
+
+    .category:nth-child(1) {
+        padding-left: 0;
+    }
 }

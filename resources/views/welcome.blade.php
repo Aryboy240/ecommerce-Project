@@ -12,7 +12,7 @@
     <title>Optique</title>
   </head>
   <body>
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar:: Aryan Kora -->
     <header class="header">
       <div class>
         <nav class="navbar">
@@ -42,7 +42,67 @@
       </div>
     </header>
 
-    <!-- Intro Title (Frame your world) -->
+    <!--User Account Nav:: Aryan Kora-->
+    <section>
+      <div class="AccountNavigation">
+        <div class="userBox">
+          <div class="imgBox">
+            <img src="Images/User.jpg" />
+          </div>
+          <p class="AccountUsername">Aryan Kora</p>
+        </div>
+        <div class="menuToggle"></div>
+        <ul class="UserMenu">
+          <li class="child">
+            <a href="{{ route('login') }}"
+              ><ion-icon name="person-outline"></ion-icon> My Profile</a
+            >
+          </li>
+          <li class="child">
+            <a href="{{ route('login') }}"
+              ><ion-icon name="chatbubble-outline"></ion-icon> Messages</a
+            >
+          </li>
+          <li class="child">
+            <a href="{{ route('login') }}"
+              ><ion-icon name="notifications-outline"></ion-icon> Notifications</a
+            >
+          </li>
+          <li class="child">
+            <a href="{{ route('login') }}"
+              ><ion-icon name="settings-outline"></ion-icon> Settings</a
+            >
+          </li>
+          <li class="child">
+            <a href="{{ route('login') }}"
+              ><ion-icon name="help-outline"></ion-icon> Help & Support</a
+            >
+          </li>
+          <li class="child">
+            <a href="{{ route('login') }}"
+              ><ion-icon name="log-out-outline"></ion-icon> logout</a
+            >
+          </li>
+        </ul>
+      </div>
+      <script
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      ></script>
+      <script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      ></script>
+      <script>
+        let menuToggle = document.querySelector(".menuToggle");
+        let AccountNavigation = document.querySelector(".AccountNavigation");
+        menuToggle.onclick = function () {
+          AccountNavigation.classList.toggle("active");
+        };
+      </script>
+    </section>
+
+    <!-- Intro Title (Frame your world):: Aryan Kora -->
     <section class="hero">
       <div class="hero-content">
         <div>
@@ -62,7 +122,7 @@
       </div>
     </section>
 
-    <!-- Test for floating cards under hero content (Aryan Kora) -->
+    <!-- Test for floating cards under hero content:: Aryan Kora -->
     <section class="container">
       <div class="floater-body">
         <div class="floater-containter">
@@ -82,7 +142,7 @@
       </div>
     </section>
 
-    <!-- Featured Products Section -->
+    <!-- Featured Products Section:: Aryan Kora -->
     <section style="margin-top: 100px;">
       <h2 class="section-title">Featured Products</h2>
       <!--SECTION 1-->
@@ -233,7 +293,7 @@
     </section>
     <!--Product Cards End-->
 
-    <!-- Categories Section -->
+    <!-- Categories Section:: Esta -->
     <section class="container">
       <div class="container">
         <h2 class="section-title">View our range of categories</h2>
