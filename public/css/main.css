@@ -168,88 +168,115 @@ body {
     }
 }
 
-/* Navbar */
+/* New Nav */
 
-header {
-    background-color: var(--bg-primary);
-    padding: 10px 0;
-    margin-bottom: 10px;
-}
-
-.navbar {
+.nav-section {
+    padding: 25px 0px;
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    font-size: 15px;
-}
-
-.logo {
-    max-width: 80px;
-    height: max-content;
-    margin-top: 10px;
-    margin-right: 20px;
-}
-
-.navbar-links {
-    display: flex;
     justify-content: center;
-    flex-grow: 1;
 }
 
-.navbar-links ul {
+.navbar-left {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--floater);
+    z-index: 5;
+    transition: var(--transition-speed) ease-in-out;
+    border-radius: 50px;
+    margin-right: -50px;
+    min-width: 25%;
+}
+
+.navbar-left .nav-item:last-child {
+    margin-right: 40px;
+}
+
+.navbar-rigth {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--floater);
+    z-index: 5;
+    transition: var(--transition-speed) ease-in-out;
+    border-radius: 50px;
+    margin-left: -50px;
+    min-width: 25%;
+}
+
+.navbar-rigth .nav-item:nth-child(1) {
+    margin-left: 40px;
+}
+
+nav:hover {
+    box-shadow: 0 0 25px var(--lighter);
+}
+
+.navbar-nav {
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     list-style: none;
     padding: 0;
+    margin: 0;
+    z-index: 5;
 }
 
-.navbar-links li {
-    margin: 0 15px;
+.nav-item {
+    width: 100%;
+    z-index: 5;
 }
 
-.navbar-links .nav-link {
-    text-decoration: none;
-    color: var(--text-primary);
-}
-
-.navbar-links .nav-link:hover {
-    color: var(--mint);
-}
-
-.navbar-links ul li a img {
-    width: 15px;
-    filter: invert(100%);
-}
-
-/* Search bar */
-
-.search-bar {
+.navbar-middle {
     position: relative;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-}
-
-.search-bar input {
-    margin-top: 13px;
-    padding-left: 10px;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    border-radius: 10px;
-    box-sizing: border-box;
-    z-index: 99;
-}
-
-.search-bar img {
-    width: 10px;
-}
-
-.search-bar input::placeholder {
     display: flex;
-    position: absolute;
-    color: var(--text-primary);
+    z-index: 100;
+}
+
+.navbar-middle img {
+    filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
+    position: relative;
+    width: 100px;
+    transform: scale(1.2);
+    z-index: 101;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--bg-primary);
+    text-decoration: none;
+    filter: grayscale(100%) opacity(0.7);
+    transition: var(--transition-speed);
+    z-index: 5;
+}
+
+.nav-link:hover {
+    filter: grayscale(0%) opacity(1);
+    background: var(--mint);
+    color: var(--bg-secondary);
+    z-index: 5;
+}
+
+.link-text {
+    font-weight: 700;
+    margin-left: 1rem;
+    z-index: 5;
+    transition: var(--transition-speed);
+}
+
+.nav-link svg {
+    padding-left: 2.5rem;
+    width: 2rem;
+    min-width: 2rem;
+    z-index: 5;
+}
+
+.navbar::-webkit-scrollbar {
+    width: 0rem;
 }
 
 /* The finiky search bar icon (It does nothing atm) */
