@@ -192,7 +192,7 @@ body {
 }
 
 .navbar-left .nav-item:last-child {
-    margin-right: 40px;
+    margin-right: 45px;
 }
 
 .navbar-rigth {
@@ -207,7 +207,7 @@ body {
 }
 
 .navbar-rigth .nav-item:nth-child(1) {
-    margin-left: 40px;
+    margin-left: 45px;
 }
 
 nav:hover {
