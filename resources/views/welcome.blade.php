@@ -288,5 +288,22 @@
         </div>
       </div>
     </section>
+    <!-- About Section -->
+    <section class="about-container">
+      <div class="about-content">
+        <h2>Learn About Us And What Sets Us Apart</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc auctor consectetur elit, quis pulvinar.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc auctor consectetur elit, quis pulvinar.</p>
+        <button class="about-button">Learn More</button>
+      </div>
+      <div class="about-image">
+        <div class="about-image-grid">
+          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 1">
+          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 2">
+          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 3">
+          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+        </div>
+      </div> 
+    </section>     
   </body>
 </html>
