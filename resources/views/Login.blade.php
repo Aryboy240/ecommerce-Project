@@ -3,7 +3,7 @@
 	  University ID: 230059030
     Function: Front end for the login page
 -->
-<!DOCTYPE html>
+
 <head>
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
