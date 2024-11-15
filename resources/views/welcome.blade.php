@@ -304,6 +304,44 @@
           <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
         </div>
       </div> 
-    </section>     
+    </section>
+    <!-- Footer Section -->
+    <div class="footer">
+      <div>
+        <h3>Customer Support</h3>
+        <p>
+          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon"/>
+          1 (800) 555-OPTQ
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" /> 
+          <a href="mailto:support@optique.com">support@optique.com</a></p>
+        <p>Live Chat Available</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#">Glasses</a>
+        <a href="#">Sunglasses</a>
+        <a href="#">Accessories</a>
+        <a href="#">Contact Lenses</a>
+      </div>
+      <div>
+        <h3>About Optique</h3>
+        <a href="#">Our Story</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Careers</a>
+        <a href="#">Store Locator</a>
+      </div>
+      <div class="social-icons">
+        <h3>Follow Us</h3>
+        <a href="#">🔵 Facebook</a>
+        <a href="#">📸 Instagram</a>
+        <a href="#">🐦 Twitter</a>
+        <a href="#">📌 Pinterest</a>
+      </div>
+      <div class="powered-by">
+        <p>© Optique. Crafted for Visionaries.</p>
+      </div>
+    </div>
   </body>
 </html>
