@@ -170,8 +170,9 @@ body {
 
 /* New Nav */
 
+/* Nav section goes across whole screen & padding of 25px up and down */
 .nav-section {
-    padding: 25px 0px;
+    padding: 25px 0;
     position: relative;
     width: 100%;
     display: flex;
@@ -180,27 +181,30 @@ body {
     justify-content: center;
 }
 
+/* Left side of the logo */
 .navbar-left {
     position: relative;
     overflow: hidden;
-    background-color: var(--bg-primary);
+    background-color: var(--floater);
     z-index: 5;
-    transition: var(--transition-speed) ease-in-out;
+    transition: var(--transition-speed) ease;
     border-radius: 50px;
     margin-right: -50px;
     min-width: 25%;
 }
 
+/* Pushes the bar into the logo */
 .navbar-left .nav-item:last-child {
     margin-right: 45px;
 }
 
+/* Right side of the logo */
 .navbar-rigth {
     position: relative;
     overflow: hidden;
-    background-color: var(--bg-primary);
+    background-color: var(--floater);
     z-index: 5;
-    transition: var(--transition-speed) ease-in-out;
+    transition: var(--transition-speed) ease;
     border-radius: 50px;
     margin-left: -50px;
     min-width: 25%;
@@ -210,10 +214,16 @@ body {
     margin-left: 45px;
 }
 
-.nav-item:hover {
-    box-shadow: 0 0 10px var(--lighter);
+/* glows on hover */
+nav:hover {
+    box-shadow: 0 0 15px var(--mint);
 }
 
+.nav-item:hover {
+    box-shadow: 0 0 15px var(--mint);
+}
+
+/* Changes list settings */
 .navbar-nav {
     max-width: 100%;
     display: flex;
@@ -224,12 +234,14 @@ body {
     z-index: 5;
 }
 
+/* Each item in the nav */
 .nav-item {
     width: 100%;
     z-index: 5;
     transition: var(--transition-speed) ease;
 }
 
+/* The middle logo */
 .navbar-middle {
     position: relative;
     display: flex;
@@ -251,14 +263,13 @@ body {
     height: 5rem;
     color: var(--text-primary);
     text-decoration: none;
-    filter: grayscale(100%) opacity(0.7);
     transition: var(--transition-speed);
     z-index: 5;
 }
 
+/* changes item colour when hovering */
 .nav-link:hover {
-    filter: grayscale(0%) opacity(1);
-    background: var(--floater);
+    background: var(--mint);
     color: var(--text-primary);
     z-index: 5;
 }
@@ -270,6 +281,7 @@ body {
     transition: var(--transition-speed);
 }
 
+/* Each element (span and svbg) in the nav-item */
 .nav-item-wrapper {
     position: relative;
     display: flex;
@@ -285,92 +297,9 @@ body {
     filter: invert(100%);
 }
 
+/* No scrollbar on the navbar (even tho overflow is hidden, I just wanna make sure) */
 .navbar::-webkit-scrollbar {
     width: 0rem;
-}
-
-/* The finiky search bar icon (It does nothing atm) */
-
-.search-icon {
-    position: relative;
-    display: flex;
-    place-items: center;
-    cursor: pointer;
-    width: 15px;
-    padding: 10px;
-    background-color: var(--floater);
-    transform: translate(435%, -80%);
-    border-radius: 100px;
-    z-index: 100;
-}
-
-.search-icon img {
-    width: 15px;
-    filter: invert(100%);
-}
-
-.search-icon img::selection {
-    visibility: hidden;
-}
-
-.search-icon:hover {
-    background-color: var(--mint);
-}
-
-/* The even more finiky Shopping Basket button (Also does nothing atm) */
-
-.cart-icon {
-    position: relative;
-    display: flex;
-    place-items: center;
-    cursor: pointer;
-    margin-top: 5px;
-    width: 15px;
-    height: 15px;
-    padding: 10px;
-    background-color: var(--floater);
-    transform: translate(50%, 0%);
-    border-radius: 100px;
-    z-index: 100;
-}
-
-.cart-icon img {
-    width: 15px;
-    filter: invert(100%);
-}
-
-.cart-icon img::selection {
-    visibility: hidden;
-}
-
-.cart-icon:hover {
-    background-color: var(--mint);
-}
-
-/* The most scuffed notification icon ever */
-
-.cart-item-number {
-    position: absolute;
-    display: flex;
-    place-items: center;
-    width: 10px;
-    height: 10px;
-    font-size: 15px;
-    padding: 5px;
-    background-color: red;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.75); /* Gave it a cool glow tho ♥ */
-    transform: translate(60%, -70%);
-    border-radius: 100px;
-    z-index: 101;
-}
-
-.cart-item-number p {
-    float: left;
-    margin-left: 0.5px;
-}
-
-.cart-item-number p::selection {
-    visibility: hidden;
 }
 
 /* Hero (Intro Title) */
