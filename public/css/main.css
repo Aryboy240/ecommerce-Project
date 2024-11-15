@@ -183,7 +183,7 @@ body {
 .navbar-left {
     position: relative;
     overflow: hidden;
-    background-color: var(--floater);
+    background-color: var(--bg-primary);
     z-index: 5;
     transition: var(--transition-speed) ease-in-out;
     border-radius: 50px;
@@ -198,7 +198,7 @@ body {
 .navbar-rigth {
     position: relative;
     overflow: hidden;
-    background-color: var(--floater);
+    background-color: var(--bg-primary);
     z-index: 5;
     transition: var(--transition-speed) ease-in-out;
     border-radius: 50px;
@@ -210,8 +210,8 @@ body {
     margin-left: 45px;
 }
 
-nav:hover {
-    box-shadow: 0 0 25px var(--lighter);
+.nav-item:hover {
+    box-shadow: 0 0 10px var(--lighter);
 }
 
 .navbar-nav {
@@ -227,6 +227,7 @@ nav:hover {
 .nav-item {
     width: 100%;
     z-index: 5;
+    transition: var(--transition-speed) ease;
 }
 
 .navbar-middle {
@@ -246,8 +247,9 @@ nav:hover {
 .nav-link {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 5rem;
-    color: var(--bg-primary);
+    color: var(--text-primary);
     text-decoration: none;
     filter: grayscale(100%) opacity(0.7);
     transition: var(--transition-speed);
@@ -256,8 +258,8 @@ nav:hover {
 
 .nav-link:hover {
     filter: grayscale(0%) opacity(1);
-    background: var(--mint);
-    color: var(--bg-secondary);
+    background: var(--floater);
+    color: var(--text-primary);
     z-index: 5;
 }
 
@@ -268,11 +270,19 @@ nav:hover {
     transition: var(--transition-speed);
 }
 
+.nav-item-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
 .nav-link svg {
-    padding-left: 2.5rem;
     width: 2rem;
     min-width: 2rem;
     z-index: 5;
+    filter: invert(100%);
 }
 
 .navbar::-webkit-scrollbar {
