@@ -195,7 +195,7 @@ body {
 
 /* Pushes the bar into the logo */
 .navbar-left .nav-item:last-child {
-    margin-right: 45px;
+    margin-right: 38px;
 }
 
 /* Right side of the logo */
@@ -211,7 +211,7 @@ body {
 }
 
 .navbar-rigth .nav-item:nth-child(1) {
-    margin-left: 45px;
+    margin-left: 38px;
 }
 
 /* glows on hover */
@@ -241,13 +241,22 @@ nav:hover {
     transition: var(--transition-speed) ease;
 }
 
-/* The middle logo */
+/* The middle logo section */
 .navbar-middle {
     position: relative;
     display: flex;
+    box-shadow: 0 0 15px var(--mint);
+    border: 15px solid var(--floater);
+    border-radius: 50%;
     z-index: 100;
+    transition: var(--transition-speed);
 }
 
+.navbar-middle:hover {
+    transform: scale(1.1) rotate(360deg);
+}
+
+/* The middle logo image */
 .navbar-middle img {
     filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
     position: relative;
