@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <!--Meta-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSS -->>
-        <link rel="stylesheet" href="thecss.css">
-        <link rel="stylesheet" href="main.css">
-        <title>Contact Us | Optique</title>
+  <!-- CSS -->>
+      <link rel="stylesheet" href="contect.css">
+      <link rel="stylesheet" href="aryansExtras.css">
+      <link rel="stylesheet" href="main.css">
+      <title>Contact Us | Optique</title>
     </head>
-    <body>
+  <body>
 
         <!-- Navigation Bar -->
         <header class="header">
@@ -22,6 +22,7 @@
                             <li><a class="nav-link" href="">Home</a></li>
                             <li><a class="nav-link" href="">About</a></li>
                             <li><a class="nav-link" href="">Product</a></li>
+                            <li><a class="nav-link" href="">Contact</a></li>
                             <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                         </ul>
                         <div class="search-bar">
@@ -43,46 +44,73 @@
 
     <!-- CONTECT-->>
     <section class="contact-section">
+      <div class="contact-us">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>
+      </div>
+      
     
-      <img src="Cat.jpg" width="100%" height="400">
-
-
-    <h1>Contact Us</h1>
-    <p>We love to hear from you! Please reach out with any questions or feedback.</p>
-
-    <!-- Contact Details -->
-    <div class="contact-container">
-      <img src="location.jpg" style="float:left;width:500px;height:500px;">
+    
       <!-- Contact Details -->
-      <div class="contact-info">
-        <h2>Meet us</h2>
-        <p><strong>Address:</strong> 84 Bibb St, Birmingham, B9 8QQ</p>
-        <p><img src="pngimg.com - phone_PNG48919.png"style="float:right;width:15px;height:15px;">+440246813579</p>
-        <p><strong>Email:</strong> support@optique.com</p>
-        
+      <div class="contact-container">
+        <div class="map-location">
+        <a href="https://maps.app.goo.gl/AEP5HRkij4LH9n2c9">
+          <img src="location.jpg"  width="100%" height="100%" >
+        </a>
+        </div>
 
+        <div class="contact-detail">
+          <h2>Where we are</h2>
+          <p>84 Bibb St, Birmingham, B9 8QQ</p>
+          <p><strong>office hour</strong> 10AM - 6PM</p>
+          <br>
+          <h2>Meeting us</h2>
+          <p><strong>Phone</strong> +440246813579</p>
+          <p><strong>Email</strong> support@optique.com</p>
+        </div>
 
-        <ul class="login-socials">
-          <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/instagram.png"
-            /></a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/youtube.png"
-            /></a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/twitter.png"
-            /></a>
-          </li>
-        </ul>
+        <div class="contact-form">
+          <h2>Get in touch</h2>
+          <form action="/submit-question" method="POST">
+              
+                <p>Name</p>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+              
+              
+                <p>Email</p>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+              
+              
+                <p>order number(if apply)</p>
+                <input type="number"  id="order" name="order" placeholder="Your order number" >
+              
+                
+                <p>select your situational</p>
+                <select id="situational" name="situational" >
+                  <option value="Product-damage">Product damage</option>
+                  <option value="Returns-and-refunds">Returns and refunds</option>
+                  <option value="Suggestion">Suggestion</option>
+                  <option value="Other">Other</option>
+                </select>
+                
+                <p>Message</p>
+                <textarea id="message" name="message" rows="5" placeholder=" Please enter your message" required></textarea>
+              
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+
       </div>
 
-    </div>
-  </section>
+    </section>
 
-</body>
+    <section class="socials-mediar">
+      <ul class="login-socials">
+        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a></li>
+        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a></li>
+        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a></li>
+      </ul>
+    </section>
+
+  </body>
 </html>
