@@ -11,6 +11,21 @@ sr.reveal(".hero", {
     interval: 100,
 });
 
+sr.reveal(".navbar-left", {
+    duration: 1000,
+    interval: 100,
+});
+
+sr.reveal(".navbar-middle", {
+    duration: 1000,
+    interval: 100,
+});
+
+sr.reveal(".navbar-right", {
+    duration: 1000,
+    interval: 100,
+});
+
 sr.reveal(".floater-body", {
     duration: 1000,
     interval: 100,
