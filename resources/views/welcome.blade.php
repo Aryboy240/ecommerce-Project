@@ -22,7 +22,7 @@
             <ul>
               <li><a class="nav-link" href="">Home</a></li>
               <li><a class="nav-link" href="">About</a></li>
-              <li><a class="nav-link" href="">Product</a></li>
+              <li><a class="nav-link" href="{{ route('product') }}">Product</a></li>
               <li><a class="nav-link" href="">Contact</a></li>
               <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
             </ul>
@@ -240,7 +240,7 @@
         <h2 class="section-title">View our range of categories</h2>
         <div class="category-grid">
           <div class="category">
-            <a href="">
+            <a href="{{ route('product') }}">
               <img
                 src="{{ asset('Images/filler.webp') }}"
                 class="category-img"
