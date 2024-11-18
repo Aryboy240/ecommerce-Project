@@ -168,7 +168,10 @@ body {
     }
 }
 
-/* New Nav */
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Navigaion bar
+*/
 
 /* Nav section goes across whole screen & padding of 25px up and down */
 .nav-section {
@@ -190,7 +193,7 @@ body {
     transition: var(--transition-speed) ease;
     border-radius: 50px;
     margin-right: -50px;
-    min-width: 25%;
+    width: 35vw;
 }
 
 /* Pushes the bar into the logo */
@@ -207,7 +210,7 @@ body {
     transition: var(--transition-speed) ease;
     border-radius: 50px;
     margin-left: -50px;
-    min-width: 25%;
+    width: 35vw;
 }
 
 .navbar-rigth .nav-item:nth-child(1) {
@@ -425,7 +428,7 @@ nav:hover {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 7% 5% 5% 5%;
+    margin: 10% 5% 5% 5%;
 }
 
 /* The middle floater controller (main floater) */
@@ -680,6 +683,91 @@ nav:hover {
 }
 
 @media only screen and (max-width: 991px) {
+    /* Nav section goes across whole screen & padding of 25px up and down */
+    .nav-section {
+        padding: 25px 0;
+        width: 100%;
+    }
+
+    /* Left side of the logo */
+    .navbar-left {
+        border-radius: 50px;
+        margin-right: -50px;
+    }
+
+    /* Pushes the bar into the logo */
+    .navbar-left .nav-item:last-child {
+        margin-right: 38px;
+    }
+
+    /* Right side of the logo */
+    .navbar-rigth {
+        border-radius: 50px;
+        margin-left: -50px;
+    }
+
+    .navbar-rigth .nav-item:nth-child(1) {
+        margin-left: 38px;
+    }
+
+    /* glows on hover */
+    nav:hover {
+        box-shadow: 0 0 15px var(--mint);
+    }
+
+    .nav-item:hover {
+        box-shadow: 0 0 15px var(--mint);
+    }
+
+    /* Changes list settings */
+    .navbar-nav {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        z-index: 5;
+    }
+
+    /* Each item in the nav */
+    .nav-item {
+        width: 100%;
+        z-index: 5;
+    }
+
+    /* The middle logo section */
+    .navbar-middle {
+        box-shadow: 0 0 15px var(--mint);
+        border: 15px solid var(--floater);
+        border-radius: 50%;
+    }
+
+    .navbar-middle:hover {
+        transform: scale(1.1) rotate(360deg);
+    }
+
+    /* The middle logo image */
+    .navbar-middle img {
+        filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
+        width: 100px;
+        transform: scale(1.2);
+        z-index: 101;
+    }
+
+    .nav-link {
+        height: 5rem;
+    }
+
+    .link-text {
+        font-weight: 700;
+        margin-left: 1rem;
+    }
+
+    .nav-link svg {
+        width: 2rem;
+        min-width: 2rem;
+        z-index: 5;
+        filter: invert(100%);
+    }
+
     .floater-body {
         flex-direction: column;
         align-items: flex-start;
@@ -692,7 +780,7 @@ nav:hover {
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
-        margin: -15% 0 0 0;
+        margin: -5% 0 0 0;
     }
 
     /* The middle floater controller (main floater) */
@@ -776,7 +864,7 @@ nav:hover {
 
     /* Hides PC Navbar */
 
-    .navbar {
+    nav {
         visibility: hidden;
         display: none;
     }
