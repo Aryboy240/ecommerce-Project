@@ -23,7 +23,7 @@
               <li><a class="nav-link" href="">Home</a></li>
               <li><a class="nav-link" href="">About</a></li>
               <li><a class="nav-link" href="">Product</a></li>
-              <li><a class="nav-link" href="">Contact</a></li>
+              <li><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
               <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
             </ul>
             <div class="search-bar">

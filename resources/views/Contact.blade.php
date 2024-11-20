@@ -5,9 +5,10 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- CSS -->>
-      <link rel="stylesheet" href="contect.css">
-      <link rel="stylesheet" href="aryansExtras.css">
-      <link rel="stylesheet" href="main.css">
+      <link rel="stylesheet" href={{  asset('css/main.css') }}>
+      <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
+      <link rel="stylesheet" href={{  asset('css/contact.css') }}>
+
       <title>Contact Us | Optique</title>
     </head>
   <body>
@@ -45,8 +46,10 @@
     <!-- CONTECT-->>
     <section class="contact-section">
       <div class="contact-us">
+        <img src="{{ asset('Images/Cat.jpg') }}">
         <h1>Contact Us</h1>
         <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>
+        <img src="{{ asset('Images/Cat.jpg') }}">
       </div>
       
     
@@ -55,7 +58,7 @@
       <div class="contact-container">
         <div class="map-location">
         <a href="https://maps.app.goo.gl/AEP5HRkij4LH9n2c9">
-          <img src="location.jpg"  width="100%" height="100%" >
+          <img src="{{ asset('Images/location.jpg') }}"  width="100%" height="100%" >
         </a>
         </div>
 
