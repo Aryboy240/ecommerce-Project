@@ -314,7 +314,31 @@ nav:hover {
     width: 0rem;
 }
 
-/* Hero (Intro Title) */
+/*dropdown bat form Navigation  Bar*/
+.dropdown-content {
+    display: none;
+    background-color: #00bfae;;
+    min-width: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgba(4, 129, 129, 0.7);
+    }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+/* Hero (Intro Title)*/
 
 .hero {
     position: relative;

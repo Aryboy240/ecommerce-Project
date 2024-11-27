@@ -3,6 +3,7 @@
     background-size: 100px;
     background-position: center;
     padding: 100px;    
+    text-align: center;
   }
   
   body {
@@ -12,24 +13,20 @@
   
   /*contact us (big word one)*/
   .contact-us h1{
-    color:#0d1811;
-    text-align: center;
-    border: 2px solid #036060da;
-    border-radius: 40px;
-    background-color: #036060;
+    color:#dcdcdc;
+    font-size: 60px;
+    font-weight: 800; 
     padding-top: 5px;
     padding-bottom: 5px;
+    text-transform: uppercase;
   }
   
   .contact-us p{
-    color: #0d1811;
-    text-align: left;
-    border: 2px solid #036060da;
-    border-radius: 40px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: #036060;
-    font-size: 15px;
+    font-size: 30px;
+    color: #dcdcdc;
+    font-weight: 400; 
+    line-height: 36px;
+    padding-top: 55px; 
   }
   
   /*map*/
@@ -37,7 +34,15 @@
     max-width: 30%;
     max-height: 30%;
     margin:3px 3px;
+    opacity: 0.7;
+    border-radius: 8px;
   }
+
+  .map-location:hover{  
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+
   /*
   contact-container
   */
@@ -152,7 +157,7 @@
 
   /*the bottem bar*/
   .socials-mediar {
-    background-color:  rgba(4, 129, 129, 0.7);;
+    background-image:  linear-gradient( 230deg,#036060,#00bfae); ;
     text-align: center;
     padding: 10px;
     margin-top: 10px;
