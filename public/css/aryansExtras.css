@@ -26,7 +26,7 @@
 /* Disables selection 
 
 *::selection{
-  visibility: hidden;
+visibility: hidden;
 }
 
 */
@@ -57,6 +57,6 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background: var(--darker);
-    border-radius: 50px;
+  background: var(--darker);
+  border-radius: 50px;
 }
