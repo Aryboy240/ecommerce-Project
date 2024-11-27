@@ -14,43 +14,43 @@
         <title>Optique</title>
     </head>
     <body>
-        <!-- Update nav for better accessibility -->
+        <!-- Navigation Bar -->
         <header class="header">
-            <nav class="navbar" aria-label="Main navigation">
-                <div class="navbar-links">
-                    <a href="{{ route('welcome') }}">
-                        <img class="logo" src="{{ asset('Images/nav_Logo.png') }}" alt="Optique Logo">
-                    </a>
-                    <ul>
-                        <li><a class="nav-link" href="{{ route('welcome') }}">Home</a></li>
-                        <li><a class="nav-link" href="">About</a></li>
-                        <li><a class="nav-link" href="{{ route('product') }}">Product</a></li>
-                        <li><a class="nav-link" href="">Contact</a></li>
-                        <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                    </ul>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search An Item" />
-                        <div class="search-icon">
-                            <img src="{{ asset('Images/svg/magnifying-glass-solid.svg') }}" alt="Search Icon">
+            <div>
+                <nav class="navbar">
+                    <div class="navbar-links">
+                        <img class="logo" src="{{ asset('Images/nav_Logo.png') }}" alt="logo">
+                        <ul>
+                            <li><a class="nav-link" href="{{ route('welcome') }}">Home</a></li>
+                            <li><a class="nav-link" href="">About</a></li>
+                            <li><a class="nav-link" href="{{ route('product') }}">Product</a></li>
+                            <li><a class="nav-link" href="">Contact</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        </ul>
+                        <div class="search-bar">
+                            <input type="text" placeholder="Search An Item" />
+                            <div class="search-icon">
+                                <img src="{{ asset('Images/svg/magnifying-glass-solid.svg') }}" alt="Search Icon">
+                            </div>
+                        </div>
+                        <div class="cart-icon">
+                            <img src="{{ asset('Images/svg/cart-shopping-solid.svg') }}" alt="Cart Icon">
+                            <div class="cart-item-number">
+                                <p>1</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="cart-icon">
-                        <img src="{{ asset('Images/svg/cart-shopping-solid.svg') }}" alt="Cart Icon">
-                        <div class="cart-item-number">
-                            <p>1</p>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </header>
 
         <!-- Main Content -->
         <main>
-            <!-- Update aside for better accessibility -->
-            <aside aria-label="Product filters">
+            <!-- Sidebar -->
+            <aside>
                 <section class="categories">
                     <h2>Categories</h2>
-                    <ul role="list">
+                    <ul>
                         <li><a href="">Glasses</a></li>
                         <li><a href="">Sunglasses</a></li>
                         <li><a href="">Contact Lenses</a></li>
@@ -59,8 +59,7 @@
                 </section>
                 <section class="price-range">
                     <h2>Price Range</h2>
-                    <input type="range" min="0" max="1000" value="500" class="price-range-slider" 
-                           aria-label="Price range slider">
+                    <input type="range" min="0" max="1000" value="500" class="price-range-slider">
                     <div class="price-range-values">
                         <span class="min-price">£0</span>                   
                         <span class="max-price">£1000</span>
@@ -68,14 +67,13 @@
                 </section>    
             </aside>
             
-            <!-- Update product cards for better accessibility -->
+            <!-- Product Section -->
             <section class="products">
                 <h1>Our Collection of Products</h1>
-                <input type="text" placeholder="Search Products" class="search-input" 
-                       aria-label="Search products">
-                <div class="product-grid" role="grid">
-                    <div class="product-card" role="gridcell">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Detailed description of Product 1">
+                <input type="text" placeholder="Search Products" class="search-input">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 1">
                         <h3>Product 1</h3>
                         <p>Price: $19.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
@@ -111,18 +109,18 @@
                         <button class="add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
-                <!-- Update pagination for better accessibility -->
-                <nav class="pagination" aria-label="Product pages">
+                <!-- Pagination -->
+                <div class="pagination">
                     <a href="#">&laquo; Previous</a>
                     <a href="?page=1" class="active">1</a>
                     <a href="?page=2">2</a>
                     <a href="?page=3">3</a>
                     <a href="#">Next &raquo;</a>
-                </nav>
+                </div>
             </section>
         </main>
 
-        <!-- Update footer for better structure -->
+        <!-- Footer Section -->
         <footer class="footer">
             <div>
                 <h3>Customer Support</h3>
@@ -158,7 +156,7 @@
                 <a href="#">📌 Pinterest</a>
             </div>
             <div class="powered-by">
-                <p>&copy; {{ date('Y') }} Optique. Crafted for Visionaries.</p>
+                <p>© Optique. Crafted for Visionaries.</p>
             </div>
         </footer>
     </body>
