@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,7 +37,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('contact') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
