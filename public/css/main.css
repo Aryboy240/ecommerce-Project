@@ -317,7 +317,7 @@ nav:hover {
 /*dropdown bat form Navigation  Bar*/
 .dropdown-content {
     display: none;
-    background-color: #00bfae;;
+    background-color: #00bfae;
     min-width: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
