@@ -165,3 +165,17 @@ li a:hover {
   color: var(--text-primary);
   pointer-events: none;
 }
+
+@media (max-width: 768px) {
+  main {
+      flex-direction: column;
+  }
+
+  aside {
+      margin-bottom: 1rem;
+  }
+
+  .product-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

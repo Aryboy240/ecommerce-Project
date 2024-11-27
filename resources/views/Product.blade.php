@@ -7,6 +7,7 @@
         <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
         <!-- JS -->
         <script defer src="js/scrollReveal.js"></script>
+        <script defer src="{{ asset('js/product_page.js') }}"></script>
         <!-- CSS -->
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -51,26 +52,23 @@
                 <section class="categories">
                     <h2>Categories</h2>
                     <ul>
-                        <li><a href="">Glasses</a></li>
-                        <li><a href="">Sunglasses</a></li>
+                        <li><a href="">Lenses for Glasses</a></li>
+                        <li><a href="">Frames for Glasses</a></li>
                         <li><a href="">Contact Lenses</a></li>
-                        <li><a href="">Frames</a></li>
+                        <li><a href="">Miscellaneous</a></li>
+                        <li><a href="">Sunglasses</a></li>
                     </ul>
                 </section>
                 <section class="price-range">
-                    <h2>Price Range</h2>
-                    <input type="range" min="0" max="1000" value="500" class="price-range-slider">
-                    <div class="price-range-values">
-                        <span class="min-price">£0</span>                   
-                        <span class="max-price">£1000</span>
-                    </div>
+                    <h2 id="price-range-heading">Price Range</h2>
+                    <label for="price-slider" class="visually-hidden">Select price range</label>
+                    <input type="range" id="price-slider" min="0" max="1000" value="500" class="price-range-slider" aria-labelledby="price-range-heading">
                 </section>    
             </aside>
             
             <!-- Product Section -->
             <section class="products">
                 <h1>Our Collection of Products</h1>
-                <input type="text" placeholder="Search Products" class="search-input">
                 <div class="product-grid">
                     <div class="product-card">
                         <img src="{{ asset('Images/filler.webp') }}" alt="Product 1">
