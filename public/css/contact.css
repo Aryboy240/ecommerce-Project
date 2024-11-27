@@ -1,19 +1,8 @@
 .contact-us{
-    background-image:  url("")  ;
+    background-image:  url('/images/Cat.jpg')  ;
     background-size: 500px;
     background-position: center;
     padding: 50px;    
-  }
-  
-  .socials-mediar {
-    background-color:  rgba(4, 129, 129, 0.7);;
-    text-align: center;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  
-  .socials-mediar:hover {
-    background-color: #036060da;
   }
   
   body {
@@ -160,5 +149,17 @@
     border: 2px solid #1b8787de;
   }
   
+
+  /*the bottem bar*/
+  .socials-mediar {
+    background-color:  rgba(4, 129, 129, 0.7);;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+  }
   
+  .socials-mediar img{
+    padding: 5px;
+    width: 60px;
+  }
   

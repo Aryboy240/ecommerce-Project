@@ -18,7 +18,7 @@
             <div>
                 <nav class="navbar">
                     <div class="navbar-links">
-                        <img class="logo" src="{{ asset('Images/nav_Logo.png') }}" alt="logo">
+                    <a href="{{ route('welcome') }}"><img class="logo" src="{{ asset('Images/nav_Logo.png') }}" alt="logo"></a>
                         <ul>
                             <li><a class="nav-link" href="">Home</a></li>
                             <li><a class="nav-link" href="">About</a></li>
@@ -46,10 +46,8 @@
     <!-- CONTECT-->>
     <section class="contact-section">
       <div class="contact-us">
-        <img src="{{ asset('Images/Cat.jpg') }}">
         <h1>Contact Us</h1>
-        <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>
-        <img src="{{ asset('Images/Cat.jpg') }}">
+        <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>    
       </div>
       
     
@@ -109,9 +107,9 @@
 
     <section class="socials-mediar">
       <ul class="login-socials">
-        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a></li>
-        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a></li>
-        <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a></li>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a>
       </ul>
     </section>
 
