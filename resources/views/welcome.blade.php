@@ -23,7 +23,7 @@
 
         <!--Home-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('welcome') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -66,9 +66,11 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <div class="navbar-middle">
-      <img src="{{ asset('Images/circleLogo.png') }}">
-    </div>
+    <a href="{{ route('welcome') }}">
+      <div class="navbar-middle">
+          <img src="{{ asset('Images/circleLogo.png') }}">
+      </div>
+    </a>
 
 
     <!--Rigth nav-->
@@ -120,60 +122,6 @@
     </nav>
   </section>
   <!--Navigation  Bar End-->
-
-  <!--User Account Nav:: Aryan Kora-->
-  <section>
-    <div class="AccountNavigation">
-      <div class="userBox">
-        <div class="imgBox">
-          <img src="Images/User.jpg" />
-        </div>
-        <p class="AccountUsername">Aryan Kora</p>
-      </div>
-      <div class="menuToggle"></div>
-      <ul class="UserMenu">
-        <li class="child">
-          <a href="{{ route('login') }}">
-            <ion-icon name="person-outline"></ion-icon> My Profile
-          </a>
-        </li>
-        <li class="child">
-          <a href="{{ route('login') }}">
-            <ion-icon name="chatbubble-outline"></ion-icon> Messages
-          </a>
-        </li>
-        <li class="child">
-          <a href="{{ route('login') }}">
-            <ion-icon name="notifications-outline"></ion-icon> Notifications
-          </a>
-        </li>
-        <li class="child">
-          <a href="{{ route('login') }}">
-            <ion-icon name="settings-outline"></ion-icon> Settings
-          </a>
-        </li>
-        <li class="child">
-          <a href="{{ route('login') }}">
-            <ion-icon name="help-outline"></ion-icon> Help & Support
-          </a>
-        </li>
-        <li class="child">
-          <a href="{{ route('login') }}">
-            <ion-icon name="log-out-outline"></ion-icon> logout
-          </a>
-        </li>
-      </ul>
-    </div>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script>
-      let menuToggle = document.querySelector(".menuToggle");
-      let AccountNavigation = document.querySelector(".AccountNavigation");
-      menuToggle.onclick = function () {
-        AccountNavigation.classList.toggle("active");
-      };
-    </script>
-  </section>
 
   <!-- Intro Title (Frame your world):: Aryan Kora -->
   <section class="hero">
