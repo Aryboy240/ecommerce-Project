@@ -26,12 +26,10 @@
 /* Disables selection 
 
 *::selection{
-  visibility: hidden;
+visibility: hidden;
 }
 
 */
-
-/* Fancy scroll bar :) */
 
 html {
   scroll-behavior: smooth;
@@ -46,6 +44,8 @@ body {
   padding: 0;
   overflow-x: hidden;
 }
+
+/* Fancy scroll bar :) */
 
 body::-webkit-scrollbar {
   width: 0.5rem;
