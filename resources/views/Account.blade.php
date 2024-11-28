@@ -14,7 +14,7 @@
   <!-- CSS -->
       <link rel="stylesheet" href={{  asset('css/main.css') }}>
       <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-      <link rel="stylesheet" href={{  asset('css/contact.css') }}>
+      <link rel="stylesheet" href={{  asset('css/account.css') }}>
 
       <title>User Account | Optique</title>
     </head>
@@ -129,7 +129,17 @@
     </section>
     <!--Navigation  Bar End-->
 
-    
+    <!-- User Info -->
+    <section class = "user-account">
+        <div class = "welcome">
+            <h1> Welcome, [Username] </h1>
+        </div>
+        <div class="user-info">
+            <h3>Your Account Details</h3>
+            <p><strong>Username:</strong> [insert username]</p>
+            <p><strong>Email:</strong> [insert email]</p>
+        </div>
+    </section>
 
   </body>
 </html>
