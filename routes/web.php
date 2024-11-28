@@ -25,3 +25,6 @@ Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
 
+Route::get('/account', function () {
+    return view('Account'); // Refers to resources/views/Account.blade.php
+})->name('account');
