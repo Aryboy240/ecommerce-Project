@@ -71,39 +71,75 @@
                 <h1>Our Collection of Products</h1>
                 <div class="product-grid">
                     <div class="product-card">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 1">
+                        <img src="{{ asset('Images/products/glasses1.jpeg') }}" alt="Product 1">
                         <h3>Product 1</h3>
                         <p>Price: $19.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 2">
+                        <img src="{{ asset('Images/products/sun1.jpeg') }}" alt="Product 2">
                         <h3>Product 2</h3>
                         <p>Price: $29.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 3">
+                        <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Product 7">
+                        <h3>Product 7</h3>
+                        <p>Price: $59.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/glasses2.png') }}" alt="Product 3">
                         <h3>Product 3</h3>
                         <p>Price: $39.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 4">
+                        <img src="{{ asset('Images/products/sun2.jpeg') }}" alt="Product 4">
                         <h3>Product 4</h3>
                         <p>Price: $49.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/case2.png') }}" alt="Product 8">
+                        <h3>Product 8</h3>
+                        <p>Price: $69.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
                     </div> 
                     <div class="product-card">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 4">
+                        <img src="{{ asset('Images/products/glasses3.png') }}" alt="Product 5">
                         <h3>Product 5</h3>
                         <p>Price: $49.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="{{ asset('Images/filler.webp') }}" alt="Product 4">
+                        <img src="{{ asset('Images/products/sun3.png') }}" alt="Product 6">
                         <h3>Product 6</h3>
                         <p>Price: $49.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/case3.jpeg') }}" alt="Product 9">
+                        <h3>Product 9</h3>
+                        <p>Price: $79.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/sun5.png') }}" alt="Product 10">
+                        <h3>Product 10</h3>
+                        <p>Price: $89.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/glasses6.png') }}" alt="Product 11">
+                        <h3>Product 11</h3>
+                        <p>Price: $99.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/sun6.png') }}" alt="Product 12">
+                        <h3>Product 12</h3>
+                        <p>Price: $109.99</p>
                         <button class="add-to-cart-btn">Add to Cart</button>
                     </div>
                 </div>
@@ -148,10 +184,10 @@
             </div>
             <div class="social-icons">
                 <h3>Follow Us</h3>
-                <a href="#">🔵 Facebook</a>
-                <a href="#">📸 Instagram</a>
-                <a href="#">🐦 Twitter</a>
-                <a href="#">📌 Pinterest</a>
+                <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+                <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+                <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+                <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
             </div>
             <div class="powered-by">
                 <p>© Optique. Crafted for Visionaries.</p>

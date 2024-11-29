@@ -334,10 +334,10 @@
       </div>
       <div class="social-icons">
         <h3>Follow Us</h3>
-        <a href="#">🔵 Facebook</a>
-        <a href="#">📸 Instagram</a>
-        <a href="#">🐦 Twitter</a>
-        <a href="#">📌 Pinterest</a>
+        <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
       </div>
       <div class="powered-by">
         <p>© Optique. Crafted for Visionaries.</p>
