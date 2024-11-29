@@ -107,7 +107,7 @@
 
 .login-logo {
     position: relative;
-    border-radius: 10%;
+    border-radius: 50%;
     width: 250px;
     transition: var(--transition-speed);
 }
