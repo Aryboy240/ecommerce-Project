@@ -131,7 +131,7 @@
 
     <!-- User Info -->
     <section class = "user-account">
-        <div class = "welcome">
+        <div class = "username-heading">
             <h1> Welcome, [Username] </h1>
         </div>
         <div class="user-info">
@@ -140,6 +140,53 @@
             <p><strong>Email:</strong> [insert email]</p>
         </div>
     </section>
+    
+    <!-- Update Details Forms -->
+    <section class="update-details"> 
+      <h3>Update Your Information</h3>
+
+      <!-- Update Username Form -->
+      <h4>Update Username</h4>
+      <form>
+          <label for="new-username">New Username:</label>
+          <input type="text" id="new-username">
+          <br>
+          <label for="password">Password:</label>
+          <input type="password" id="password">
+          <br>
+          <button type="submit">Submit</button>
+      </form>
+
+      <!-- Update Password Form -->
+      <h4>Update Password</h4>
+      <form>
+          <label for="current-password">Current Password:</label>
+          <input type="password" id="current-password">
+          <br>
+          <label for="new-password">New Password:</label>
+          <input type="password" id="new-password">
+          <br>
+          <label for="confirm-new-password">Confirm New Password:</label>
+          <input type="password" id="confirm-new-password">
+          <br>
+          <button type="submit">Submit</button>
+      </form>
+
+      <!-- Update Email Form -->
+      <h4>Update Email</h4>
+      <form>
+          <label for="new-email">New Email:</label>
+          <input type="email" id="new-email">
+          <br>
+          <label for="password"> Password:</label>
+          <input type="password" id="password">
+          <br>
+          <button type="submit">Submit</button>
+      </form>
+    </section>
+
+
+
 
   </body>
 </html>
