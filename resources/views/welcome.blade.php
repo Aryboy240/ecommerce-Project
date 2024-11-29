@@ -242,7 +242,7 @@
           <div class="category">
             <a href="{{ route('product') }}">
               <img
-                src="{{ asset('Images/filler.webp') }}"
+                src="{{ asset('Images/products/glasses1.jpeg') }}"
                 class="category-img"
                 alt="Glasses"
               />
@@ -252,7 +252,7 @@
           <div class="category">
             <a href="">
               <img
-                src="{{ asset('Images/filler.webp') }}"
+                src="{{ asset('Images/products/sun3.png') }}"
                 class="category-img"
                 alt="Sunglasses"
               />
@@ -262,7 +262,7 @@
           <div class="category">
             <a href="">
               <img
-                src="{{ asset('Images/filler.webp') }}"
+                src="{{ asset('Images/products/contacts.jpeg') }}"
                 class="category-img"
                 alt="Contact Lenses"
               />
@@ -271,14 +271,8 @@
           </div>
           <div class="category">
             <a href="">
-              <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Frames" />
-              <h5 class="category-title">Frames</h5>
-            </a>
-          </div>
-          <div class="category">
-            <a href="">
               <img
-                src="{{ asset('Images/filler.webp') }}"
+                src="{{ asset('Images/products/case2.png') }}"
                 class="category-img"
                 alt="Glasses Accessories"
               />
