@@ -1,0 +1,145 @@
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Navigaion bar
+*/
+
+/* Nav section goes across whole screen & padding of 25px up and down */
+.nav-section {
+    padding: 25px 0;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Left side of the logo */
+.navbar-left {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--floater);
+    z-index: 5;
+    transition: var(--transition-speed) ease;
+    border-radius: 50px;
+    margin-right: -50px;
+    width: 35vw;
+}
+
+/* Pushes the bar into the logo */
+.navbar-left .nav-item:last-child {
+    margin-right: 38px;
+}
+
+/* Right side of the logo */
+.navbar-rigth {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--floater);
+    z-index: 5;
+    transition: var(--transition-speed) ease;
+    border-radius: 50px;
+    margin-left: -50px;
+    width: 35vw;
+}
+
+.navbar-rigth .nav-item:nth-child(1) {
+    margin-left: 38px;
+}
+
+/* glows on hover */
+nav:hover {
+    box-shadow: 0 0 15px var(--mint);
+}
+
+.nav-item:hover {
+    box-shadow: 0 0 15px var(--mint);
+}
+
+/* Changes list settings */
+.navbar-nav {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 5;
+}
+
+/* Each item in the nav */
+.nav-item {
+    width: 100%;
+    z-index: 5;
+    transition: var(--transition-speed) ease;
+}
+
+/* The middle logo section */
+.navbar-middle {
+    position: relative;
+    display: flex;
+    box-shadow: 0 0 15px var(--mint);
+    border: 15px solid var(--floater);
+    border-radius: 50%;
+    z-index: 100;
+    transition: var(--transition-speed);
+}
+
+.navbar-middle:hover {
+    transform: scale(1.1) rotate(360deg);
+}
+
+/* The middle logo image */
+.navbar-middle img {
+    filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
+    position: relative;
+    width: 100px;
+    transform: scale(1.2);
+    z-index: 101;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-speed);
+    z-index: 5;
+}
+
+/* changes item colour when hovering */
+.nav-link:hover {
+    background: var(--mint);
+    color: var(--text-primary);
+    z-index: 5;
+}
+
+.link-text {
+    font-weight: 700;
+    margin-left: 1rem;
+    z-index: 5;
+    transition: var(--transition-speed);
+}
+
+/* Each element (span and svbg) in the nav-item */
+.nav-item-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-link svg {
+    width: 2rem;
+    min-width: 2rem;
+    z-index: 5;
+    filter: invert(100%);
+}
+
+/* No scrollbar on the navbar (even tho overflow is hidden, I just wanna make sure) */
+.navbar::-webkit-scrollbar {
+    width: 0rem;
+}
