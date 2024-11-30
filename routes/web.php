@@ -47,3 +47,4 @@ Route::get('/test-cart', [ShoppingCartController::class, 'testCart'])->name('car
 Route::get('/cart', function () {
     return view('cart.cart');
 })->name('cart.view');
+Route::post('/add-to-cart', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
