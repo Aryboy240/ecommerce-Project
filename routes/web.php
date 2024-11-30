@@ -43,3 +43,4 @@ Route::post('/cart/remove', [ShoppingCartController::class, 'removeFromCart'])->
 Route::get('/cart/{customerId}', [ShoppingCartController::class, 'getCart'])->name('cart.get');
 Route::delete('/cart/{customerId}', [ShoppingCartController::class, 'clearCart'])->name('cart.clear');
 Route::put('/cart/update-quantity', [ShoppingCartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+Route::get('/test-cart', [ShoppingCartController::class, 'testCart'])->name('cart.test');
