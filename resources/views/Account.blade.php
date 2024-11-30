@@ -140,6 +140,8 @@
           </div>
           <p><strong>Username:</strong> [insert username]</p>
           <p><strong>Email:</strong> [insert email]</p>
+          <p><strong>D.O.B:</strong> [insert date of birth]</p>
+
         </div>
     </section>
     
