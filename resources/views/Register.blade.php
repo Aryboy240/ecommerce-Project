@@ -2,6 +2,10 @@
     Developer: Aryan Kora
 	  University ID: 230059030
     Function: Front end for the register page
+
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Front end modifications and back end
 -->
 
 <head>
@@ -25,19 +29,13 @@
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
   />
-  <!--Meta-->
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1,
-      user-scalable=0"
-  />
 </head>
 
 <body>
   <!--Log in Section-->
   <section>
     <div class="login-img">
-      <img src="Images/skater_girl.png" />
+      <img src="Images/skater_girl.png" alt="Skater Girl" />
     </div>
     <div class="login-content">
       <div class="form">
@@ -61,30 +59,33 @@
           </a>
         </div>
         <div class="img-con">
-          <img src="Images/logo.png" class="login-logo" />
+          <img src="Images/logo.png" class="login-logo" alt="Logo" />
         </div>
         <h2>REGISTER</h2>
-        <form>
+        <form action="{{ route('register') }}" method="POST">
+          @csrf
           <div class="input" id="w50">
-            <span>Username</span>
-            <input type="text" name="Username" />
+            <label for="username">Username</label>
+            <input type="text" id="username" name="Username" required />
           </div>
           <div class="input" id="w50">
-            <span>Email</span>
-            <input type="email" name="Email" />
+            <label for="email">Email</label>
+            <input type="email" id="email" name="Email" required />
           </div>
           <div class="input">
-            <span>Password</span>
-            <input type="password" name="Password" />
+            <label for="password">Password</label>
+            <input type="password" id="password" name="Password" pattern=".{8,}" title="Password must be at least 8 characters long" required />
           </div>
           <div class="input">
-            <span>Birthday</span>
-            <input type="date" name="Birthday" />
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="ConfirmPassword" pattern=".{8,}" required />
           </div>
           <div class="input">
-            <a href="{{ route('welcome') }}">
-              <input type="button" value="Register" name="Register" />
-            </a>
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="Birthday" required />
+          </div>
+          <div class="input">
+            <input type="submit" value="Register" />
           </div>
           <div class="input">
             <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
@@ -95,19 +96,19 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/instagram.png"
-            /></a>
+            <a href="https://www.instagram.com">
+              <img src="Images/socials/instagram.png" alt="Instagram" />
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/youtube.png"
-            /></a>
+            <a href="https://www.youtube.com">
+              <img src="Images/socials/youtube.png" alt="YouTube" />
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/twitter.png"
-            /></a>
+            <a href="https://www.twitter.com">
+              <img src="Images/socials/twitter.png" alt="Twitter" />
+            </a>
           </li>
         </ul>
       </div>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,9 +14,11 @@ Route::get('/login', function () {
 
 
 Route::get('/register', function () {
-    return view('Register'); // Refers to resources/views/Register.blade.php
+    return view('register'); // Refers to resources/views/register.blade.php
 })->name('register');
 
+
+Route::post('/register', [UserController::class, 'register']);
 
 Route::get('/welcome', function () {
     return view('welcome'); // Refers to resources/views/welcome.blade.php
