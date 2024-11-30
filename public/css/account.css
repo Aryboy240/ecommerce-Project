@@ -1,0 +1,42 @@
+/*
+    Developer: Aqsa Amjad
+    University ID: 230066670
+    Function: Styling for the User Account page (for logged-in users) (resources/views/Account.blade.php)
+*/
+
+body {
+    margin: 30px;
+}
+
+.username-heading {
+    font-size: 30px;
+    text-align: center;
+    padding: 20px;
+}
+
+.subheading {
+    font-size: 25px;
+}
+
+/* STYLING FOR FORMS */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-content {
+    margin: 10px;
+    padding: 30px;
+    background-color: var(--darker);
+    border-radius: 20px;
+    flex-grow: 1;
+
+}
+
+/* Form titles */
+.form-title {
+    font-size: 20px;
+    text-align: center;
+}

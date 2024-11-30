@@ -1,23 +1,23 @@
 <!--
-    Developer: Aqsa Amjad
+  Developer: Aqsa Amjad
 	University ID: 230066670
-    Function: Front end for the user accounts page
+  Function: Front end for the User Account page (for logged-in users)
 -->
     
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS -->
-      <link rel="stylesheet" href={{  asset('css/main.css') }}>
-      <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-      <link rel="stylesheet" href={{  asset('css/account.css') }}>
+    <!-- CSS -->
+    <link rel="stylesheet" href={{  asset('css/main.css') }}>
+    <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
+    <link rel="stylesheet" href={{  asset('css/account.css') }}>
 
-      <title>User Account | Optique</title>
-    </head>
+    <title>User Account | Optique</title>
+  </head>
   <body>
 
     <!--Navigation  Bar-->
@@ -135,57 +135,80 @@
             <h1> Welcome, [Username] </h1>
         </div>
         <div class="user-info">
+          <div class = "subheading">
             <h3>Your Account Details</h3>
-            <p><strong>Username:</strong> [insert username]</p>
-            <p><strong>Email:</strong> [insert email]</p>
+          </div>
+          <p><strong>Username:</strong> [insert username]</p>
+          <p><strong>Email:</strong> [insert email]</p>
         </div>
     </section>
     
     <!-- Update Details Forms -->
-    <section class="update-details"> 
-      <h3>Update Your Information</h3>
+    <section class="update-details">
+      <div class="subheading"> 
+        <h3>Update Your Information</h3>
+      </div>
 
-      <!-- Update Username Form -->
-      <h4>Update Username</h4>
-      <form>
-          <label for="new-username">New Username:</label>
-          <input type="text" id="new-username">
-          <br>
-          <label for="password">Password:</label>
-          <input type="password" id="password">
-          <br>
-          <button type="submit">Submit</button>
-      </form>
+      <div class="form-container">
+        <!-- Update Username Form -->
+        <div class="form-content">
+          <div class="form-title">
+            <h4>Update Username</h4>
+          </div>
+          <form>
+            <label for="new-username">New Username:</label>
+            <br>
+            <input type="text" id="new-username">
+            <br><br>
+            <label for="password">Password:</label>
+            <br>
+            <input type="password" id="password">
+            <br><br>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
 
-      <!-- Update Password Form -->
-      <h4>Update Password</h4>
-      <form>
-          <label for="current-password">Current Password:</label>
-          <input type="password" id="current-password">
-          <br>
-          <label for="new-password">New Password:</label>
-          <input type="password" id="new-password">
-          <br>
-          <label for="confirm-new-password">Confirm New Password:</label>
-          <input type="password" id="confirm-new-password">
-          <br>
-          <button type="submit">Submit</button>
-      </form>
+        <!-- Update Password Form -->
+        <div class="form-content">
+          <div class="form-title">
+            <h4>Update Password</h4>
+          </div>
+          <form>
+            <label for="current-password">Current Password:</label>
+            <br>
+            <input type="password" id="current-password">
+            <br><br>
+            <label for="new-password">New Password:</label>
+            <br>
+            <input type="password" id="new-password">
+            <br><br>
+            <label for="confirm-new-password">Confirm New Password:</label>
+            <br>
+            <input type="password" id="confirm-new-password">
+            <br><br>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
 
-      <!-- Update Email Form -->
-      <h4>Update Email</h4>
-      <form>
-          <label for="new-email">New Email:</label>
-          <input type="email" id="new-email">
-          <br>
-          <label for="password"> Password:</label>
-          <input type="password" id="password">
-          <br>
-          <button type="submit">Submit</button>
-      </form>
+        <!-- Update Email Form -->
+        <div class="form-content">
+          <div class="form-title">
+            <h4>Update Email</h4>
+          </div>
+          <form>
+            <label for="new-email">New Email:</label>
+            <br>
+            <input type="email" id="new-email">
+            <br><br>
+            <label for="password"> Password:</label>
+            <br>
+            <input type="password" id="password">
+            <br><br>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </section>
-
-
 
 
   </body>
