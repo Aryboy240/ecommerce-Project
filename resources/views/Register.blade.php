@@ -62,30 +62,50 @@
           <img src="Images/logo.png" class="login-logo" alt="Logo" />
         </div>
         <h2>REGISTER</h2>
-        <form action="{{ route('register') }}" method="POST">
+        <form action="/register" method="POST">
           @csrf
           <div class="input" id="w50">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="Username" required />
+              <label for="username">Username</label>
+              <input type="text" id="username" name="Username" value="{{ old('Username') }}" />
+              @error('Username')
+                  <span class="error">{{ $message }}</span>
+              @enderror
           </div>
+          
           <div class="input" id="w50">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="Email" required />
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" value="{{ old('Email') }}" />
+              @error('Email')
+                  <span class="error">{{ $message }}</span>
+              @enderror
           </div>
+          
           <div class="input">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="Password" pattern=".{8,}" title="Password must be at least 8 characters long" required />
+              <label for="password">Password</label>
+              <input type="password" id="password" name="Password" />
+              @error('Password')
+                  <span class="error">{{ $message }}</span>
+              @enderror
           </div>
+          
           <div class="input">
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="ConfirmPassword" pattern=".{8,}" required />
+              <label for="confirm_password">Confirm Password</label>
+              <input type="password" id="confirm_password" name="ConfirmPassword" />
+              @error('ConfirmPassword')
+                  <span class="error">{{ $message }}</span>
+              @enderror
           </div>
+          
           <div class="input">
-            <label for="birthday">Birthday</label>
-            <input type="date" id="birthday" name="Birthday" required />
+              <label for="birthday">Birthday</label>
+              <input type="date" id="birthday" name="Birthday" />
+              @error('Birthday')
+                  <span class="error">{{ $message }}</span>
+              @enderror
           </div>
+          
           <div class="input">
-            <input type="submit" value="Register" />
+              <input type="submit" value="Register" />
           </div>
           <div class="input">
             <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
