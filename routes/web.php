@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemController;
+
+// Basic routes
 
 // login system routes
 Route::post('/register', [UserController::class, 'register']);
@@ -14,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('Login'); // Refers to resources/views/Login.blade.php
+    return view('Login');
 })->name('login');
 
 Route::get('/register', function () {
@@ -28,4 +31,32 @@ Route::get('/welcome', function () {
 Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
+
+// Order routes - Note the reordered routes
+Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
+Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::put('/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
+// Order items routes
+Route::post('/orders/{order}/items', [OrderItemController::class, 'store'])->name('orderItems.store');
+Route::delete('/orders/{order}/items/{item}', [OrderItemController::class, 'destroy'])->name('orderItems.destroy');
+
+// Test route
+Route::get('/test-order', [OrderController::class, 'testCreate'])->name('orders.test');
+
+use App\Http\Controllers\ShoppingCartController;
+
+// Shopping Cart routes
+Route::post('/cart/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/{customerId}', [ShoppingCartController::class, 'getCart'])->name('cart.get');
+Route::delete('/cart/{customerId}', [ShoppingCartController::class, 'clearCart'])->name('cart.clear');
+Route::put('/cart/update-quantity', [ShoppingCartController::class, 'updateQuantity'])->name('cart.updateQuantity');
+Route::get('/test-cart', [ShoppingCartController::class, 'testCart'])->name('cart.test');
+Route::get('/cart', function () {
+    return view('cart.cart');
+})->name('cart.view');
+Route::post('/add-to-cart', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
 
