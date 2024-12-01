@@ -15,11 +15,19 @@ Route::post('/login' , [UserController::class, 'login']);
 
 // Routes to other pages
 Route::get('/', function () {
-    return view('welcome'); // Homepage
-});
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/product', function () {
+    return view('product');
+})->name('product');
+
+Route::get('/sproduct', function () {
+    return view('sproduct');
+})->name('sproduct');
 
 Route::get('/login', function () {
-    return view('Login'); // Refers to resources/views/Login.blade.php
+    return view('login');
 })->name('login');
 
 Route::get('/register', function () {
@@ -63,4 +71,3 @@ Route::get('/cart', function () {
     return view('cart.cart');
 })->name('cart.view');
 Route::post('/add-to-cart', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
-
