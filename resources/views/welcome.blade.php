@@ -22,7 +22,7 @@
             <ul>
               <li><a class="nav-link" href="">Home</a></li>
               <li><a class="nav-link" href="">About</a></li>
-              <li><a class="nav-link" href="{{ route('product') }}">Product</a></li>
+              <li><a class="nav-link" href="{{ route('product') }}">product</a></li>
               <li><a class="nav-link" href="">Contact</a></li>
               <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
             </ul>
@@ -292,9 +292,9 @@
       </div>
       <div class="about-image">
         <div class="image-grid">
-          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 1">
-          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 2">
-          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 3">
+          <img src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
+          <img src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
+          <img src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
           <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
         </div>
       </div> 
