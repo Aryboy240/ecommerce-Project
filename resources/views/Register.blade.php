@@ -63,53 +63,68 @@
         </div>
         <h2>REGISTER</h2>
         <form action="/register" method="POST">
-          @csrf
-          <div class="input" id="w50">
+          
+          @csrf <!-- Extra protection against cookies -->
+
+          <!-- Username -->
+          <div class="input">
               <label for="username">Username</label>
-              <input type="text" id="username" name="Username" value="{{ old('Username') }}" />
-              @error('Username')
+              <input type="text" id="username" name="username" value="{{ old('username') }}" />  <!-- Stores the current username in field if other validations fail -->
+              <!-- Username validation checks: look at UserController.php in app/Http/Controllers for list of validations -->
+              @error('username')
                   <span class="error">{{ $message }}</span>
               @enderror
           </div>
           
-          <div class="input" id="w50">
+          <!-- Email -->
+          <div class="input">
               <label for="email">Email</label>
-              <input type="email" id="email" name="Email" value="{{ old('Email') }}" />
-              @error('Email')
+              <input type="email" id="email" name="email" value="{{ old('email') }}" /> <!-- Stores the current email in field if other validations fail -->
+              <!-- Email validation checks -->
+              @error('email')
                   <span class="error">{{ $message }}</span>
               @enderror
           </div>
           
+          <!-- Password -->
           <div class="input">
               <label for="password">Password</label>
-              <input type="password" id="password" name="Password" />
-              @error('Password')
+              <input type="password" id="password" name="password" />
+              <!-- Password validation checks -->
+              @error('password')
                   <span class="error">{{ $message }}</span>
               @enderror
           </div>
           
           <div class="input">
+            <!-- The confirm password field-->
               <label for="confirm_password">Confirm Password</label>
-              <input type="password" id="confirm_password" name="ConfirmPassword" />
-              @error('ConfirmPassword')
+              <input type="password" id="confirm_password" name="confirmPassword" />
+              <!-- Confirm password validation checks -->
+              @error('confirmPassword')
                   <span class="error">{{ $message }}</span>
               @enderror
           </div>
           
           <div class="input">
+            <!-- The birthday field-->
               <label for="birthday">Birthday</label>
-              <input type="date" id="birthday" name="Birthday" />
-              @error('Birthday')
+              <input type="date" id="birthday" name="birthday" />
+              <!-- Birthday validation checks -->
+              @error('birthday')
                   <span class="error">{{ $message }}</span>
               @enderror
           </div>
           
+          <!-- Submission button -->
           <div class="input">
-              <input type="submit" value="Register" />
+              <button>Register</button>
           </div>
+
           <div class="input">
             <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
           </div>
+
         </form>
         <div id="socials">
           <h3>Follow us on social media!</h3>
