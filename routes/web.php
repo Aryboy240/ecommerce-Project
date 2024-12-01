@@ -34,6 +34,10 @@ Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
 
+Route::get('/shoppingCart', function () {
+    return view('Cart'); // Refers to resources/views/contact.blade.php
+})->name('shoppingCart');
+
 // Order routes - Note the reordered routes - Vatsal
 Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
 Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
