@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        // Validate incoming fields with more specific rules
+        // Validate incoming fields with more specific rules - Nikhil
         $incomingFields = $request->validate([
             'username' => ['required', 'string', 'min:3', 'max:15', 'alpha_num'], // 3-15 characters, alphanumeric
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],    // Valid email, unique in users table
@@ -17,7 +17,7 @@ class UserController extends Controller
             'confirmPassword' => ['required', 'same:password'],                   // Matches Password
             'birthday' => ['required', 'date', 'before:2006-01-01'],              // Valid date, must be before today
         ], [
-            // Custom validation messages
+            // Custom validation messages - Nikhil
             'username.required' => 'The username is required.',
             'username.alpha_num' => 'The username must only contain letters and numbers.',
             'username.min' => 'The username must be at least 3 characters.',
@@ -39,21 +39,26 @@ class UserController extends Controller
         $user = User::create($incomingFields);
         auth()->login($user); // Then you need to log the user in
 
+        // Redirect back to the homepage after sucsessful register - Nikhil
         return redirect()->route('welcome')->with('success', 'You are now registered!');
     }
 
     // The login system wasn't implemented so I'll make a basic one for now. You can add to this one if you wish - Aryan
     public function login(Request $request){
         $incomingFields = $request->validate([
-            'loginUserName' => ['required'],
+            'loginUsername' => ['required'],
             'loginPassword' => ['required']
+        ], [
+            // Need to input a username && password into the fields.
+            'loginUserName.required' => 'The username is required.',
+            'loginPassword.required' => 'The password is required.',
         ]);
 
-        if (auth()->attempt(['name' => $incomingFields['loginName'], 'password' => $incomingFields['loginPassword']])){
+        if (auth()->attempt(['username' => $incomingFields['loginUsername'], 'password' => $incomingFields['loginPassword']])){
             $request->session()->regenerate();
         }
 
-        return redirect('welcome');
+        return redirect('welcome') ->with('success', 'You are now logged in!');
     }
 
     // There isn't a button to log out yet, I'm waiting for Aqsa to make the user accounts page first
