@@ -1,5 +1,9 @@
-/* Oyinlola Arowolo
-id= 230402373*/
+<!--
+    Developer: Oyinlola Arowolo
+	University ID: 230402373
+    Function: Front end for the Products page
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
