@@ -543,3 +543,14 @@ header {
     text-decoration: none;
     color: var(--text-primary);
 }
+
+.hero-content h1,
+.hero-content p {
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.hero-content * {
+  text-decoration: none;
+  border-bottom: none;
+}
