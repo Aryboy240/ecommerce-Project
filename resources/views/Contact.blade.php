@@ -54,7 +54,7 @@
 
         <!--Store-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('product') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
