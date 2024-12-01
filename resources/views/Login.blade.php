@@ -3,7 +3,7 @@
 	  University ID: 230059030
     Function: Front end for the login page
 
-    Developer: Hussen
+    Developer: Hussen 
 	  University ID: 
     Function: Added the backend for logins
 -->
