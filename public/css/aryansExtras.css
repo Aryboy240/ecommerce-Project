@@ -10,50 +10,50 @@
 
 /* Made a new CSS sheet to test new background and text colour variables for more modular code */
 :root {
-  font-size: 15px;
-  font-family: "Lato", sans-serif;
-  --text-primary: #ffffff;
-  --text-secondary: lightGray;
-  --bg-primary: #0e0e0e;
-  --bg-secondary: black;
-  --mint: #00bfae;
-  --lighter: #00a68c;
-  --darker: #006d5d;
-  --floater: rgb(4, 129, 129);
-  --transition-speed: 600ms;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+    --text-primary: #ffffff;
+    --text-secondary: lightGray;
+    --bg-primary: #0e0e0e;
+    --bg-secondary: black;
+    --mint: #00bfae;
+    --lighter: #00a68c;
+    --darker: #006d5d;
+    --floater: rgb(4, 129, 129);
+    --transition-speed: 600ms;
 }
 
 /* Disables selection 
 
 *::selection{
-  visibility: hidden;
+visibility: hidden;
 }
 
 */
 
-/* Fancy scroll bar :) */
-
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 /* Sets default page layouts and stops content from overflowing (scroll in the x axis) */
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
+/* Fancy scroll bar :) */
+
 body::-webkit-scrollbar {
-  width: 0.5rem;
+    width: 0.5rem;
 }
 
 body::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-  border-radius: 50px;
+    background: var(--bg-primary);
+    border-radius: 50px;
 }
 
 body::-webkit-scrollbar-thumb {

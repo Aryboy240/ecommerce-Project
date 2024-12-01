@@ -8,175 +8,336 @@ body {
     padding: 0;
 }
 
-/* Navbar */
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Login Info CSS
+*/
 
-header {
-    background-color: var(--bg-primary);
-    padding: 10px 0;
-    margin-bottom: 10px;
-}
-
-.navbar {
+.AccountNavigation {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 60px;
+    background: var(--floater);
+    box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    transition: height 0.5s, width 0.5s;
+    transition-delay: 0s, 0.75s;
+    overflow: hidden;
+    border-radius: 15px;
+    z-index: 201;
+}
+
+.AccountNavigation.active {
+    width: 300px;
+    height: 400px;
+    transition: width 0.5s, height 0.5s;
+    transition-delay: 0s, 0.75s;
+}
+
+.AccountNavigation .userBox {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: var(--floater);
+    display: flex;
     align-items: center;
+    overflow: hidden;
+}
+
+.AccountNavigation.active .userBox {
+    width: calc(100% - 60px);
+    transition-delay: 0s;
+}
+
+.AccountNavigation .userBox .AccountUsername {
+    white-space: nowrap;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.AccountNavigation .userBox .imgBox {
+    box-sizing: border-box;
+    position: relative;
+    min-width: 60px;
+    height: 60px;
+    overflow: hidden;
+    background: var(--floater);
+    border-radius: 50%;
+    border: 10px solid var(--floater);
+}
+
+.AccountNavigation .userBox .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+    transform: scale(1.35);
     width: 100%;
-    font-size: 15px;
+    height: 100%;
+    object-fit: cover;
 }
 
-.logo {
-    max-width: 80px;
-    height: max-content;
-    margin-top: 10px;
-    margin-right: 20px;
-}
-
-.navbar-links {
+.AccountNavigation .menuToggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
     display: flex;
     justify-content: center;
-    flex-grow: 1;
+    align-items: center;
 }
 
-.navbar-links ul {
+.AccountNavigation .menuToggle::before {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 2px;
+    background: var(--text-primary);
+    transform: translateY(-10px);
+    box-shadow: 0 10px var(--text-primary);
+    transition: 0.5s;
+}
+
+.AccountNavigation .menuToggle::after {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 2px;
+    background: var(--text-primary);
+    transform: translateY(10px);
+    transition: 0.5s;
+}
+
+.AccountNavigation.active .menuToggle::before {
+    transform: translateY(0px) rotate(45deg);
+    box-shadow: 0 0 var(--text-primary);
+}
+
+.AccountNavigation.active .menuToggle::after {
+    transform: translateY(0px) rotate(-45deg);
+    box-shadow: 0 0 var(--text-primary);
+}
+
+.UserMenu {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 60px);
+    margin-top: 60px;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.UserMenu li {
+    list-style: none;
+}
+
+.UserMenu li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 5px;
+    font-size: 1em;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: 0.5s;
+}
+
+.UserMenu li a:nth-child(1) {
+    margin-top: 10px;
+}
+
+.UserMenu .child:last-child {
+    padding-left: 4px;
+}
+
+.UserMenu li a:hover {
+    color: var(--nav-colour);
+}
+
+.UserMenu li a ion-icon {
+    font-size: 1.5em;
+}
+
+@media only screen and (max-width: 960px) {
+    .AccountNavigation {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Navigaion bar
+*/
+
+/* Nav section goes across whole screen & padding of 25px up and down */
+.nav-section {
+    padding: 25px 0;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Left side of the logo */
+.navbar-left {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--floater);
+    z-index: 5;
+    transition: var(--transition-speed) ease;
+    border-radius: 50px;
+    margin-right: -50px;
+    width: 35vw;
+}
+
+/* Pushes the bar into the logo */
+.navbar-left .nav-item:last-child {
+    margin-right: 38px;
+}
+
+/* Right side of the logo */
+.navbar-rigth {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--floater);
+    z-index: 5;
+    transition: var(--transition-speed) ease;
+    border-radius: 50px;
+    margin-left: -50px;
+    width: 35vw;
+}
+
+.navbar-rigth .nav-item:nth-child(1) {
+    margin-left: 38px;
+}
+
+/* glows on hover */
+nav:hover {
+    box-shadow: 0 0 15px var(--mint);
+}
+
+.nav-item:hover {
+    box-shadow: 0 0 15px var(--mint);
+}
+
+/* Changes list settings */
+.navbar-nav {
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     list-style: none;
     padding: 0;
+    margin: 0;
+    z-index: 5;
 }
 
-.navbar-links li {
-    margin: 0 15px;
+/* Each item in the nav */
+.nav-item {
+    width: 100%;
+    z-index: 5;
+    transition: var(--transition-speed) ease;
 }
 
-.navbar-links .nav-link {
-    text-decoration: none;
-    color: var(--text-primary);
-}
-
-.navbar-links .nav-link:hover {
-    color: var(--mint);
-}
-
-.navbar-links ul li a img {
-    width: 15px;
-    filter: invert(100%);
-}
-
-/* Search bar */
-
-.search-bar {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-}
-
-.search-bar input {
-    margin-top: 13px;
-    padding-left: 10px;
-    color: var(--text-primary);
-    background-color: var(--bg-primary);
-    border-radius: 10px;
-    box-sizing: border-box;
-    z-index: 99;
-}
-
-.search-bar img {
-    width: 10px;
-}
-
-.search-bar input::placeholder {
-    display: flex;
-    position: absolute;
-    color: var(--text-primary);
-}
-
-/* The finiky search bar icon (It does nothing atm) */
-
-.search-icon {
+/* The middle logo section */
+.navbar-middle {
     position: relative;
     display: flex;
-    place-items: center;
-    cursor: pointer;
-    width: 15px;
-    padding: 10px;
-    background-color: var(--floater);
-    transform: translate(435%, -80%);
-    border-radius: 100px;
+    box-shadow: 0 0 15px var(--mint);
+    border: 15px solid var(--floater);
+    border-radius: 50%;
     z-index: 100;
+    transition: var(--transition-speed);
 }
 
-.search-icon img {
-    width: 15px;
-    filter: invert(100%);
+.navbar-middle:hover {
+    transform: scale(1.05);
 }
 
-.search-icon img::selection {
-    visibility: hidden;
-}
-
-.search-icon:hover {
-    background-color: var(--mint);
-}
-
-/* The even more finiky Shopping Basket button (Also does nothing atm) */
-
-.cart-icon {
+/* The middle logo image */
+.navbar-middle img {
+    filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
     position: relative;
-    display: flex;
-    place-items: center;
-    cursor: pointer;
-    margin-top: 5px;
-    width: 15px;
-    height: 15px;
-    padding: 10px;
-    background-color: var(--floater);
-    transform: translate(50%, 0%);
-    border-radius: 100px;
-    z-index: 100;
-}
-
-.cart-icon img {
-    width: 15px;
-    filter: invert(100%);
-}
-
-.cart-icon img::selection {
-    visibility: hidden;
-}
-
-.cart-icon:hover {
-    background-color: var(--mint);
-}
-
-/* The most scuffed notification icon ever */
-
-.cart-item-number {
-    position: absolute;
-    display: flex;
-    place-items: center;
-    width: 10px;
-    height: 10px;
-    font-size: 15px;
-    padding: 5px;
-    background-color: red;
-    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.75); /* Gave it a cool glow tho ♥ */
-    transform: translate(60%, -70%);
-    border-radius: 100px;
+    width: 100px;
+    transform: scale(1.2);
     z-index: 101;
 }
 
-.cart-item-number p {
-    float: left;
-    margin-left: 0.5px;
+.nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-speed);
+    z-index: 5;
 }
 
-.cart-item-number p::selection {
-    visibility: hidden;
+/* changes item colour when hovering */
+.nav-link:hover {
+    background: var(--mint);
+    color: var(--text-primary);
+    z-index: 5;
 }
 
-/* Hero (Intro Title) */
+.link-text {
+    font-weight: 700;
+    margin-left: 1rem;
+    z-index: 5;
+    transition: var(--transition-speed);
+}
+
+/* Each element (span and svbg) in the nav-item */
+.nav-item-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-link svg {
+    width: 2rem;
+    min-width: 2rem;
+    z-index: 5;
+    filter: invert(100%);
+}
+
+/* No scrollbar on the navbar (even tho overflow is hidden, I just wanna make sure) */
+.navbar::-webkit-scrollbar {
+    width: 0rem;
+}
+
+/*dropdown bat form Navigation  Bar*/
+.dropdown-content {
+    display: none;
+    background-color: #00bfae;
+    min-width: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(4, 129, 129, 0.7);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Hero (Intro Title)*/
 
 .hero {
     position: relative;
@@ -290,7 +451,7 @@ header {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin: 7% 5% 5% 5%;
+    margin: 10% 5% 5% 5%;
 }
 
 /* The middle floater controller (main floater) */
@@ -776,5 +937,221 @@ header {
 
     .footer .social-icons {
         justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    /* Nav section goes across whole screen & padding of 25px up and down */
+    .nav-section {
+        padding: 25px 0;
+        width: 100%;
+    }
+
+    /* Left side of the logo */
+    .navbar-left {
+        border-radius: 50px;
+        margin-right: -50px;
+    }
+
+    /* Pushes the bar into the logo */
+    .navbar-left .nav-item:last-child {
+        margin-right: 38px;
+    }
+
+    /* Right side of the logo */
+    .navbar-rigth {
+        border-radius: 50px;
+        margin-left: -50px;
+    }
+
+    .navbar-rigth .nav-item:nth-child(1) {
+        margin-left: 38px;
+    }
+
+    /* glows on hover */
+    nav:hover {
+        box-shadow: 0 0 15px var(--mint);
+    }
+
+    .nav-item:hover {
+        box-shadow: 0 0 15px var(--mint);
+    }
+
+    /* Changes list settings */
+    .navbar-nav {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        z-index: 5;
+    }
+
+    /* Each item in the nav */
+    .nav-item {
+        width: 100%;
+        z-index: 5;
+    }
+
+    /* The middle logo section */
+    .navbar-middle {
+        box-shadow: 0 0 15px var(--mint);
+        border: 15px solid var(--floater);
+        border-radius: 50%;
+    }
+
+    /* The middle logo image */
+    .navbar-middle img {
+        filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
+        width: 100px;
+        transform: scale(1.2);
+        z-index: 101;
+    }
+
+    .nav-link {
+        height: 5rem;
+    }
+
+    .link-text {
+        font-weight: 700;
+        margin-left: 1rem;
+    }
+
+    .nav-link svg {
+        width: 2rem;
+        min-width: 2rem;
+        z-index: 5;
+        filter: invert(100%);
+    }
+
+    .floater-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .floater-containter {
+        position: relative;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: -5% 0 0 0;
+    }
+
+    /* The middle floater controller (main floater) */
+
+    .floaters {
+        position: relative;
+        transform: rotate(0);
+    }
+
+    .floaters img {
+        max-height: 100%;
+        margin-right: 50px;
+    }
+
+    /* Floater children inside the floater container */
+
+    .floaters:nth-child(2) {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: rotate(0);
+        z-index: 1;
+    }
+
+    .floaters:nth-child(3) {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        transform: rotate(0);
+        z-index: 0;
+    }
+
+    .floaters p {
+        margin-top: 17px;
+        transform: scale(1.6);
+    }
+
+    /* Hero (Intro Title) */
+
+    .hero {
+        position: relative;
+        background-color: var(--bg-primary);
+        padding: 100px 20px 60px 20px;
+        text-align: center;
+    }
+
+    .hero-content {
+        position: relative;
+        max-width: 100%;
+        font-weight: 100;
+        font-size: 15px;
+        justify-items: center;
+        z-index: 2;
+        text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
+    }
+
+    .hero-content h1 {
+        z-index: 2;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    .hero-content img {
+        pointer-events: none;
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        right: 50%;
+        transform: scale(0.75) rotate(20deg) translate(-30%, -110%);
+        filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
+    }
+}
+
+@media only screen and (max-width: 764px) {
+    body {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Hides PC Navbar */
+
+    nav {
+        visibility: hidden;
+        display: none;
+    }
+
+    .smol_nav {
+        visibility: visible;
+        display: flex;
+    }
+
+    /* Hero (Intro Title) */
+
+    .hero-content h1 {
+        z-index: 2;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .hero-content img {
+        transform: scale(0.6) rotate(0) translate(-80%, -135%);
+    }
+
+    /* Categories */
+
+    .category-grid {
+        flex-direction: column;
+    }
+
+    .category {
+        padding-right: 0;
+        font-size: 30px;
+    }
+
+    .category:nth-child(1) {
+        padding-left: 0;
     }
 }
