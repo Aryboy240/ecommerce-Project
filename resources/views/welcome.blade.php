@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <!--Navigation  Bar-->
+  <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
     <!--Left nav-->
     <nav class="navbar-left">
@@ -121,7 +121,7 @@
       </ul>
     </nav>
   </section>
-  <!--Navigation  Bar End-->
+  <!-- Navigation  Bar End -->
 
   <!-- Intro Title (Frame your world):: Aryan Kora -->
   <section class="hero">
@@ -130,8 +130,8 @@
         <h1>FRAME YOUR WORLD<br>define your style</h1>
         <img class="world" src="{{ asset('Images/gifs/globe.gif') }}">
         <p>
-          This is a premium collection designed for thise who want to<br>
-          eleveate their eye-wear style and enchance their vision<br><br>
+          This is a premium collection designed for those who want to<br>
+          elevate their eye-wear style and enchance their vision<br><br>
           <em>A digital solution for Opticians</em>
         </p>
         <a href="" class="btn-order">Order</a>
@@ -142,6 +142,7 @@
       </div>
     </div>
   </section>
+  <!-- Intro title End -->
 
   <!-- Test for floating cards under hero content:: Aryan Kora -->
   <section class="container">
@@ -162,6 +163,7 @@
       </div>
     </div>
   </section>
+  <!-- Floating cards End -->
 
   <!-- Featured Products Section:: Aryan Kora -->
   <section style="margin-top: 100px;">
@@ -302,7 +304,7 @@
       </div>
     </section>
   </section>
-  <!--Product Cards End-->
+  <!-- Product Cards End -->
 
   <!-- Categories Section:: Esta -->
   <section class="container">
