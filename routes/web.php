@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 
 // Basic routes
 
-// login system routes
+// login system routes - Aryan
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout' , [UserController::class, 'logout']);
 Route::post('/login' , [UserController::class, 'login']);
@@ -17,11 +19,11 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('Login');
+    return view('Login'); // Refers to resources/views/Login.blade.php
 })->name('login');
 
 Route::get('/register', function () {
-    return view('register'); // Refers to resources/views/register.blade.php
+    return view('Register'); // Refers to resources/views/Register.blade.php
 })->name('register');
 
 Route::get('/welcome', function () {
@@ -32,7 +34,7 @@ Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
 
-// Order routes - Note the reordered routes
+// Order routes - Note the reordered routes - Vatsal
 Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
 Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
@@ -45,8 +47,6 @@ Route::delete('/orders/{order}/items/{item}', [OrderItemController::class, 'dest
 
 // Test route
 Route::get('/test-order', [OrderController::class, 'testCreate'])->name('orders.test');
-
-use App\Http\Controllers\ShoppingCartController;
 
 // Shopping Cart routes
 Route::post('/cart/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
