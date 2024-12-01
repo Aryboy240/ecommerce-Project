@@ -4,40 +4,111 @@
     Function: Styling for the User Account page (for logged-in users) (resources/views/Account.blade.php)
 */
 
+
+/* === BODY STYLING === */
+
+
+/* Sets a margin around the body and adjusts font size */
 body {
-    margin: 30px;
+    margin: 100px;
     font-size: 20px;
 }
 
+
+/* === HEADINGS === */
+
+
+/* Styles for the main title (username heading) */
 .username-heading {
     font-size: 30px;
     text-align: center;
     padding: 20px;
 }
 
+/* Styles for subheadings on the page */
 .subheading {
     font-size: 25px;
 }
 
-/* STYLING FOR FORMS */
 
+/* === USER INFO SECTION === */
+
+
+/* Adds margin around the user information section (to indent them from the headings) */
+.user-info {
+    margin: 20px;
+}
+
+
+/* === STYLING FOR FORMS === */
+
+
+/* Styles the container for forms to update user details */
+.update-details-forms {
+    margin: 20px;               /* Adds margin around the forms section */
+    display: flex;              /* Enables flexible box layout */
+    justify-content: center;    /* Centers the forms */
+    flex-wrap: wrap;            /* Allows wrapping if content overflows */
+}
+
+/* Individual form container styling */
 .form-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin: 10px;                       /* Spacing between form containers */
+    padding: 30px;                      /* Internal spacing inside the form container */
+    background-color: var(--darker);    /* Background color using a CSS variable */
+    border-radius: 20px;                /* Rounded corners */
+    flex-grow: 1;                       /* Allows the container to grow based on available space */
 }
 
-.form-content {
-    margin: 10px;
-    padding: 30px;
-    background-color: var(--darker);
-    border-radius: 20px;
-    flex-grow: 1;
+/* Button styling within forms */
+.form-content button{
+    padding: 5px;               /* Internal padding for buttons */
+    background-color:white;   /* Button background color */
+    border-style: none;         /* Removes default border styling */
+    border-radius: 5px;         /* Rounded corners for buttons */
+    text-align: center;         /* Centers text inside the button */
+    font-size: 15px;            /* Button font size */
+}   
 
+/* Hover effect for buttons */
+.form-content button:hover {
+    color: var(--lighter);          /* Text colour using CSS variable */
+    outline: auto;                  /* Applies an outline automatically */
+    outline-color: var(--darker);   /* Sets outline color using CSS variable */
+    outline-offset: -2px;           /* Adjusts outline position */
 }
 
-/* Form titles */
+
+/* === FORM TITLES === */
+
+
+/* Styling for form section titles */
 .form-title {
     font-size: 20px;
     text-align: center;
+}
+
+
+/* === FORM CONTENT === */
+
+
+/* Aligns and centers form content */
+.form-content {
+    display: flex;              /* Uses flexbox for layout */
+    align-items: center;        /* Vertically aligns content */
+    flex-direction: column;     /* Stacks items vertically */
+    justify-content: center;    /* Centers items horizontally */
+}
+
+/* Input field styling */
+.form-content input {
+    padding: 10px;              /* Internal padding */
+    font-size: 16px;            /* Font size for input text */
+    border: 1px solid #ccc;   /* Adds a light gray border */
+    border-radius: 5px;         /* Rounded corners */
+}
+
+/* Styling for focused input fields */
+.form-content input:focus {
+    outline-color: var(--darker);   /* Outline color on focus to match background using CSS variables */
 }

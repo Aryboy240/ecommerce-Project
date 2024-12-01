@@ -7,6 +7,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,6 +19,7 @@
 
     <title>User Account | Optique</title>
   </head>
+
   <body>
 
     <!--Navigation  Bar-->
@@ -130,19 +132,19 @@
     <!--Navigation  Bar End-->
 
     <!-- User Info -->
-    <section class = "user-account">
+    <section>
         <div class = "username-heading">
-            <h1> Welcome, [Username] </h1>
+          <h1> Welcome, [Username] </h1>
+        </div>
+        <div class = "subheading">
+          <h3>Your Account Details</h3>
         </div>
         <div class="user-info">
-          <div class = "subheading">
-            <h3>Your Account Details</h3>
-          </div>
           <p><strong>Username:</strong> [insert username]</p>
           <p><strong>Email:</strong> [insert email]</p>
           <p><strong>D.O.B:</strong> [insert date of birth]</p>
-
         </div>
+      </div>
     </section>
     
     <!-- Update Details Forms -->
@@ -151,63 +153,69 @@
         <h3>Update Your Information</h3>
       </div>
 
-      <div class="form-container">
+      <div class="update-details-forms">
         <!-- Update Username Form -->
-        <div class="form-content">
+        <div class="form-container">
           <div class="form-title">
             <h4>Update Username</h4>
           </div>
-          <form method="POST">
-            <label for="new-username">New Username:</label>
-            <br>
-            <input type="text" id="new-username" name="new-username">
-            <br><br>
-            <label for="password">Password:</label>
-            <br>
-            <input type="password" id="password" name="password">
-            <br><br>
-            <button type="submit">Submit</button>
-          </form>
+          <div class = "form-content">
+            <form method="POST">
+              <!-- <label for="new-username">New Username:</label> -->
+              <br>
+              <input type="text" id="new-username" name="new-username" placeholder = "New username">
+              <br><br>
+              <!-- <label for="password">Password:</label> -->
+              <br>
+              <input type="password" id="password" name="password" placeholder = "Password">
+              <br><br>
+              <button type="submit">SUBMIT</button>
+            </form>
+          </div>
         </div>
 
         <!-- Update Password Form -->
-        <div class="form-content">
+        <div class="form-container">
           <div class="form-title">
             <h4>Update Password</h4>
           </div>
-          <form method="POST">
-            <label for="current-password">Current Password:</label>
-            <br>
-            <input type="password" id="current-password" name="current-password">
-            <br><br>
-            <label for="new-password">New Password:</label>
-            <br>
-            <input type="password" id="new-password" name="new-password">
-            <br><br>
-            <label for="confirm-new-password">Confirm New Password:</label>
-            <br>
-            <input type="password" id="confirm-new-password" name="confirm-new-password">
-            <br><br>
-            <button type="submit">Submit</button>
-          </form>
+          <div class = "form-content">
+            <form method="POST">
+              <!-- <label for="current-password">Current Password:</label> -->
+              <br>
+              <input type="password" id="current-password" name="current-password" placeholder = "Current password">
+              <br><br>
+              <!-- <label for="new-password">New Password:</label> -->
+              <br>
+              <input type="password" id="new-password" name="new-password" placeholder = "New password">
+              <br><br>
+              <!-- <label for="confirm-new-password">Confirm New Password:</label> -->
+              <br>
+              <input type="password" id="confirm-new-password" name="confirm-new-password" placeholder = "Confirm new password">
+              <br><br>
+              <button type="submit">SUBMIT</button>
+            </form>
+          </div>
         </div>
 
         <!-- Update Email Form -->
-        <div class="form-content">
+        <div class="form-container">
           <div class="form-title">
             <h4>Update Email</h4>
           </div>
-          <form method="POST">
-            <label for="new-email">New Email:</label>
-            <br>
-            <input type="email" id="new-email" name="new-email">
-            <br><br>
-            <label for="password"> Password:</label>
-            <br>
-            <input type="password" id="password" name="password">
-            <br><br>
-            <button type="submit">Submit</button>
-          </form>
+          <div class = "form-content">
+            <form method="POST">
+              <!-- <label for="new-email">New Email:</label> -->
+              <br>
+              <input type="email" id="new-email" name="new-email" placeholder = "New email">
+              <br><br>
+              <!-- <label for="password"> Password:</label> -->
+              <br>
+              <input type="password" id="password" name="password" placeholder = "Password">
+              <br><br>
+              <button type="submit">SUBMIT</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
