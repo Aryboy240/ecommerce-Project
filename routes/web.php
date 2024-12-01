@@ -5,8 +5,15 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 
 // Basic routes
+
+// login system routes
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/logout' , [UserController::class, 'logout']);
+Route::post('/login' , [UserController::class, 'login']);
+
+// Routes to other pages
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); // Homepage
 });
 
 Route::get('/login', function () {
@@ -14,12 +21,16 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('/register', function () {
-    return view('Register');
+    return view('register'); // Refers to resources/views/register.blade.php
 })->name('register');
 
 Route::get('/welcome', function () {
-    return view('welcome');
+    return view('welcome'); // Refers to resources/views/welcome.blade.php
 })->name('welcome');
+
+Route::get('/contact', function () {
+    return view('Contact'); // Refers to resources/views/contact.blade.php
+})->name('contact');
 
 // Order routes - Note the reordered routes
 Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
@@ -48,3 +59,4 @@ Route::get('/cart', function () {
     return view('cart.cart');
 })->name('cart.view');
 Route::post('/add-to-cart', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
+
