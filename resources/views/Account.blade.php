@@ -157,14 +157,14 @@
           <div class="form-title">
             <h4>Update Username</h4>
           </div>
-          <form>
+          <form method="POST">
             <label for="new-username">New Username:</label>
             <br>
-            <input type="text" id="new-username">
+            <input type="text" id="new-username" name="new-username">
             <br><br>
             <label for="password">Password:</label>
             <br>
-            <input type="password" id="password">
+            <input type="password" id="password" name="password">
             <br><br>
             <button type="submit">Submit</button>
           </form>
@@ -175,18 +175,18 @@
           <div class="form-title">
             <h4>Update Password</h4>
           </div>
-          <form>
+          <form method="POST">
             <label for="current-password">Current Password:</label>
             <br>
-            <input type="password" id="current-password">
+            <input type="password" id="current-password" name="current-password">
             <br><br>
             <label for="new-password">New Password:</label>
             <br>
-            <input type="password" id="new-password">
+            <input type="password" id="new-password" name="new-password">
             <br><br>
             <label for="confirm-new-password">Confirm New Password:</label>
             <br>
-            <input type="password" id="confirm-new-password">
+            <input type="password" id="confirm-new-password" name="confirm-new-password">
             <br><br>
             <button type="submit">Submit</button>
           </form>
@@ -197,14 +197,14 @@
           <div class="form-title">
             <h4>Update Email</h4>
           </div>
-          <form>
+          <form method="POST">
             <label for="new-email">New Email:</label>
             <br>
-            <input type="email" id="new-email">
+            <input type="email" id="new-email" name="new-email">
             <br><br>
             <label for="password"> Password:</label>
             <br>
-            <input type="password" id="password">
+            <input type="password" id="password" name="password">
             <br><br>
             <button type="submit">Submit</button>
           </form>
