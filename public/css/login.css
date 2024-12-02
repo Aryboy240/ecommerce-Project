@@ -107,7 +107,7 @@
 
 .login-logo {
     position: relative;
-    border-radius: 10%;
+    border-radius: 50%;
     width: 250px;
     transition: var(--transition-speed);
 }
@@ -176,6 +176,16 @@
     transition: var(--transition-speed);
 }
 
+#error {
+    font-size: 1rem;
+    margin-top: 10px;
+    display: inline-block;
+    color: rgb(255, 33, 33);
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: var(--transition-speed);
+}
+
 .input input {
     width: 100%;
     padding: 10px 20px;
@@ -190,18 +200,24 @@
     transition: var(--transition-speed);
 }
 
-.input input[type="button"] {
-    background: var(--darker);
-    color: var(--text-primary);
-    font-weight: 600;
+.input button {
+    width: 100%;
+    padding: 10px 20px;
     outline: none;
-    border: none;
-    cursor: pointer;
+    font-weight: 400;
+    border: 0px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    background-color: var(--darker);
+    border-radius: 30px;
     transition: var(--transition-speed);
+    cursor: pointer;
 }
 
-.input input[type="button"]:hover {
+.input button:hover {
     transform: scale(1.02);
+    background-color: var(--mint);
 }
 
 .input p {
