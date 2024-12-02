@@ -1,22 +1,26 @@
 <!--
-    Developer: Angus
-	  University ID: 
-    Function: Front end for the contacts page
+    Developer: Oyinlola Arowolo
+	University ID: 230402373
+    Function: Front end for the Products page
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- CSS -->
-  <link rel="stylesheet" href={{  asset('css/main.css') }}>
-  <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-  <link rel="stylesheet" href={{  asset('css/contact.css') }}>
-  <title>Contact Us | Optique</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add meta description for SEO -->
+    <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
+    <!-- JS -->
+    <script defer src="js/scrollReveal.js"></script>
+    <script defer src="{{ asset('js/product_page.js') }}"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
+    <title>Optique</title>
 </head>
 <body>
-
   <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
     <!--Left nav-->
@@ -126,75 +130,125 @@
   </section>
   <!-- Navigation  Bar End -->
 
-  <!-- CONTENT -->
-  <section class="contact-section">
-    <div class="contact-us">
-      <h1>Contact Us</h1>
-      <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>    
-    </div>
-    
-  
-  
-    <!-- Contact Details -->
-    <div class="contact-container">
-      <div class="map-location">
-      <a href="https://maps.app.goo.gl/AEP5HRkij4LH9n2c9">
-        <img src="{{ asset('Images/location.jpg') }}"  width="100%" height="100%" >
-      </a>
-      </div>
+    <!-- Main Content -->
+    <main>
+        <section class="prodetails">
+            <div class="single-pro-image">
+                <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" id="MainImg" alt="Product 1">
+                
+                <div class="small-img-group">
+                    <div class="small-img-col">
+                        <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" class="small-img" alt="Product 1 View 1">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{{ asset('Images/products/glasses2.png') }}" width="100%" class="small-img" alt="Product 1 View 2">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{{ asset('Images/products/glasses3.png') }}" width="100%" class="small-img" alt="Product 1 View 3">
+                    </div>
+                </div>
+            </div>
 
-      <div class="contact-detail">
-        <h2>Where we are</h2>
-        <p>84 Bibb St, Birmingham, B9 8QQ</p>
-        <p><strong>office hour</strong> 10AM - 6PM</p>
-        <br>
-        <h2>Meeting us</h2>
-        <p><strong>Phone</strong> +440246813579</p>
-        <p><strong>Email</strong> support@optique.com</p>
-      </div>
+            <div class="single-pro-details">
+                <h6>Home / Shop</h6>
+                <h4>Square Frame Glasses</h4>
+                <h2>$199.99</h2>
+                
+                <select>
+                    <option>Select Frame Size</option>
+                    <option>Small</option>
+                    <option>Medium</option>
+                    <option>Large</option>
+                </select>
+                
+                <div class="quantity">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="1" min="1">
+                </div>
+                
+                <button class="add-to-cart">Add to Cart</button>
+                
+                <h4>Product Details</h4>
+                <p>Experience timeless elegance with our Classic Round Frame Glasses. 
+                    Crafted from premium materials, these versatile frames offer both 
+                    style and comfort. Features include anti-reflective coating, 
+                    scratch-resistant lenses, and adjustable nose pads for the perfect fit.</p>
+                
+                <div class="product-features">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Premium acetate frame</li>
+                        <li>Anti-reflective coating</li>
+                        <li>Scratch-resistant lenses</li>
+                        <li>Adjustable nose pads</li>
+                        <li>UV protection</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-      <div class="contact-form">
-        <h2>Get in touch</h2>
-        <form action="" method="POST">
-            
-              <p>Name</p>
-              <input type="text" id="name" name="name" placeholder="Your Name" required>
-            
-            
-              <p>Email</p>
-              <input type="email" id="email" name="email" placeholder="Your Email" required>
-            
-            
-              <p>order number(if apply)</p>
-              <input type="number"  id="order" name="order" placeholder="Your order number" >
-            
-              
-              <p>select your situational</p>
-              <select id="situational" name="situational" >
-                <option value="Product-damage">Product damage</option>
-                <option value="Returns-and-refunds">Returns and refunds</option>
-                <option value="Suggestion">Suggestion</option>
-                <option value="Other">Other</option>
-              </select>
-              
-              <p>Message</p>
-              <textarea id="message" name="message" rows="5" placeholder=" Please enter your message" required></textarea>
-            
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+        <!-- Related Products Section -->
+        <section class="related-products">
+            <div class="product-pairs">
+                <h2>Complete Your Look</h2>
+                
+                <!-- Paired Products -->
+                <div class="product-container">
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Matching Case">
+                        <h3>Matching Case</h3>
+                        <p>Price: $39.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="{{ asset('Images/products/glasses cleaner.jpg') }}" alt="Product 10">
+                        <h3>Glasses Cleaner</h3>
+                        <p>Price: $29.99</p>
+                        <button class="add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    </div>
-
-  </section>
-
-  <section class="socials-mediar">
-    <ul class="login-socials">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a>
-    </ul>
-  </section>
-
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div>
+            <h3>Customer Support</h3>
+            <p>
+                <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon">
+                1 (800) 555-OPTQ
+            </p>
+            <p>
+                <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="Email Icon"> 
+                <a href="mailto:support@optique.com">support@optique.com</a>
+            </p>
+            <p>Live Chat Available</p>
+        </div>
+        <div>
+            <h3>Shop</h3>
+            <a href="#">Glasses</a>
+            <a href="#">Sunglasses</a>
+            <a href="#">Accessories</a>
+            <a href="#">Contact Lenses</a>
+        </div>
+        <div>
+            <h3>About Optique</h3>
+            <a href="#">Our Story</a>
+            <a href="#">Testimonials</a>
+            <a href="#">Careers</a>
+            <a href="#">Store Locator</a>
+        </div>
+        <div class="social-icons">
+            <h3>Follow Us</h3>
+            <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+            <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+            <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+            <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        </div>
+        <div class="powered-by">
+            <p>© Optique. Crafted for Visionaries.</p>
+        </div>
+    </footer>
 </body>
 </html>

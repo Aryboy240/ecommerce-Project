@@ -1,22 +1,17 @@
-<!--
-    Developer: Angus
-	  University ID: 
-    Function: Front end for the contacts page
--->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS -->
-  <link rel="stylesheet" href={{  asset('css/main.css') }}>
-  <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-  <link rel="stylesheet" href={{  asset('css/contact.css') }}>
-  <title>Contact Us | Optique</title>
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+  <title>Shopping Cart - Optique</title>
 </head>
-<body>
 
+<body>
   <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
     <!--Left nav-->
@@ -71,7 +66,7 @@
     <!--MIDDLE LOGO-->
     <a href="{{ route('welcome') }}">
       <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
+        <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
 
@@ -126,75 +121,61 @@
   </section>
   <!-- Navigation  Bar End -->
 
-  <!-- CONTENT -->
-  <section class="contact-section">
-    <div class="contact-us">
-      <h1>Contact Us</h1>
-      <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>    
+  <!-- Hero Section -->
+  <section class="hero" style="padding: 40px 20px;">
+    <div class="hero-content">
+      <h1 style="font-size: 80px; margin-bottom: 20px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">YOUR CART
+      </h1>
     </div>
-    
-  
-  
-    <!-- Contact Details -->
-    <div class="contact-container">
-      <div class="map-location">
-      <a href="https://maps.app.goo.gl/AEP5HRkij4LH9n2c9">
-        <img src="{{ asset('Images/location.jpg') }}"  width="100%" height="100%" >
-      </a>
-      </div>
-
-      <div class="contact-detail">
-        <h2>Where we are</h2>
-        <p>84 Bibb St, Birmingham, B9 8QQ</p>
-        <p><strong>office hour</strong> 10AM - 6PM</p>
-        <br>
-        <h2>Meeting us</h2>
-        <p><strong>Phone</strong> +440246813579</p>
-        <p><strong>Email</strong> support@optique.com</p>
-      </div>
-
-      <div class="contact-form">
-        <h2>Get in touch</h2>
-        <form action="" method="POST">
-            
-              <p>Name</p>
-              <input type="text" id="name" name="name" placeholder="Your Name" required>
-            
-            
-              <p>Email</p>
-              <input type="email" id="email" name="email" placeholder="Your Email" required>
-            
-            
-              <p>order number(if apply)</p>
-              <input type="number"  id="order" name="order" placeholder="Your order number" >
-            
-              
-              <p>select your situational</p>
-              <select id="situational" name="situational" >
-                <option value="Product-damage">Product damage</option>
-                <option value="Returns-and-refunds">Returns and refunds</option>
-                <option value="Suggestion">Suggestion</option>
-                <option value="Other">Other</option>
-              </select>
-              
-              <p>Message</p>
-              <textarea id="message" name="message" rows="5" placeholder=" Please enter your message" required></textarea>
-            
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-    </div>
-
   </section>
 
-  <section class="socials-mediar">
-    <ul class="login-socials">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a>
-    </ul>
-  </section>
+  <!-- Cart Content -->
+  <section class="container">
+    @if(isset($items) && count($items) > 0)
+    <div class="product-card-con">
+      @foreach($items as $item)
+      <div class="product-card" style="width: 100%; max-width: 800px; margin: 20px auto;">
+      <div class="card-circle"></div>
+      <div class="product-card-content" style="width: 70%; left: 0;">
+      <h2>{{ $item->product_name }}</h2>
+      <p style="margin: 10px 0;">Quantity: {{ $item->quantity }}</p>
+      <p style="color: var(--mint); font-size: 1.2em;">£{{ number_format($item->price, 2) }}</p>
+      <div style="margin-top: 20px;">
+      <a href="#" onclick="updateQuantity()" style="margin-right: 20px;">Update</a>
+      <a href="#" onclick="removeItem()" style="color: #ff4444;">Remove</a>
+      </div>
+      </div>
+      <img class="imageSize-1" src="{{ asset('Images/product-placeholder.png') }}" style="height: 100px;">
+      </div>
+    @endforeach
+    </div>
 
+    <!-- Cart Summary -->
+    <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
+      <div style="text-align: right;">
+      <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £{{ number_format($total, 2) }}
+      </p>
+      <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
+      <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total:
+        £{{ number_format($total, 2) }}</h3>
+      <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
+      </div>
+    </div>
+  @else
+  <div style="text-align: center; padding: 100px 20px;">
+    <div style="margin-bottom: 40px;">
+    <img src="{{ asset('Images/gifs/glasses.gif') }}"
+      style="width: 120px; filter: drop-shadow(0px 0px 20px rgba(0, 191, 174, 0.3));">
+    </div>
+    <h2
+    style="color: var(--text-primary); margin-bottom: 20px; font-size: 2em; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">
+    Your cart is empty</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 40px;">Looks like you haven't added any items yet</p>
+    <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
+  </div>
+@endif
+  </section>
 </body>
+
 </html>

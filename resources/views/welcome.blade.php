@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <!--Navigation  Bar-->
+  <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
     <!--Left nav-->
     <nav class="navbar-left">
@@ -51,7 +51,7 @@
 
         <!--Store-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('product') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -93,7 +93,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('shoppingCart') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -121,7 +121,7 @@
       </ul>
     </nav>
   </section>
-  <!--Navigation  Bar End-->
+  <!-- Navigation  Bar End -->
 
   <!-- Intro Title (Frame your world):: Aryan Kora -->
   <section class="hero">
@@ -130,8 +130,8 @@
         <h1>FRAME YOUR WORLD<br>define your style</h1>
         <img class="world" src="{{ asset('Images/gifs/globe.gif') }}">
         <p>
-          This is a premium collection designed for thise who want to<br>
-          eleveate their eye-wear style and enchance their vision<br><br>
+          This is a premium collection designed for those who want to<br>
+          elevate their eye-wear style and enchance their vision<br><br>
           <em>A digital solution for Opticians</em>
         </p>
         <a href="" class="btn-order">Order</a>
@@ -142,6 +142,7 @@
       </div>
     </div>
   </section>
+  <!-- Intro title End -->
 
   <!-- Test for floating cards under hero content:: Aryan Kora -->
   <section class="container">
@@ -162,6 +163,7 @@
       </div>
     </div>
   </section>
+  <!-- Floating cards End -->
 
   <!-- Featured Products Section:: Aryan Kora -->
   <section style="margin-top: 100px;">
@@ -302,46 +304,110 @@
       </div>
     </section>
   </section>
-  <!--Product Cards End-->
-
-  <!-- Categories Section:: Esta -->
-  <section class="container">
-    <div class="container">
-      <h2 class="section-title">View our range of categories</h2>
-      <div class="category-grid">
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Glasses" />
-            <h5 class="category-title">Glasses</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Sunglasses" />
-            <h5 class="category-title">Sunglasses</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Contact Lenses" />
-            <h5 class="category-title">Contact Lenses</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Frames" />
-            <h5 class="category-title">Frames</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Glasses Accessories" />
-            <h5 class="category-title">Glasses Accessories</h5>
-          </a>
+  <!-- Product Cards End -->
+ 
+    <!-- Categories Section -->
+    <section class="container">
+      <div class="container">
+        <h2 class="section-title">View our range of categories</h2>
+        <div class="category-grid">
+          <div class="category">
+            <a href="{{ route('product') }}">
+              <img
+                src="{{ asset('Images/products/glasses1.jpeg') }}"
+                class="category-img"
+                alt="Glasses"
+              />
+              <h5 class="category-title">Glasses</h5>
+            </a>
+          </div>
+          <div class="category">
+            <a href="">
+              <img
+                src="{{ asset('Images/products/sun3.png') }}"
+                class="category-img"
+                alt="Sunglasses"
+              />
+              <h5 class="category-title">Sunglasses</h5>
+            </a>
+          </div>
+          <div class="category">
+            <a href="">
+              <img
+                src="{{ asset('Images/products/contacts.jpeg') }}"
+                class="category-img"
+                alt="Contact Lenses"
+              />
+              <h5 class="category-title">Contact Lenses</h5>
+            </a>
+          </div>
+          <div class="category">
+            <a href="">
+              <img
+                src="{{ asset('Images/products/case2.png') }}"
+                class="category-img"
+                alt="Glasses Accessories"
+              />
+              <h5 class="category-title">Glasses Accessories</h5>
+            </a>
+          </div>
         </div>
       </div>
+    </section>
+    <!-- About Section -->
+    <section class="about-section">
+      <div class="about-content">
+        <h2>Learn About Us And What Sets Us Apart</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc auctor consectetur elit, quis pulvinar.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc auctor consectetur elit, quis pulvinar.</p>
+        <button class="about-button">Learn More</button>
+      </div>
+      <div class="about-image">
+        <div class="image-grid">
+          <img src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
+          <img src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
+          <img src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
+          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+        </div>
+      </div> 
+    </section>
+    <!-- Footer Section -->
+    <div class="footer">
+      <div>
+        <h3>Customer Support</h3>
+        <p>
+          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon"/>
+          1 (800) 555-OPTQ
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" /> 
+          <a href="mailto:support@optique.com">support@optique.com</a></p>
+        <p>Live Chat Available</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#">Glasses</a>
+        <a href="#">Sunglasses</a>
+        <a href="#">Accessories</a>
+        <a href="#">Contact Lenses</a>
+      </div>
+      <div>
+        <h3>About Optique</h3>
+        <a href="#">Our Story</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Careers</a>
+        <a href="#">Store Locator</a>
+      </div>
+      <div class="social-icons">
+        <h3>Follow Us</h3>
+        <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+      </div>
+      <div class="powered-by">
+        <p>© Optique. Crafted for Visionaries.</p>
+      </div>
     </div>
-  </section>
-</body>
-
+  </body>
 </html>
