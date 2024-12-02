@@ -3,88 +3,93 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Customer;
+use App\Models\User;
 use App\Models\ProductCategory;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Hash;
 
 class TestDataSeeder extends Seeder
 {
     public function run()
     {
-        // Create test customer
-        $customer = Customer::create([
-            'first_name' => 'John',
-            'last_name' => 'Doe',
-            'email' => 'john@example.com',
-            'password_hash' => bcrypt('password123'),
-            'is_active' => true
+        // Create test user with proper fields
+        $user = User::create([
+            'name' => 'testuser',
+            'email' => 'test@example.com',
+            'password' => Hash::make('password123'),
+            'birthday' => '2000-01-01'
         ]);
 
-        // Create product categories
-        $electronicsCategory = ProductCategory::create([
-            'name' => 'Electronics',
-            'description' => 'Electronic devices and accessories'
+        // Create relevant product categories
+        $sunglassesCategory = ProductCategory::create([
+            'name' => 'Sunglasses',
+            'description' => 'Stylish UV protection eyewear'
         ]);
 
-        $clothingCategory = ProductCategory::create([
-            'name' => 'Clothing',
-            'description' => 'Fashion items and accessories'
+        $prescriptionCategory = ProductCategory::create([
+            'name' => 'Prescription Glasses',
+            'description' => 'Prescription eyewear for daily use'
         ]);
 
-        // Create products
+        $accessoriesCategory = ProductCategory::create([
+            'name' => 'Accessories',
+            'description' => 'Eyewear accessories and care products'
+        ]);
+
+        // Create relevant products
         $products = [
             Product::create([
-                'name' => 'Laptop',
-                'description' => 'High-performance laptop',
-                'category_id' => $electronicsCategory->id,
-                'price' => 999.99,
-                'stock_quantity' => 10
-            ]),
-            Product::create([
-                'name' => 'Smartphone',
-                'description' => 'Latest smartphone model',
-                'category_id' => $electronicsCategory->id,
-                'price' => 599.99,
-                'stock_quantity' => 15
-            ]),
-            Product::create([
-                'name' => 'T-Shirt',
-                'description' => 'Cotton T-Shirt',
-                'category_id' => $clothingCategory->id,
-                'price' => 19.99,
+                'name' => 'Classic Aviator Sunglasses',
+                'description' => 'Timeless aviator style with UV400 protection',
+                'category_id' => $sunglassesCategory->id,
+                'price' => 89.99,
                 'stock_quantity' => 50
             ]),
             Product::create([
-                'name' => 'Jeans',
-                'description' => 'Blue Denim Jeans',
-                'category_id' => $clothingCategory->id,
-                'price' => 49.99,
+                'name' => 'Round Metal Frame Glasses',
+                'description' => 'Vintage-inspired round prescription frames',
+                'category_id' => $prescriptionCategory->id,
+                'price' => 129.99,
                 'stock_quantity' => 30
+            ]),
+            Product::create([
+                'name' => 'Premium Lens Cleaning Kit',
+                'description' => 'Complete kit for proper eyewear maintenance',
+                'category_id' => $accessoriesCategory->id,
+                'price' => 19.99,
+                'stock_quantity' => 100
+            ]),
+            Product::create([
+                'name' => 'Wayfarer Style Sunglasses',
+                'description' => 'Classic wayfarer design with polarized lenses',
+                'category_id' => $sunglassesCategory->id,
+                'price' => 99.99,
+                'stock_quantity' => 40
             ])
         ];
 
-        // Create a test order with items
+        // Create a test order
         $order = Order::create([
-            'customer_id' => $customer->id,
+            'user_id' => $user->id, // Note: changed from customer_id to user_id
             'status' => 'pending',
-            'total_amount' => 1599.98 // Laptop + Smartphone
+            'total_amount' => 209.98 // Aviator + Cleaning Kit
         ]);
 
         // Add items to order
         OrderItem::create([
             'order_id' => $order->id,
-            'product_id' => $products[0]->id, // Laptop
-            'quantity' => 1,
-            'price' => 999.99
+            'product_id' => $products[0]->id, // Aviator Sunglasses
+            'quantity' => 2,
+            'price' => 89.99
         ]);
 
         OrderItem::create([
             'order_id' => $order->id,
-            'product_id' => $products[1]->id, // Smartphone
+            'product_id' => $products[2]->id, // Cleaning Kit
             'quantity' => 1,
-            'price' => 599.99
+            'price' => 19.99
         ]);
     }
 }

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'customer_id',
+        'user_id',  // Changed from customer_id
         'status',
         'total_amount'
     ];
 
-    public function customer()
+    public function user()  // Changed from customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
     public function items()
