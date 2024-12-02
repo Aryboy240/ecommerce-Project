@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>   
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,11 +28,31 @@
 
         /* Center the section content and align with middle logo */
         .section {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding-top: 20px;
-        }
+            text-align: left;
+            font-size: 25px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 40px;
+            border: 8px ridge #2a7f62;
+            background-color: #222;
+            box-sizing: border-box;
+          }
+
+h1 {
+    font-size: 36px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 25px;
+    line-height: 1.6;
+}
+
+ul {
+    font-size: 20px; /* Reduced font size for bullet points */
+    line-height: 1.6;
+}
     </style>
 </head>
 <body>
@@ -156,46 +176,31 @@
     </aside>
 
     <!-- Sections to display the content -->
-    <section id="welcome" class="section visible">
-    <h1>Welcome to Optique</h1>
-    <p>
-        <strong>Optique</strong> – where vision and style come together with innovation. 
-        To the outside world, Optique is an organization that is fully devoted to offering 
-        the best eyeglasses that address not only your vision but also your fashion sense. 
-        If you are interested in the newest trends or classics, our glasses’ selection is 
-        created to meet every customer’s needs and preferences.
-    </p>
-    <p>
-        It is our goal to make the decision to purchase a pair of glasses as easy, fun, 
-        and beneficial as possible. Whether you browse our site from the comfort of your 
-        own home or visit our store, we are here to assist you in choosing the right 
-        frames and lenses for you. Welcome to a new world of glasses—welcome to Optique.
-    </p>
-</section>
+  <!-- Content Sections -->
+  <div style="margin-left: 220px;">
+        <section id="welcome" class="section visible">
+            <h1>Welcome to Optique</h1>
+            <p>Optique – where vision and style come together with innovation. To the outside world, Optique is an organization that is fully devoted to offering the best eyeglasses that address not only your vision but also your fashion sense. If you are interested in the newest trends or classics, our glasses’ selection is created to meet every customer’s needs and preferences.</p>
+            <p>It is our goal to make the decision to purchase a pair of glasses as easy, fun, and beneficial as possible. Whether you browse our site from the comfort of your own home or visit our store, we are here to assist you in choosing the right frames and lenses for you. Welcome to a new world of glasses—welcome to Optique.</p>
+        </section>
 
+        <section id="goal" class="section hidden">
+            <h1>Our Goal</h1>
+            <ul>
+                <li>Revolutionize Eyewear Shopping: To revolutionize the way people buy their eyeglasses by offering the latest technology and friendly services.</li>
+                <li>Combine Functionality with Style: Design various models of sunglasses that provide utility with functional perspectives of taste and personality.</li>
+                <li>Prioritize Customer Satisfaction: The goal is to build trust and long-term relationships with customers, and to achieve it, make sure that each of them leaves with something they would like.</li>
+                <li>Commit to Quality: Offer good quality frames and lenses that are well made, well fitted, and long lasting.</li>
+                <li>Embrace Sustainability: The incorporation of environment-friendly materials and work processes to minimize our impact on the biophysical environment during the provision of quality optical solutions.</li>
+            </ul>
+        </section>
 
-<section id="goal" class="section hidden">
-    <h1>Our Goal</h1>
-    <ul>
-        <li><strong>Revolutionize Eyewear Shopping:</strong> To revolutionize the way people buy their eyeglasses by offering the latest technology and friendly services.</li>
-        <li><strong>Combine Functionality with Style:</strong> Design various models of sunglasses that provide utility with functional perspectives of taste and personality.</li>
-        <li><strong>Prioritize Customer Satisfaction:</strong> The goal is to build trust and long-term relationships with customers, and to achieve it, make sure that each of them leaves with something they would like.</li>
-        <li><strong>Commit to Quality:</strong> Offer good quality frames and lenses that are well made, well fitted, and long lasting.</li>
-        <li><strong>Embrace Sustainability:</strong> The incorporation of environment-friendly materials and work processes to minimize our impact on the biophysical environment during the provision of quality optical solutions.</li>
-    </ul>
-</section>
-
-
-
-<section id="who-we-are" class="section hidden">
-    <h1>Who We Are</h1>
-    <p>
-        We are <strong>Optique</strong>, a group of professionals who are inspired by a common mission to change people’s lives with the help of proper eyewear. We have paid much attention to the quality, appearance, and attitude towards customers, which made us a reputable company in the sphere of selling eyeglasses. Our specialization includes selecting beautiful frames, choosing the best lenses, and making sure that every client sees clearly and feels good.
-    </p>
-    <p>
-        Optique is not just a brand but a group of people who are interested in vision, style, and relations. We’re here to help you make sense of the world and communicate your ideas more effectively. <strong>Optique</strong> is your home – where every eyeglasses is not just an optical accessory but a window to the world.
-    </p>
-</section>
+        <section id="who-we-are" class="section hidden">
+            <h1>Who We Are</h1>
+            <p>We are Optique, a group of professionals who are inspired by a common mission to change people’s lives with the help of proper eyewear. We have paid much attention to the quality, appearance, and attitude towards customers, which made us a reputable company in the sphere of selling eyeglasses. Our specialization includes selecting beautiful frames, choosing the best lenses, and making sure that every client sees clearly and feels good.</p>
+            <p>Optique is not just a brand but a group of people who are interested in vision, style, and relations. We're here to help you make sense of the world and communicate your ideas more effectively. Optique is your home – where every eyeglasses is not just an optical accessory but a window to the world.</p>
+        </section>
+    </div>
 
 
     <!-- Footer Section -->
@@ -228,19 +233,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
