@@ -21,7 +21,6 @@ class DropOldEcommerceTables extends Migration
 
     public function down()
     {
-        // If you need to rollback, the original SQL file can be used
-        // We'll leave this empty as recreating the exact schema would be complex
+        
     }
 }
