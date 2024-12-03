@@ -190,9 +190,9 @@
 
   <section class="socials-mediar">
     <ul class="login-socials">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a>
+      <a href="https://www.instagram.com" target="_blank"><img src="Images/socials/instagram.png"/></a>
+      <a href="https://www.youtube.com" target="_blank"><img src="Images/socials/youtube.png"/></a>
+      <a href="https://www.twitter.com" target="_blank"><img src="Images/socials/twitter.png"/></a>
     </ul>
   </section>
 
