@@ -6,11 +6,11 @@
     background-image: url("/images/Logo.png");
     background-size: 100px;
     background-position: center;
-<<<<<<< HEAD
+
     padding: 150px;    
-=======
+
     padding: 100px;
->>>>>>> 4e69a9505d3a71e582e88acfc3a3cb3eb8cf925c
+
     text-align: center;
 }
 
@@ -27,7 +27,7 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     text-transform: uppercase;
-<<<<<<< HEAD
+
     text-shadow: 0 0 3px #ffffff;
     transition: 0.6s;
   }
@@ -39,27 +39,27 @@ body {
   
   .contact-us p{
     opacity: 0;
-=======
+
 }
 
 .contact-us p {
->>>>>>> 4e69a9505d3a71e582e88acfc3a3cb3eb8cf925c
+
     font-size: 30px;
     color: #dcdcdc;
     font-weight: 400;
     line-height: 36px;
     padding-top: 55px;
-<<<<<<< HEAD
+
     transition: 600s;
-  }
+}
 
   .contact-us p:hover{
     opacity: 1;
     text-shadow: 0 0 2px #ffffff;
     transition: opacity 3s,text-shadow 0.3s;
   }
-=======
-}
+
+
 
 /*map*/
 .map-location {
@@ -74,7 +74,7 @@ body {
     opacity: 1;
     transition: opacity 0.3s;
 }
->>>>>>> 4e69a9505d3a71e582e88acfc3a3cb3eb8cf925c
+
 
 /*
   contact-container
@@ -86,7 +86,7 @@ body {
 .contact-container div {
     width: 31%;
     float: left;
-<<<<<<< HEAD
+
   }
 
   /*map*/
@@ -113,24 +113,21 @@ body {
   
   .contact-detail h2 {
     color:#0d1811;
-=======
+
 }
 /*
   contact-detail
   */
 .contact-detail {
+    height: 545px;
     background: #036060;
     border: 2px solid #036060da;
     border-radius: 40px;
-    padding: 10px;
-    margin: 3px 3px;
     transition: background-color 0.3s;
-    padding-bottom: 245px;
 }
 
 .contact-detail h2 {
     color: #0d1811;
->>>>>>> 4e69a9505d3a71e582e88acfc3a3cb3eb8cf925c
     transition: background-color 0.3s;
 }
 
@@ -143,7 +140,7 @@ body {
 .contact-detail:hover {
     background-color: #036060da;
     border: 2px solid #036060;
-<<<<<<< HEAD
+
   }
   .contact-detail:hover h2{
     color:#0d1811e0;
@@ -172,7 +169,7 @@ body {
   */
   .contact-form {
     height: 545px;
-=======
+
 }
 .contact-detail:hover h2 {
     color: #0d1811e0;
@@ -186,24 +183,24 @@ body {
   contact-from
   */
 .contact-form {
->>>>>>> 4e69a9505d3a71e582e88acfc3a3cb3eb8cf925c
+    height: 545px;
     background: #036060;
     transition: background-color 0.3s;
     border: 2px solid #036060da;
     border-radius: 40px;
-<<<<<<< HEAD
+
   }
   
   .contact-form h2 {
     color:#0d1811;
-=======
+
     padding: 10px;
     margin: 3px 3px;
 }
 
 .contact-form h2 {
     color: #0d1811;
->>>>>>> 4e69a9505d3a71e582e88acfc3a3cb3eb8cf925c
+
     transition: background-color 0.3s;
 }
 
