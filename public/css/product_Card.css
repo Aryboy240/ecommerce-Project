@@ -83,6 +83,22 @@
     margin-bottom: 5px;
 }
 
+/* No selections for text in cards */
+
+.product-card .product-card-content h2::selection {
+    display: none;
+}
+
+.product-card .product-card-content p {
+    pointer-events: none;
+}
+
+.product-card .product-card-content p::selection {
+    display: none;
+}
+
+/* Price button in card */
+
 .product-card .product-card-content a {
     position: relative;
     padding: 10px 20px;
