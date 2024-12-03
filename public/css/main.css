@@ -707,6 +707,7 @@ nav:hover {
 
 /* About Section Styling */
 .about-section {
+    position: relative;
     display: flex;
     padding: 80px 50px;
     gap: 50px;
@@ -826,6 +827,7 @@ nav:hover {
 
 /* Footer */
 .footer {
+    position: relative;
     z-index: 100;
     max-width: 100%;
     margin: 0 auto;
