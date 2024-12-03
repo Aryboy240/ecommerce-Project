@@ -343,20 +343,23 @@
 
   <!-- About Section:: Esta & Aryan -->
   <section class="about-section">
-    <div class="about-content">
-      <h2>Learn About Us And What Sets Us Apart</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc
-        auctor consectetur elit, quis pulvinar.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc
-        auctor consectetur elit, quis pulvinar.</p>
-      <button class="about-button">Learn More</button>
-    </div>
-    <div class="about-image">
-      <div class="image-grid">
-        <img class="scrollImg" src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
-        <img class="scrollImg" src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
-        <img class="scrollImg" src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
-        <img class="scrollImg" src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+    <div class="about-wrapper">
+      <div class="about-content">
+        <h2>Learn about us and what sets us apart</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum, voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus, deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
+          <br><br>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi. Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
+          <br><br>
+        </p>
+        <button class="about-button">Learn More</button>
+      </div>
+      <div class="about-image">
+        <div class="image-grid">
+          <img src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
+          <img src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
+          <img src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
+          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+        </div>
       </div>
     </div>
   </section>

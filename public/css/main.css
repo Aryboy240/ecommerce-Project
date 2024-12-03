@@ -709,17 +709,29 @@ nav:hover {
 .about-section {
     position: relative;
     display: flex;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
     padding: 80px 50px;
     gap: 50px;
-    border-top: 1px solid var(--bg-secondary);
-    box-shadow: 0 0px 25px rgba(0, 0, 0, 1);
-    background-color: var(--bg-secondary);
     z-index: 5;
 }
 
+.about-wrapper {
+    display: flex;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 75px;
+    width: 85%;
+    border-radius: 50px;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 0px 20px rgb(0, 0, 0);
+}
+
 .about-content {
+    margin: 0 25px;
     flex: 1;
-    padding: 20px;
 }
 
 .about-content h2 {
@@ -770,8 +782,20 @@ nav:hover {
     transition: transform 0.3s ease;
 }
 
-.image-grid img:hover {
-    transform: scale(1.025);
+.image-grid img:hover:nth-child(1) {
+    transform: scale(1.25) rotate(5deg) translateY(25%) translateX(25%);
+}
+
+.image-grid img:hover:nth-child(2) {
+    transform: scale(1.25) rotate(5deg) translateY(25%) translateX(-25%);
+}
+
+.image-grid img:hover:nth-child(3) {
+    transform: scale(1.25) rotate(-5deg) translateY(-25%) translateX(25%);
+}
+
+.image-grid img:hover:nth-child(4) {
+    transform: scale(1.25) rotate(5deg) translateY(-25%) translateX(-25%);
 }
 
 .text-box {

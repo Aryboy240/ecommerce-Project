@@ -164,19 +164,19 @@
       <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
       </div>
     </div>
-  @else
-  <div style="text-align: center; padding: 100px 20px;">
-    <div style="margin-bottom: 40px;">
-    <img src="{{ asset('Images/gifs/glasses.gif') }}"
-      style="width: 120px; filter: drop-shadow(0px 0px 20px rgba(0, 191, 174, 0.3));">
+    @else
+    <div style="text-align: center; padding: 100px 20px;">
+      <div style="margin-bottom: 40px;">
+      <img src="{{ asset('Images/gifs/glasses.gif') }}"
+        style="width: 120px; filter: drop-shadow(0px 0px 20px rgba(0, 191, 174, 0.3));">
+      </div>
+      <h2
+      style="color: var(--text-primary); margin-bottom: 20px; font-size: 2em; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">
+      Your cart is empty</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 40px;">Looks like you haven't added any items yet</p>
+      <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
     </div>
-    <h2
-    style="color: var(--text-primary); margin-bottom: 20px; font-size: 2em; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">
-    Your cart is empty</h2>
-    <p style="color: var(--text-secondary); margin-bottom: 40px;">Looks like you haven't added any items yet</p>
-    <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
-  </div>
-@endif
+    @endif
   </section>
 </body>
 
