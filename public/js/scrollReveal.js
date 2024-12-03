@@ -35,19 +35,7 @@ sr.reveal(".product-card-con", {
     delay: 150,
 });
 
-sr.reveal(".category-grid", {
-    duration: 1000,
-    interval: 100,
-    delay: 150,
-});
-
 sr.reveal(".about-section", {
-    duration: 1000,
-    interval: 100,
-    delay: 100,
-});
-
-sr.reveal(".scrollImg", {
     duration: 1000,
     interval: 100,
     delay: 250,

@@ -355,10 +355,10 @@
       </div>
       <div class="about-image">
         <div class="image-grid">
-          <img src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
-          <img src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
-          <img src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
-          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+          <img src="{{ asset('Images/About/Goggle Box.png') }}" alt="About Image 1">
+          <img src="{{ asset('Images/About/LumiLens.png') }}" alt="About Image 2">
+          <img src="{{ asset('Images/About/Optivision.png') }}" alt="About Image 3">
+          <img src="{{ asset('Images/About/Optquie.png') }}" alt="About Image 4">
         </div>
       </div>
     </div>
