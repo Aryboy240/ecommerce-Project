@@ -352,10 +352,10 @@
     </div>
     <div class="about-image">
       <div class="image-grid">
-        <img src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
-        <img src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
-        <img src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
-        <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+        <img class="scrollImg" src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
+        <img class="scrollImg" src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
+        <img class="scrollImg" src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
+        <img class="scrollImg" src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
       </div>
     </div>
   </section>

@@ -710,7 +710,10 @@ nav:hover {
     display: flex;
     padding: 80px 50px;
     gap: 50px;
+    border-top: 1px solid var(--bg-secondary);
+    box-shadow: 0 0px 25px rgba(0, 0, 0, 1);
     background-color: var(--bg-secondary);
+    z-index: 5;
 }
 
 .about-content {
@@ -767,7 +770,22 @@ nav:hover {
 }
 
 .image-grid img:hover {
-    transform: scale(1.05);
+    transform: scale(1.025);
+}
+
+.text-box {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background: var(--bg-secondary);
+    margin: 35px 10px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    transition: var(--transition-speed) ease-out;
+    cursor: default;
 }
 
 /* Responsive Design */
@@ -808,6 +826,7 @@ nav:hover {
 
 /* Footer */
 .footer {
+    z-index: 100;
     max-width: 100%;
     margin: 0 auto;
     padding: 50px 10% 30px;
@@ -842,7 +861,7 @@ nav:hover {
     transform: translateX(5px);
 }
 
-#social-footer-span{
+#social-footer-span {
     display: flex;
     flex-direction: row;
     float: left;
@@ -850,7 +869,7 @@ nav:hover {
     align-items: left;
 }
 
-#social-footer-span img{
+#social-footer-span img {
     font-size: 0.95rem;
     color: var(--text-secondary);
     margin: 12px 8px;
@@ -859,7 +878,7 @@ nav:hover {
     transition: all var(--transition-speed);
 }
 
-#social-footer-span span{
+#social-footer-span span {
     margin-left: 25px;
 }
 
@@ -928,7 +947,7 @@ nav:hover {
         justify-content: center;
         margin-top: 10px;
     }
-    
+
     .footer .social-icons a {
         width: 40px; /* Slightly larger touch targets on mobile */
         height: 40px;
