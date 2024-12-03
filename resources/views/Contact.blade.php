@@ -146,11 +146,11 @@
         <div class="contact-detail">
           <h2>Where we are</h2>
           <p>84 Bibb St, Birmingham, B9 8QQ</p>
-          <p><strong>office hour</strong> 10AM - 6PM</p>
+          <p><img src="{{ asset('Images/contact/clock.png') }}" alt="Clock Icon" class="clock-icon"><strong> office hour</strong> 10AM - 6PM</p>
           <br>
           <h2>Meeting us</h2>
           <p><img src="{{ asset('Images/contact/phone.png') }}" alt="Phone Icon" class="phone-icon"><strong> Phone</strong> +440246813579</p>
-          <p><strong>Email</strong> support@optique.com</p>
+          <p><img src="{{ asset('Images/contact/mail.png') }}" alt="Mail Icon" class="mail-icon"><strong> Email</strong> support@optique.com</p>
         </div>
 
         <div class="contact-form">
@@ -165,7 +165,7 @@
                 <input type="email" id="email" name="email" placeholder="Your Email" required>
               
               
-                <p>order number(if apply)</p>
+                <p>order number (if apply)</p>
                 <input type="number"  id="order" name="order" placeholder="Your order number" >
               
                 
@@ -187,14 +187,44 @@
       </div>
 
     </section>
-
-  <section class="socials-mediar">
-    <ul class="login-socials">
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/instagram.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/youtube.png"/></a>
-      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="Images/socials/twitter.png"/></a>
-    </ul>
-  </section>
-
+  
+    <!-- Footer Section -->
+    <div class="footer">
+      <div>
+        <h3>Customer Support</h3>
+        <p>
+          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon"/>
+          1 (800) 555-OPTQ
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" /> 
+          <a href="mailto:support@optique.com">support@optique.com</a></p>
+        <p>Live Chat Available</p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#">Glasses</a>
+        <a href="#">Sunglasses</a>
+        <a href="#">Accessories</a>
+        <a href="#">Contact Lenses</a>
+      </div>
+      <div>
+        <h3>About Optique</h3>
+        <a href="#">Our Story</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Careers</a>
+        <a href="#">Store Locator</a>
+      </div>
+      <div class="social-icons">
+        <h3>Follow Us</h3>
+        <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+        <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+      </div>
+      <div class="powered-by">
+        <p>© Optique. Crafted for Visionaries.</p>
+      </div>
+    </div>
 </body>
 </html>
