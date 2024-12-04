@@ -342,7 +342,7 @@ nav:hover {
 .hero {
     position: relative;
     background-color: var(--bg-primary);
-    padding: 100px 20px 60px 20px;
+    padding: 150px 20px 60px 20px;
     text-align: center;
 }
 
@@ -675,7 +675,7 @@ nav:hover {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    height: 500px;
+    height: 525px;
 }
 
 .product-container::-webkit-scrollbar {
@@ -687,6 +687,7 @@ nav:hover {
     width: 250px;
     height: 450px;
     margin-right: 40px;
+    margin-top: 15px;
 }
 
 .product-image {
@@ -723,21 +724,25 @@ nav:hover {
     text-transform: capitalize;
     border: none;
     outline: none;
-    background: #fff;
     border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
     opacity: 0;
-}
-
-.product-card:hover .card-btn {
-    opacity: 1;
     background: var(--darker);
     color: #fff;
 }
 
+.product-card:hover .card-btn {
+    opacity: 1;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
 .card-btn:hover {
-    background: var(--lighter);
+    background: var(--mint);
+    box-shadow: 0px 0px 10px rgba(4, 129, 129, 0.7);
 }
 
 .product-info {
@@ -843,6 +848,7 @@ nav:hover {
 }
 
 /* About Section Styling */
+
 .about-section {
     position: relative;
     display: flex;
@@ -930,7 +936,7 @@ nav:hover {
 }
 
 .image-grid img:hover:nth-child(1) {
-    transform: scale(1.25) rotate(-5deg) translateY(25%) translateX(25%);
+    transform: scale(1.25) rotate(5deg) translateY(25%) translateX(25%);
 }
 
 .image-grid img:hover:nth-child(2) {

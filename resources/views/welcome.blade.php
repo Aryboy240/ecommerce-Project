@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- JS -->
+  <script defer src="/js/theme.js"></script>
+  <script defer src="js/ProductSlider.js"></script>
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/scrollBar.js"></script>
@@ -68,7 +70,7 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <a href="{{ route('welcome') }}">
+    <a id="themeButton">
       <div class="navbar-middle">
         <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
@@ -308,9 +310,9 @@
   </section>
   <!-- Product Cards End -->
 
-  <!-- Categories Section:: Aryan -->
+  <!-- Products Slider:: Aryan -->
   <section class="product">
-    <h2 class="section-title">Product showcase</h2>
+    <h2 class="section-title">Popular Products</h2>
     <button class="pre-btn"><img src="Images/PSArrow.png" alt=""></button>
     <button class="nxt-btn"><img src="Images/PSArrow.png" alt=""></button>
     <div class="product-container">
@@ -404,7 +406,6 @@
           <span class="price">£100</span>
       </div>
     </div>
-    <script src="js/ProductSlider.js"></script>
   </section>
 
   <!-- About Section:: Esta & Aryan -->
