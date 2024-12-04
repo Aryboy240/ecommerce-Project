@@ -46,3 +46,9 @@ sr.reveal(".about-section", {
     interval: 100,
     delay: 250,
 });
+
+sr.reveal(".product-container", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});

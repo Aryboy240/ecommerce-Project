@@ -695,6 +695,7 @@ nav:hover {
     width: 100%;
     height: 350px;
     overflow: hidden;
+    transition: var(--transition-speed);
 }
 
 .product-thumb {
@@ -712,6 +713,8 @@ nav:hover {
     right: 10px;
     top: 10px;
     text-transform: capitalize;
+    transition: var(--transition-speed);
+    z-index: 1;
 }
 
 .card-btn {
@@ -736,8 +739,15 @@ nav:hover {
     opacity: 1;
 }
 
-.product-card:hover {
-    transform: scale(1.05);
+.product-card .product-thumb {
+    position: relative;
+    z-index: 0;
+    transition: var(--transition-speed);
+}
+
+.product-card:hover .product-thumb {
+    transition: var(--transition-speed);
+    transform: scale(1.1);
 }
 
 .card-btn:hover {
