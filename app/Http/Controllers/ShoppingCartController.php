@@ -2,201 +2,258 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ShoppingCartItem;
 use App\Models\Product;
-use App\Models\Customer;
+use App\Models\ShoppingCartItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ShoppingCartController extends Controller
 {
-    public function addToCart(Request $request)
+    /**
+     * Display the shopping cart.
+     */
+    public function getCart()
     {
         try {
-            $validated = $request->validate([
-                'customer_id' => 'required|exists:customers,id',
-                'product_id' => 'required|exists:products,id',
-                'quantity' => 'required|integer|min:1'
-            ]);
-
-            // Check if product has enough stock
-            $product = Product::findOrFail($validated['product_id']);
-            if ($product->stock_quantity < $validated['quantity']) {
-                return ['error' => 'Not enough stock available'];
+            if (!Auth::check()) {
+                return redirect()->route('login');
             }
 
-            // Check if product is already in cart
-            $cartItem = ShoppingCartItem::where('customer_id', $validated['customer_id'])
-                                      ->where('product_id', $validated['product_id'])
-                                      ->first();
+            $items = ShoppingCartItem::with(['product' => function($query) {
+                $query->select('id', 'name', 'price', 'description');
+            }])
+            ->where('user_id', Auth::id())
+            ->get();
 
-            if ($cartItem) {
-                // Update quantity if item exists
-                $cartItem->update([
-                    'quantity' => $cartItem->quantity + $validated['quantity']
-                ]);
-            } else {
-                // Create new cart item
-                $cartItem = ShoppingCartItem::create([
-                    'customer_id' => $validated['customer_id'],
-                    'product_id' => $validated['product_id'],
-                    'quantity' => $validated['quantity']
-                ]);
-            }
-
-            return [
-                'message' => 'Item added to cart',
-                'cart_item' => $cartItem
-            ];
-
-        } catch (\Exception $e) {
-            return [
-                'error' => $e->getMessage()
-            ];
-        }
-    }
-
-    public function removeFromCart(Request $request)
-    {
-        try {
-            $validated = $request->validate([
-                'customer_id' => 'required|exists:customers,id',
-                'product_id' => 'required|exists:products,id'
-            ]);
-
-            ShoppingCartItem::where('customer_id', $validated['customer_id'])
-                          ->where('product_id', $validated['product_id'])
-                          ->delete();
-
-            return ['message' => 'Item removed from cart'];
-
-        } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
-    }
-
-    public function getCart($customerId)
-    {
-        try {
-            $cartItems = ShoppingCartItem::with(['product', 'customer'])
-                                       ->where('customer_id', $customerId)
-                                       ->get();
-
-            $total = $cartItems->sum(function($item) {
+            $total = $items->sum(function($item) {
                 return $item->product->price * $item->quantity;
             });
 
-            return [
-                'items' => $cartItems->map(function($item) {
-                    return [
-                        'id' => $item->id,
-                        'product_name' => $item->product->name,
-                        'quantity' => $item->quantity,
-                        'price' => $item->product->price,
-                        'subtotal' => $item->product->price * $item->quantity
-                    ];
-                }),
-                'total' => $total,
-                'item_count' => $cartItems->sum('quantity')
-            ];
-
+            return view('cart.cart', compact('items', 'total'));
         } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
+            return redirect()->back()->with('error', 'Error loading cart: ' . $e->getMessage());
         }
     }
 
-    public function clearCart($customerId)
+    /**
+     * Add an item to the shopping cart.
+     */
+    public function addToCart(Request $request)
     {
         try {
-            ShoppingCartItem::where('customer_id', $customerId)->delete();
-            return ['message' => 'Cart cleared'];
-        } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
-    }
+            if (!Auth::check()) {
+                session(['url.intended' => url()->previous()]);
+                return redirect()->route('login');
+            }
 
-    public function updateQuantity(Request $request)
-    {
-        try {
-            $validated = $request->validate([
-                'customer_id' => 'required|exists:customers,id',
+            $validator = Validator::make($request->all(), [
                 'product_id' => 'required|exists:products,id',
                 'quantity' => 'required|integer|min:1'
             ]);
 
-            $product = Product::findOrFail($validated['product_id']);
-            if ($product->stock_quantity < $validated['quantity']) {
-                return ['error' => 'Not enough stock available'];
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
             }
 
-            $cartItem = ShoppingCartItem::where('customer_id', $validated['customer_id'])
-                                      ->where('product_id', $validated['product_id'])
-                                      ->first();
+            DB::beginTransaction();
 
-            if ($cartItem) {
-                $cartItem->update(['quantity' => $validated['quantity']]);
-                return ['message' => 'Quantity updated', 'cart_item' => $cartItem];
+            // Check product stock
+            $product = Product::find($request->product_id);
+            if (!$product || $product->stock_quantity < $request->quantity) {
+                return redirect()->back()
+                    ->with('error', 'Not enough stock available');
             }
 
-            return ['error' => 'Item not found in cart'];
+            // Update or create cart item
+            $cartItem = ShoppingCartItem::updateOrCreate(
+                [
+                    'user_id' => Auth::id(),
+                    'product_id' => $request->product_id
+                ],
+                [
+                    'quantity' => DB::raw('COALESCE(quantity, 0) + ' . $request->quantity)
+                ]
+            );
+
+            // Update product stock
+            $product->decrement('stock_quantity', $request->quantity);
+
+            DB::commit();
+            
+            return redirect()->back()
+                ->with('success', 'Product added to cart successfully');
 
         } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
+            DB::rollBack();
+            return redirect()->back()
+                ->with('error', 'Error adding to cart: ' . $e->getMessage());
         }
     }
 
-    public function testCart()
+    /**
+     * Update the quantity of a cart item.
+     */
+    public function updateQuantity(Request $request)
     {
         try {
-            // Get first customer and product
-            $customer = Customer::first();
-            $product = Product::first();
-
-            if (!$customer || !$product) {
-                return "Error: No customer or product found in database";
+            if (!Auth::check()) {
+                return response()->json(['error' => 'User not authenticated'], 401);
             }
 
-            // Clear existing cart first
-            $this->clearCart($customer->id);
+            $validator = Validator::make($request->all(), [
+                'cart_item_id' => 'required|exists:shopping_cart_items,id',
+                'quantity' => 'required|integer|min:1'
+            ]);
 
-            // Test adding to cart
-            $addResult = $this->addToCart(new Request([
-                'customer_id' => $customer->id,
-                'product_id' => $product->id,
-                'quantity' => 2
-            ]));
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => $validator->errors()->first()
+                ], 422);
+            }
 
-            // Get cart contents
-            $cartContents = $this->getCart($customer->id);
+            DB::beginTransaction();
 
-            // Update quantity
-            $updateResult = $this->updateQuantity(new Request([
-                'customer_id' => $customer->id,
-                'product_id' => $product->id,
-                'quantity' => 3
-            ]));
+            $cartItem = ShoppingCartItem::where('user_id', Auth::id())
+                ->with('product')
+                ->findOrFail($request->cart_item_id);
 
-            // Final cart contents
-            $finalCart = $this->getCart($customer->id);
+            $quantityDifference = $request->quantity - $cartItem->quantity;
+            
+            // Check if enough stock for quantity increase
+            if ($quantityDifference > 0 && $cartItem->product->stock_quantity < $quantityDifference) {
+                return response()->json([
+                    'error' => 'Not enough stock available'
+                ], 422);
+            }
 
-            return [
-                'test_customer' => [
-                    'id' => $customer->id,
-                    'name' => $customer->first_name . ' ' . $customer->last_name
-                ],
-                'test_product' => [
-                    'id' => $product->id,
-                    'name' => $product->name,
-                    'price' => $product->price
-                ],
-                'add_result' => $addResult,
-                'initial_cart' => $cartContents,
-                'update_result' => $updateResult,
-                'final_cart' => $finalCart
-            ];
+            // Update stock
+            $cartItem->product->increment('stock_quantity', -$quantityDifference);
+            $cartItem->update(['quantity' => $request->quantity]);
+
+            // Calculate new cart total
+            $total = ShoppingCartItem::where('user_id', Auth::id())
+                ->with('product')
+                ->get()
+                ->sum(function($item) {
+                    return $item->product->price * $item->quantity;
+                });
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Cart updated successfully',
+                'cart_item' => $cartItem,
+                'total' => $total
+            ]);
 
         } catch (\Exception $e) {
-            return "Error: " . $e->getMessage();
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Error updating cart: ' . $e->getMessage()
+            ], 500);
         }
+    }
+
+    /**
+     * Remove an item from the cart.
+     */
+    public function removeFromCart(Request $request)
+    {
+        try {
+            if (!Auth::check()) {
+                return response()->json(['error' => 'User not authenticated'], 401);
+            }
+
+            $validator = Validator::make($request->all(), [
+                'cart_item_id' => 'required|exists:shopping_cart_items,id'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => $validator->errors()->first()
+                ], 422);
+            }
+
+            DB::beginTransaction();
+
+            $cartItem = ShoppingCartItem::where('user_id', Auth::id())
+                ->with('product')
+                ->findOrFail($request->cart_item_id);
+
+            // Return quantity to product stock
+            $cartItem->product->increment('stock_quantity', $cartItem->quantity);
+            $cartItem->delete();
+
+            // Calculate new cart total
+            $total = ShoppingCartItem::where('user_id', Auth::id())
+                ->with('product')
+                ->get()
+                ->sum(function($item) {
+                    return $item->product->price * $item->quantity;
+                });
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Item removed from cart',
+                'total' => $total
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Error removing item: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * Clear the entire cart for the current user.
+     */
+    public function clearCart()
+    {
+        try {
+            if (!Auth::check()) {
+                return redirect()->route('login');
+            }
+
+            DB::beginTransaction();
+
+            // Get all cart items to restore stock
+            $cartItems = ShoppingCartItem::where('user_id', Auth::id())
+                ->with('product')
+                ->get();
+
+            // Return quantities to product stock
+            foreach ($cartItems as $item) {
+                $item->product->increment('stock_quantity', $item->quantity);
+            }
+
+            // Delete all cart items
+            ShoppingCartItem::where('user_id', Auth::id())->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Cart cleared successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Error clearing cart: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Get the current cart count for the user.
+     */
+    public function getCartCount()
+    {
+        if (!Auth::check()) {
+            return response()->json(['count' => 0]);
+        }
+
+        $count = ShoppingCartItem::where('user_id', Auth::id())->sum('quantity');
+        return response()->json(['count' => $count]);
     }
 }

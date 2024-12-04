@@ -72,7 +72,7 @@ class TestDataSeeder extends Seeder
 
         // Create a test order
         $order = Order::create([
-            'user_id' => $user->id, // Note: changed from customer_id to user_id
+            'user_id' => $user->id, 
             'status' => 'pending',
             'total_amount' => 209.98 // Aviator + Cleaning Kit
         ]);

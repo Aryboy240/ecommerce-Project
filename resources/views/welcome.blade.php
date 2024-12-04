@@ -99,12 +99,12 @@
            </p>
            <a href="#">Starting from £100</a>
            <form action="{{ route('cart.add') }}" method="POST" style="margin-top: 10px;">
-               @csrf
-               <input type="hidden" name="customer_id" value="1">
-               <input type="hidden" name="product_id" value="1">
-               <input type="hidden" name="quantity" value="1">
-               <button type="submit" style="width: 100%; padding: 15px; background: rgba(0, 191, 174, 0.1); border: none; border-radius: 25px; cursor: pointer;">Add to Cart</button>
-           </form>
+                @csrf
+                <input type="hidden" name="return_to" value="{{ url()->current() }}">
+                <input type="hidden" name="product_id" value="1">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" style="width: 100%; padding: 15px; background: rgba(0, 191, 174, 0.1); border: none; border-radius: 25px; cursor: pointer;">Add to Cart</button>
+            </form>
          </div>
          <img class="imageSize-1" src="{{ asset('Images/brands/adidas_Logo.png') }}"/>
        </div>

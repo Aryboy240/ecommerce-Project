@@ -85,13 +85,66 @@
    </section>
 
    <script>
-       function updateQuantity() {
-           // Add quantity update logic
-       }
+    function addToCart(productId) {
+        fetch('/cart/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                quantity: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            // Optionally refresh the cart display
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to add item to cart');
+        });
+    }
 
-       function removeItem() {
-           // Add remove item logic
-       }
-   </script>
+    function updateQuantity(cartItemId) {
+        const quantity = document.querySelector(`input[data-cart-item="${cartItemId}"]`).value;
+        
+        fetch('/cart/update', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                cart_item_id: cartItemId,
+                quantity: quantity
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+        });
+    }
+
+    function removeItem(cartItemId) {
+        fetch('/cart/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({
+                cart_item_id: cartItemId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.reload();
+        });
+    }
+</script>
 </body>
 </html>

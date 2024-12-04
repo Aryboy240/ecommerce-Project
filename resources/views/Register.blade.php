@@ -64,32 +64,31 @@
           <img src="Images/logo.png" class="login-logo" />
         </div>
         <h2>REGISTER</h2>
-        <form>
-          <div class="input" id="w50">
-            <span>Username</span>
-            <input type="text" name="Username" />
-          </div>
-          <div class="input" id="w50">
-            <span>Email</span>
-            <input type="email" name="Email" />
-          </div>
-          <div class="input">
-            <span>Password</span>
-            <input type="password" name="Password" />
-          </div>
-          <div class="input">
-            <span>Birthday</span>
-            <input type="date" name="Birthday" />
-          </div>
-          <div class="input">
-            <a href="{{ route('welcome') }}">
-              <input type="button" value="Register" name="Register" />
-            </a>
-          </div>
-          <div class="input">
-            <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
-          </div>
-        </form>
+        <form method="POST" action="{{ route('register.submit') }}">
+    @csrf
+    <div class="input" id="w50">
+        <span>Username</span>
+        <input type="text" name="name" required />
+    </div>
+    <div class="input" id="w50">
+        <span>Email</span>
+        <input type="email" name="email" required />
+    </div>
+    <div class="input">
+        <span>Password</span>
+        <input type="password" name="password" required />
+    </div>
+    <div class="input">
+        <span>Birthday</span>
+        <input type="date" name="birthday" required />
+    </div>
+    <div class="input">
+        <button type="submit" style="width: 100%; padding: 10px; background: var(--mint); color: white; border: none; border-radius: 5px; cursor: pointer;">Register</button>
+    </div>
+    <div class="input">
+        <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
+    </div>
+</form>
         <div id="socials">
           <h3>Follow us on social media!</h3>
         </div>

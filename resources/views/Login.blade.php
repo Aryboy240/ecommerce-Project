@@ -1,12 +1,9 @@
-<!--
-    Developer: Aryan Kora
-	  University ID: 230059030
-    Function: Front end for the login page
--->
 <!DOCTYPE html>
 <head>
   <title>Login</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--CSS-->
   <link rel="stylesheet" href="{{ asset('css/login.css') }}"> 
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}"> 
@@ -24,12 +21,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
-  />
-  <!--Meta-->
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1,
-    user-scalable=0"
   />
 </head>
 
@@ -64,22 +55,26 @@
           <img src="Images/logo.png" class="login-logo" />
         </div>
         <h2>Login</h2>
-        <form>
+        @if($errors->any())
+            <div style="color: red; margin-bottom: 10px;">
+                {{$errors->first()}}
+            </div>
+        @endif
+        <form method="POST" action="{{ route('login.submit') }}">
+          @csrf
           <div class="input">
             <span>Username</span>
-            <input type="text" name="Username" />
+            <input type="text" name="name" required />
           </div>
           <div class="input">
             <span>Password</span>
-            <input type="password" name="Password" />
+            <input type="password" name="password" required />
           </div>
           <div class="remember">
-            <label><input type="checkbox" name="Remember" />Remember Me</label>
+            <label><input type="checkbox" name="remember" />Remember Me</label>
           </div>
           <div class="input">
-            <a href="{{ route('welcome') }}">
-              <input type="button" value="Sign in" name="Sign in" />
-            </a>
+            <button type="submit" class="submit-btn" style="width: 100%; padding: 10px; background: var(--mint); color: white; border: none; border-radius: 5px; cursor: pointer;">Sign in</button>
           </div>
           <div class="input">
             <p>Don't have an account? <a href="{{ route('register') }}">Sign up!</a></p>
@@ -108,5 +103,4 @@
       </div>
     </div>
   </section>
-  <!--Log in Section End-->
 </body>
