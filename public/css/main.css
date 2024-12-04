@@ -10,166 +10,6 @@ body {
 
 /*  Developer: Aryan Kora
     University ID: 230059030
-    Function: Login Info CSS
-*/
-
-.AccountNavigation {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 120px;
-    height: 60px;
-    background: var(--floater);
-    box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    transition: height 0.5s, width 0.5s;
-    transition-delay: 0s, 0.75s;
-    overflow: hidden;
-    border-radius: 15px;
-    z-index: 201;
-}
-
-.AccountNavigation.active {
-    width: 300px;
-    height: 400px;
-    transition: width 0.5s, height 0.5s;
-    transition-delay: 0s, 0.75s;
-}
-
-.AccountNavigation .userBox {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    background: var(--floater);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.AccountNavigation.active .userBox {
-    width: calc(100% - 60px);
-    transition-delay: 0s;
-}
-
-.AccountNavigation .userBox .AccountUsername {
-    white-space: nowrap;
-    color: var(--text-primary);
-    font-size: 1.1rem;
-}
-
-.AccountNavigation .userBox .imgBox {
-    box-sizing: border-box;
-    position: relative;
-    min-width: 60px;
-    height: 60px;
-    overflow: hidden;
-    background: var(--floater);
-    border-radius: 50%;
-    border: 10px solid var(--floater);
-}
-
-.AccountNavigation .userBox .imgBox img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: center;
-    transform: scale(1.35);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.AccountNavigation .menuToggle {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.AccountNavigation .menuToggle::before {
-    content: "";
-    position: absolute;
-    width: 32px;
-    height: 2px;
-    background: var(--text-primary);
-    transform: translateY(-10px);
-    box-shadow: 0 10px var(--text-primary);
-    transition: 0.5s;
-}
-
-.AccountNavigation .menuToggle::after {
-    content: "";
-    position: absolute;
-    width: 32px;
-    height: 2px;
-    background: var(--text-primary);
-    transform: translateY(10px);
-    transition: 0.5s;
-}
-
-.AccountNavigation.active .menuToggle::before {
-    transform: translateY(0px) rotate(45deg);
-    box-shadow: 0 0 var(--text-primary);
-}
-
-.AccountNavigation.active .menuToggle::after {
-    transform: translateY(0px) rotate(-45deg);
-    box-shadow: 0 0 var(--text-primary);
-}
-
-.UserMenu {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 60px);
-    margin-top: 60px;
-    padding: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.UserMenu li {
-    list-style: none;
-}
-
-.UserMenu li a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 25px 5px;
-    font-size: 1em;
-    text-decoration: none;
-    color: var(--text-primary);
-    transition: 0.5s;
-}
-
-.UserMenu li a:nth-child(1) {
-    margin-top: 10px;
-}
-
-.UserMenu .child:last-child {
-    padding-left: 4px;
-}
-
-.UserMenu li a:hover {
-    color: var(--nav-colour);
-}
-
-.UserMenu li a ion-icon {
-    font-size: 1.5em;
-}
-
-@media only screen and (max-width: 960px) {
-    .AccountNavigation {
-        visibility: hidden;
-        display: none;
-    }
-}
-
-/*  Developer: Aryan Kora
-    University ID: 230059030
     Function: Navigaion bar
 */
 
@@ -273,7 +113,7 @@ nav:hover {
     align-items: center;
     justify-content: center;
     height: 5rem;
-    color: var(--text-primary);
+    color: white;
     text-decoration: none;
     transition: var(--transition-speed);
     z-index: 5;
@@ -282,7 +122,6 @@ nav:hover {
 /* changes item colour when hovering */
 .nav-link:hover {
     background: var(--mint);
-    color: var(--text-primary);
     z-index: 5;
 }
 
@@ -341,7 +180,6 @@ nav:hover {
 
 .hero {
     position: relative;
-    background-color: var(--bg-primary);
     padding: 150px 20px 60px 20px;
     text-align: center;
 }
@@ -354,6 +192,11 @@ nav:hover {
     justify-items: center;
     z-index: 2;
     text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
+}
+
+/* Reduce text shadow intensity when in light mode */
+.light .hero-content {
+    text-shadow: 0px 10px 10px rgba(17, 17, 17, 0.6);
 }
 
 .hero-content h1 {
@@ -375,7 +218,11 @@ nav:hover {
     left: 50%;
     right: 50%;
     transform: scale(1) rotate(20deg) translate(0%, -105%);
-    filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
+    filter: drop-shadow(0px 0px 50px rgba(114, 200, 243, 0.502));
+}
+
+.light .hero-content img {
+    filter: drop-shadow(0px 0px 50px rgba(114, 200, 243, 1));
 }
 
 .hero-content img::selection {
@@ -385,6 +232,10 @@ nav:hover {
 .hero-content p {
     color: var(--text-secondary);
     margin-bottom: 50px;
+}
+
+.light .hero-content p {
+    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0);
 }
 
 .hero a {
@@ -407,6 +258,11 @@ nav:hover {
     filter: invert(100%);
     margin-left: 10px;
     margin-top: 10px;
+}
+
+/* When in Light Mode, make the arrow black */
+.light .hero-content .pointer-wrapper img {
+    filter: invert(0%);
 }
 
 .hero-content .pointer-wrapper p {
@@ -675,7 +531,7 @@ nav:hover {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    height: 525px;
+    height: 500px;
 }
 
 .product-container::-webkit-scrollbar {
@@ -687,7 +543,6 @@ nav:hover {
     width: 250px;
     height: 450px;
     margin-right: 40px;
-    margin-top: 15px;
 }
 
 .product-image {
@@ -745,7 +600,7 @@ nav:hover {
     transition: var(--transition-speed);
 }
 
-.product-card:hover .product-thumb {
+.product-thumb:hover {
     transition: var(--transition-speed);
     transform: scale(1.1);
 }
@@ -759,6 +614,7 @@ nav:hover {
     width: 100%;
     height: 100px;
     padding-top: 10px;
+    color: var(--text-primary);
 }
 
 .product-brand {
@@ -847,7 +703,6 @@ nav:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #fff;
     font-size: 50px;
     text-transform: capitalize;
 }
@@ -1027,7 +882,7 @@ nav:hover {
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     background-color: var(--darker);
-    color: var(--text-primary);
+    color: white;
     text-align: left;
     border-top: 1px solid var(--mint);
     box-shadow: 0 0 25px var(--mint);
@@ -1042,7 +897,7 @@ nav:hover {
 
 .footer a {
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: white;
     text-decoration: none;
     margin: 12px 0;
     display: block;
@@ -1064,7 +919,7 @@ nav:hover {
 
 #social-footer-span img {
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: white;
     margin: 12px 8px;
     text-decoration: none;
     display: block;
@@ -1079,7 +934,7 @@ nav:hover {
     display: flex;
     align-items: center;
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: white;
     margin: 8px 0;
 }
 

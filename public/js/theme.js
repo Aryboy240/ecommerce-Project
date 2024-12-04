@@ -1,3 +1,8 @@
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Theme changer script
+*/
+
 const themeMap = {
     dark: "light",
     light: "dark",
