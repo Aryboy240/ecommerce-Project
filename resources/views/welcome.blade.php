@@ -33,13 +33,14 @@
             </div>
            </div>
            <div class="cart-icon">
-           <a href="{{ route('cart.view') }}">
-           <img src="{{ asset('Images/svg/cart-shopping-solid.svg') }}" alt="Cart Icon">
-             <div class="cart-item-number">
-               <p>1</p>
-              </div>
-            </div>
-         </div>
+            <a href="{{ route('cart.view') }}">
+                <img src="{{ asset('Images/svg/cart-shopping-solid.svg') }}" alt="Cart Icon">
+                <div class="cart-item-number">
+                    <p>1</p>
+                </div>
+            </a>
+          </div>
+         </div> 
        </nav>
      </div>
    </header>

@@ -69,7 +69,7 @@
                    <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £{{ number_format($total, 2) }}</p>
                    <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
                    <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total: £{{ number_format($total, 2) }}</h3>
-                   <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
+                   <a href="" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
                </div>
            </div>
        @else
