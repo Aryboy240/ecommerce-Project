@@ -10,8 +10,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-
+  <!-- JS -->
+  <script src="js/scrollBar.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href={{  asset('css/main.css') }}>
   <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
@@ -192,7 +192,7 @@
 
   </section>
 
-  <!-- Footer Section -->
+<!-- Footer Section:: Esta -->
   <div class="footer">
     <div>
       <h3>Customer Support</h3>
@@ -204,7 +204,6 @@
         <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
         <a href="mailto:support@optique.com">support@optique.com</a>
       </p>
-      <p>Live Chat Available</p>
     </div>
     <div>
       <h3>Shop</h3>
@@ -222,10 +221,22 @@
     </div>
     <div class="social-icons">
       <h3>Follow Us</h3>
-      <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-      <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-      <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-      <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Facebook</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Instagram</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Twitter</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Pintrest</span>
+      </a>
     </div>
     <div class="powered-by">
       <p>© Optique. Crafted for Visionaries.</p>

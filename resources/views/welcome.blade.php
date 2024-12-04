@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- JS -->
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
+  <script src="js/scrollBar.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -68,7 +70,7 @@
     <!--MIDDLE LOGO-->
     <a href="{{ route('welcome') }}">
       <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
+        <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
 
@@ -305,109 +307,125 @@
     </section>
   </section>
   <!-- Product Cards End -->
- 
-    <!-- Categories Section -->
-    <section class="container">
-      <div class="container">
-        <h2 class="section-title">View our range of categories</h2>
-        <div class="category-grid">
-          <div class="category">
-            <a href="{{ route('product') }}">
-              <img
-                src="{{ asset('Images/products/glasses1.jpeg') }}"
-                class="category-img"
-                alt="Glasses"
-              />
-              <h5 class="category-title">Glasses</h5>
-            </a>
-          </div>
-          <div class="category">
-            <a href="">
-              <img
-                src="{{ asset('Images/products/sun3.png') }}"
-                class="category-img"
-                alt="Sunglasses"
-              />
-              <h5 class="category-title">Sunglasses</h5>
-            </a>
-          </div>
-          <div class="category">
-            <a href="">
-              <img
-                src="{{ asset('Images/products/contacts.jpeg') }}"
-                class="category-img"
-                alt="Contact Lenses"
-              />
-              <h5 class="category-title">Contact Lenses</h5>
-            </a>
-          </div>
-          <div class="category">
-            <a href="">
-              <img
-                src="{{ asset('Images/products/case2.png') }}"
-                class="category-img"
-                alt="Glasses Accessories"
-              />
-              <h5 class="category-title">Glasses Accessories</h5>
-            </a>
-          </div>
-        </div>
+
+  <!-- Categories Section:: Esta & Aryan -->
+  <section class="container">
+    <h2 class="section-title">View our range of categories</h2>
+    <div class="category-grid">
+      <div class="category">
+        <a href="{{ route('product') }}">
+          <img src="{{ asset('Images/products/glasses1.jpeg') }}" class="category-img" alt="Glasses" />
+          <h5 class="category-title">Glasses</h5>
+        </a>
       </div>
-    </section>
-    <!-- About Section -->
-    <section class="about-section">
+      <div class="category">
+        <a href="">
+          <img src="{{ asset('Images/products/sun3.png') }}" class="category-img" alt="Sunglasses" />
+          <h5 class="category-title">Sunglasses</h5>
+        </a>
+      </div>
+      <div class="category">
+        <a href="">
+          <img src="{{ asset('Images/products/contacts.jpeg') }}" class="category-img" alt="Contact Lenses" />
+          <h5 class="category-title">Contact Lenses</h5>
+        </a>
+      </div>
+      <div class="category">
+        <a href="">
+          <img src="{{ asset('Images/products/case2.png') }}" class="category-img" alt="Glasses Accessories" />
+          <h5 class="category-title">Glasses Accessories</h5>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section:: Esta & Aryan -->
+  <section class="about-section">
+    <div class="about-wrapper">
       <div class="about-content">
-        <h2>Learn About Us And What Sets Us Apart</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc auctor consectetur elit, quis pulvinar.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fringilla nunc et molestie feugiat. Nunc auctor consectetur elit, quis pulvinar.</p>
+        <h2>Learn about us and what sets us apart</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum,
+          voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit
+          labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem
+          ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque
+          dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus,
+          deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci
+          fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui
+          voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
+          <br><br>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta
+          numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium
+          aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus
+          tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae
+          veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi
+          similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic
+          commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi.
+          Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
+          <br><br>
+        </p>
         <button class="about-button">Learn More</button>
       </div>
       <div class="about-image">
         <div class="image-grid">
-          <img src="{{ asset('Images/eye.jpg') }}" alt="About Image 1">
-          <img src="{{ asset('Images/eyechecker.jpg') }}" alt="About Image 2">
-          <img src="{{ asset('Images/lensthing.jpg') }}" alt="About Image 3">
-          <img src="{{ asset('Images/filler.webp') }}" alt="About Image 4">
+          <img src="{{ asset('Images/About/Goggle Box.png') }}" alt="About Image 1">
+          <img src="{{ asset('Images/About/LumiLens.png') }}" alt="About Image 2">
+          <img src="{{ asset('Images/About/Optivision.png') }}" alt="About Image 3">
+          <img src="{{ asset('Images/About/Optquie.png') }}" alt="About Image 4">
         </div>
-      </div> 
-    </section>
-    <!-- Footer Section -->
-    <div class="footer">
-      <div>
-        <h3>Customer Support</h3>
-        <p>
-          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon"/>
-          1 (800) 555-OPTQ
-        </p>
-        <p>
-          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" /> 
-          <a href="mailto:support@optique.com">support@optique.com</a></p>
-        <p>Live Chat Available</p>
-      </div>
-      <div>
-        <h3>Shop</h3>
-        <a href="#">Glasses</a>
-        <a href="#">Sunglasses</a>
-        <a href="#">Accessories</a>
-        <a href="#">Contact Lenses</a>
-      </div>
-      <div>
-        <h3>About Optique</h3>
-        <a href="#">Our Story</a>
-        <a href="#">Testimonials</a>
-        <a href="#">Careers</a>
-        <a href="#">Store Locator</a>
-      </div>
-      <div class="social-icons">
-        <h3>Follow Us</h3>
-        <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-      </div>
-      <div class="powered-by">
-        <p>© Optique. Crafted for Visionaries.</p>
       </div>
     </div>
-  </body>
+  </section>
+
+  <!-- Footer Section:: Esta -->
+  <div class="footer">
+    <div>
+      <h3>Customer Support</h3>
+      <p>
+        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+        1 (800) 555-OPTQ
+      </p>
+      <p>
+        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="mailto:support@optique.com">support@optique.com</a>
+      </p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      <a href="#">Glasses</a>
+      <a href="#">Sunglasses</a>
+      <a href="#">Accessories</a>
+      <a href="#">Contact Lenses</a>
+    </div>
+    <div>
+      <h3>About Optique</h3>
+      <a href="#">Our Story</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Careers</a>
+      <a href="#">Store Locator</a>
+    </div>
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Facebook</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Instagram</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Twitter</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Pintrest</span>
+      </a>
+    </div>
+    <div class="powered-by">
+      <p>© Optique. Crafted for Visionaries.</p>
+    </div>
+  </div>
+</body>
+
 </html>

@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  <!--Log in Section-->
+  <!-- Register Section -->
   <section>
     <div class="login-img">
       <img src="Images/skater_girl.png" alt="Skater Girl" />
@@ -131,17 +131,17 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.instagram.com">
+            <a href="https://www.instagram.com" target="_blank">
               <img src="Images/socials/instagram.png" alt="Instagram" />
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com">
+            <a href="https://www.youtube.com" target="_blank">
               <img src="Images/socials/youtube.png" alt="YouTube" />
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com">
+            <a href="https://www.twitter.com" target="_blank">
               <img src="Images/socials/twitter.png" alt="Twitter" />
             </a>
           </li>
@@ -149,5 +149,5 @@
       </div>
     </div>
   </section>
-  <!--Log in Section End-->
+  <!-- Register Section End -->
 </body>
