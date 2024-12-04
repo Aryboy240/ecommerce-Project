@@ -704,7 +704,7 @@ nav:hover {
 
 .discount-tag {
     position: absolute;
-    background: #fff;
+    background: white;
     padding: 5px;
     border-radius: 5px;
     color: #ff7d7d;
@@ -732,11 +732,12 @@ nav:hover {
 
 .product-card:hover .card-btn {
     opacity: 1;
+    background: var(--darker);
+    color: #fff;
 }
 
 .card-btn:hover {
-    background: #ff7d7d;
-    color: #fff;
+    background: var(--lighter);
 }
 
 .product-info {
@@ -996,7 +997,7 @@ nav:hover {
 }
 
 /* Footer */
-#productsBodyFooter{
+#productsBodyFooter {
     align-items: stretch;
 }
 

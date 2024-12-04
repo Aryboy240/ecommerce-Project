@@ -334,7 +334,7 @@
           <div class="product-info">
               <h2 class="product-brand">Barbour</h2>
               <p class="product-short-description">ID: 33137483</p>
-              <span class="price">£150</span><span class="actual-price">£75</span>
+              <span class="price">£75</span><span class="actual-price">£150</span>
           </div>
       </div>
       <div class="product-card">
@@ -368,7 +368,7 @@
           <div class="product-info">
               <h2 class="product-brand">DKNY</h2>
               <p class="product-short-description">ID: 32677959</p>
-              <span class="price">£200</span><span class="actual-price">£100</span>
+              <span class="price">£100</span><span class="actual-price">£200</span>
           </div>
       </div>
       <div class="product-card">
