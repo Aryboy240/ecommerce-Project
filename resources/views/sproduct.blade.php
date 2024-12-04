@@ -75,7 +75,7 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <a href="{{ route('welcome') }}">
+    <a id="themeButton">
       <div class="navbar-middle">
           <img src="{{ asset('Images/circleLogo.png') }}">
       </div>

@@ -93,6 +93,7 @@ nav:hover {
     border-radius: 50%;
     z-index: 100;
     transition: var(--transition-speed);
+    cursor: pointer;
 }
 
 .navbar-middle:hover {
@@ -275,7 +276,7 @@ nav:hover {
 
 .btn-order {
     background-color: var(--floater);
-    color: var(--text-secondary);
+    color: white;
     padding: 15px 40px;
     text-decoration: none;
     border-radius: 25px;
@@ -314,7 +315,7 @@ nav:hover {
 
 .floaters {
     position: absolute;
-    color: var(--text-secondary);
+    color: white;
     display: flex;
     transform: rotate(-10deg);
     width: 300px;
@@ -764,18 +765,18 @@ nav:hover {
 
 .about-button {
     padding: 12px 30px;
-    background-color: var(--mint);
+    background-color: var(--floater);
     border: none;
     border-radius: 8px;
-    color: var(--text-primary);
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 5px var(--mint);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .about-button:hover {
-    background-color: var(--darker);
-    box-shadow: 0 0 5px var(--darker);
+    background-color: var(--mint);
+    box-shadow: 0 0 15px var(--mint);
     transform: translateY(-2px);
 }
 
@@ -886,6 +887,11 @@ nav:hover {
     text-align: left;
     border-top: 1px solid var(--mint);
     box-shadow: 0 0 25px var(--mint);
+}
+
+.light .footer {
+    border-top: 2px solid var(--mint);
+    box-shadow: 0 0 35px var(--mint);
 }
 
 .footer h3 {
