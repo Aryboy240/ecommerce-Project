@@ -23,6 +23,13 @@
     --transition-speed: 600ms;
 }
 
+.lightMode {
+    --text-primary: black;
+    --text-secondary: #0e0e0e;
+    --bg-primary: white;
+    --bg-secondary: lightGray;
+}
+
 /* Disables selection 
 
 *::selection{

@@ -412,9 +412,23 @@
     <div class="about-wrapper">
       <div class="about-content">
         <h2>Learn about us and what sets us apart</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum, voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus, deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum,
+          voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit
+          labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem
+          ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque
+          dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus,
+          deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci
+          fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui
+          voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
           <br><br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi. Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta
+          numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium
+          aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus
+          tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae
+          veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi
+          similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic
+          commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi.
+          Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
           <br><br>
         </p>
         <button class="about-button">Learn More</button>
@@ -481,4 +495,5 @@
     </div>
   </div>
 </body>
+
 </html>
