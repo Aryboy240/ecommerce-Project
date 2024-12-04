@@ -6,12 +6,13 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-  <!-- CSS -->>
+  <!-- CSS -->
   <link rel="stylesheet" href={{  asset('css/main.css') }}>
   <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
   <link rel="stylesheet" href={{  asset('css/contact.css') }}>
@@ -73,7 +74,7 @@
     <!--MIDDLE LOGO-->
     <a href="{{ route('welcome') }}">
       <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
+        <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
 
@@ -128,103 +129,108 @@
   </section>
   <!-- Navigation  Bar End -->
 
-    <!-- CONTECT-->>
-    <section class="contact-section">
-      <div class="contact-us">
-        <h1>Contact Us</h1>
-        <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>    
-      </div>
-      
-    
-    
-      <!-- Contact Details -->
-      <div class="contact-container">
-        <div class="map-location">        
-          <img src="{{ asset('Images/contact/location.jpg') }}"  width="100%" height="100%" >       
-        </div>
-
-        <div class="contact-detail">
-          <h2>Where we are</h2>
-          <p>84 Bibb St, Birmingham, B9 8QQ</p>
-          <p><img src="{{ asset('Images/contact/clock.png') }}" alt="Clock Icon" class="clock-icon"><strong> office hour</strong> 10AM - 6PM</p>
-          <br>
-          <h2>Meeting us</h2>
-          <p><img src="{{ asset('Images/contact/phone.png') }}" alt="Phone Icon" class="phone-icon"><strong> Phone</strong> +440246813579</p>
-          <p><img src="{{ asset('Images/contact/mail.png') }}" alt="Mail Icon" class="mail-icon"><strong> Email</strong> support@optique.com</p>
-        </div>
-
-        <div class="contact-form">
-          <h2>Get in touch</h2>
-          <form action="/submit-question" method="POST">
-              
-                <p>Name</p>
-                <input type="text" id="name" name="name" placeholder="Your Name" required>
-              
-              
-                <p>Email</p>
-                <input type="email" id="email" name="email" placeholder="Your Email" required>
-              
-              
-                <p>order number (if apply)</p>
-                <input type="number"  id="order" name="order" placeholder="Your order number" >
-              
-                
-                <p>select your situational</p>
-                <select id="situational" name="situational" >
-                  <option value="Product-damage">Product damage</option>
-                  <option value="Returns-and-refunds">Returns and refunds</option>
-                  <option value="Suggestion">Suggestion</option>
-                  <option value="Other">Other</option>
-                </select>
-                
-                <p>Message</p>
-                <textarea id="message" name="message" rows="5" placeholder=" Please enter your message" required></textarea>
-              
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-
-      </div>
-
-    </section>
-  
-    <!-- Footer Section -->
-    <div class="footer">
-      <div>
-        <h3>Customer Support</h3>
-        <p>
-          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon"/>
-          1 (800) 555-OPTQ
-        </p>
-        <p>
-          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" /> 
-          <a href="mailto:support@optique.com">support@optique.com</a></p>
-        <p>Live Chat Available</p>
-      </div>
-      <div>
-        <h3>Shop</h3>
-        <a href="#">Glasses</a>
-        <a href="#">Sunglasses</a>
-        <a href="#">Accessories</a>
-        <a href="#">Contact Lenses</a>
-      </div>
-      <div>
-        <h3>About Optique</h3>
-        <a href="#">Our Story</a>
-        <a href="#">Testimonials</a>
-        <a href="#">Careers</a>
-        <a href="#">Store Locator</a>
-      </div>
-      <div class="social-icons">
-        <h3>Follow Us</h3>
-        <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-      </div>
-      <div class="powered-by">
-        <p>© Optique. Crafted for Visionaries.</p>
-      </div>
+  <!-- CONTECT-->
+  <section class="contact-section">
+    <div class="contact-us">
+      <h1>Contact Us</h1>
+      <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>
     </div>
+
+
+
+    <!-- Contact Details -->
+    <div class="contact-container">
+      <div class="map-location">
+        <img src="{{ asset('Images/contact/location.jpg') }}" width="100%" height="100%">
+      </div>
+
+      <div class="contact-detail">
+        <h2>Where we are</h2>
+        <p>84 Bibb St, Birmingham, B9 8QQ</p>
+        <p><img src="{{ asset('Images/contact/clock.png') }}" alt="Clock Icon" class="clock-icon"><strong>
+            office hour</strong> 10AM - 6PM</p>
+        <br>
+        <h2>Meeting us</h2>
+        <p><img src="{{ asset('Images/contact/phone.png') }}" alt="Phone Icon" class="phone-icon"><strong>
+            Phone</strong> +440246813579</p>
+        <p><img src="{{ asset('Images/contact/mail.png') }}" alt="Mail Icon" class="mail-icon"><strong>
+            Email</strong> support@optique.com</p>
+      </div>
+
+      <div class="contact-form">
+        <h2>Get in touch</h2>
+        <form action="/submit-question" method="POST">
+
+          <p>Name</p>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+
+          <p>Email</p>
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+
+          <p>order number (if apply)</p>
+          <input type="number" id="order" name="order" placeholder="Your order number">
+
+
+          <p>select your situational</p>
+          <select id="situational" name="situational">
+            <option value="Product-damage">Product damage</option>
+            <option value="Returns-and-refunds">Returns and refunds</option>
+            <option value="Suggestion">Suggestion</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <p>Message</p>
+          <textarea id="message" name="message" rows="5" placeholder=" Please enter your message" required></textarea>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer Section -->
+  <div class="footer">
+    <div>
+      <h3>Customer Support</h3>
+      <p>
+        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+        1 (800) 555-OPTQ
+      </p>
+      <p>
+        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="mailto:support@optique.com">support@optique.com</a>
+      </p>
+      <p>Live Chat Available</p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      <a href="#">Glasses</a>
+      <a href="#">Sunglasses</a>
+      <a href="#">Accessories</a>
+      <a href="#">Contact Lenses</a>
+    </div>
+    <div>
+      <h3>About Optique</h3>
+      <a href="#">Our Story</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Careers</a>
+      <a href="#">Store Locator</a>
+    </div>
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+      <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+      <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+      <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
+    </div>
+    <div class="powered-by">
+      <p>© Optique. Crafted for Visionaries.</p>
+    </div>
+  </div>
 </body>
+
 </html>
