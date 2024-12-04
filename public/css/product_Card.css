@@ -1,6 +1,7 @@
-/*  Developer: Aryan Kora
+/*    Developer: Aryan Kora
 	  University ID: 230059030
-	  Function: Product Card CSS */
+	  Function: Product Card CSS
+*/
 
 .product-card-con {
     display: flex;
@@ -22,6 +23,10 @@
     align-items: center;
     border-radius: 20px;
     transition: var(--transition-speed);
+}
+
+.light .product-card {
+    color: white;
 }
 
 .card-circle {

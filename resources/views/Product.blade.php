@@ -13,6 +13,7 @@
   <!-- Add meta description for SEO -->
   <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
   <!-- JS -->
+  <script defer src="/js/theme.js"></script>
   <script defer src="js/scrollReveal.js"></script>
   <script defer src="{{ asset('js/product_page.js') }}"></script>
   <script src="js/scrollBar.js"></script>
@@ -76,7 +77,7 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <a href="{{ route('welcome') }}">
+    <a id="themeButton">
       <div class="navbar-middle">
         <img src="{{ asset('Images/circleLogo.png') }}">
       </div>

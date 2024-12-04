@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- JS -->
+  <script defer src="/js/theme.js"></script>
+  <script defer src="js/ProductSlider.js"></script>
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/scrollBar.js"></script>
@@ -68,7 +70,7 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <a href="{{ route('welcome') }}">
+    <a id="themeButton">
       <div class="navbar-middle">
         <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
@@ -308,33 +310,100 @@
   </section>
   <!-- Product Cards End -->
 
-  <!-- Categories Section:: Esta & Aryan -->
-  <section class="container">
-    <h2 class="section-title">View our range of categories</h2>
-    <div class="category-grid">
-      <div class="category">
-        <a href="{{ route('product') }}">
-          <img src="{{ asset('Images/products/glasses1.jpeg') }}" class="category-img" alt="Glasses" />
-          <h5 class="category-title">Glasses</h5>
-        </a>
+  <!-- Products Slider:: Aryan -->
+  <section class="product">
+    <h2 class="section-title">Popular Products</h2>
+    <button class="pre-btn"><img src="Images/PSArrow.png" alt=""></button>
+    <button class="nxt-btn"><img src="Images/PSArrow.png" alt=""></button>
+    <div class="product-container">
+      <div class="product-card">
+          <div class="product-image">
+              <img src="Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="card-btn">add to basket</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">Adidas</h2>
+              <p class="product-short-description">ID: 32859928</p>
+              <span class="price">£100</span>
+          </div>
       </div>
-      <div class="category">
-        <a href="">
-          <img src="{{ asset('Images/products/sun3.png') }}" class="category-img" alt="Sunglasses" />
-          <h5 class="category-title">Sunglasses</h5>
-        </a>
+      <div class="product-card">
+          <div class="product-image">
+              <span class="discount-tag">50% off</span>
+              <img src="Images/products/Featured/Barbour/33137483/33137483-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="card-btn">add to basket</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">Barbour</h2>
+              <p class="product-short-description">ID: 33137483</p>
+              <span class="price">£75</span><span class="actual-price">£150</span>
+          </div>
       </div>
-      <div class="category">
-        <a href="">
-          <img src="{{ asset('Images/products/contacts.jpeg') }}" class="category-img" alt="Contact Lenses" />
-          <h5 class="category-title">Contact Lenses</h5>
-        </a>
+      <div class="product-card">
+        <div class="product-image">
+            <img src="Images/products/Featured/Comfit/32861686/32861686-front-2000x1125.jpg" class="product-thumb" alt="">
+            <button class="card-btn">add to basket</button>
+        </div>
+        <div class="product-info">
+            <h2 class="product-brand">Comfit</h2>
+            <p class="product-short-description">ID: 32861686</p>
+            <span class="price">£100</span>
+        </div>
+    </div>
+      <div class="product-card">
+          <div class="product-image">
+              <img src="Images/products/Featured/Disney/33087542/33087542-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="card-btn">add to basket</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">Disney</h2>
+              <p class="product-short-description">ID: 33087542</p>
+              <span class="price">£100</span>
+          </div>
       </div>
-      <div class="category">
-        <a href="">
-          <img src="{{ asset('Images/products/case2.png') }}" class="category-img" alt="Glasses Accessories" />
-          <h5 class="category-title">Glasses Accessories</h5>
-        </a>
+      <div class="product-card">
+          <div class="product-image">
+              <span class="discount-tag">50% off</span>
+              <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.webp" class="product-thumb" alt="">
+              <button class="card-btn">add to basket</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">DKNY</h2>
+              <p class="product-short-description">ID: 32677959</p>
+              <span class="price">£100</span><span class="actual-price">£200</span>
+          </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+            <img src="Images/products/Featured/HUGO/33137346/33137346-front-2000x1125.jpg" class="product-thumb" alt="">
+            <button class="card-btn">add to basket</button>
+        </div>
+        <div class="product-info">
+            <h2 class="product-brand">HUGO</h2>
+            <p class="product-short-description">ID: 33137346</p>
+            <span class="price">£100</span>
+        </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+          <img src="Images/products/Featured/Jeff Banks/32860634/32860634-front-2000x1125.jpg" class="product-thumb" alt="">
+          <button class="card-btn">add to basket</button>
+      </div>
+      <div class="product-info">
+          <h2 class="product-brand">Jeff Banks</h2>
+          <p class="product-short-description">ID: 32860634</p>
+          <span class="price">£100</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+          <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="product-thumb" alt="">
+          <button class="card-btn">add to basket</button>
+      </div>
+      <div class="product-info">
+          <h2 class="product-brand">Karen Millen</h2>
+          <p class="product-short-description">ID: 33039633</p>
+          <span class="price">£100</span>
       </div>
     </div>
   </section>

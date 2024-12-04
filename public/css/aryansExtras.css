@@ -23,11 +23,28 @@
     --transition-speed: 600ms;
 }
 
-.lightMode {
-    --text-primary: black;
+.dark {
+    --text-primary: #ffffff;
+    --text-secondary: lightGray;
+    --bg-primary: #0e0e0e;
+    --bg-secondary: black;
+    --mint: #00bfae;
+    --lighter: #00a68c;
+    --darker: #006d5d;
+    --floater: rgb(4, 129, 129);
+    transition: var(--transition-speed) ease-in-out;
+}
+
+.light {
+    --text-primary: #000000;
     --text-secondary: #0e0e0e;
-    --bg-primary: white;
+    --bg-primary: #ffffff;
     --bg-secondary: lightGray;
+    --mint: #00bfae;
+    --lighter: #00a68c;
+    --darker: #006d5d;
+    --floater: rgb(4, 129, 129);
+    transition: var(--transition-speed) ease-in-out;
 }
 
 /* Disables selection 
