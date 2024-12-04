@@ -29,6 +29,7 @@
            <div class="search-bar">
              <input type="text" placeholder="Search An Item" />
              <div class="search-icon">
+              <a href="{{ url('/search') }}">
                <img src="{{asset( 'Images/svg/magnifying-glass-solid.svg') }}">
             </div>
            </div>
