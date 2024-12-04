@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- JS -->
+  <script defer src="/js/theme.js"></script>
   <script src="js/scrollBar.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
