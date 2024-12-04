@@ -3,7 +3,7 @@
 	  Function: CSS for the contacts page */
 
 .contact-us {
-    background-image: url("Images/Logo.png");
+    background-image: url("../Images/Logo.png");
     background-size: 100px;
     background-position: center;
 
