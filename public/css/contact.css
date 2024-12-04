@@ -3,11 +3,11 @@
 	  Function: CSS for the contacts page */
 
 .contact-us {
-    background-image: url("/images/Logo.png");
+    background-image: url("Images/Logo.png");
     background-size: 100px;
     background-position: center;
 
-    padding: 150px;    
+    padding: 150px;
 
     padding: 100px;
 
@@ -30,20 +30,18 @@ body {
 
     text-shadow: 0 0 1px #ffffff;
     transition: 0.6s;
-  }
+}
 
-  .contact-us h1:hover{
+.contact-us h1:hover {
     transform: rotate(5deg);
     transition: transform 0.6s;
-  }
-  
-  .contact-us p{
-    opacity: 0;
-
 }
 
 .contact-us p {
+    opacity: 0;
+}
 
+.contact-us p {
     font-size: 30px;
     color: #dcdcdc;
     font-weight: 400;
@@ -53,16 +51,16 @@ body {
     transition: 600s;
 }
 
-  .contact-us p:hover{
+.contact-us p:hover {
     opacity: 1;
     text-shadow: 0 0 1px #ffffff;
-    transition: opacity 0.5s,text-shadow 0.3s;
-  }
+    transition: opacity 0.5s, text-shadow 0.3s;
+}
 
 /*
   contact-container
   */
-  .contact-container {
+.contact-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,24 +70,21 @@ body {
 .contact-container div {
     width: 31%;
     float: left;
+}
 
-  }
-
-
-  /*map*/
-  .map-location  {
+/*map*/
+.map-location {
     width: 33%;
     height: 545px;
     opacity: 0.7;
     margin-left: 2px;
     flex: 1;
-  }
+}
 
-  .map-location:hover{  
+.map-location:hover {
     opacity: 1;
     transition: opacity 0.3s;
-  }
-
+}
 
 /*
   contact-detail
@@ -99,7 +94,7 @@ body {
     background: #036060;
     border: 2px solid #036060da;
     border-radius: 40px;
-    transition: background-color 0.3s,border-radius 0.7s;
+    transition: background-color 0.3s, border-radius 0.7s;
     margin-left: 2px;
     padding-left: 20px;
     flex: 1;
@@ -111,53 +106,62 @@ body {
     transition: background-color 0.3s;
 }
 
-.contact-detail p,.contact-detail strong{
+.contact-detail p,
+.contact-detail strong {
     color: #ccc;
     padding-top: 10px;
     margin: 3px 3px;
     transition: background-color 0.3s;
 }
 
-.contact-detail h2:hover{
-  text-shadow: 0 0 2px #084141;
+.contact-detail h2:hover {
+    text-shadow: 0 0 2px #084141;
 }
 
 .contact-detail:hover {
     background-color: #036060da;
     border: 2px solid #036060;
     border-radius: 2px;
-  }
-  .contact-detail:hover h2{
-    color:#0d1811e0;
-  }
+}
+.contact-detail:hover h2 {
+    color: #0d1811e0;
+}
 
-  .contact-detail:hover p, .contact-detail:hover strong{
-    color:#ffffff;
-  }
+.contact-detail:hover p,
+.contact-detail:hover strong {
+    color: #ffffff;
+}
 
-  .contact-detail p:hover, .contact-detail strong:hover {
-    text-shadow: 0 0 1px #0d1811,0 0 1.5px #ffffff;
-    
-  }
+.contact-detail p:hover,
+.contact-detail strong:hover {
+    text-shadow: 0 0 1px #0d1811, 0 0 1.5px #ffffff;
+}
 
-
-  .phone-icon{
+.phone-icon {
     width: 23px;
     height: 23px;
-    top:5px;
+    top: 5px;
     animation-name: phone-an;
     animation-duration: 1s;
     animation-iteration-count: infinite;
-  }
+}
 
-  @keyframes phone-an{
-    0%{transform: rotate(0deg);}    
-    25%{transform: rotate(15deg);}      
-    50%{transform: rotate(0deg);}  
-    75%{transform: rotate(-15deg);}   
-  }  
+@keyframes phone-an {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+}
 
-  .mail-icon{
+.mail-icon {
     width: 23px;
     height: 23px;
     top: 5px;
@@ -166,33 +170,49 @@ body {
     animation-duration: 1.5s;
     animation-delay: 0s;
     animation-iteration-count: infinite;
-  }
+}
 
-  @keyframes mail-an{
-    0%{top:5px;}
-    10%{top:2px;}   
-    20%{top:6px;}
-    30%{top:2px;}
-    40%{top:6px;}
-    50%{top:5px;}  
-    75%{top:5px;}   
-  }
+@keyframes mail-an {
+    0% {
+        top: 5px;
+    }
+    10% {
+        top: 2px;
+    }
+    20% {
+        top: 6px;
+    }
+    30% {
+        top: 2px;
+    }
+    40% {
+        top: 6px;
+    }
+    50% {
+        top: 5px;
+    }
+    75% {
+        top: 5px;
+    }
+}
 
-  .clock-icon{
+.clock-icon {
     width: 23px;
     height: 23px;
     top: 7px;
     animation-name: clock-an;
     animation-duration: 3s;
     animation-iteration-count: infinite;
-  }
+}
 
-  @keyframes clock-an{   
-    25%{transform: rotate(-30deg);}        
-    75%{transform: rotate(15deg);}  
-  }  
-
-
+@keyframes clock-an {
+    25% {
+        transform: rotate(-30deg);
+    }
+    75% {
+        transform: rotate(15deg);
+    }
+}
 
 /*
   contact-from
@@ -200,15 +220,13 @@ body {
 .contact-form {
     height: 545px;
     background: #036060;
-    transition: background-color 0.3s,border-radius 0.7s;
+    transition: background-color 0.3s, border-radius 0.7s;
     border: 2px solid #036060da;
     border-radius: 40px;
     margin-left: 2px;
     padding-left: 20px;
     flex: 1;
-  }
-  
-
+}
 
 .contact-form h2 {
     color: #0d1811;
@@ -250,9 +268,8 @@ body {
 .contact-form input[type="number"]:hover,
 .contact-form select:hover,
 .contact-form textarea:hover {
-    box-shadow:0 0 4px #ccc;
+    box-shadow: 0 0 4px #ccc;
 }
-
 
 .contact-form textarea {
     resize: vertical;
@@ -263,10 +280,10 @@ body {
     color: #ccc;
     padding: 10px 20px;
     margin-top: 5px;
-    margin-left:auto;
-    transition: background-color 0.3s ,border-radius 0.7s;
+    margin-left: auto;
+    transition: background-color 0.3s, border-radius 0.7s;
     border: 2px solid #1b8787de;
-    border-radius: 10px 20px; 
+    border-radius: 10px 20px;
 }
 
 .contact-form button[type="submit"]:hover {
