@@ -310,33 +310,31 @@
 
   <!-- Categories Section:: Esta & Aryan -->
   <section class="container">
-    <div class="container">
-      <h2 class="section-title">View our range of categories</h2>
-      <div class="category-grid">
-        <div class="category">
-          <a href="{{ route('product') }}">
-            <img src="{{ asset('Images/products/glasses1.jpeg') }}" class="category-img" alt="Glasses" />
-            <h5 class="category-title">Glasses</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/products/sun3.png') }}" class="category-img" alt="Sunglasses" />
-            <h5 class="category-title">Sunglasses</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/products/contacts.jpeg') }}" class="category-img" alt="Contact Lenses" />
-            <h5 class="category-title">Contact Lenses</h5>
-          </a>
-        </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/products/case2.png') }}" class="category-img" alt="Glasses Accessories" />
-            <h5 class="category-title">Glasses Accessories</h5>
-          </a>
-        </div>
+    <h2 class="section-title">View our range of categories</h2>
+    <div class="category-grid">
+      <div class="category">
+        <a href="{{ route('product') }}">
+          <img src="{{ asset('Images/products/glasses1.jpeg') }}" class="category-img" alt="Glasses" />
+          <h5 class="category-title">Glasses</h5>
+        </a>
+      </div>
+      <div class="category">
+        <a href="">
+          <img src="{{ asset('Images/products/sun3.png') }}" class="category-img" alt="Sunglasses" />
+          <h5 class="category-title">Sunglasses</h5>
+        </a>
+      </div>
+      <div class="category">
+        <a href="">
+          <img src="{{ asset('Images/products/contacts.jpeg') }}" class="category-img" alt="Contact Lenses" />
+          <h5 class="category-title">Contact Lenses</h5>
+        </a>
+      </div>
+      <div class="category">
+        <a href="">
+          <img src="{{ asset('Images/products/case2.png') }}" class="category-img" alt="Glasses Accessories" />
+          <h5 class="category-title">Glasses Accessories</h5>
+        </a>
       </div>
     </div>
   </section>
@@ -346,9 +344,23 @@
     <div class="about-wrapper">
       <div class="about-content">
         <h2>Learn about us and what sets us apart</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum, voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus, deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum,
+          voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit
+          labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem
+          ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque
+          dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus,
+          deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci
+          fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui
+          voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
           <br><br>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi. Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta
+          numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium
+          aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus
+          tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae
+          veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi
+          similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic
+          commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi.
+          Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
           <br><br>
         </p>
         <button class="about-button">Learn More</button>
@@ -415,4 +427,5 @@
     </div>
   </div>
 </body>
+
 </html>
