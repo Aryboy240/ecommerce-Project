@@ -7,6 +7,7 @@
    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
    <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+   <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
    <title>Shopping Cart - Optique</title>
 </head>
 <body>
@@ -158,13 +159,18 @@
               </div>
           </div>
       @else
-          <div style="text-align: center; padding: 100px 20px;">
-              <div style="margin-bottom: 40px;">
-                  <img src="{{ asset('Images/gifs/glasses.gif') }}" style="width: 120px; filter: drop-shadow(0px 0px 20px rgba(0, 191, 174, 0.3));">
+          <div class="empty-cart">
+              <div class="empty-cart-animation">
+                  <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
               </div>
-              <h2 style="color: var(--text-primary); margin-bottom: 20px; font-size: 2em; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">Your cart is empty</h2>
-              <p style="color: var(--text-secondary); margin-bottom: 40px;">Looks like you haven't added any items yet</p>
-              <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
+              <h2>Your Cart is Empty</h2>
+              <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
+              <a href="{{ route('welcome') }}" class="continue-shopping-btn">
+                  Continue Shopping
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                      <path d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42L14.59 11H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 1.42 1.42l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76z"/>
+                  </svg>
+              </a>
           </div>
       @endif
   </section>
