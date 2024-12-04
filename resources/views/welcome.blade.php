@@ -392,18 +392,18 @@
           <p class="product-short-description">ID: 32860634</p>
           <span class="price">£100</span>
       </div>
-  </div>
-  <div class="product-card">
-    <div class="product-image">
-        <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="product-thumb" alt="">
-        <button class="card-btn">add to basket</button>
     </div>
-    <div class="product-info">
-        <h2 class="product-brand">Karen Millen</h2>
-        <p class="product-short-description">ID: 33039633</p>
-        <span class="price">£100</span>
+    <div class="product-card">
+      <div class="product-image">
+          <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="product-thumb" alt="">
+          <button class="card-btn">add to basket</button>
+      </div>
+      <div class="product-info">
+          <h2 class="product-brand">Karen Millen</h2>
+          <p class="product-short-description">ID: 33039633</p>
+          <span class="price">£100</span>
+      </div>
     </div>
-  </div>
     <script src="js/ProductSlider.js"></script>
   </section>
 
