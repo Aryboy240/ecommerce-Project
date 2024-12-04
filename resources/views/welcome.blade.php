@@ -319,19 +319,19 @@
         </a>
       </div>
       <div class="category">
-        <a href="">
+        <a href="{{ route('product') }}">
           <img src="{{ asset('Images/products/sun3.png') }}" class="category-img" alt="Sunglasses" />
           <h5 class="category-title">Sunglasses</h5>
         </a>
       </div>
       <div class="category">
-        <a href="">
+        <a href="{{ route('product') }}">
           <img src="{{ asset('Images/products/contacts.jpeg') }}" class="category-img" alt="Contact Lenses" />
           <h5 class="category-title">Contact Lenses</h5>
         </a>
       </div>
       <div class="category">
-        <a href="">
+        <a href="{{ route('product') }}">
           <img src="{{ asset('Images/products/case2.png') }}" class="category-img" alt="Glasses Accessories" />
           <h5 class="category-title">Glasses Accessories</h5>
         </a>
