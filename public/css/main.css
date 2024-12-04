@@ -860,11 +860,15 @@ nav:hover {
 }
 
 /* Footer */
+#productsBodyFooter{
+    align-items: stretch;
+}
+
 .footer {
     position: relative;
     z-index: 100;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0;
     padding: 50px 10% 30px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
