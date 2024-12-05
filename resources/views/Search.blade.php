@@ -12,7 +12,7 @@
     <title>Search</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--CSS-->
-  <link rel="stylesheet" href="{{ asset('css/login.css') }}"> 
+  <link rel="stylesheet" href="{{ asset('css/search.css') }}"> 
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}"> 
   <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,15 +33,23 @@
 
 <!--Log in Section-->
 <body>
-    <div class="wrapper">
-        <div id="search-container">
-        <input
+  <div class="wrapper">
+    <div id="search-container">
+      <input
         type="search"
-        id="search-container"
+        id="search-input"
         placeholder="Search product name here..."
-        />
-        </div>
+      />
+      <button class="search-button">Search</button>
     </div>
- 
+    <div id="buttons">
+      <button class="buttons-value">All</button>
+      <button class="buttons-value">Sunglasses</button>
+      <button class="buttons-value">Prescription Glasses</button>
+      <button class="buttons-value">Accessories</button>
+    </div>
+  </div>
+<!--JavaScript section-->
+<script src="Seach-script.js"></script>
 </body>
 </html>

@@ -1,0 +1,62 @@
+/*  Developer: Nikhil Kainth
+	  University ID: 230069888
+	  Function: CSS for the search page
+*/
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
+	font-family: "Lato", sans-serif;
+  }
+  
+  /* The body */
+  body {
+	background-color: var(--bg-primary);
+	font-family: "Lato", sans-serif;
+  }
+  
+  .wrapper {
+	width: 95%;
+	margin: 0 auto;
+  }
+  
+  #search-container {
+	margin: 1em 0;
+  }
+  
+  #search-container input {
+	background-color: #3f3b3b;
+	width: 40%;
+	border-bottom: 2px solid var(--mint);
+	padding: 1em 0.3em;
+  }
+  
+  #search-container input:focus {
+	border-bottom: var(--mint);
+  }
+  
+  .search-button {
+	padding: 1em 2em;
+	margin-left: 1em;
+	background-color: var(--mint);
+	color: #ffffff;
+	border-radius: 5px;
+	margin-top: 0.5em;
+  }
+  
+  .buttons-value {
+	border: 2px solid var(--mint);
+	padding: 1em 2.2em;
+	border-radius: 3em;
+	background-color: #3f3b3b;
+	color: var(--mint);
+	cursor: pointer;
+  }
+  
+  .active {
+	background-color: var(--mint);
+	color: #ffffff;
+  }
