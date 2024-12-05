@@ -17,7 +17,11 @@ class DatabaseSeeder extends Seeder
 
         ImageType::firstOrCreate(['name' => 'front']);
         ImageType::firstOrCreate(['name' => 'side']);
+        ImageType::firstOrCreate(['name' => 'angled']);
+        ImageType::firstOrCreate(['name' => 'ortho']);
+        ImageType::firstOrCreate(['name' => 'case']);
         ImageType::firstOrCreate(['name' => 'model']);
+        ImageType::firstOrCreate(['name' => 'model2']);
 
         // Create test user with proper fields
         $user = User::create([
@@ -34,16 +38,47 @@ class DatabaseSeeder extends Seeder
                 32859935,
                 32859942,
             ],
-            'Disney' => [
-                33087542,
-                33137131,
-                33137148,
+            'Barbour' =>[
+                33137483,
+                33137490,
+                33137506,
             ],
             'Comfit' => [
                 32861686,
                 33145006,
                 33145013,
             ],
+            'Disney' => [
+                33087542,
+                33137131,
+                33137148,
+            ],
+            'DKNY' =>[
+                32677959,
+                33039947,
+                33040011,
+            ],
+            'Harry Potter' =>[
+                32908640,
+                33155432,
+                33155449,
+            ],
+            'HUGO' =>[
+                33137346,
+                33137353,
+                33137360,
+            ],
+            'Jeff Banks' =>[
+                32860634,
+                33152820,
+                33152882,
+            ],
+            'Karen Millen' =>[
+                33039633,
+                33039640,
+                33135175
+            ],
+            
         ];
 
         // Loop through each category and its product IDs
@@ -62,7 +97,7 @@ class DatabaseSeeder extends Seeder
                     // Optionally, create the product if it doesn't exist (remove this if you expect the product to be already created)
                     $product = Product::create([
                         'id' => $productId,
-                        'name' => "Product {$productId}",
+                        'name' => "{$categoryName}: Product {$productId}",
                         'description' => "Description for product {$productId}",
                         'category_id' => $category->id,
                         'price' => 100,  // Example price
@@ -95,6 +130,7 @@ class DatabaseSeeder extends Seeder
      */
     protected function generateImagePath(ProductCategory $category, Product $product, ImageType $type)
     {
+        // Return the final image path
         return "Images/products/Featured/{$category->name}/{$product->id}/{$product->id}-{$type->name}-2000x1125.jpg";
     }
 }
