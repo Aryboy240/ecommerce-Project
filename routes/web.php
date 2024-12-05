@@ -19,15 +19,15 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/product', function () {
-    return view('product');
+    return view('Product'); // Refers to resources/views/Product.blade.php
 })->name('product');
 
 Route::get('/sproduct', function () {
-    return view('sproduct');
+    return view('sproduct'); // Refers to resources/views/sproduct.blade.php
 })->name('sproduct');
 
 Route::get('/login', function () {
-    return view('login');
+    return view('Login'); // Refers to resources/views/Login.blade.php
 })->name('login');
 
 Route::get('/register', function () {
