@@ -171,7 +171,7 @@ input:focus {
 }
 
 /* Checkout Button Styling */
-.checkout-button {
+.checkout-btn {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -188,12 +188,12 @@ input:focus {
     font-weight: 600;
 }
 
-.checkout-button svg {
+.checkout-btn svg {
     width: 24px;
     height: 24px;
 }
 
-.checkout-button:hover {
+.checkout-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 25px rgba(0, 191, 174, 0.2);
 }
