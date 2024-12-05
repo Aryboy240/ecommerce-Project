@@ -97,7 +97,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="{{ route('shoppingCart') }}" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -495,6 +495,45 @@
       <p>© Optique. Crafted for Visionaries.</p>
     </div>
   </div>
-</body>
 
+  <!--Comfit-->
+  <div class="product-card">
+    <div class="card-circle-3"></div>
+    <div class="product-card-content">
+      <h2>Comfit</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+      </p>
+      <a href="#">Starting from £100</a>
+      <form action="{{ route('cart.add') }}" method="POST" style="margin-top: 10px;">
+          @csrf
+          <input type="hidden" name="customer_id" value="1">
+          <input type="hidden" name="product_id" value="9">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" style="width: 100%; padding: 15px; background: rgba(0, 191, 174, 0.1); border: none; border-radius: 25px; cursor: pointer;">Add to Cart</button>
+      </form>
+    </div>
+    <img class="imageSize-9" src="{{ asset('Images/brands/comfit.png') }}"/>
+  </div>
+
+  <!--Barbour-->
+  <div class="product-card">
+    <div class="card-circle-3"></div>
+    <div class="product-card-content">
+      <h2>Barbour</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet? Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime delectus eveniet iusto tenetur.
+      </p>
+      <a href="#">Starting from £100</a>
+      <form action="{{ route('cart.add') }}" method="POST" style="margin-top: 10px;">
+          @csrf
+          <input type="hidden" name="customer_id" value="1">
+          <input type="hidden" name="product_id" value="8">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" style="width: 100%; padding: 15px; background: rgba(0, 191, 174, 0.1); border: none; border-radius: 25px; cursor: pointer;">Add to Cart</button>
+      </form>
+    </div>
+    <img class="imageSize-8" src="{{ asset('Images/brands/barbour.png') }}"/>
+  </div>
+</body>
 </html>

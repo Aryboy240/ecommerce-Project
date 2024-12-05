@@ -62,16 +62,16 @@
           <img src="Images/logo.png" class="login-logo" alt="Logo" />
         </div>
         <h2>REGISTER</h2>
-        <form action="/register" method="POST">
+        <form action="{{ route('register.submit') }}" method="POST">
           
           @csrf <!-- Extra protection against cookies -->
 
           <!-- Username -->
           <div class="input">
-              <label for="username">Username</label>
-              <input type="text" id="username" name="username" value="{{ old('username') }}" />  <!-- Stores the current username in field if other validations fail -->
+              <label for="name">Username</label>
+              <input type="text" id="name" name="name" value="{{ old('name') }}" />  <!-- Stores the current username in field if other validations fail -->
               <!-- Username validation checks: look at UserController.php in app/Http/Controllers for list of validations -->
-              @error('username')
+              @error('name')
                   <span>{{ $message }}</span>
               @enderror
           </div>
@@ -126,6 +126,7 @@
           </div>
 
         </form>
+
         <div id="socials">
           <h3>Follow us on social media!</h3>
         </div>

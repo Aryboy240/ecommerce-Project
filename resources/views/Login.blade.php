@@ -5,12 +5,15 @@
 
     Developer: Hussen Ahmed
 	  University ID: 230177600
-    Function: Added the backend for logins
+    Function: Added the backend for logins 
 -->
 
+<!DOCTYPE html>
 <head>
   <title>Login</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--CSS-->
   <link rel="stylesheet" href="css/login.css" />
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -28,12 +31,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
-  />
-  <!--Meta-->
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1,
-    user-scalable=0"
   />
 </head>
 
@@ -69,35 +66,32 @@
         </div>
         <h2>Login</h2>
 
-        <form action="/login" method="POST">
-          @csrf <!-- Extra protection against cookies -->
-
-          <!-- Username -->
+        @if($errors->any())
+            <div style="color: red; margin-bottom: 10px;">
+                {{$errors->first()}}
+            </div>
+        @endif
+        <form method="POST" action="{{ route('login.submit') }}">
+          @csrf
           <div class="input">
             <span>Username</span>
-            <input type="text" name="loginUsername" />
-            @error('loginUsername')
-              <span id="error">{{ $message }}</span>
-            @enderror
+            <input type="text" name="name" required />
           </div>
 
           <!-- Password -->
           <div class="input">
             <span>Password</span>
-            <input type="password" name="loginPassword" />
-            @error('loginPassword')
-              <span id="error">{{ $message }}</span>
-            @enderror
+            <input type="password" name="password" required />
           </div>
 
           <!-- Remember -->
           <div class="remember">
-            <label><input type="checkbox" name="Remember" />Remember Me</label>
+            <label><input type="checkbox" name="remember" />Remember Me</label>
           </div>
 
           <!-- Sign in Button -->
           <div class="input">
-            <button>Login</button>
+            <button type="submit" class="submit-btn">Login</button>
           </div>
 
           <!-- Register -->
@@ -131,5 +125,4 @@
       </div>
     </div>
   </section>
-  <!--Log in Section End-->
 </body>
