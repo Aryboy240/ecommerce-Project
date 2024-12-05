@@ -2,18 +2,23 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\ProductCategory;
 use App\Models\Product;
-use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\ImageType;
+use App\Models\ProductImage;
+use App\Models\ProductCategory;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+
+        ImageType::firstOrCreate(['name' => 'front']);
+        ImageType::firstOrCreate(['name' => 'side']);
+        ImageType::firstOrCreate(['name' => 'model']);
+
         // Create test user with proper fields
         $user = User::create([
             'name' => 'testuser',
@@ -22,74 +27,74 @@ class DatabaseSeeder extends Seeder
             'birthday' => '2000-01-01'
         ]);
 
-        // Create relevant product categories
-        $sunglassesCategory = ProductCategory::create([
-            'name' => 'Sunglasses',
-            'description' => 'Stylish UV protection eyewear'
-        ]);
-
-        $prescriptionCategory = ProductCategory::create([
-            'name' => 'Prescription Glasses',
-            'description' => 'Prescription eyewear for daily use'
-        ]);
-
-        $accessoriesCategory = ProductCategory::create([
-            'name' => 'Accessories',
-            'description' => 'Eyewear accessories and care products'
-        ]);
-
-        // Create relevant products
-        $products = [
-            Product::create([
-                'name' => 'Classic Aviator Sunglasses',
-                'description' => 'Timeless aviator style with UV400 protection',
-                'category_id' => $sunglassesCategory->id,
-                'price' => 89.99,
-                'stock_quantity' => 50
-            ]),
-            Product::create([
-                'name' => 'Round Metal Frame Glasses',
-                'description' => 'Vintage-inspired round prescription frames',
-                'category_id' => $prescriptionCategory->id,
-                'price' => 129.99,
-                'stock_quantity' => 30
-            ]),
-            Product::create([
-                'name' => 'Premium Lens Cleaning Kit',
-                'description' => 'Complete kit for proper eyewear maintenance',
-                'category_id' => $accessoriesCategory->id,
-                'price' => 19.99,
-                'stock_quantity' => 100
-            ]),
-            Product::create([
-                'name' => 'Wayfarer Style Sunglasses',
-                'description' => 'Classic wayfarer design with polarized lenses',
-                'category_id' => $sunglassesCategory->id,
-                'price' => 99.99,
-                'stock_quantity' => 40
-            ])
+        // Define products by category
+        $productsByCategory = [
+            'Adidas' => [
+                32859928,
+                32859935,
+                32859942,
+            ],
+            'Disney' => [
+                33087542,
+                33137131,
+                33137148,
+            ],
+            'Comfit' => [
+                32861686,
+                33145006,
+                33145013,
+            ],
         ];
 
-        // Create a test order
-        $order = Order::create([
-            'user_id' => $user->id, 
-            'status' => 'pending',
-            'total_amount' => 209.98 // Aviator + Cleaning Kit
-        ]);
+        // Loop through each category and its product IDs
+        foreach ($productsByCategory as $categoryName => $productIds) {
+            // Get the category instance by name (or create it if not found)
+            $category = ProductCategory::where('name', $categoryName)->first();
+            if (!$category) {
+                $category = ProductCategory::create(['name' => $categoryName]);
+            }
 
-        // Add items to order
-        OrderItem::create([
-            'order_id' => $order->id,
-            'product_id' => $products[0]->id, // Aviator Sunglasses
-            'quantity' => 2,
-            'price' => 89.99
-        ]);
+            // Loop through each product ID for this category
+            foreach ($productIds as $productId) {
+                // Ensure the product exists
+                $product = Product::find($productId);
+                if (!$product) {
+                    // Optionally, create the product if it doesn't exist (remove this if you expect the product to be already created)
+                    $product = Product::create([
+                        'id' => $productId,
+                        'name' => "Product {$productId}",
+                        'description' => "Description for product {$productId}",
+                        'category_id' => $category->id,
+                        'price' => 100,  // Example price
+                        'stock_quantity' => 10  // Example stock
+                    ]);
+                }
 
-        OrderItem::create([
-            'order_id' => $order->id,
-            'product_id' => $products[2]->id, // Cleaning Kit
-            'quantity' => 1,
-            'price' => 19.99
-        ]);
+                // Get all image types (front, side, model, etc.)
+                $imageTypes = ImageType::all();
+
+                // Loop through each image type and create a product image
+                foreach ($imageTypes as $type) {
+                    ProductImage::create([
+                        'product_id' => $product->id,  // Link the image to the product
+                        'image_type_id' => $type->id,  // Link the image to the type
+                        'image_path' => $this->generateImagePath($category, $product, $type),  // Generate the image path dynamically
+                    ]);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Generate the image path for a product based on its category, ID, and image type.
+     *
+     * @param  \App\Models\ProductCategory  $category
+     * @param  \App\Models\Product   $product
+     * @param  \App\Models\ImageType $type
+     * @return string
+     */
+    protected function generateImagePath(ProductCategory $category, Product $product, ImageType $type)
+    {
+        return "Images/products/Featured/{$category->name}/{$product->id}/{$product->id}-{$type->name}-2000x1125.jpg";
     }
 }

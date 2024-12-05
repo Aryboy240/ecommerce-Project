@@ -7,12 +7,24 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\Product;
+
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+
+
+
+Route::get('/test-product-images', function () {
+    // Assuming you have a product with ID 1 in your database
+    $product = Product::with('images')->find(1);
+    return view('test', ['product' => $product]);
+});
+
 
 // Basic routes
 
