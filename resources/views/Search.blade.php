@@ -17,39 +17,28 @@
   <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap" rel="stylesheet" />
 </head>
 
-<!--Log in Section-->
+<!--Search page-->
 <body>
   <div class="wrapper">
     <div id="search-container">
-      <input
-        type="search"
-        id="search-input"
-        placeholder="Search product name here..."
-      />
+      <input type="search" id="search-input" placeholder="Search product name here..." />
       <button class="search-button">Search</button>
     </div>
     <div id="buttons">
-      <button class="buttons-value">All</button>
-      <button class="buttons-value">Sunglasses</button>
-      <button class="buttons-value">Prescription Glasses</button>
-      <button class="buttons-value">Accessories</button>
+      <button class="button-value">All</button>
+      <button class="button-value">Sunglasses</button>
+      <button class="button-value">Prescription Glasses</button>
+      <button class="button-value">Accessories</button>
     </div>
+    <div id="products"></div>  <!-- Added this div to display product cards -->
   </div>
-<!--JavaScript section-->
-<script src="Seach-script.js"></script>
+
+  <!-- Link to the external JavaScript file -->
+  <script src="{{ asset('js/search-script.js') }}"></script>
 </body>
 </html>
