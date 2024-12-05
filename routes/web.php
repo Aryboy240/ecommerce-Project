@@ -19,11 +19,12 @@ use App\Models\Product;
 
 
 
-Route::get('/test-product-images', function () {
-    // Assuming you have a product with ID 1 in your database
-    $product = Product::with('images')->find(1);
-    return view('test', ['product' => $product]);
+Route::get('/test', function () {
+    // Fetch all products along with their images and image types
+    $products = App\Models\Product::with(['images.imageType'])->get();
+    return view('test', ['products' => $products]);
 });
+
 
 
 // Basic routes
