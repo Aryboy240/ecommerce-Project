@@ -67,7 +67,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    cursor: url("Images/cur.png"), auto;
+    cursor: url("../Images/cur.png"), auto;
 }
 
 /* Fancy scroll bar :) */
