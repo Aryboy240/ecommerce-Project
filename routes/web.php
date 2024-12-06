@@ -18,7 +18,7 @@ use App\Models\Product;
 
 
 
-
+// Test route for product images
 Route::get('/test', function () {
     // Fetch all products along with their images and image types
     $products = App\Models\Product::with(['images.imageType'])->get();
