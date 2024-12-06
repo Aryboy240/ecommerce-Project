@@ -364,7 +364,7 @@
       <div class="product-card">
           <div class="product-image">
               <span class="discount-tag">50% off</span>
-              <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.webp" class="product-thumb" alt="">
+              <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.jpg" class="product-thumb" alt="">
               <button class="card-btn">add to basket</button>
           </div>
           <div class="product-info">
@@ -496,7 +496,8 @@
     </div>
   </div>
 
-  <!--Comfit-->
+<!-- This is important for adding products (From Vatsal)
+
   <div class="product-card">
     <div class="card-circle-3"></div>
     <div class="product-card-content">
@@ -516,7 +517,6 @@
     <img class="imageSize-9" src="{{ asset('Images/brands/comfit.png') }}"/>
   </div>
 
-  <!--Barbour-->
   <div class="product-card">
     <div class="card-circle-3"></div>
     <div class="product-card-content">
@@ -535,5 +535,6 @@
     </div>
     <img class="imageSize-8" src="{{ asset('Images/brands/barbour.png') }}"/>
   </div>
+-->
 </body>
 </html>
