@@ -1,3 +1,13 @@
+<!--
+    Developer: Aryan Kora
+	  University ID: 230059030
+    Function: Front end for the login page
+
+    Developer: Hussen Ahmed
+	  University ID: 230177600
+    Function: Added the backend for logins 
+-->
+
 <!DOCTYPE html>
 <head>
   <title>Login</title>
@@ -5,8 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--CSS-->
-  <link rel="stylesheet" href="{{ asset('css/login.css') }}"> 
-  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}"> 
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,6 +65,7 @@
           <img src="Images/logo.png" class="login-logo" />
         </div>
         <h2>Login</h2>
+
         @if($errors->any())
             <div style="color: red; margin-bottom: 10px;">
                 {{$errors->first()}}
@@ -66,38 +77,49 @@
             <span>Username</span>
             <input type="text" name="name" required />
           </div>
+
+          <!-- Password -->
           <div class="input">
             <span>Password</span>
             <input type="password" name="password" required />
           </div>
+
+          <!-- Remember -->
           <div class="remember">
             <label><input type="checkbox" name="remember" />Remember Me</label>
           </div>
+
+          <!-- Sign in Button -->
           <div class="input">
-            <button type="submit" class="submit-btn" style="width: 100%; padding: 10px; background: var(--mint); color: white; border: none; border-radius: 5px; cursor: pointer;">Sign in</button>
+            <button type="submit" class="submit-btn">Login</button>
           </div>
+
+          <!-- Register -->
           <div class="input">
             <p>Don't have an account? <a href="{{ route('register') }}">Sign up!</a></p>
           </div>
+
         </form>
+
+        <!-- Socials -->
         <div id="socials">
           <h3>Follow us on social media!</h3>
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/instagram.png"
-            /></a>
+            <a href="https://www.instagram.com" target="_blank">
+              <img src="Images/socials/instagram.png"/>
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/youtube.png"
-            /></a>
+            <a href="https://www.youtube.com" target="_blank">
+              <img src="Images/socials/youtube.png"/>
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/twitter.png"
-            /></a>
+            <a href="https://www.twitter.com" target="_blank">
+              <img src="Images/socials/twitter.png"/>
+            </a>
           </li>
         </ul>
       </div>

@@ -10,11 +10,11 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name',
+        'username', // There were errors being caused by this being called 'name' previously - Aryan
         'email',
         'password',
-        'birthday',
-        'is_admin'
+        'birthday', // Addition of adding birthdays to the table - Aryan
+        'is_admin',
     ];
 
     protected $hidden = [

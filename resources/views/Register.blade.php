@@ -2,8 +2,12 @@
     Developer: Aryan Kora
 	  University ID: 230059030
     Function: Front end for the register page
+
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Front end modifications and back end
 -->
-<!DOCTYPE html>
+
 <head>
   <title>Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,19 +29,13 @@
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
   />
-  <!--Meta-->
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, maximum-scale=1,
-      user-scalable=0"
-  />
 </head>
 
 <body>
-  <!--Log in Section-->
+  <!-- Register Section -->
   <section>
     <div class="login-img">
-      <img src="Images/skater_girl.png" />
+      <img src="Images/skater_girl.png" alt="Skater Girl" />
     </div>
     <div class="login-content">
       <div class="form">
@@ -61,56 +59,96 @@
           </a>
         </div>
         <div class="img-con">
-          <img src="Images/logo.png" class="login-logo" />
+          <img src="Images/logo.png" class="login-logo" alt="Logo" />
         </div>
         <h2>REGISTER</h2>
-        <form method="POST" action="{{ route('register.submit') }}">
-    @csrf
-    <div class="input" id="w50">
-        <span>Username</span>
-        <input type="text" name="name" required />
-    </div>
-    <div class="input" id="w50">
-        <span>Email</span>
-        <input type="email" name="email" required />
-    </div>
-    <div class="input">
-        <span>Password</span>
-        <input type="password" name="password" required />
-    </div>
-    <div class="input">
-        <span>Birthday</span>
-        <input type="date" name="birthday" required />
-    </div>
-    <div class="input">
-        <button type="submit" style="width: 100%; padding: 10px; background: var(--mint); color: white; border: none; border-radius: 5px; cursor: pointer;">Register</button>
-    </div>
-    <div class="input">
-        <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
-    </div>
-</form>
+        <form action="{{ route('register.submit') }}" method="POST">
+          
+          @csrf <!-- Extra protection against cookies -->
+
+          <!-- Username -->
+          <div class="input">
+              <label for="name">Username</label>
+              <input type="text" id="name" name="name" value="{{ old('name') }}" />  <!-- Stores the current username in field if other validations fail -->
+              <!-- Username validation checks: look at UserController.php in app/Http/Controllers for list of validations -->
+              @error('name')
+                  <span>{{ $message }}</span>
+              @enderror
+          </div>
+          
+          <!-- Email -->
+          <div class="input">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" value="{{ old('email') }}" /> <!-- Stores the current email in field if other validations fail -->
+              <!-- Email validation checks -->
+              @error('email')
+                  <span>{{ $message }}</span>
+              @enderror
+          </div>
+          
+          <!-- Password -->
+          <div class="input">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" />
+              <!-- Password validation checks -->
+              @error('password')
+                  <span>{{ $message }}</span>
+              @enderror
+          </div>
+          
+          <div class="input">
+            <!-- The confirm password field-->
+              <label for="confirm_password">Confirm Password</label>
+              <input type="password" id="confirm_password" name="confirmPassword" />
+              <!-- Confirm password validation checks -->
+              @error('confirmPassword')
+                  <span>{{ $message }}</span>
+              @enderror
+          </div>
+          
+          <div class="input">
+            <!-- The birthday field-->
+              <label for="birthday">Birthday</label>
+              <input type="date" id="birthday" name="birthday" />
+              <!-- Birthday validation checks -->
+              @error('birthday')
+                  <span>{{ $message }}</span>
+              @enderror
+          </div>
+          
+          <!-- Submission button -->
+          <div class="input">
+            <button>Register</button>
+          </div>
+
+          <div class="input">
+            <p>Already have an account? <a href="{{ route('login') }}">Sign in!</a></p>
+          </div>
+
+        </form>
+
         <div id="socials">
           <h3>Follow us on social media!</h3>
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/instagram.png"
-            /></a>
+            <a href="https://www.instagram.com" target="_blank">
+              <img src="Images/socials/instagram.png" alt="Instagram" />
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/youtube.png"
-            /></a>
+            <a href="https://www.youtube.com" target="_blank">
+              <img src="Images/socials/youtube.png" alt="YouTube" />
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/twitter.png"
-            /></a>
+            <a href="https://www.twitter.com" target="_blank">
+              <img src="Images/socials/twitter.png" alt="Twitter" />
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </section>
-  <!--Log in Section End-->
+  <!-- Register Section End -->
 </body>

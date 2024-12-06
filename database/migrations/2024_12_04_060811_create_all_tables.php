@@ -42,6 +42,22 @@ return new class extends Migration
             $table->index('category_id');
         });
 
+        // Image Type Table Migration
+        Schema::create('image_types', function (Blueprint $table) {
+            $table->id(); // This is typically an unsignedBigInteger
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        // Product Images Table Migration
+        Schema::create('product_images', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->foreignId('image_type_id')->constrained('image_types')->onDelete('cascade');
+            $table->string('image_path');
+            $table->timestamps();
+        });
+
         // Orders Table
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
@@ -81,6 +97,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Password reset table
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
+
         // Sessions Table
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
@@ -104,5 +127,7 @@ return new class extends Migration
         Schema::dropIfExists('products');
         Schema::dropIfExists('product_categories');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('image_types');
     }
 };

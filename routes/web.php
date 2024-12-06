@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
-use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Models\Product;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +16,44 @@ use App\Http\Controllers\Auth\RegisterController;
 |--------------------------------------------------------------------------
 */
 
-// Basic routes
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+Route::get('/test', function () {
+    // Fetch all products along with their images and image types
+    $products = App\Models\Product::with(['images.imageType'])->get();
+    return view('test', ['products' => $products]);
 });
 
-Route::get('/welcome', function () {
+
+
+// Basic routes
+
+// login system routes - Aryan
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/login', [UserController::class, 'login']);
+
+// Routes to other pages
+Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+Route::get('/product', function () {
+    return view('Product'); // Refers to resources/views/Product.blade.php
+})->name('product');
+
+Route::get('/sproduct', function () {
+    return view('sproduct'); // Refers to resources/views/sproduct.blade.php
+})->name('sproduct');
+
+Route::get('/welcome', function () {
+    return view('welcome'); // Refers to resources/views/welcome.blade.php
+})->name('welcome');
+
+Route::get('/contact', function () {
+    return view('Contact'); // Refers to resources/views/contact.blade.php
+})->name('contact');
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +87,6 @@ Route::prefix('orders')->group(function () {
     Route::post('/{order}/items', [OrderItemController::class, 'store'])->name('orderItems.store');
     Route::delete('/{order}/items/{item}', [OrderItemController::class, 'destroy'])->name('orderItems.destroy');
 });
-
-// Test route
-Route::get('/test-order', [OrderController::class, 'testCreate'])->name('orders.test');
 
 /*
 |--------------------------------------------------------------------------
