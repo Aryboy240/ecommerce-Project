@@ -116,7 +116,7 @@ body {
 /* Footer at the bottom of the page */
 .footer {
     text-align: center;
-    background-color: black;
+    background-color: #181818;
     color: white;
     padding: 20px;
     position: fixed; /* Sticks to the bottom */
@@ -124,4 +124,4 @@ body {
     width: 100%;
     font-size: 0.9rem; /* Small text for copyright */
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5); /* Adds shadow for depth */
-}
+} 

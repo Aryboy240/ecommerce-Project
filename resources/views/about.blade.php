@@ -9,7 +9,7 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/aryansExtras.css') }}" rel="stylesheet">
     <style>
-        /* Add hover effect for footer logos */
+        /* I added hover effects for footer logos to make the interaction more dynamic */
         .social-footer-links img {
             width: 40px;
             height: 40px;
@@ -20,7 +20,7 @@
             transform: scale(1.2);
         }
 
-        /* Enlarge and bold footer text */
+        /* I wanted the footer text to stand out, so I made it larger and bolder */
         .footer p {
             font-size: 28px;
             font-weight: bold;
@@ -233,3 +233,4 @@ ul {
     </script>
 </body>
 </html>
+
