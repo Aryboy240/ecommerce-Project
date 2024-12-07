@@ -35,7 +35,7 @@
       <button class="button-value">Prescription Glasses</button>
       <button class="button-value">Accessories</button>
     </div>
-    <div id="products"></div>  <!-- Added this div to display product cards -->
+    <div id="products"></div>
   </div>
 
   <!-- Link to the external JavaScript file -->
