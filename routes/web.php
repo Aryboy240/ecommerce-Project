@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProductController;
 use App\Models\Product;
 
 
@@ -25,6 +26,9 @@ Route::get('/test', function () {
     return view('test', ['products' => $products]);
 });
 
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
 
 // Basic routes
@@ -33,6 +37,7 @@ Route::get('/test', function () {
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
+
 
 // Routes to other pages
 Route::get('/', function () {

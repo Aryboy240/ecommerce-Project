@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Product Images</title>
+@extends('layouts.app')
+
+@section('title', 'Product Search')
+
+@section('content')
     <style>
         .image-container {
             display: flex;
@@ -21,16 +20,16 @@
             margin-bottom: 10px;
         }
     </style>
-</head>
-<body>
     <h1>Product Images</h1>
 
     <!-- Search Form -->
     <form method="GET" action="{{ route('products.index') }}">
         <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
         <button type="submit">Search</button>
+        <a href="{{ route('products.index') }}" style="margin-left: 10px;">Clear</a>
     </form>
 
+    <!-- Product Table -->
     <table border="1">
         <thead>
             <tr>
@@ -49,9 +48,7 @@
                     <td>${{ $product->price }}</td>
                     <td>{{ $product->stock_quantity }}</td>
                     <td>
-                        <h3>Images:</h3>
                         <div class="image-container">
-                            <!-- Loop through all the image types -->
                             @foreach(['front', 'side', 'angled', 'ortho', 'case', 'model', 'model2'] as $type)
                                 <div class="image-item">
                                     <h4>{{ ucfirst($type) }} Images:</h4>
@@ -73,6 +70,4 @@
             @endforeach
         </tbody>
     </table>
-
-</body>
-</html>
+@endsection
