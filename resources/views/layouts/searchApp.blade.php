@@ -24,7 +24,7 @@
     </main>
 
     <footer>
-        <p>&copy; {{ date('Y') }} Aryan Kora's Searrch application</p>
+        <p>&copy; {{ date('Y') }} Aryan Kora's test searrch application</p>
     </footer>
 </body>
 </html>

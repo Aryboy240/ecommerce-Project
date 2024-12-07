@@ -23,13 +23,22 @@
     <h1>Product Images</h1>
 
     <!-- Search Form -->
-    <form method="GET" action="{{ route('products.index') }}"> <!-- When the search button is pressed, it will  -->
+    <form method="GET" action="{{ route('products.index') }}"> 
         <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
         <button type="submit">Search</button>
         <a href="{{ route('products.index') }}" style="margin-left: 10px;">Clear</a>
     </form>
 
-    <!-- Product Table -->
+    <!-- 
+        Explanation of the search form (as well as I can explain it):
+        
+        • The form uses the "GET" HTTP method to submit data
+        • The 'GET' appends the search query "search="
+        • The route('products.index') calls the index method from the Product controller
+        • The user input is added after the 'GET', making something like this: /products?search=Adidas
+    -->
+
+    <!-- Product Table: jsut renders the products onto the screen -->
     <table border="1">
         <thead>
             <tr>
