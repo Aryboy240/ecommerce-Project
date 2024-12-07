@@ -42,6 +42,10 @@ Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
 
+Route::get('/about', function () {
+    return view('about'); // Refers to resources/views/about.blade.php
+})->name('about');
+
 Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
