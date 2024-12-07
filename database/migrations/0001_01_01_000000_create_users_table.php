@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // I updated the tables to include the username and birthday of the user - Aryan
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('username')->unique(); // This was 'name' before, so it caused issues with registering. (I also made it unique)
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->date('birthday'); // Addition of the birthday field when registering.
             $table->rememberToken();
             $table->timestamps();
         });

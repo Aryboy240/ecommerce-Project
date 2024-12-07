@@ -2,14 +2,18 @@
     Developer: Aryan Kora
 	  University ID: 230059030
     Function: Front end for the login page
+
+    Developer: Hussen Ahmed
+	  University ID: 230177600
+    Function: Added the backend for logins
 -->
 
 <head>
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!--CSS-->
-  <link rel="stylesheet" href="{{ asset('css/login.css') }}"> 
-  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}"> 
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -64,45 +68,64 @@
           <img src="Images/logo.png" class="login-logo" />
         </div>
         <h2>Login</h2>
-        <form>
+
+        <form action="/login" method="POST">
+          @csrf <!-- Extra protection against cookies -->
+
+          <!-- Username -->
           <div class="input">
             <span>Username</span>
-            <input type="text" name="Username" />
+            <input type="text" name="loginUsername" />
+            @error('loginUsername')
+              <span id="error">{{ $message }}</span>
+            @enderror
           </div>
+
+          <!-- Password -->
           <div class="input">
             <span>Password</span>
-            <input type="password" name="Password" />
+            <input type="password" name="loginPassword" />
+            @error('loginPassword')
+              <span id="error">{{ $message }}</span>
+            @enderror
           </div>
+
+          <!-- Remember -->
           <div class="remember">
             <label><input type="checkbox" name="Remember" />Remember Me</label>
           </div>
+
+          <!-- Sign in Button -->
           <div class="input">
-            <a href="{{ route('welcome') }}">
-              <input type="button" value="Sign in" name="Sign in" />
-            </a>
+            <button>Login</button>
           </div>
+
+          <!-- Register -->
           <div class="input">
             <p>Don't have an account? <a href="{{ route('register') }}">Sign up!</a></p>
           </div>
+
         </form>
+
+        <!-- Socials -->
         <div id="socials">
           <h3>Follow us on social media!</h3>
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/instagram.png"
-            /></a>
+            <a href="https://www.instagram.com" target="_blank">
+              <img src="Images/socials/instagram.png"/>
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/youtube.png"
-            /></a>
+            <a href="https://www.youtube.com" target="_blank">
+              <img src="Images/socials/youtube.png"/>
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/twitter.png"
-            /></a>
+            <a href="https://www.twitter.com" target="_blank">
+              <img src="Images/socials/twitter.png"/>
+            </a>
           </li>
         </ul>
       </div>
