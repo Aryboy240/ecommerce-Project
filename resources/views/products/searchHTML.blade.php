@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.searchApp') <!-- This is a child of the "views/layouts/searchApp.balde.php" -->
 
-@section('title', 'Product Search')
+@section('title', 'Product Search') <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 
-@section('content')
+@section('content') <!-- The @yeild in searchApp's main is filled by everything in this section -->
     <style>
         .image-container {
             display: flex;
@@ -23,7 +23,7 @@
     <h1>Product Images</h1>
 
     <!-- Search Form -->
-    <form method="GET" action="{{ route('products.index') }}">
+    <form method="GET" action="{{ route('products.index') }}"> <!-- When the search button is pressed, it will  -->
         <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
         <button type="submit">Search</button>
         <a href="{{ route('products.index') }}" style="margin-left: 10px;">Clear</a>
