@@ -57,14 +57,13 @@ Route::get('/contact', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Shopping Cart Routes
+| Search Routes
 |--------------------------------------------------------------------------
 */
 
-//Route from search icon to search page
 Route::get('/search', function () {
-    return view('search');
-});
+    return view('Search'); // Refers to resources/views/search.blade.php
+})->name('search');
 
 /*
 |--------------------------------------------------------------------------
