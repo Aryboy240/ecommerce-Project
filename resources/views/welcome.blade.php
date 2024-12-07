@@ -1,3 +1,10 @@
+<!--
+    Developer: Aryan Kora
+	  University ID: 230059030
+    Function: Front end for the Landing page
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 
