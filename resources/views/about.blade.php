@@ -1,29 +1,31 @@
+<!--
+    Developer: Abdulrahman Muse
+    University ID: 230228946
+    Function: about page front end
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
-    <!-- JS -->
-    <script defer src="/js/theme.js"></script>
-    <script src="js/scrollBar.js"></script>
     <!-- Linking the CSS file -->
     <link href="{{ asset('css/about.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/aryansExtras.css') }}" rel="stylesheet">
     <style>
         /* I added hover effects for footer logos to make the interaction more dynamic */
-        .social-footer-links img {
+        .about-social-footer-links img {
             width: 40px;
             height: 40px;
             transition: transform 0.3s ease;
         }
 
-        .social-footer-links img:hover {
+        .about-social-footer-links img:hover {
             transform: scale(1.2);
         }
 
         /* I wanted the footer text to stand out, so I made it larger and bolder */
-        .footer p {
+        .about-footer p {
             font-size: 28px;
             font-weight: bold;
         }
@@ -205,9 +207,9 @@
 
 
     <!-- Footer Section -->
-    <footer class="footer">
+    <footer class="about-footer">
         <p>Find us here:</p>
-        <div class="social-footer-links">
+        <div class="about-social-footer-links">
             <a href="https://twitter.com" target="_blank">
                 <img src="{{ asset('Images/socials/twitter.png') }}" alt="Twitter Logo">
             </a>

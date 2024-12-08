@@ -2,7 +2,6 @@
    university ID: 230228946
    function: about page 
 */
-
 /* Styling the body of the page */
 body {
     margin: 0; /* Removes the default browser margin */
@@ -79,7 +78,6 @@ body {
     padding: 100px 20px;
     margin-left: 200px; /* Leaves space for the nav bar */
     text-align: center;
-    color: white;
 }
 
 .section.visible {
@@ -99,29 +97,29 @@ body {
 }
 
 /* Styling social media icons */
-.social-links {
+.about-social-links {
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between icons */
     margin-top: 20px;
 }
 
-.social-links img {
+.about-social-links img {
     width: 50px; /* Icon size */
     transition: transform 0.3s; /* Animation for hover effect */
 }
 
-.social-links img:hover {
+.about-social-links img:hover {
     transform: scale(1.2); /* Enlarges icon on hover */
 }
 
 /* Footer at the bottom of the page */
-.footer {
+.about-footer {
     text-align: center;
     background-color: #181818;
     color: white;
     padding: 20px;
-    position: absolute; /* Sticks to the bottom */
+    position: fixed; /* Sticks to the bottom */
     bottom: 0;
     width: 100%;
     font-size: 0.9rem; /* Small text for copyright */
