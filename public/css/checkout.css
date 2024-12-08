@@ -250,6 +250,40 @@ input:focus {
     Function: Styling for different payment methods
 */
 
+/* === BUTTONS STYLING === */
+
+.payment-method {
+    padding:15px;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
+
+}   
+
+.payment-method:hover{
+    transform: translateY(-5px); /* Moves the button up slightly */
+
+    background-color: var(--mint);
+}
+
+.payment-method.active {
+    background-color: var(--mint);
+}
+
+#card {
+    border-radius: 5px;
+    border-top-left-radius: 20px;
+}
+
+#paypal {
+    border-radius: 5px;
+}
+
+#wallet {
+    border-radius: 5px;
+    border-top-right-radius: 20px;
+}
+
+/* === PAYMENT SECTIONS STYLING === */
+
 .payment-section {
     display: none; /* Hide all by default */
 }
@@ -257,3 +291,4 @@ input:focus {
 .payment-section.active {
     display: block; /* Only show when the "active" class is present */
 }
+

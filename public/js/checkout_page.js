@@ -16,6 +16,10 @@ const walletSection = document.getElementById("payment-wallet");
 
 // Function to hide all sections
 function hideAllSections() {
+    card.classList.remove("active");
+    payPal.classList.remove("active");
+    wallet.classList.remove("active");
+
     cardSection.classList.remove("active");
     payPalSection.classList.remove("active");
     walletSection.classList.remove("active");
@@ -25,16 +29,22 @@ function hideAllSections() {
 card.addEventListener("click", function() {
     hideAllSections();  // Hide all sections first
     cardSection.classList.add("active");  // Show card section
+    card.classList.add("active");
+
 });
 
 // Event listener for the PayPal button
 payPal.addEventListener("click", function() {
     hideAllSections();  // Hide all sections first
     payPalSection.classList.add("active");  // Show PayPal section
+    payPal.classList.add("active");
+
 });
 
 // Event listener for the wallet button
 wallet.addEventListener("click", function() {
     hideAllSections();  // Hide all sections first
     walletSection.classList.add("active");  // Show wallet section
+    wallet.classList.add("active");
+
 });
