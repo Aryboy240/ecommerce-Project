@@ -11,17 +11,17 @@ class UserController extends Controller
     {
         // Validate incoming fields with more specific rules - Nikhil
         $incomingFields = $request->validate([
-            'username' => ['required', 'string', 'min:3', 'max:15', 'alpha_num'], // 3-15 characters, alphanumeric
+            'name' => ['required', 'string', 'min:3', 'max:15', 'alpha_num'],     // 3-15 characters, alphanumeric
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],    // Valid email, unique in users table
             'password' => ['required', 'string', 'min:8', 'max:25'],              // Min 8 characters, confirmed (with Password_confirmation)
             'confirmPassword' => ['required', 'same:password'],                   // Matches Password
             'birthday' => ['required', 'date', 'before:2006-01-01'],              // Valid date, must be before today
         ], [
             // Custom validation messages - Nikhil
-            'username.required' => 'The username is required.',
-            'username.alpha_num' => 'The username must only contain letters and numbers.',
-            'username.min' => 'The username must be at least 3 characters.',
-            'username.max' => 'The username must not exceed 15 characters.',
+            'name.required' => 'The username is required.',
+            'name.alpha_num' => 'The username must only contain letters and numbers.',
+            'name.min' => 'The username must be at least 3 characters.',
+            'name.max' => 'The username must not exceed 15 characters.',
             'email.required' => 'The email is required.',
             'email.email' => 'The email address must be valid.',
             'email.unique' => 'This email address is already in use.',
@@ -42,7 +42,7 @@ class UserController extends Controller
         // Redirect back to the homepage after sucsessful register - Nikhil
         return redirect()->route('welcome')->with('success', 'You are now registered!');
     }
-
+    
     // The login system wasn't implemented so I'll make a basic one for now. You can add to this one if you wish - Aryan
     public function login(Request $request){
         $incomingFields = $request->validate([
@@ -54,7 +54,7 @@ class UserController extends Controller
             'loginPassword.required' => 'The password is required.',
         ]);
 
-        if (auth()->attempt(['username' => $incomingFields['loginUsername'], 'password' => $incomingFields['loginPassword']])){
+        if (auth()->attempt(['name' => $incomingFields['loginUsername'], 'password' => $incomingFields['loginPassword']])){
             $request->session()->regenerate();
         }
 

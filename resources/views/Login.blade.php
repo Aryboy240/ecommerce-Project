@@ -5,7 +5,7 @@
 
     Developer: Hussen Ahmed
 	  University ID: 230177600
-    Function: Added the backend for logins 
+    Function: Added the backend for logins
 -->
 
 <head>
@@ -69,32 +69,35 @@
         </div>
         <h2>Login</h2>
 
-        @if($errors->any())
-            <div style="color: red; margin-bottom: 10px;">
-                {{$errors->first()}}
-            </div>
-        @endif
-        <form method="POST" action="{{ route('login.submit') }}">
-          @csrf
+        <form action="/login" method="POST">
+          @csrf <!-- Extra protection against cookies -->
+
+          <!-- Username -->
           <div class="input">
             <span>Username</span>
-            <input type="text" name="name" required />
+            <input type="text" name="loginUsername" value="{{ old('loginUsername') }}" />
+            @error('loginUsername')
+              <span id="error">{{ $message }}</span>
+            @enderror
           </div>
 
           <!-- Password -->
           <div class="input">
             <span>Password</span>
-            <input type="password" name="password" required />
+            <input type="password" name="loginPassword" />
+            @error('loginPassword')
+              <span id="error">{{ $message }}</span>
+            @enderror
           </div>
 
           <!-- Remember -->
           <div class="remember">
-            <label><input type="checkbox" name="remember" />Remember Me</label>
+            <label><input type="checkbox" name="Remember" />Remember Me</label>
           </div>
 
           <!-- Sign in Button -->
           <div class="input">
-            <button type="submit" class="submit-btn">Login</button>
+            <button>Login</button>
           </div>
 
           <!-- Register -->
@@ -128,4 +131,5 @@
       </div>
     </div>
   </section>
+  <!--Log in Section End-->
 </body>

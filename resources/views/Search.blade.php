@@ -32,10 +32,19 @@
     <!-- Category Filters -->
     <section class="category-filters">
         <button class="category-btn active" data-category="all">All</button>
-        <button class="category-btn" data-category="glasses">Glasses</button>
-        <button class="category-btn" data-category="cases">Cases</button>
-        <button class="category-btn" data-category="accessories">Accessories</button>
-        <button class="category-btn" data-category="sunglasses">Sunglasses</button>
+        <button class="category-btn" data-category="glasses">Adidas</button>
+        <button class="category-btn" data-category="glasses">Barbour</button>
+        <button class="category-btn" data-category="glasses">Comfit</button>
+        <button class="category-btn" data-category="glasses">Disney</button>
+        <button class="category-btn" data-category="glasses">DKNY</button>
+        <button class="category-btn" data-category="glasses">Harry Potter</button>
+        <button class="category-btn" data-category="glasses">HUGO</button>
+        <button class="category-btn" data-category="glasses">Jeff Banks</button>
+        <button class="category-btn" data-category="glasses">Karen Millen</button>
+
+        <!-- <button class="category-btn" data-category="glasses">Brands</button> -->
+        <!-- Preferably make a dropdown menu for each brand you can filter from -->
+        <!-- But if time is short, then forget it -->
     </section>
 
     <!-- Product Grid -->

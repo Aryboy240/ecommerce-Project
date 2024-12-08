@@ -5,8 +5,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
 
@@ -19,8 +17,6 @@ use App\Models\Product;
 
 // Test routes for the product searching page
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-
-
 
 // Basic routes
 
@@ -35,6 +31,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/welcome', function () {
+    return view('welcome'); // Refers to resources/views/welcome.blade.php
+})->name('welcome');
+
 Route::get('/product', function () {
     return view('Product'); // Refers to resources/views/Product.blade.php
 })->name('product');
@@ -43,13 +43,22 @@ Route::get('/sproduct', function () {
     return view('sproduct'); // Refers to resources/views/sproduct.blade.php
 })->name('sproduct');
 
-Route::get('/welcome', function () {
-    return view('welcome'); // Refers to resources/views/welcome.blade.php
-})->name('welcome');
+Route::get('/login', function () {
+    return view('Login'); // Refers to resources/views/Login.blade.php
+})->name('login');
+
+Route::get('/register', function () {
+    return view('Register'); // Refers to resources/views/Register.blade.php
+})->name('register');
 
 Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
+
+Route::get('/shoppingCart', function () {
+    return view('Cart'); // Refers to resources/views/contact.blade.php
+})->name('shoppingCart');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,21 +70,6 @@ Route::get('/search', function () {
     $products = Product::with('images', 'category')->get(); // Fetch products with relationships
     return view('search', ['products' => $products]); // Pass data to the view with the correct variable name
 })->name('search');
-
-/*
-|--------------------------------------------------------------------------
-| Authentication Routes
-|--------------------------------------------------------------------------
-*/
-
-// Login Routes
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-// Registration Routes
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
 /*
 |--------------------------------------------------------------------------
