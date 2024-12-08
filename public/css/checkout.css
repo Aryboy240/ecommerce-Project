@@ -294,6 +294,7 @@ input:focus {
     height: 30px; /* Set the height to make the images smaller */
     width: auto; /* Maintain the aspect ratio */
 }
+
 /* === PAYMENT SECTIONS STYLING === */
 
 .payment-section {
@@ -303,5 +304,18 @@ input:focus {
 
 .payment-section.active {
     display: block; /* Only show when the "active" class is present */
+}
+
+#confirm-details {
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.5s ease;
+}
+
+#confirm-details:hover{
+    background-color: var(--mint);
+    color: white;
 }
 

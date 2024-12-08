@@ -187,6 +187,7 @@
                             <label for="cvv">CVV</label>
                             <input type="text" id="cvv" name="cvv" required>
                         </div>
+                        <button id="confirm-details">Confirm Card Details</button>
                     </div>
                     <div id="payment-paypal" class="payment-section">
                         <p> You will be redirected to PayPal to complete your purchase. </p>
