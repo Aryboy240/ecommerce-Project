@@ -243,3 +243,17 @@ input:focus {
 @keyframes spin {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+/*
+    Developer: Aqsa Amjad
+    University ID: 230066670
+    Function: Styling for different payment methods
+*/
+
+.payment-section {
+    display: none; /* Hide all by default */
+}
+
+.payment-section.active {
+    display: block; /* Only show when the "active" class is present */
+}
