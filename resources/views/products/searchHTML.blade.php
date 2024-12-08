@@ -75,6 +75,14 @@
                             @endforeach
                         </div>
                     </td>
+                <td>
+                 <!-- Add to Cart Button -->
+                 <form action="{{ route('cart.add') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
