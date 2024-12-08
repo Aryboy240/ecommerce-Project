@@ -1,9 +1,9 @@
 /*  Developer: Aryan Kora
 	  University ID: 230059030
 	  Function: This is just a lazy copy of the log in CSS to reduce time implementing the register page 
-    Just ignore the fact that I kept all the names the same 😭
-    If it works, it works.
-    */
+                Just ignore the fact that I kept all the names the same 😭
+                If it works, it works.
+*/
 
 #login-position {
     position: relative;
@@ -188,9 +188,9 @@
 
 .input span {
     font-size: 1rem;
-    margin-bottom: 5px;
+    margin-top: 7px;
     display: inline-block;
-    color: var(--text-primary);
+    color: rgb(255, 33, 33);
     font-weight: 600;
     letter-spacing: 1px;
     transition: var(--transition-speed);
@@ -210,18 +210,24 @@
     transition: var(--transition-speed);
 }
 
-.input input[type="button"] {
-    background: var(--darker);
-    color: var(--text-primary);
-    font-weight: 600;
+.input button {
+    width: 100%;
+    padding: 10px 20px;
     outline: none;
-    border: none;
-    cursor: pointer;
+    font-weight: 400;
+    border: 0px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    background-color: var(--darker);
+    border-radius: 30px;
     transition: var(--transition-speed);
+    cursor: pointer;
 }
 
-.input input[type="button"]:hover {
+.input button:hover {
     transform: scale(1.02);
+    background-color: var(--mint);
 }
 
 .input p {
