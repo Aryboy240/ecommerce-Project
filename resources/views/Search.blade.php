@@ -9,7 +9,6 @@
     function: search page front end
 -->
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

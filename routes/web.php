@@ -51,9 +51,17 @@ Route::get('/register', function () {
     return view('Register'); // Refers to resources/views/Register.blade.php
 })->name('register');
 
+Route::get('/account', function () {
+    return view('Account'); // Refers to resources/views/Account.blade.php
+})->name('account');
+
 Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
+
+Route::get('/checkout', function () {
+    return view('Checkout');
+})->name('checkout');
 
 Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
