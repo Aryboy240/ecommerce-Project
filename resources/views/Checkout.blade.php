@@ -151,8 +151,8 @@
                     <p>Please select your payment method.</p>
                     <div class="payment-methods">
                         <button class="payment-method" id="card">Credit/Debit Card</button>
-                        <button class="payment-method" id="paypal">PayPal</button>
-                        <button class="payment-method" id="wallet">Apple Pay</button>
+                        <button class="payment-method" id="paypal" onclick="goToPayPal()">PayPal</button>
+                        <button class="payment-method" id="wallet" onclick="goToWallet()">Apple Pay</button>
                     </div>
                     <div id="payment-card" class="form-grid payment-section">
                         <div class="form-group full">
@@ -173,10 +173,10 @@
                         </div>
                     </div>
                     <div id="payment-paypal" class="payment-section">
-                        <p> You will be redirected to PayPal to complete your purchase </p>
+                        <p> You will be redirected to PayPal to complete your purchase. </p>
                     </div>
                     <div id="payment-wallet" class="payment-section">
-                        <p> Use Apple Pay to complete your purchase </p>
+                        <p> Use Apple Pay to complete your purchase. </p>
                     </div>
                 </div>
             </div>

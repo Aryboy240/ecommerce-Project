@@ -48,3 +48,14 @@ wallet.addEventListener("click", function() {
     wallet.classList.add("active");
 
 });
+
+// Function to redirect user to PayPal
+function goToPayPal() {
+    window.open('https://www.paypal.com/signin?returnUri=https%3A%2F%2Fwww.paypal.com%2Fmyaccount%2Ftransfer&state=%2F');
+
+}
+
+// Function to redirect user to Apple website
+function goToWallet() {
+    window.open('https://www.apple.com/uk/wallet/');
+}
