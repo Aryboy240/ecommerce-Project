@@ -40,19 +40,20 @@
 
     <!-- Product Grid -->
     <section class="product-grid" id="product-grid">
-        @foreach ($products as $product)
-        <div class="product-card" data-category="{{ $product->category->name }}">
-            <!-- Display Product Image -->
-            @if ($product->images->first())
-                <img src="{{ Storage::url($product->images->first()->image_path) }}" alt="{{ $product->name }}">
-            @else
-                <img src="/path/to/default-image.jpg" alt="Default Image">
-            @endif
-             <h3>{{ $product->name }}</h3>
-             <p>Price: ${{ $product->price }}</p>
-             <button>Add to Cart</button>
-        </div>
-        @endforeach
+      @foreach ($products as $product)
+      <div class="product-card" data-category="{{ $product->category->name }}">
+          <!-- Display Only Front Image -->
+          @foreach($product->images as $image)
+              @if($image->imageType && $image->imageType->name == 'front')
+                  <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                  @break  <!-- Break after showing the front image -->
+              @endif
+          @endforeach
+          <h3>{{ $product->name }}</h3>
+          <p>Price: ${{ $product->price }}</p>
+          <button>Add to Cart</button>
+      </div>
+      @endforeach
     </section>
 
     <!-- Include JavaScript -->
