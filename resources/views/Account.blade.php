@@ -19,7 +19,6 @@
   </head>
 
   <body>
-
     <!--Navigation  Bar-->
     <section class="nav-section">
       <!--Left nav-->
@@ -85,7 +84,7 @@
 
           <!--Account-->
           <li class="nav-item">
-            <a href="{{ route('login') }}" class="nav-link">
+            <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
               <div class="nav-item-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -130,10 +129,14 @@
     <!--Navigation  Bar End-->
 
     <!-- User Info -->
-    <section>
+    <section class="account-section">
         <div class = "username-heading">
           <!--Displays users name-->
           <h1> Welcome, {{ auth()->user()->name}} </h1>
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="logout-button">Logout</button>
+          </form>
         </div>
         <div class = "subheading">
           <h3>Your Account Details</h3>
@@ -153,8 +156,8 @@
         <h3>Update Your Information</h3>
       </div>
       @if(@session('success'))
-      <div style=" color: green;">{{ session('success')}}</div>              
-  @endif
+        <div style=" color: green;">{{ session('success')}}</div>              
+      @endif
 
       <div class="update-details-forms">
         <!-- Update Username Form -->

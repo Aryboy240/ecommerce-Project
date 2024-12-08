@@ -73,6 +73,8 @@ Route::get('/account', function () {
     return view('Account'); // Refers to resources/views/Account.blade.php
 })->name('account');
 
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
 Route::middleware(['auth'])->group(function(){
     Route::post('/update-username',[UserController::class, 'updateUsername'])->name('update.username');
     Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');

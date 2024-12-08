@@ -72,6 +72,13 @@
         <form action="/login" method="POST">
           @csrf <!-- Extra protection against cookies -->
 
+          <!-- Error message for invalid credentials -->
+          @if ($errors->has('loginError'))
+            <div style="color: red; margin-bottom: 10px">
+                {{ $errors->first('loginError') }}
+            </div>
+          @endif
+
           <!-- Username -->
           <div class="input">
             <span>Username</span>

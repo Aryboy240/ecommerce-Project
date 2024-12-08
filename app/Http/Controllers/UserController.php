@@ -45,23 +45,29 @@ class UserController extends Controller
     }
     
     // The login system wasn't implemented so I'll make a basic one for now. You can add to this one if you wish - Aryan
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $incomingFields = $request->validate([
             'loginUsername' => ['required'],
             'loginPassword' => ['required']
         ], [
-            // Need to input a username && password into the fields.
-            'loginUserName.required' => 'The username is required.',
+            // Need to input a username & password into the fields
+            'loginUsername.required' => 'The username is required.',
             'loginPassword.required' => 'The password is required.',
         ]);
-
-        if (auth()->attempt(['name' => $incomingFields['loginUsername'], 'password' => $incomingFields['loginPassword']])){
-            $request->session()->regenerate();
+    
+        // Attempt to authenticate the user
+        if (auth()->attempt(['name' => $incomingFields['loginUsername'], 'password' => $incomingFields['loginPassword']])) {
+            $request->session()->regenerate(); // Prevent session fixation attacks
+            return redirect('welcome')->with('success', 'You are now logged in!');
         }
-
-        return redirect('welcome') ->with('success', 'You are now logged in!');
+    
+        // If authentication fails, redirect back with an error message
+        return back()->withErrors([
+            'loginError' => 'The provided credentials do not match our records.',
+        ])->onlyInput('loginUsername'); // Retain the username input for convenience
     }
-
+    
     // There isn't a button to log out yet, I'm waiting for Aqsa to make the user accounts page first
     // Heres a basic logout function that can be applied straigh to the button in the accounts page - Aryan
     public function logout(){
