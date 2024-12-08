@@ -1,16 +1,15 @@
 <!--
-  Developer: Aqsa Amjad
-	University ID: 230066670
-  Function: Front end for the User Account page (for logged-in users)
+    Developer: Aqsa Amjad
+    University ID: 230066670
+    Function: Front end for the User Account page (for logged-in users)
 -->
 
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- JS -->
-    <script src="js/scrollBar.js"></script>
-    <script defer src="/js/theme.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href={{  asset('css/main.css') }}>
     <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
@@ -74,10 +73,10 @@
 
       <!--MIDDLE LOGO-->
       <a href="{{ route('welcome') }}">
-      <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
-      </div>
-    </a>
+        <div class="navbar-middle">
+            <img src="{{ asset('Images/circleLogo.png') }}">
+        </div>
+      </a>
 
 
       <!--Rigth nav-->
@@ -133,15 +132,17 @@
     <!-- User Info -->
     <section>
         <div class = "username-heading">
-          <h1> Welcome, [Username] </h1>
+          <!--Displays users name-->
+          <h1> Welcome, {{ auth()->user()->name}} </h1>
         </div>
         <div class = "subheading">
           <h3>Your Account Details</h3>
         </div>
         <div class="user-info">
-          <p><strong>Username:</strong> [insert username]</p>
-          <p><strong>Email:</strong> [insert email]</p>
-          <p><strong>D.O.B:</strong> [insert date of birth]</p>
+          <!--Displays user information-->
+          <p><strong>Username:</strong> {{ auth()->user()->name}}</p>
+          <p><strong>Email:</strong> {{ auth()->user()->email}}</p>
+          <p><strong>D.O.B:</strong> {{ date('d/m/Y',strtotime(auth()->user()->birthday))}}</p>
         </div>
       </div>
     </section>
@@ -151,6 +152,9 @@
       <div class="subheading"> 
         <h3>Update Your Information</h3>
       </div>
+      @if(@session('success'))
+      <div style=" color: green;">{{ session('success')}}</div>              
+  @endif
 
       <div class="update-details-forms">
         <!-- Update Username Form -->
@@ -159,10 +163,11 @@
             <h4>Update Username</h4>
           </div>
           <div class = "form-content">
-            <form method="POST">
+            <form action = "{{route('update.username') }}" method="POST">
+              @csrf 
               <!-- <label for="new-username">New Username:</label> -->
               <br>
-              <input type="text" id="new-username" name="new-username" placeholder = "New username">
+              <input type="text" id="new-username" name="new_username" placeholder = "New username">
               <br><br>
               <!-- <label for="password">Password:</label> -->
               <br>
@@ -179,18 +184,19 @@
             <h4>Update Password</h4>
           </div>
           <div class = "form-content">
-            <form method="POST">
-              <!-- <label for="current-password">Current Password:</label> -->
+            <!-- a link to the user controller-->
+            <form action=" {{ route('update.password') }}" method= "POST">
+              @csrf
               <br>
-              <input type="password" id="current-password" name="current-password" placeholder = "Current password">
+              <input type="password" id="current-password" name="current_password" placeholder = "Current password">
               <br><br>
               <!-- <label for="new-password">New Password:</label> -->
               <br>
-              <input type="password" id="new-password" name="new-password" placeholder = "New password">
+              <input type="password" id="new-password" name="new_password" placeholder = "New password">
               <br><br>
               <!-- <label for="confirm-new-password">Confirm New Password:</label> -->
               <br>
-              <input type="password" id="confirm-new-password" name="confirm-new-password" placeholder = "Confirm new password">
+              <input type="password" id="confirm-new-password" name="new_password_confirmation" placeholder = "Confirm new password">
               <br><br>
               <button type="submit">SUBMIT</button>
             </form>
@@ -203,10 +209,11 @@
             <h4>Update Email</h4>
           </div>
           <div class = "form-content">
-            <form method="POST">
+            <form  action=" {{ route('update.email') }}" method="POST">
+              @csrf
               <!-- <label for="new-email">New Email:</label> -->
               <br>
-              <input type="email" id="new-email" name="new-email" placeholder = "New email">
+              <input type="email" id="new-email" name="new_email" placeholder = "New email">
               <br><br>
               <!-- <label for="password"> Password:</label> -->
               <br>
@@ -222,3 +229,4 @@
 
   </body>
 </html>
+

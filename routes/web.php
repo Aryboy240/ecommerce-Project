@@ -43,18 +43,6 @@ Route::get('/sproduct', function () {
     return view('sproduct'); // Refers to resources/views/sproduct.blade.php
 })->name('sproduct');
 
-Route::get('/login', function () {
-    return view('Login'); // Refers to resources/views/Login.blade.php
-})->name('login');
-
-Route::get('/register', function () {
-    return view('Register'); // Refers to resources/views/Register.blade.php
-})->name('register');
-
-Route::get('/account', function () {
-    return view('Account'); // Refers to resources/views/Account.blade.php
-})->name('account');
-
 Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
@@ -67,6 +55,29 @@ Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
 
+/*
+|--------------------------------------------------------------------------
+| Account Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/login', function () {
+    return view('Login'); // Refers to resources/views/Login.blade.php
+})->name('login');
+
+Route::get('/register', function () {
+    return view('Register'); // Refers to resources/views/Register.blade.php
+})->name('register');
+
+Route::get('/account', function () {
+    return view('Account'); // Refers to resources/views/Account.blade.php
+})->name('account');
+
+Route::middleware(['auth'])->group(function(){
+    Route::post('/update-username',[UserController::class, 'updateUsername'])->name('update.username');
+    Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
+    Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
+});
 
 /*
 |--------------------------------------------------------------------------
