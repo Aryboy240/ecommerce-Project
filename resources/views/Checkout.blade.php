@@ -160,13 +160,13 @@
                         <button class="payment-method" id="paypal" onclick="goToPayPal()">
                             PayPal
                             <div class = "payment-logos">
-                                <img src="{{ asset('Images/brands/paypal.png') }}" alt="Mastercard" class="payment-brand">
+                                <img src="{{ asset('Images/brands/paypal.png') }}" alt="PayPal" class="payment-brand">
                             </div>
                         </button>
                         <button class="payment-method" id="wallet" onclick="goToWallet()">
                             Apple Pay
                             <div class = "payment-logos">
-                                <img src="{{ asset('Images/brands/applepay.png') }}" alt="Mastercard" class="payment-brand">
+                                <img src="{{ asset('Images/brands/applepay.png') }}" alt="Apple Pay" class="payment-brand">
                             </div>
                         </button>
                     </div>
