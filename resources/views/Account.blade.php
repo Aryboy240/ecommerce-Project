@@ -9,7 +9,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <!-- JS -->
+    <script defer src="/js/theme.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href={{  asset('css/main.css') }}>
     <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
@@ -19,7 +20,7 @@
   </head>
 
   <body>
-    <!--Navigation  Bar-->
+    <!-- Navigation  Bar:: Aryan Kora -->
     <section class="nav-section">
       <!--Left nav-->
       <nav class="navbar-left">
@@ -42,7 +43,7 @@
 
           <!--About-->
           <li class="nav-item">
-            <a href="{{ route('contact') }}" class="nav-link">
+            <a href="{{ route('about') }}" class="nav-link">
               <div class="nav-item-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -56,7 +57,7 @@
 
           <!--Store-->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('product') }}" class="nav-link">
               <div class="nav-item-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -71,9 +72,9 @@
       </nav>
 
       <!--MIDDLE LOGO-->
-      <a href="{{ route('welcome') }}">
+      <a id="themeButton">
         <div class="navbar-middle">
-            <img src="{{ asset('Images/circleLogo.png') }}">
+          <img src="{{ asset('Images/circleLogo.png') }}">
         </div>
       </a>
 
@@ -98,7 +99,7 @@
 
           <!--Order-->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('cart.view') }}" class="nav-link">
               <div class="nav-item-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -112,7 +113,7 @@
 
           <!--Search-->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('search') }}" class="nav-link">
               <div class="nav-item-wrapper">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -126,7 +127,7 @@
         </ul>
       </nav>
     </section>
-    <!--Navigation  Bar End-->
+    <!-- Navigation  Bar End -->
 
     <!-- User Info -->
     <section class="account-section">
@@ -158,6 +159,16 @@
       @if(@session('success'))
         <div style=" color: green;">{{ session('success')}}</div>              
       @endif
+      @if ($errors->any())
+        <div style="color: red;">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li> 
+                @endforeach
+            </ul>
+        </div>
+      @endif
+
 
       <div class="update-details-forms">
         <!-- Update Username Form -->
@@ -165,20 +176,22 @@
           <div class="form-title">
             <h4>Update Username</h4>
           </div>
-          <div class = "form-content">
-            <form action = "{{route('update.username') }}" method="POST">
-              @csrf 
-              <!-- <label for="new-username">New Username:</label> -->
-              <br>
-              <input type="text" id="new-username" name="new_username" placeholder = "New username">
-              <br><br>
-              <!-- <label for="password">Password:</label> -->
-              <br>
-              <input type="password" id="password" name="password" placeholder = "Password">
-              <br><br>
-              <button type="submit">SUBMIT</button>
+          <div class="form-content">
+            <form action="{{ route('update.username') }}" method="POST" id="errorProne">
+                @csrf
+                <input type="text" id="new-username" name="new_username" placeholder="New username" value="{{ old('new_username') }}">
+                @error('new_username')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <input type="password" id="password" name="password" placeholder="Password">
+                @error('password')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <button type="submit">SUBMIT</button>
             </form>
-          </div>
+          </div>        
         </div>
 
         <!-- Update Password Form -->
@@ -186,22 +199,25 @@
           <div class="form-title">
             <h4>Update Password</h4>
           </div>
-          <div class = "form-content">
-            <!-- a link to the user controller-->
-            <form action=" {{ route('update.password') }}" method= "POST">
-              @csrf
-              <br>
-              <input type="password" id="current-password" name="current_password" placeholder = "Current password">
-              <br><br>
-              <!-- <label for="new-password">New Password:</label> -->
-              <br>
-              <input type="password" id="new-password" name="new_password" placeholder = "New password">
-              <br><br>
-              <!-- <label for="confirm-new-password">Confirm New Password:</label> -->
-              <br>
-              <input type="password" id="confirm-new-password" name="new_password_confirmation" placeholder = "Confirm new password">
-              <br><br>
-              <button type="submit">SUBMIT</button>
+          <div class="form-content">
+            <form action="{{ route('update.password') }}" method="POST" id="errorProne">
+                @csrf
+                <input type="password" id="current-password" name="current_password" placeholder="Current password">
+                @error('current_password')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <input type="password" id="new-password" name="new_password" placeholder="New password">
+                @error('new_password')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <input type="password" id="confirm-new-password" name="new_password_confirmation" placeholder="Confirm new password">
+                @error('new_password_confirmation')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <button type="submit">SUBMIT</button>
             </form>
           </div>
         </div>
@@ -211,22 +227,23 @@
           <div class="form-title">
             <h4>Update Email</h4>
           </div>
-          <div class = "form-content">
-            <form  action=" {{ route('update.email') }}" method="POST">
-              @csrf
-              <!-- <label for="new-email">New Email:</label> -->
-              <br>
-              <input type="email" id="new-email" name="new_email" placeholder = "New email">
-              <br><br>
-              <!-- <label for="password"> Password:</label> -->
-              <br>
-              <input type="password" id="password" name="password" placeholder = "Password">
-              <br><br>
-              <button type="submit">SUBMIT</button>
+          <div class="form-content">
+            <form action="{{ route('update.email') }}" method="POST" id="errorProne">
+                @csrf
+                <input type="email" id="new-email" name="new_email" placeholder="New email" value="{{ old('new_email') }}">
+                @error('new_email')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <input type="password" id="password" name="password" placeholder="Password">
+                @error('password')
+                    <span style="color: rgb(0, 0, 0);">{{ $message }}</span>
+                @enderror
+                <br><br>
+                <button type="submit">SUBMIT</button>
             </form>
-          </div>
+          </div>      
         </div>
-      </div>
     </section>
 
 

@@ -4,7 +4,6 @@
     Function: Front end for the Products page
 -->
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +45,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="{{ route('contact') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -77,7 +76,7 @@
     <!--MIDDLE LOGO-->
     <a id="themeButton">
       <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
+        <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
 
@@ -88,7 +87,7 @@
 
         <!--Account-->
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -102,7 +101,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="{{ route('shoppingCart') }}" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -116,7 +115,7 @@
 
         <!--Search-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('search') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -132,125 +131,137 @@
   </section>
   <!-- Navigation  Bar End -->
 
-    <!-- Main Content -->
-    <main>
-        <section class="prodetails">
-            <div class="single-pro-image">
-                <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" id="MainImg" alt="Product 1">
-                
-                <div class="small-img-group">
-                    <div class="small-img-col">
-                        <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" class="small-img" alt="Product 1 View 1">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="{{ asset('Images/products/glasses2.png') }}" width="100%" class="small-img" alt="Product 1 View 2">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="{{ asset('Images/products/glasses3.png') }}" width="100%" class="small-img" alt="Product 1 View 3">
-                    </div>
-                </div>
-            </div>
+  <!-- Main Content:: Esta -->
+  <section class="prodetails">
+      <div class="single-pro-image">
+          <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" id="MainImg" alt="Product 1">
+          
+          <div class="small-img-group">
+              <div class="small-img-col">
+                  <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" class="small-img" alt="Product 1 View 1">
+              </div>
+              <div class="small-img-col">
+                  <img src="{{ asset('Images/products/glasses2.png') }}" width="100%" class="small-img" alt="Product 1 View 2">
+              </div>
+              <div class="small-img-col">
+                  <img src="{{ asset('Images/products/glasses3.png') }}" width="100%" class="small-img" alt="Product 1 View 3">
+              </div>
+          </div>
+      </div>
 
-            <div class="single-pro-details">
-                <h6>Home / Shop</h6>
-                <h4>Square Frame Glasses</h4>
-                <h2>$199.99</h2>
-                
-                <select>
-                    <option>Select Frame Size</option>
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                </select>
-                
-                <div class="quantity">
-                    <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" value="1" min="1">
-                </div>
-                
-                <button class="add-to-cart">Add to Cart</button>
-                
-                <h4>Product Details</h4>
-                <p>Experience timeless elegance with our Classic Round Frame Glasses. 
-                    Crafted from premium materials, these versatile frames offer both 
-                    style and comfort. Features include anti-reflective coating, 
-                    scratch-resistant lenses, and adjustable nose pads for the perfect fit.</p>
-                
-                <div class="product-features">
-                    <h4>Features</h4>
-                    <ul>
-                        <li>Premium acetate frame</li>
-                        <li>Anti-reflective coating</li>
-                        <li>Scratch-resistant lenses</li>
-                        <li>Adjustable nose pads</li>
-                        <li>UV protection</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+      <div class="single-pro-details">
+          <h6>Home / Shop</h6>
+          <h4>Square Frame Glasses</h4>
+          <h2>$199.99</h2>
+          
+          <select>
+              <option>Select Frame Size</option>
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+          </select>
+          
+          <div class="quantity">
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" value="1" min="1">
+          </div>
+          
+          <button class="add-to-cart">Add to Cart</button>
+          
+          <h4>Product Details</h4>
+          <p>Experience timeless elegance with our Classic Round Frame Glasses. 
+              Crafted from premium materials, these versatile frames offer both 
+              style and comfort. Features include anti-reflective coating, 
+              scratch-resistant lenses, and adjustable nose pads for the perfect fit.</p>
+          
+          <div class="product-features">
+              <h4>Features</h4>
+              <ul>
+                  <li>Premium acetate frame</li>
+                  <li>Anti-reflective coating</li>
+                  <li>Scratch-resistant lenses</li>
+                  <li>Adjustable nose pads</li>
+                  <li>UV protection</li>
+              </ul>
+          </div>
+      </div>
+  </section>
+  <!-- Related Products Section:: Esta -->
+  <section class="related-products">
+      <div class="product-pairs">
+          <h2>Complete Your Look</h2>
+          
+          <!-- Paired Products -->
+          <div class="product-container">
+              <div class="product-card">
+                  <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Matching Case">
+                  <h3>Matching Case</h3>
+                  <p>Price: $39.99</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+              <div class="product-card">
+                  <img src="{{ asset('Images/products/glasses cleaner.jpg') }}" alt="Product 10">
+                  <h3>Glasses Cleaner</h3>
+                  <p>Price: $29.99</p>
+                  <button class="add-to-cart-btn">Add to Cart</button>
+              </div>
+          </div>
+      </div>
+  </section>
 
-        <!-- Related Products Section -->
-        <section class="related-products">
-            <div class="product-pairs">
-                <h2>Complete Your Look</h2>
-                
-                <!-- Paired Products -->
-                <div class="product-container">
-                    <div class="product-card">
-                        <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Matching Case">
-                        <h3>Matching Case</h3>
-                        <p>Price: $39.99</p>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
-                    <div class="product-card">
-                        <img src="{{ asset('Images/products/glasses cleaner.jpg') }}" alt="Product 10">
-                        <h3>Glasses Cleaner</h3>
-                        <p>Price: $29.99</p>
-                        <button class="add-to-cart-btn">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div>
-            <h3>Customer Support</h3>
-            <p>
-                <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon">
-                1 (800) 555-OPTQ
-            </p>
-            <p>
-                <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="Email Icon"> 
-                <a href="mailto:support@optique.com">support@optique.com</a>
-            </p>
-            <p>Live Chat Available</p>
-        </div>
-        <div>
-            <h3>Shop</h3>
-            <a href="#">Glasses</a>
-            <a href="#">Sunglasses</a>
-            <a href="#">Accessories</a>
-            <a href="#">Contact Lenses</a>
-        </div>
-        <div>
-            <h3>About Optique</h3>
-            <a href="#">Our Story</a>
-            <a href="#">Testimonials</a>
-            <a href="#">Careers</a>
-            <a href="#">Store Locator</a>
-        </div>
-        <div class="social-icons">
-            <h3>Follow Us</h3>
-            <a href="#"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-            <a href="#"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-            <a href="#"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-            <a href="#"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" /> </a>
-        </div>
-        <div class="powered-by">
-            <p>© Optique. Crafted for Visionaries.</p>
-        </div>
-    </footer>
+  <!-- Footer Section:: Esta -->
+  <div class="footer">
+    <div>
+      <h3>Customer Support</h3>
+      <p>
+        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+        1 (800) 555-OPTQ
+      </p>
+      <p>
+        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="mailto:support@optique.com">support@optique.com</a>
+      </p>
+      <p>
+        <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="{{ route('contact') }}">Contact Us!</a>
+      </p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      <a href="#">Glasses</a>
+      <a href="#">Sunglasses</a>
+      <a href="#">Accessories</a>
+      <a href="#">Contact Lenses</a>
+    </div>
+    <div>
+      <h3>About Optique</h3>
+      <a href="#">Our Story</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Careers</a>
+      <a href="#">Store Locator</a>
+    </div>
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Facebook</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Instagram</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Twitter</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Pintrest</span>
+      </a>
+    </div>
+    <div class="powered-by">
+      <p>© Optique. Crafted for Visionaries.</p>
+    </div>
+  </div>
 </body>
 </html>

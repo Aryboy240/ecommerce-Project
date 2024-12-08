@@ -43,6 +43,10 @@ Route::get('/sproduct', function () {
     return view('sproduct'); // Refers to resources/views/sproduct.blade.php
 })->name('sproduct');
 
+Route::get('/about', function () {
+    return view('about'); // Refers to resources/views/about.blade.php
+})->name('about');
+
 Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');

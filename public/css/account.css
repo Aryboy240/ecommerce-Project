@@ -20,6 +20,11 @@ body {
     padding-bottom: 30px;
 }
 
+#errorProne {
+    display: flex;
+    flex-direction: column;
+}
+
 /* === HEADINGS === */
 
 /* Styles for the main title (username heading) */
