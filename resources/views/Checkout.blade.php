@@ -152,7 +152,7 @@
                     <div class="payment-methods">
                         <button class="payment-method" id="card">Credit/Debit Card</button>
                         <button class="payment-method" id="paypal">PayPal</button>
-                        <button class="payment-method" id="wallet   ">Apple Pay</button>
+                        <button class="payment-method" id="wallet">Apple Pay</button>
                     </div>
                     <div id="payment-card" class="form-grid payment-section">
                         <div class="form-group full">
@@ -210,5 +210,6 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset('js\checkout_page.js') }}"></script>
 </body>
 </html>
