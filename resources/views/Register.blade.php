@@ -5,7 +5,7 @@
 
     Developer: Nikhil Kainth
 	  University ID: 230069888
-    Function: Front end modifications and back end
+    Function: Backend for registeration and front end modifications for backend
 -->
 
 <head>

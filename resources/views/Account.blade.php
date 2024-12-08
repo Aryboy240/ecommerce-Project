@@ -3,15 +3,14 @@
 	University ID: 230066670
   Function: Front end for the User Account page (for logged-in users)
 -->
-    
-
 
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <!-- JS -->
+    <script src="js/scrollBar.js"></script>
+    <script defer src="/js/theme.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href={{  asset('css/main.css') }}>
     <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>

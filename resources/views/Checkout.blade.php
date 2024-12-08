@@ -1,8 +1,20 @@
+<!--
+    Developer: Oyinlola Arowolo
+	University ID: 230402373
+    Function: Front end for the checkout page
+
+    Developer: Aqsa Amjad
+    University ID: 230066670
+    Function: Front end for the checkout page
+-->
 
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- JS -->
+    <script defer src="{{ asset('js\checkout_page.js') }}"></script>
+    <script defer src="/js/theme.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -228,6 +240,5 @@
             </div>
         </div>
     </section>
-    <script src="{{ asset('js\checkout_page.js') }}"></script>
 </body>
 </html>
