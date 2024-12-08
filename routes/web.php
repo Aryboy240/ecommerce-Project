@@ -75,3 +75,7 @@ Route::post('/add-to-cart', [ShoppingCartController::class, 'addToCart'])->name(
 Route::get('/account', function () {
     return view('Account'); // Refers to resources/views/Account.blade.php
 })->name('account');
+
+Route::get('/checkout', function () {
+    return view('Checkout');
+})->name('checkout');
