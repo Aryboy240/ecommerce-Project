@@ -247,20 +247,18 @@ input:focus {
 /*
     Developer: Aqsa Amjad
     University ID: 230066670
-    Function: Styling for different payment methods
+    Function: Styling for different payment methods section
 */
 
 /* === BUTTONS STYLING === */
 
 .payment-method {
     padding:15px;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */
-
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition for hover effects */  
 }   
 
 .payment-method:hover{
     transform: translateY(-5px); /* Moves the button up slightly */
-
     background-color: var(--mint);
 }
 
@@ -282,9 +280,23 @@ input:focus {
     border-top-right-radius: 20px;
 }
 
+/* === BRAND LOGOS STYLING === */
+
+.payment-logos {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:0;
+}
+.payment-brand {
+    padding:0;
+    height: 30px; /* Set the height to make the images smaller */
+    width: auto; /* Maintain the aspect ratio */
+}
 /* === PAYMENT SECTIONS STYLING === */
 
 .payment-section {
+    padding-top: 20px;
     display: none; /* Hide all by default */
 }
 

@@ -150,9 +150,25 @@
                     <h2>Payment information</h2>
                     <p>Please select your payment method.</p>
                     <div class="payment-methods">
-                        <button class="payment-method" id="card">Credit/Debit Card</button>
-                        <button class="payment-method" id="paypal" onclick="goToPayPal()">PayPal</button>
-                        <button class="payment-method" id="wallet" onclick="goToWallet()">Apple Pay</button>
+                        <button class="payment-method" id="card">
+                            Credit/Debit Card
+                            <div class = "payment-logos">
+                                <img src="{{ asset('Images/brands/mastercard.png') }}" alt="Mastercard" class="payment-brand">
+                                <img src="{{ asset('Images/brands/visa.png') }}" alt="Visa" class="payment-brand">
+                            </div>
+                        </button>
+                        <button class="payment-method" id="paypal" onclick="goToPayPal()">
+                            PayPal
+                            <div class = "payment-logos">
+                                <img src="{{ asset('Images/brands/paypal.png') }}" alt="Mastercard" class="payment-brand">
+                            </div>
+                        </button>
+                        <button class="payment-method" id="wallet" onclick="goToWallet()">
+                            Apple Pay
+                            <div class = "payment-logos">
+                                <img src="{{ asset('Images/brands/applepay.png') }}" alt="Mastercard" class="payment-brand">
+                            </div>
+                        </button>
                     </div>
                     <div id="payment-card" class="form-grid payment-section">
                         <div class="form-group full">
