@@ -50,6 +50,7 @@
 
 /* Form Input Styling */
 .form-group {
+    padding-top: 15px;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -296,7 +297,7 @@ input:focus {
 /* === PAYMENT SECTIONS STYLING === */
 
 .payment-section {
-    padding-top: 20px;
+    padding-top: 10px;
     display: none; /* Hide all by default */
 }
 
