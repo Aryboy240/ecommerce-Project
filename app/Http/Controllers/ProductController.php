@@ -25,13 +25,21 @@ class ProductController extends Controller
         if ($request->has('search') && $request->search !== null) {
             $searchTerm = $request->search;
             $query->where('name', 'LIKE', "%{$searchTerm}%")
-                  ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
 
-        // Retrieve products with their related images and image types
-        $products = $query->with(['images.imageType'])->get();
+        // Category filtering
+        if ($request->has('category') && $request->category !== 'all') {
+            $query->whereHas('category', function ($query) use ($request) {
+                $query->where('name', $request->category);
+            });
+        }
+
+        // Retrieve products with their related images, image types, and category
+        $products = $query->with(['images.imageType', 'category'])->get();
 
         // Return the view with the products
-        return view('products.searchHTML', compact('products'));
+        return view('search', compact('products'));
     }
+
 }

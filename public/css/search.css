@@ -5,7 +5,7 @@
 /* Developer: Abdulrahman Muse
    university ID: 230228946
    function: search page css
-*/ 
+*/
 
 /* General Page Styling */
 body {
@@ -14,6 +14,22 @@ body {
     background-color: #0e0e0e; /* Dark background */
     color: white; /* Light text for readability */
     font-family: "Lato", sans-serif;
+}
+
+.HomeIcon {
+    width: 100px;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.home {
+    color: var(--lighter);
+    float: right;
+    text-decoration: none;
+    list-style: none;
+    transition: var(--transition-speed);
+    opacity: 0.7;
 }
 
 /* Search Header */
@@ -55,6 +71,18 @@ body {
     color: black;
     border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar a {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #00bfae;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
     transition: background-color 0.3s;
 }
 
