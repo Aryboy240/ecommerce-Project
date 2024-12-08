@@ -8,12 +8,9 @@
     Function: Added the backend for logins 
 -->
 
-<!DOCTYPE html>
 <head>
   <title>Login</title>
-  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!--CSS-->
   <link rel="stylesheet" href="css/login.css" />
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -31,6 +28,12 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
+  />
+  <!--Meta-->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1,
+    user-scalable=0"
   />
 </head>
 
