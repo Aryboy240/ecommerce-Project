@@ -58,7 +58,8 @@ Route::get('/contact', function () {
 */
 
 Route::get('/search', function () {
-    return view('Search'); // Refers to resources/views/search.blade.php
+    $products = Product::with('images', 'category')->get(); // Fetch products with relationships
+    return view('search', ['products' => $products]); // Pass data to the view with the correct variable name
 })->name('search');
 
 /*
