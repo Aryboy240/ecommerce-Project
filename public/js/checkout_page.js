@@ -23,21 +23,18 @@ function hideAllSections() {
 
 // Event listener for the credit/debit card button
 card.addEventListener("click", function() {
-    console.log("Card button clicked");  // Debugging log
     hideAllSections();  // Hide all sections first
     cardSection.classList.add("active");  // Show card section
 });
 
 // Event listener for the PayPal button
 payPal.addEventListener("click", function() {
-    console.log("PayPal button clicked");  // Debugging log
     hideAllSections();  // Hide all sections first
     payPalSection.classList.add("active");  // Show PayPal section
 });
 
 // Event listener for the wallet button
 wallet.addEventListener("click", function() {
-    console.log("Wallet button clicked");  // Debugging log
     hideAllSections();  // Hide all sections first
     walletSection.classList.add("active");  // Show wallet section
 });
