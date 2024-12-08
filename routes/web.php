@@ -8,7 +8,6 @@ use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

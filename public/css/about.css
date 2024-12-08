@@ -79,6 +79,7 @@ body {
     padding: 100px 20px;
     margin-left: 200px; /* Leaves space for the nav bar */
     text-align: center;
+    color: white;
 }
 
 .section.visible {
@@ -120,7 +121,7 @@ body {
     background-color: #181818;
     color: white;
     padding: 20px;
-    position: fixed; /* Sticks to the bottom */
+    position: absolute; /* Sticks to the bottom */
     bottom: 0;
     width: 100%;
     font-size: 0.9rem; /* Small text for copyright */
