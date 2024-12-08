@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <head>
   <title>Login</title>
   <meta charset="UTF-8" />
