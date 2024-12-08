@@ -111,6 +111,56 @@
         </div>
     </section>
     <section class="container">
+        <div class="form-section">
+            <h2>Payment information</h2>
+            <p>Please select your payment method.</p>
+            <div class="payment-methods">
+                <button class="payment-method" id="card">
+                    Credit/Debit Card
+                    <div class = "payment-logos">
+                        <img src="{{ asset('Images/brands/mastercard.png') }}" alt="Mastercard" class="payment-brand">
+                        <img src="{{ asset('Images/brands/visa.png') }}" alt="Visa" class="payment-brand">
+                    </div>
+                </button>
+                <button class="payment-method" id="paypal" onclick="goToPayPal()">
+                    PayPal
+                    <div class = "payment-logos">
+                        <img src="{{ asset('Images/brands/paypal.png') }}" alt="Mastercard" class="payment-brand">
+                    </div>
+                </button>
+                <button class="payment-method" id="wallet" onclick="goToWallet()">
+                    Apple Pay
+                    <div class = "payment-logos">
+                        <img src="{{ asset('Images/brands/applepay.png') }}" alt="Mastercard" class="payment-brand">
+                    </div>
+                </button>
+            </div>
+            <div id="payment-card" class="form-grid payment-section">
+                <div class="form-group full">
+                    <label for="card-name">Card Name</label>
+                    <input type="text" id="card-name" name="card-name" required>
+                </div>
+                <div class="form-group full">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" name="card-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" name="expiry-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" required>
+                </div>
+                <button id="confirm-details">Confirm Card Details</button>
+            </div>
+            <div id="payment-paypal" class="payment-section">
+                <p> You will be redirected to PayPal to complete your purchase. </p>
+            </div>
+            <div id="payment-wallet" class="payment-section">
+                <p> Use Apple Pay to complete your purchase. </p>
+            </div>
+        </div>
         <div class="checkout-grid">
             <div class="checkout-form">
                 <div class="form-section">
@@ -145,56 +195,6 @@
                             <label for="postcode">Postcode</label>
                             <input type="text" id="postcode" name="postcode" required>
                         </div>
-                    </div>
-                </div>
-                <div class="form-section">
-                    <h2>Payment information</h2>
-                    <p>Please select your payment method.</p>
-                    <div class="payment-methods">
-                        <button class="payment-method" id="card">
-                            Credit/Debit Card
-                            <div class = "payment-logos">
-                                <img src="{{ asset('Images/brands/mastercard.png') }}" alt="Mastercard" class="payment-brand">
-                                <img src="{{ asset('Images/brands/visa.png') }}" alt="Visa" class="payment-brand">
-                            </div>
-                        </button>
-                        <button class="payment-method" id="paypal" onclick="goToPayPal()">
-                            PayPal
-                            <div class = "payment-logos">
-                                <img src="{{ asset('Images/brands/paypal.png') }}" alt="Mastercard" class="payment-brand">
-                            </div>
-                        </button>
-                        <button class="payment-method" id="wallet" onclick="goToWallet()">
-                            Apple Pay
-                            <div class = "payment-logos">
-                                <img src="{{ asset('Images/brands/applepay.png') }}" alt="Mastercard" class="payment-brand">
-                            </div>
-                        </button>
-                    </div>
-                    <div id="payment-card" class="form-grid payment-section">
-                        <div class="form-group full">
-                            <label for="card-name">Card Name</label>
-                            <input type="text" id="card-name" name="card-name" required>
-                        </div>
-                        <div class="form-group full">
-                            <label for="card-number">Card Number</label>
-                            <input type="text" id="card-number" name="card-number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="expiry-date">Expiry Date</label>
-                            <input type="text" id="expiry-date" name="expiry-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="cvv">CVV</label>
-                            <input type="text" id="cvv" name="cvv" required>
-                        </div>
-                        <button id="confirm-details">Confirm Card Details</button>
-                    </div>
-                    <div id="payment-paypal" class="payment-section">
-                        <p> You will be redirected to PayPal to complete your purchase. </p>
-                    </div>
-                    <div id="payment-wallet" class="payment-section">
-                        <p> Use Apple Pay to complete your purchase. </p>
                     </div>
                 </div>
             </div>
