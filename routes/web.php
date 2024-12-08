@@ -29,6 +29,17 @@ Route::get('/contact', function () {
     return view('Contact'); // Refers to resources/views/contact.blade.php
 })->name('contact');
 
-Route::get('/account', function () {
-    return view('Account'); // Refers to resources/views/Account.blade.php
-})->name('account');
+// Route::get('/account', function () {
+//     return view('Account'); // Refers to resources/views/Account.blade.php
+// })->name('account');
+
+Route::get('/account',[UserController::class,'account'])
+->middleware('auth')
+->name('account');//Refers to resources/views/Account.blade.php with an authentication function
+
+Route::middleware(['auth'])->group(function(){
+    Route::post('/update-username',[UserController::class, 'updateUsername'])->name('update.username');
+    Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
+    Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
+
+});

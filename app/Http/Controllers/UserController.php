@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -67,5 +68,57 @@ class UserController extends Controller
         auth()->logout();
         return redirect('welcome');
     }
+
+    // This function displays the account page - Hussen
+    public function account(){
+        $user = auth()->user();
+        return view('Account',['user' => $user]);
+    }
+
+    //This allows the user to update their username in the account page - Hussen
+    public function updateUsername(Request $request){
+        $request->validate([
+            'new_username' => 'required|string|max:255|unique:users,username,'.auth()->id(),
+            'password' => 'required|current_password',
+
+        ]);
+
+        auth()->user()->update([
+            'username' => $request->input('new_username')
+        ]);
+        return back()->with('success','Successfully updated your Username!!');
+
+    }
+
+    //This allows the user to update their email in the account page - Hussen
+    public function updateEmail(Request $request){
+        $request->validate([
+            'new_email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
+            'password' => 'required|current_password',
+        ]);
+
+        auth()->user()->update([
+            'email' => $request->new_email
+        ]);
+        return back()->with('success','Successfully updated your Email!');
+
+    }
+
+    //This allows the user to update their password in the account page - Hussen
+    public function updatePassword(Request $request){
+        $request->validate([
+           'current_password' => 'required|current_password',
+           'new_password' => 'required|string|min:8|confirmed'        
+        ]);
+
+        auth()->user()->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+        
+        return back()->with('success','Successfully updated your Password!');
+
+    }
+
+
 
 }
