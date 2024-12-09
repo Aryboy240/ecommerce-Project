@@ -13,7 +13,7 @@
    <title>Shopping Cart - Optique</title>
 </head>
 <body>
-  <!-- Remove item from cart function -->
+  <!-- Dynamic cart functions:: Aryan Kora -->
   <script>
     function removeItem(cartItemId) {
         // Send AJAX request to remove the item
@@ -39,6 +39,38 @@
             console.error('Error removing item:', error);
         });
     }
+
+    function updateQuantity(selectElement, itemId) {
+    const quantity = selectElement.value;
+
+    fetch('/cart/update', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        body: JSON.stringify({
+            cart_item_id: itemId,
+            quantity: quantity
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            // Update the total price for the individual item
+            document.getElementById(`total_${itemId}`).textContent = `${parseFloat(data.total_price).toFixed(2)}`;
+
+            // Update the overall cart total
+            document.getElementById('subtotal').textContent = `${parseFloat(data.subtotal).toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `${parseFloat(data.cart_total).toFixed(2)}`;
+        }
+    })
+    .catch(error => console.error('Error updating quantity:', error));
+    }
+
+
   </script>
 
   <!-- Navigation  Bar:: Aryan Kora -->

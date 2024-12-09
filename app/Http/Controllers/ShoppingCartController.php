@@ -103,53 +103,60 @@ class ShoppingCartController extends Controller
             if (!Auth::check()) {
                 return response()->json(['error' => 'User not authenticated'], 401);
             }
-
+    
+            // Validate the request
             $validator = Validator::make($request->all(), [
                 'cart_item_id' => 'required|exists:shopping_cart_items,id',
                 'quantity' => 'required|integer|min:1'
             ]);
-
+    
             if ($validator->fails()) {
                 return response()->json([
                     'error' => $validator->errors()->first()
                 ], 422);
             }
-
+    
             DB::beginTransaction();
-
+    
+            // Find the cart item and its associated product
             $cartItem = ShoppingCartItem::where('user_id', Auth::id())
                 ->with('product')
                 ->findOrFail($request->cart_item_id);
-
+    
             $quantityDifference = $request->quantity - $cartItem->quantity;
-            
-            // Check if enough stock for quantity increase
+    
+            // Check if enough stock is available for the requested quantity increase
             if ($quantityDifference > 0 && $cartItem->product->stock_quantity < $quantityDifference) {
                 return response()->json([
                     'error' => 'Not enough stock available'
                 ], 422);
             }
-
+    
             // Update stock
             $cartItem->product->increment('stock_quantity', -$quantityDifference);
             $cartItem->update(['quantity' => $request->quantity]);
-
-            // Calculate new cart total
+    
+            // Calculate the new total for this item
+            $itemTotal = $cartItem->product->price * $cartItem->quantity;
+    
+            // Recalculate the overall cart total
             $total = ShoppingCartItem::where('user_id', Auth::id())
                 ->with('product')
                 ->get()
-                ->sum(function($item) {
+                ->sum(function ($item) {
                     return $item->product->price * $item->quantity;
                 });
-
+    
             DB::commit();
-
+    
+            // Return the updated totals
             return response()->json([
                 'message' => 'Cart updated successfully',
-                'cart_item' => $cartItem,
-                'total' => $total
+                'total_price' => $itemTotal,
+                'subtotal' => $total,
+                'cart_total' => $total // Assuming you might add shipping, adjust accordingly
             ]);
-
+    
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([
@@ -157,6 +164,7 @@ class ShoppingCartController extends Controller
             ], 500);
         }
     }
+    
 
     /**
      * Remove an item from the cart.
