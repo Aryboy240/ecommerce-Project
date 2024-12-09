@@ -1,3 +1,9 @@
+/* 
+    Developer: Aryan Kora
+    university ID: 230059030
+    function: Adding to the cart backend
+*/
+
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".add-to-cart");
     const forms = document.querySelectorAll(".add-to-cart-form");

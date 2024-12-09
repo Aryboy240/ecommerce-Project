@@ -1,3 +1,9 @@
+<!--
+    Developer: Aryan Kora
+    university ID: 230059030
+    function: Search page backend
+-->
+
 <!-- Layouts are basically reusable templates for an application's structure -->
 <!-- You'd use a layout when a page would have, well, different layouts -->
 <!-- This makes it easier to dynamically update the same page without having to make duplicate ones -->
