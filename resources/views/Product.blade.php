@@ -4,9 +4,7 @@
     Function: Front end for the Products page
 -->
 
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +46,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="{{ route('contact') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -90,7 +88,7 @@
 
         <!--Account-->
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -104,7 +102,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="{{ route('shoppingCart') }}" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -118,7 +116,7 @@
 
         <!--Search-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('search') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->

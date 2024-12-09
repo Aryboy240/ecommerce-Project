@@ -1,25 +1,63 @@
 <!--
-    Developer: Oyinlola Arowolo
-	  University ID: 230402373
-    Function: Front end for the Products page
+    Developer: Abdulrahman Muse
+    University ID: 230228946
+    Function: about page front end
 -->
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Add meta description for SEO -->
-    <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
-    <!-- JS -->
-    <script defer src="/js/theme.js"></script>
-    <script defer src="js/scrollReveal.js"></script>
-    <script defer src="{{ asset('js/product_page.js') }}"></script>
-    <script src="js/scrollBar.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
-    <title>Optique</title>
+    <title>About Us</title>
+    <!-- Linking the CSS file -->
+    <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/aryansExtras.css') }}" rel="stylesheet">
+    <style>
+        /* I added hover effects for footer logos to make the interaction more dynamic */
+        .about-social-footer-links img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .about-social-footer-links img:hover {
+            transform: scale(1.2);
+        }
+
+        /* I wanted the footer text to stand out, so I made it larger and bolder */
+        .about-footer p {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Center the section content and align with middle logo */
+        .section {
+            text-align: left;
+            font-size: 25px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 40px;
+            border: 8px ridge #2a7f62;
+            background-color: #222;
+            box-sizing: border-box;
+          }
+
+          h1 {
+              font-size: 36px;
+              color: #4CAF50;
+              margin-bottom: 20px;
+          }
+
+          p {
+              font-size: 25px;
+              line-height: 1.6;
+          }
+
+          ul {
+              font-size: 20px; /* Reduced font size for bullet points */
+              line-height: 1.6;
+          }
+    </style>
 </head>
 <body>
   <!-- Navigation  Bar:: Aryan Kora -->
@@ -130,138 +168,72 @@
     </nav>
   </section>
   <!-- Navigation  Bar End -->
+    
+    <!-- Side Navigation -->
+    <aside class="side-nav">
+        <ul>
+            <li><a href="#welcome" onclick="showSection('welcome')">Welcome</a></li>
+            <li><a href="#goal" onclick="showSection('goal')">Our Goal</a></li>
+            <li><a href="#who-we-are" onclick="showSection('who-we-are')">Who We Are</a></li>
+        </ul>
+    </aside>
 
-  <!-- Main Content:: Esta -->
-  <section class="prodetails">
-      <div class="single-pro-image">
-          <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" id="MainImg" alt="Product 1">
-          
-          <div class="small-img-group">
-              <div class="small-img-col">
-                  <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" class="small-img" alt="Product 1 View 1">
-              </div>
-              <div class="small-img-col">
-                  <img src="{{ asset('Images/products/glasses2.png') }}" width="100%" class="small-img" alt="Product 1 View 2">
-              </div>
-              <div class="small-img-col">
-                  <img src="{{ asset('Images/products/glasses3.png') }}" width="100%" class="small-img" alt="Product 1 View 3">
-              </div>
-          </div>
-      </div>
+    <!-- Sections to display the content -->
+  <!-- Content Sections -->
+  <div style="margin-left: 220px;">
+        <section id="welcome" class="section visible">
+            <h1>Welcome to Optique</h1>
+            <p>Optique – where vision and style come together with innovation. To the outside world, Optique is an organization that is fully devoted to offering the best eyeglasses that address not only your vision but also your fashion sense. If you are interested in the newest trends or classics, our glasses’ selection is created to meet every customer’s needs and preferences.</p>
+            <p>It is our goal to make the decision to purchase a pair of glasses as easy, fun, and beneficial as possible. Whether you browse our site from the comfort of your own home or visit our store, we are here to assist you in choosing the right frames and lenses for you. Welcome to a new world of glasses—welcome to Optique.</p>
+        </section>
 
-      <div class="single-pro-details">
-          <h6>Home / Shop</h6>
-          <h4>Square Frame Glasses</h4>
-          <h2>$199.99</h2>
-          
-          <select>
-              <option>Select Frame Size</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-          </select>
-          
-          <div class="quantity">
-              <label for="quantity">Quantity:</label>
-              <input type="number" id="quantity" value="1" min="1">
-          </div>
-          
-          <button class="add-to-cart">Add to Cart</button>
-          
-          <h4>Product Details</h4>
-          <p>Experience timeless elegance with our Classic Round Frame Glasses. 
-              Crafted from premium materials, these versatile frames offer both 
-              style and comfort. Features include anti-reflective coating, 
-              scratch-resistant lenses, and adjustable nose pads for the perfect fit.</p>
-          
-          <div class="product-features">
-              <h4>Features</h4>
-              <ul>
-                  <li>Premium acetate frame</li>
-                  <li>Anti-reflective coating</li>
-                  <li>Scratch-resistant lenses</li>
-                  <li>Adjustable nose pads</li>
-                  <li>UV protection</li>
-              </ul>
-          </div>
-      </div>
-  </section>
-  <!-- Related Products Section:: Esta -->
-  <section class="related-products">
-      <div class="product-pairs">
-          <h2>Complete Your Look</h2>
-          
-          <!-- Paired Products -->
-          <div class="product-container">
-              <div class="product-card">
-                  <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Matching Case">
-                  <h3>Matching Case</h3>
-                  <p>Price: $39.99</p>
-                  <button class="add-to-cart-btn">Add to Cart</button>
-              </div>
-              <div class="product-card">
-                  <img src="{{ asset('Images/products/glasses cleaner.jpg') }}" alt="Product 10">
-                  <h3>Glasses Cleaner</h3>
-                  <p>Price: $29.99</p>
-                  <button class="add-to-cart-btn">Add to Cart</button>
-              </div>
-          </div>
-      </div>
-  </section>
+        <section id="goal" class="section hidden">
+            <h1>Our Goal</h1>
+            <ul>
+                <li>Revolutionize Eyewear Shopping: To revolutionize the way people buy their eyeglasses by offering the latest technology and friendly services.</li>
+                <li>Combine Functionality with Style: Design various models of sunglasses that provide utility with functional perspectives of taste and personality.</li>
+                <li>Prioritize Customer Satisfaction: The goal is to build trust and long-term relationships with customers, and to achieve it, make sure that each of them leaves with something they would like.</li>
+                <li>Commit to Quality: Offer good quality frames and lenses that are well made, well fitted, and long lasting.</li>
+                <li>Embrace Sustainability: The incorporation of environment-friendly materials and work processes to minimize our impact on the biophysical environment during the provision of quality optical solutions.</li>
+            </ul>
+        </section>
 
-  <!-- Footer Section:: Esta -->
-  <div class="footer">
-    <div>
-      <h3>Customer Support</h3>
-      <p>
-        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
-        1 (800) 555-OPTQ
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="mailto:support@optique.com">support@optique.com</a>
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="{{ route('contact') }}">Contact Us!</a>
-      </p>
+        <section id="who-we-are" class="section hidden">
+            <h1>Who We Are</h1>
+            <p>We are Optique, a group of professionals who are inspired by a common mission to change people’s lives with the help of proper eyewear. We have paid much attention to the quality, appearance, and attitude towards customers, which made us a reputable company in the sphere of selling eyeglasses. Our specialization includes selecting beautiful frames, choosing the best lenses, and making sure that every client sees clearly and feels good.</p>
+            <p>Optique is not just a brand but a group of people who are interested in vision, style, and relations. We're here to help you make sense of the world and communicate your ideas more effectively. Optique is your home – where every eyeglasses is not just an optical accessory but a window to the world.</p>
+        </section>
     </div>
-    <div>
-      <h3>Shop</h3>
-      <a href="#">Glasses</a>
-      <a href="#">Sunglasses</a>
-      <a href="#">Accessories</a>
-      <a href="#">Contact Lenses</a>
-    </div>
-    <div>
-      <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
-      <a href="#">Store Locator</a>
-    </div>
-    <div class="social-icons">
-      <h3>Follow Us</h3>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Facebook</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Instagram</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Twitter</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Pintrest</span>
-      </a>
-    </div>
-    <div class="powered-by">
-      <p>© Optique. Crafted for Visionaries.</p>
-    </div>
-  </div>
+
+
+    <!-- Footer Section -->
+    <footer class="about-footer">
+        <p>Find us here:</p>
+        <div class="about-social-footer-links">
+            <a href="https://twitter.com" target="_blank">
+                <img src="{{ asset('Images/socials/twitter.png') }}" alt="Twitter Logo">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <img src="{{ asset('Images/socials/youtube.png') }}" alt="YouTube Logo">
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <img src="{{ asset('Images/socials/instagram.png') }}" alt="Instagram Logo">
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript to handle section visibility -->
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden'); 
+                section.classList.remove('visible');
+            });
+
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById(sectionId).classList.add('visible');
+        }
+    </script>
 </body>
 </html>
+

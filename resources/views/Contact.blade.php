@@ -2,6 +2,10 @@
     Developer: Angus
 	  University ID: 
     Function: Front end for the contacts page
+
+    Developer: Aryan Kora
+	  University ID: 230059030
+    Function: Frontend && backend for the contact form
 -->
 
 <!DOCTYPE html>
@@ -13,6 +17,7 @@
   <!-- JS -->
   <script defer src="/js/theme.js"></script>
   <script src="js/scrollBar.js"></script>
+  <script src="js/contactForm.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href={{  asset('css/main.css') }}>
   <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
@@ -44,7 +49,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="{{ route('contact') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -86,7 +91,7 @@
 
         <!--Account-->
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -100,7 +105,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="{{ route('shoppingCart') }}" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -114,7 +119,7 @@
 
         <!--Search-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('search') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -131,118 +136,137 @@
   <!-- Navigation  Bar End -->
 
   <!-- CONTECT-->
-  <section class="contact-section">
+  <section class="container">
     <div class="contact-us">
       <h1>Contact Us</h1>
       <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>
     </div>
-
-
-
-    <!-- Contact Details -->
-    <div class="contact-container">
-      <div class="map-location">
-        <img src="{{ asset('Images/contact/location.jpg') }}" width="100%" height="100%">
-      </div>
-
-      <div class="contact-detail">
-        <h2>Where we are</h2>
-        <p>84 Bibb St, Birmingham, B9 8QQ</p>
-        <p><img src="{{ asset('Images/contact/clock.png') }}" alt="Clock Icon" class="clock-icon"><strong>
-            office hour</strong> 10AM - 6PM</p>
-        <br>
-        <h2>Meeting us</h2>
-        <p><img src="{{ asset('Images/contact/phone.png') }}" alt="Phone Icon" class="phone-icon"><strong>
-            Phone</strong> +440246813579</p>
-        <p><img src="{{ asset('Images/contact/mail.png') }}" alt="Mail Icon" class="mail-icon"><strong>
-            Email</strong> support@optique.com</p>
-      </div>
-
-      <div class="contact-form">
-        <h2>Get in touch</h2>
-        <form action="/submit-question" method="POST">
-
-          <p>Name</p>
-          <input type="text" id="name" name="name" placeholder="Your Name" required>
-
-
-          <p>Email</p>
-          <input type="email" id="email" name="email" placeholder="Your Email" required>
-
-
-          <p>order number (if apply)</p>
-          <input type="number" id="order" name="order" placeholder="Your order number">
-
-
-          <p>select your situational</p>
-          <select id="situational" name="situational">
-            <option value="Product-damage">Product damage</option>
-            <option value="Returns-and-refunds">Returns and refunds</option>
-            <option value="Suggestion">Suggestion</option>
-            <option value="Other">Other</option>
-          </select>
-
-          <p>Message</p>
-          <textarea id="message" name="message" rows="5" placeholder=" Please enter your message" required></textarea>
-
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-    </div>
-
   </section>
 
-<!-- Footer Section:: Esta -->
-  <div class="footer">
-    <div>
-      <h3>Customer Support</h3>
-      <p>
-        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
-        1 (800) 555-OPTQ
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="mailto:support@optique.com">support@optique.com</a>
-      </p>
+  <!-- Embedded Map:: Aryan Kora-->
+  <section>
+    <div id="map">
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1GSi1kD5UQeAz0wKjJCJm6kttwARrlf4&ehbc=2E312F" allow="geolocation" width="95%" height="750px" frameborder="0" scrolling="no" allowfullscreen style="border: 1px solid var(--mint); box-shadow: 0 0 20px var(--mint); border-radius: 15px"></iframe>
     </div>
-    <div>
-      <h3>Shop</h3>
-      <a href="#">Glasses</a>
-      <a href="#">Sunglasses</a>
-      <a href="#">Accessories</a>
-      <a href="#">Contact Lenses</a>
+  </section>
+  <!-- Embedded Map End -->
+
+  <!-- Contact Form:: Aryan Kora -->
+  <section id="formSection">
+    <form class="formCon">
+        <div class="contactInfo">
+            <div>
+                <h2>Contact Info</h2>
+                <ul class="info">
+                    <li>
+                        <span><img src="{{ asset('Images/svg/location-svgrepo-com.svg') }}"></span>
+                        <span>Aston St, Birmingham B4 7ET</span>
+                    </li>
+                    <li>
+                        <span><img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}"></span>
+                        <span>support@optique.com</span>
+                    </li>
+                    <li>
+                        <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
+                        <span>1 (800) 555-OPTQ</span>
+                    </li>
+                </ul>
+            </div>
+            <ul class="sci">
+                <li><a href="https://www.facebook.com" target="_blank"><img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}"></a></li>
+                <li><a href="https://twitter.com" target="_blank"><img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}"></a></li>
+                <li><a href="https://www.instagram.com" target="_blank"><img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}"></a></li>
+                <li><a href="https://uk.pinterest.com/" target="_blank"><img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}"></a></li>
+            </ul>
+        </div>
+        <div class="contactForm">
+            <h2>Send a Message</h2>
+            <div class="formBox">
+                <div class="inputBox w50">
+                    <input type="text" id="fname" required>
+                    <span>First Name</span>
+                </div>
+                <div class="inputBox w50">
+                    <input type="text" id="lname" required>
+                    <span>Last Name</span>
+                </div>
+                <div class="inputBox w50">
+                    <input type="text" id="email" required>
+                    <span>Email Address</span>
+                </div>
+                <div class="inputBox w50">
+                    <input type="text" id="pNumber" required>
+                    <span>Mobile Number</span>
+                </div>
+                <div class="inputBox w100">
+                    <textarea id="desc" required></textarea>
+                    <span>Write you message here...</span>
+                </div>
+                <div class="inputBox w100">
+                  <a id="mailto-link" onclick="updateMailtoLink()"> 
+                    <input type="button" value="Send">
+                  </a>
+              </div>
+            </div>
+        </div>
+      </form>
+  </section>
+  <!--Contact Form End-->
+
+  <!-- Footer Section:: Esta -->
+    <div class="footer">
+      <div>
+        <h3>Customer Support</h3>
+        <p>
+          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+          1 (800) 555-OPTQ
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+          <a href="mailto:support@optique.com">support@optique.com</a>
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
+          <a href="{{ route('contact') }}">Contact Us!</a>
+        </p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#">Glasses</a>
+        <a href="#">Sunglasses</a>
+        <a href="#">Accessories</a>
+        <a href="#">Contact Lenses</a>
+      </div>
+      <div>
+        <h3>About Optique</h3>
+        <a href="#">Our Story</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Careers</a>
+        <a href="#">Store Locator</a>
+      </div>
+      <div class="social-icons">
+        <h3>Follow Us</h3>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Facebook</span>
+        </a>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Instagram</span>
+        </a>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Twitter</span>
+        </a>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Pintrest</span>
+        </a>
+      </div>
+      <div class="powered-by">
+        <p>© Optique. Crafted for Visionaries.</p>
+      </div>
     </div>
-    <div>
-      <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
-      <a href="#">Store Locator</a>
-    </div>
-    <div class="social-icons">
-      <h3>Follow Us</h3>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Facebook</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Instagram</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Twitter</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Pintrest</span>
-      </a>
-    </div>
-    <div class="powered-by">
-      <p>© Optique. Crafted for Visionaries.</p>
-    </div>
-  </div>
 </body>
 
 </html>
