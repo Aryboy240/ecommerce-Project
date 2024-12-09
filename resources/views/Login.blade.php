@@ -11,6 +11,8 @@
 <head>
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- JS -->
+  <script defer src="/js/theme.js"></script>
   <!--CSS-->
   <link rel="stylesheet" href="css/login.css" />
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -72,10 +74,17 @@
         <form action="/login" method="POST">
           @csrf <!-- Extra protection against cookies -->
 
+          <!-- Error message for invalid credentials -->
+          @if ($errors->has('loginError'))
+            <div style="color: red; margin-bottom: 10px">
+                {{ $errors->first('loginError') }}
+            </div>
+          @endif
+
           <!-- Username -->
           <div class="input">
             <span>Username</span>
-            <input type="text" name="loginUsername" />
+            <input type="text" name="loginUsername" value="{{ old('loginUsername') }}" />
             @error('loginUsername')
               <span id="error">{{ $message }}</span>
             @enderror

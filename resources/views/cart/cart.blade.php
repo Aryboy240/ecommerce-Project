@@ -1,27 +1,78 @@
-<!--
-    Developer: Oyinlola Arowolo
-	  University ID: 230402373
-    Function: Front end for the Products page
--->
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Add meta description for SEO -->
-    <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
-    <!-- JS -->
-    <script defer src="/js/theme.js"></script>
-    <script defer src="js/scrollReveal.js"></script>
-    <script defer src="{{ asset('js/product_page.js') }}"></script>
-    <script src="js/scrollBar.js"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
-    <title>Optique</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- JS -->
+   <script defer src="/js/theme.js"></script>
+   <script src="js/scrollBar.js"></script>
+   <!-- CSS -->
+   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+   <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+   <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+   <title>Shopping Cart - Optique</title>
 </head>
 <body>
+  <!-- Dynamic cart functions:: Aryan Kora -->
+  <script>
+    // Function for removing an item from the cart
+    function removeItem(cartItemId) {
+        // Send AJAX request to remove the item
+        fetch('/cart/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',  // CSRF token for security
+            },
+            body: JSON.stringify({ cart_item_id: cartItemId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error); // Display error message if any
+            } else {
+                alert(data.message); // Success message
+                // Optionally, you could update the UI (e.g., remove the item from the cart)
+                location.reload(); // Refresh the page to reflect the changes
+            }
+        })
+        .catch(error => {
+            console.error('Error removing item:', error);
+        });
+    }
+
+    // Function for upadting the quantity of a product
+    function updateQuantity(selectElement, itemId) {
+    const quantity = selectElement.value;
+
+    fetch('/cart/update', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        },
+        body: JSON.stringify({
+            cart_item_id: itemId,
+            quantity: quantity
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+        } else {
+            // Update the total price for the individual item
+            document.getElementById(`total_${itemId}`).textContent = `${parseFloat(data.total_price).toFixed(2)}`;
+
+            // Update the overall cart total
+            document.getElementById('subtotal').textContent = `${parseFloat(data.subtotal).toFixed(2)}`;
+            document.getElementById('cart-total').textContent = `${parseFloat(data.cart_total).toFixed(2)}`;
+        }
+    })
+    .catch(error => console.error('Error updating quantity:', error));
+    }
+  </script>
+
   <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
     <!--Left nav-->
@@ -131,137 +182,66 @@
   </section>
   <!-- Navigation  Bar End -->
 
-  <!-- Main Content:: Esta -->
-  <section class="prodetails">
-      <div class="single-pro-image">
-          <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" id="MainImg" alt="Product 1">
-          
-          <div class="small-img-group">
-              <div class="small-img-col">
-                  <img src="{{ asset('Images/products/glasses1.jpeg') }}" width="100%" class="small-img" alt="Product 1 View 1">
-              </div>
-              <div class="small-img-col">
-                  <img src="{{ asset('Images/products/glasses2.png') }}" width="100%" class="small-img" alt="Product 1 View 2">
-              </div>
-              <div class="small-img-col">
-                  <img src="{{ asset('Images/products/glasses3.png') }}" width="100%" class="small-img" alt="Product 1 View 3">
-              </div>
-          </div>
-      </div>
-
-      <div class="single-pro-details">
-          <h6>Home / Shop</h6>
-          <h4>Square Frame Glasses</h4>
-          <h2>$199.99</h2>
-          
-          <select>
-              <option>Select Frame Size</option>
-              <option>Small</option>
-              <option>Medium</option>
-              <option>Large</option>
-          </select>
-          
-          <div class="quantity">
-              <label for="quantity">Quantity:</label>
-              <input type="number" id="quantity" value="1" min="1">
-          </div>
-          
-          <button class="add-to-cart">Add to Cart</button>
-          
-          <h4>Product Details</h4>
-          <p>Experience timeless elegance with our Classic Round Frame Glasses. 
-              Crafted from premium materials, these versatile frames offer both 
-              style and comfort. Features include anti-reflective coating, 
-              scratch-resistant lenses, and adjustable nose pads for the perfect fit.</p>
-          
-          <div class="product-features">
-              <h4>Features</h4>
-              <ul>
-                  <li>Premium acetate frame</li>
-                  <li>Anti-reflective coating</li>
-                  <li>Scratch-resistant lenses</li>
-                  <li>Adjustable nose pads</li>
-                  <li>UV protection</li>
-              </ul>
-          </div>
-      </div>
-  </section>
-  <!-- Related Products Section:: Esta -->
-  <section class="related-products">
-      <div class="product-pairs">
-          <h2>Complete Your Look</h2>
-          
-          <!-- Paired Products -->
-          <div class="product-container">
-              <div class="product-card">
-                  <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Matching Case">
-                  <h3>Matching Case</h3>
-                  <p>Price: $39.99</p>
-                  <button class="add-to-cart-btn">Add to Cart</button>
-              </div>
-              <div class="product-card">
-                  <img src="{{ asset('Images/products/glasses cleaner.jpg') }}" alt="Product 10">
-                  <h3>Glasses Cleaner</h3>
-                  <p>Price: $29.99</p>
-                  <button class="add-to-cart-btn">Add to Cart</button>
-              </div>
-          </div>
+  <!-- Hero Section -->
+  <section class="hero" style="padding: 40px 20px;">
+      <div class="hero-content">
+          <h1 style="font-size: 80px; margin-bottom: 20px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">YOUR CART</h1>
       </div>
   </section>
 
-  <!-- Footer Section:: Esta -->
-  <div class="footer">
-    <div>
-      <h3>Customer Support</h3>
-      <p>
-        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
-        1 (800) 555-OPTQ
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="mailto:support@optique.com">support@optique.com</a>
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="{{ route('contact') }}">Contact Us!</a>
-      </p>
-    </div>
-    <div>
-      <h3>Shop</h3>
-      <a href="#">Glasses</a>
-      <a href="#">Sunglasses</a>
-      <a href="#">Accessories</a>
-      <a href="#">Contact Lenses</a>
-    </div>
-    <div>
-      <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
-      <a href="#">Store Locator</a>
-    </div>
-    <div class="social-icons">
-      <h3>Follow Us</h3>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Facebook</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Instagram</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Twitter</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Pintrest</span>
-      </a>
-    </div>
-    <div class="powered-by">
-      <p>© Optique. Crafted for Visionaries.</p>
-    </div>
-  </div>
+  <!-- Cart Content -->
+  <section class="container">
+    @if(isset($items) && $items->count() > 0)
+        <div class="product-card-con">
+            @foreach($items as $item)
+                <div class="product-card" style="width: 100%; max-width: 800px; margin: 20px auto;">
+                    <div class="card-circle"></div>
+                    <div class="product-card-content" style="width: 70%; left: 0;">
+                        <h2>{{ $item->product->name }}</h2>
+                        <p style="margin: 10px 0;">Cost: £{{ number_format($item->product->price, 2) }}</p>
+                        <div style="margin: 10px 0;">
+                            <label for="quantity_{{ $item->id }}">Quantity:</label>
+                            <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')" style="margin-left: 10px;">
+                                @for ($i = 1; $i <= 10; $i++)
+                                    <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <p style="color: var(--mint); font-size: 1.2em;">Total: £<span id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span></p>
+                        <div style="margin-top: 20px;">
+                            <a href="#" onclick="removeItem('{{ $item->id }}')" style="color: #ff4444;">Remove</a>
+                        </div>
+                    </div>
+                    <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}" style="height: 100px;">
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
+            <div style="text-align: right;">
+                <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £<span id="subtotal">{{ number_format($total, 2) }}</span></p>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
+                <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total: £<span id="cart-total">{{ number_format($total, 2) }}</span></h3>
+                <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
+            </div>
+        </div>
+    @else
+        <div class="empty-cart">
+            <div class="empty-cart-animation">
+                <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
+            </div>
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
+            <a href="{{ route('welcome') }}" class="continue-shopping-btn">
+                Continue Shopping
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42L14.59 11H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 1.42 1.42l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76z"/>
+                </svg>
+            </a>
+        </div>
+    @endif
+  </section>
 </body>
 </html>

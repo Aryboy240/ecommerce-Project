@@ -1,0 +1,185 @@
+/*  Developer: Nikhil Kainth
+	  University ID: 230069888
+	  Function: CSS for the search page
+*/
+/* Developer: Abdulrahman Muse
+   university ID: 230228946
+   function: search page css
+*/
+
+/* General Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0e0e0e; /* Dark background */
+    color: white; /* Light text for readability */
+    font-family: "Lato", sans-serif;
+}
+
+.HomeIcon {
+    width: 100px;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.home {
+    color: var(--lighter);
+    float: right;
+    text-decoration: none;
+    list-style: none;
+    transition: var(--transition-speed);
+    opacity: 0.7;
+}
+
+/* Search Header */
+.search-header {
+    text-align: center;
+    margin-top: 20px;
+    color: #00bfae; /* Accent color */
+    font-size: 2.5rem;
+}
+
+/* Search Bar Styling */
+.search-bar {
+    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.search-bar input {
+    width: 70%;
+    padding: 10px;
+    font-size: 1.2rem;
+    border: 2px solid #00bfae;
+    border-radius: 8px;
+    background-color: #222; /* Matches dark theme */
+    color: white;
+    transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+    border-color: #00a68c;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #00bfae;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar a {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: #00bfae;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #00a68c;
+}
+
+/* Category Filters Styling */
+.category-filters {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.category-filters .category-btn {
+    display: inline-block;
+    margin: 10px 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 2px solid #00bfae;
+    border-radius: 20px;
+    color: #00bfae;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-filters .category-btn.active {
+    background-color: #00bfae;
+    color: black;
+}
+
+.category-filters .category-btn:hover {
+    background-color: #00a68c;
+    color: black;
+}
+
+/* Product Cards Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Product Card Styling */
+.product-card {
+    background-color: #181818;
+    color: white;
+    border: 2px solid #00bfae;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.product-card button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    background-color: #00bfae;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-card button:hover {
+    background-color: #00a68c;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .search-bar input {
+        width: 60%;
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+}

@@ -1,19 +1,64 @@
-<!DOCTYPE html>
+<!--
+    Developer: Abdulrahman Muse
+    University ID: 230228946
+    Function: about page front end
+-->
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- JS -->
-  <script defer src="/js/theme.js"></script>
-  <script src="js/scrollBar.js"></script>
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
-  <title>Shopping Cart - Optique</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <!-- Linking the CSS file -->
+    <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/aryansExtras.css') }}" rel="stylesheet">
+    <style>
+        /* I added hover effects for footer logos to make the interaction more dynamic */
+        .about-social-footer-links img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
 
+        .about-social-footer-links img:hover {
+            transform: scale(1.2);
+        }
+
+        /* I wanted the footer text to stand out, so I made it larger and bolder */
+        .about-footer p {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Center the section content and align with middle logo */
+        .section {
+            text-align: left;
+            font-size: 25px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 40px;
+            border: 8px ridge #2a7f62;
+            background-color: #222;
+            box-sizing: border-box;
+          }
+
+          h1 {
+              font-size: 36px;
+              color: #4CAF50;
+              margin-bottom: 20px;
+          }
+
+          p {
+              font-size: 25px;
+              line-height: 1.6;
+          }
+
+          ul {
+              font-size: 20px; /* Reduced font size for bullet points */
+              line-height: 1.6;
+          }
+    </style>
+</head>
 <body>
   <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
@@ -38,7 +83,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="{{ route('contact') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -80,7 +125,7 @@
 
         <!--Account-->
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -94,7 +139,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="{{ route('shoppingCart') }}" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -108,7 +153,7 @@
 
         <!--Search-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('search') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -123,62 +168,72 @@
     </nav>
   </section>
   <!-- Navigation  Bar End -->
+    
+    <!-- Side Navigation -->
+    <aside class="side-nav">
+        <ul>
+            <li><a href="#welcome" onclick="showSection('welcome')">Welcome</a></li>
+            <li><a href="#goal" onclick="showSection('goal')">Our Goal</a></li>
+            <li><a href="#who-we-are" onclick="showSection('who-we-are')">Who We Are</a></li>
+        </ul>
+    </aside>
 
-  <!-- Hero Section -->
-  <section class="hero" style="padding: 40px 20px;">
-    <div class="hero-content">
-      <h1 style="font-size: 80px; margin-bottom: 20px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">YOUR CART
-      </h1>
-    </div>
-  </section>
+    <!-- Sections to display the content -->
+  <!-- Content Sections -->
+  <div style="margin-left: 220px;">
+        <section id="welcome" class="section visible">
+            <h1>Welcome to Optique</h1>
+            <p>Optique – where vision and style come together with innovation. To the outside world, Optique is an organization that is fully devoted to offering the best eyeglasses that address not only your vision but also your fashion sense. If you are interested in the newest trends or classics, our glasses’ selection is created to meet every customer’s needs and preferences.</p>
+            <p>It is our goal to make the decision to purchase a pair of glasses as easy, fun, and beneficial as possible. Whether you browse our site from the comfort of your own home or visit our store, we are here to assist you in choosing the right frames and lenses for you. Welcome to a new world of glasses—welcome to Optique.</p>
+        </section>
 
-  <!-- Cart Content -->
-  <section class="container">
-    @if(isset($items) && count($items) > 0)
-    <div class="product-card-con">
-      @foreach($items as $item)
-      <div class="product-card" style="width: 100%; max-width: 800px; margin: 20px auto;">
-      <div class="card-circle"></div>
-      <div class="product-card-content" style="width: 70%; left: 0;">
-      <h2>{{ $item->product_name }}</h2>
-      <p style="margin: 10px 0;">Quantity: {{ $item->quantity }}</p>
-      <p style="color: var(--mint); font-size: 1.2em;">£{{ number_format($item->price, 2) }}</p>
-      <div style="margin-top: 20px;">
-      <a href="#" onclick="updateQuantity()" style="margin-right: 20px;">Update</a>
-      <a href="#" onclick="removeItem()" style="color: #ff4444;">Remove</a>
-      </div>
-      </div>
-      <img class="imageSize-1" src="{{ asset('Images/product-placeholder.png') }}" style="height: 100px;">
-      </div>
-    @endforeach
+        <section id="goal" class="section hidden">
+            <h1>Our Goal</h1>
+            <ul>
+                <li>Revolutionize Eyewear Shopping: To revolutionize the way people buy their eyeglasses by offering the latest technology and friendly services.</li>
+                <li>Combine Functionality with Style: Design various models of sunglasses that provide utility with functional perspectives of taste and personality.</li>
+                <li>Prioritize Customer Satisfaction: The goal is to build trust and long-term relationships with customers, and to achieve it, make sure that each of them leaves with something they would like.</li>
+                <li>Commit to Quality: Offer good quality frames and lenses that are well made, well fitted, and long lasting.</li>
+                <li>Embrace Sustainability: The incorporation of environment-friendly materials and work processes to minimize our impact on the biophysical environment during the provision of quality optical solutions.</li>
+            </ul>
+        </section>
+
+        <section id="who-we-are" class="section hidden">
+            <h1>Who We Are</h1>
+            <p>We are Optique, a group of professionals who are inspired by a common mission to change people’s lives with the help of proper eyewear. We have paid much attention to the quality, appearance, and attitude towards customers, which made us a reputable company in the sphere of selling eyeglasses. Our specialization includes selecting beautiful frames, choosing the best lenses, and making sure that every client sees clearly and feels good.</p>
+            <p>Optique is not just a brand but a group of people who are interested in vision, style, and relations. We're here to help you make sense of the world and communicate your ideas more effectively. Optique is your home – where every eyeglasses is not just an optical accessory but a window to the world.</p>
+        </section>
     </div>
 
-    <!-- Cart Summary -->
-    <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
-      <div style="text-align: right;">
-      <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £{{ number_format($total, 2) }}
-      </p>
-      <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
-      <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total:
-        £{{ number_format($total, 2) }}</h3>
-      <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
-      </div>
-    </div>
-    @else
-    <div style="text-align: center; padding: 100px 20px;">
-      <div style="margin-bottom: 40px;">
-      <img src="{{ asset('Images/gifs/glasses.gif') }}"
-        style="width: 120px; filter: drop-shadow(0px 0px 20px rgba(0, 191, 174, 0.3));">
-      </div>
-      <h2
-      style="color: var(--text-primary); margin-bottom: 20px; font-size: 2em; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">
-      Your cart is empty</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 40px;">Looks like you haven't added any items yet</p>
-      <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
-    </div>
-    @endif
-  </section>
+
+    <!-- Footer Section -->
+    <footer class="about-footer">
+        <p>Find us here:</p>
+        <div class="about-social-footer-links">
+            <a href="https://twitter.com" target="_blank">
+                <img src="{{ asset('Images/socials/twitter.png') }}" alt="Twitter Logo">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <img src="{{ asset('Images/socials/youtube.png') }}" alt="YouTube Logo">
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <img src="{{ asset('Images/socials/instagram.png') }}" alt="Instagram Logo">
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript to handle section visibility -->
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden'); 
+                section.classList.remove('visible');
+            });
+
+            document.getElementById(sectionId).classList.remove('hidden');
+            document.getElementById(sectionId).classList.add('visible');
+        }
+    </script>
 </body>
-
 </html>
+
