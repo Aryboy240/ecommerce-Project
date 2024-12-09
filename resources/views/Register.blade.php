@@ -37,7 +37,7 @@
   <!-- Register Section -->
   <section>
     <div class="login-img">
-      <img src="Images/skater_girl.png" alt="Skater Girl" />
+      <img src="Images/registerBackground.jpg" alt="Skater Girl" />
     </div>
     <div class="login-content">
       <div class="form">

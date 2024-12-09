@@ -43,7 +43,7 @@
   <!--Log in Section-->
   <section>
     <div class="login-img">
-      <img src="Images/song_it.jpeg" />
+      <img src="Images/loginBackground.jpg" />
     </div>
     <div class="login-content">
       <div class="form">
