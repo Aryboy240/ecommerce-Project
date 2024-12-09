@@ -132,5 +132,11 @@ Route::middleware(['auth'])->prefix('welcome')->group(function () {
     Route::post('/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
 });
 
+Route::get('/check-login', [UserController::class, 'checkLogin']);
+Route::get('/check-login', function () {
+    return response()->json(['logged_in' => auth()->check()]);
+});
+
+
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');

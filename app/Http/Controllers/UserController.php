@@ -124,4 +124,12 @@ class UserController extends Controller
 
     }
 
+    public function checkLogin()
+    {
+        return response()->json([
+            'logged_in' => auth()->check(), // Check if the user is authenticated
+        ]);
+    }
+
+
 }

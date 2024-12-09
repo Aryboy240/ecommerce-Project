@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const productId = button.getAttribute("data-product-id");
             const quantity = button.getAttribute("data-quantity");
 
-            addToCart(productId, quantity);
+            checkUserLoggedIn(productId, quantity);
         });
     });
 
@@ -21,11 +21,36 @@ document.addEventListener("DOMContentLoaded", function () {
             ).value;
             const quantity = form.querySelector('input[name="quantity"]').value;
 
-            addToCart(productId, quantity);
+            checkUserLoggedIn(productId, quantity);
         });
     });
 
+    function checkUserLoggedIn(productId, quantity) {
+        fetch("/check-login", {
+            method: "GET",
+            headers: {
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.logged_in) {
+                    // If the user is logged in, add the item to the cart
+                    addToCart(productId, quantity);
+                } else {
+                    // If the user is not logged in, redirect to login page
+                    window.location.href = "/login"; // Adjust to your login URL
+                }
+            })
+            .catch((error) => console.log("Error:", error));
+    }
+
     function addToCart(productId, quantity) {
+        // Ensure quantity is an integer
+        quantity = parseInt(quantity);
+
         fetch("/cart/add", {
             method: "POST",
             headers: {

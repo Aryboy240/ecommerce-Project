@@ -43,10 +43,12 @@ class ShoppingCartController extends Controller
     public function addToCart(Request $request)
     {
         try {
+            // Ensure the user is authenticated
             if (!Auth::check()) {
                 return response()->json(['error' => 'User not authenticated'], 401);
             }
 
+            // Validate the request
             $validator = Validator::make($request->all(), [
                 'product_id' => 'required|exists:products,id',
                 'quantity' => 'required|integer|min:1'
@@ -58,34 +60,42 @@ class ShoppingCartController extends Controller
 
             DB::beginTransaction();
 
-            // Check product stock
+            // Get the product from the database
             $product = Product::find($request->product_id);
             if (!$product || $product->stock_quantity < $request->quantity) {
                 return response()->json(['error' => 'Not enough stock available'], 422);
             }
 
-            // Update or create cart item
-            $cartItem = ShoppingCartItem::updateOrCreate(
-                [
-                    'user_id' => Auth::id(),
-                    'product_id' => $request->product_id
-                ],
-                [
-                    'quantity' => DB::raw('COALESCE(quantity, 0) + ' . $request->quantity)
-                ]
-            );
+            // Check if the product already exists in the user's cart
+            $cartItem = ShoppingCartItem::where('user_id', Auth::id())
+                                        ->where('product_id', $request->product_id)
+                                        ->first();
 
-            // Update product stock
+            if ($cartItem) {
+                // If the item exists, increment the quantity
+                $cartItem->quantity += $request->quantity;
+                $cartItem->save();
+            } else {
+                // If the item does not exist, create a new cart item
+                $cartItem = new ShoppingCartItem();
+                $cartItem->user_id = Auth::id();
+                $cartItem->product_id = $request->product_id;
+                $cartItem->quantity = $request->quantity;
+                $cartItem->save();
+            }
+
+            // Update the product stock
             $product->decrement('stock_quantity', $request->quantity);
 
             DB::commit();
-            
+
             return response()->json(['success' => 'Product added to cart successfully']);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['error' => 'Error adding to cart: ' . $e->getMessage()], 500);
         }
     }
+
 
 
     public function showHomePage()
