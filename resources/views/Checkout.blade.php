@@ -229,21 +229,27 @@
             <div class="checkout-summary">
                 <h2>Order Summary</h2>
                 <div class="summary-items">
-                    <!-- Loop through each cart item and display its details -->
-                    <div class="summary-item">
-                        <img src="Images/product1.png" alt="product1">
-                        <div class="summary-item-details">
-                            <h3>product</h3>
-                            <p class="quantity">Qty: 1</p>
-                            <p class="price">£1000</p>
+                    @foreach($cartItems as $item)
+                        <div class="summary-item">
+                            <!-- Product Image -->
+                            <img src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
+                            <div class="summary-item-details">
+                                <!-- Product Name -->
+                                <h3>{{ $item->product->name }}</h3>
+                                <!-- Product Quantity -->
+                                <p class="quantity">Qty: {{ $item->quantity }}</p>
+                                <!-- Product Price (total for that item) -->
+                                <p class="price">£{{ number_format($item->product->price * $item->quantity, 2) }}</p>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
+
                 <div class="summary-total">
-                    <!-- Display the subtotal of the cart items -->
                     <div class="summary-row">
+                        <!-- Display the subtotal -->
                         <p>Subtotal</p>
-                        <p>£1000</p>
+                        <p>£{{ number_format($total, 2) }}</p>
                     </div>
                 </div>
                 <!-- Button to place the order -->

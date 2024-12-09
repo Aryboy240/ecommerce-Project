@@ -125,3 +125,6 @@ Route::middleware(['auth'])->prefix('cart')->group(function () {
     Route::post('/update', [ShoppingCartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
 });
+
+// Checkout Page
+Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');

@@ -263,4 +263,25 @@ class ShoppingCartController extends Controller
         $count = ShoppingCartItem::where('user_id', Auth::id())->sum('quantity');
         return response()->json(['count' => $count]);
     }
+
+    public function checkout()
+    {
+        // Ensure the user is authenticated
+        if (!Auth::check()) {
+            return redirect()->route('login'); // Redirect if not authenticated
+        }
+    
+        // Get the user's cart items from the shopping cart
+        $cartItems = ShoppingCartItem::where('user_id', Auth::id())
+            ->with('product')  // Eager load the product details
+            ->get();
+    
+        // Calculate the total price of the cart
+        $total = $cartItems->sum(function($item) {
+            return $item->product->price * $item->quantity;
+        });
+    
+        // Return the checkout view with the cart items and total
+        return view('checkout', compact('cartItems', 'total'));
+    }
 }

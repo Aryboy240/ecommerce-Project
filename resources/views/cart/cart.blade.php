@@ -15,6 +15,7 @@
 <body>
   <!-- Dynamic cart functions:: Aryan Kora -->
   <script>
+    // Function for removing an item from the cart
     function removeItem(cartItemId) {
         // Send AJAX request to remove the item
         fetch('/cart/remove', {
@@ -40,6 +41,7 @@
         });
     }
 
+    // Function for upadting the quantity of a product
     function updateQuantity(selectElement, itemId) {
     const quantity = selectElement.value;
 
@@ -69,8 +71,6 @@
     })
     .catch(error => console.error('Error updating quantity:', error));
     }
-
-
   </script>
 
   <!-- Navigation  Bar:: Aryan Kora -->
