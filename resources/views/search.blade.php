@@ -90,7 +90,4 @@
       </div>
       @endforeach
     </section>
-
-    <!-- Include JavaScript -->
-    <script src="{{ asset('js/search.js') }}"></script>
 @endsection
