@@ -139,11 +139,11 @@
                     <div class="card-circle"></div>
                     <div class="product-card-content" style="width: 70%; left: 0;">
                         <h2>{{ $item->product->name }}</h2>
-                        <p style="margin: 10px 0;">Price per unit: £{{ number_format($item->product->price, 2) }}</p>
+                        <p style="margin: 10px 0;">Cost: £{{ number_format($item->product->price, 2) }}</p>
                         <div style="margin: 10px 0;">
                             <label for="quantity_{{ $item->id }}">Quantity:</label>
                             <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')" style="margin-left: 10px;">
-                                @for ($i = 1; $i <= 10; $i++) <!-- Set a max of 10 items -->
+                                @for ($i = 1; $i <= 10; $i++)
                                     <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                             </select>
