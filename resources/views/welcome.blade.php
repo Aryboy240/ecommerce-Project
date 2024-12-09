@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- JS -->
   <script defer src="/js/theme.js"></script>
+  <script defer src="/js/addToCart.js"></script>
   <script defer src="js/ProductSlider.js"></script>
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
@@ -310,7 +312,7 @@
   </section>
   <!-- Product Cards End -->
 
-  <!-- Products Slider:: Aryan -->
+  <!-- Products Slider:: Aryan Kora -->
   <section class="product">
     <h2 class="section-title">Popular Products</h2>
     <button class="pre-btn"><img src="Images/PSArrow.png" alt=""></button>
@@ -319,7 +321,7 @@
       <div class="product-card">
           <div class="product-image">
               <img src="Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg" class="product-thumb" alt="">
-              <button class="card-btn">add to basket</button>
+              <button class="add-to-cart card-btn" data-product-id="32859928" data-quantity="1">Add to Cart</button>
           </div>
           <div class="product-info">
               <h2 class="product-brand">Adidas</h2>
@@ -331,12 +333,12 @@
           <div class="product-image">
               <span class="discount-tag">50% off</span>
               <img src="Images/products/Featured/Barbour/33137483/33137483-front-2000x1125.jpg" class="product-thumb" alt="">
-              <button class="card-btn">add to basket</button>
+              <button class="add-to-cart card-btn" data-product-id="33137483" data-quantity="1">Add to Cart</button>
           </div>
           <div class="product-info">
               <h2 class="product-brand">Barbour</h2>
               <p class="product-short-description">ID: 33137483</p>
-              <span class="price">£75</span><span class="actual-price">£150</span>
+              <span class="price">£100</span><span class="actual-price">£150</span>
           </div>
       </div>
       <div class="product-card">
@@ -353,7 +355,7 @@
       <div class="product-card">
           <div class="product-image">
               <img src="Images/products/Featured/Disney/33087542/33087542-front-2000x1125.jpg" class="product-thumb" alt="">
-              <button class="card-btn">add to basket</button>
+              <button class="add-to-cart card-btn" data-product-id="33087542" data-quantity="1">Add to Cart</button>
           </div>
           <div class="product-info">
               <h2 class="product-brand">Disney</h2>
@@ -365,7 +367,7 @@
           <div class="product-image">
               <span class="discount-tag">50% off</span>
               <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.jpg" class="product-thumb" alt="">
-              <button class="card-btn">add to basket</button>
+              <button class="add-to-cart card-btn" data-product-id="32677959" data-quantity="1">Add to Cart</button>
           </div>
           <div class="product-info">
               <h2 class="product-brand">DKNY</h2>
@@ -376,7 +378,7 @@
       <div class="product-card">
         <div class="product-image">
             <img src="Images/products/Featured/HUGO/33137346/33137346-front-2000x1125.jpg" class="product-thumb" alt="">
-            <button class="card-btn">add to basket</button>
+            <button class="add-to-cart card-btn" data-product-id="33137346" data-quantity="1">Add to Cart</button>
         </div>
         <div class="product-info">
             <h2 class="product-brand">HUGO</h2>
@@ -387,7 +389,7 @@
     <div class="product-card">
       <div class="product-image">
           <img src="Images/products/Featured/Jeff Banks/32860634/32860634-front-2000x1125.jpg" class="product-thumb" alt="">
-          <button class="card-btn">add to basket</button>
+          <button class="add-to-cart card-btn" data-product-id="32860634" data-quantity="1">Add to Cart</button>
       </div>
       <div class="product-info">
           <h2 class="product-brand">Jeff Banks</h2>
@@ -398,7 +400,7 @@
     <div class="product-card">
       <div class="product-image">
           <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="product-thumb" alt="">
-          <button class="card-btn">add to basket</button>
+          <button class="add-to-cart card-btn" data-product-id="33039633" data-quantity="1">Add to Cart</button>
       </div>
       <div class="product-info">
           <h2 class="product-brand">Karen Millen</h2>
@@ -408,7 +410,7 @@
     </div>
   </section>
 
-  <!-- About Section:: Esta & Aryan -->
+  <!-- About Section:: Aryan Kora -->
   <section class="about-section">
     <div class="about-wrapper">
       <div class="about-content">

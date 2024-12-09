@@ -126,5 +126,11 @@ Route::middleware(['auth'])->prefix('cart')->group(function () {
     Route::post('/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
 });
 
+// Additions from homepage featured products
+Route::get('/welcome', [ShoppingCartController::class, 'showHomePage'])->name('welcome');
+Route::middleware(['auth'])->prefix('welcome')->group(function () {
+    Route::post('/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
+});
+
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');

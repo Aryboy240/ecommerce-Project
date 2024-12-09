@@ -44,8 +44,7 @@ class ShoppingCartController extends Controller
     {
         try {
             if (!Auth::check()) {
-                session(['url.intended' => url()->previous()]);
-                return redirect()->route('login');
+                return response()->json(['error' => 'User not authenticated'], 401);
             }
 
             $validator = Validator::make($request->all(), [
@@ -54,9 +53,7 @@ class ShoppingCartController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()
-                    ->withErrors($validator)
-                    ->withInput();
+                return response()->json(['error' => $validator->errors()->first()], 422);
             }
 
             DB::beginTransaction();
@@ -64,8 +61,7 @@ class ShoppingCartController extends Controller
             // Check product stock
             $product = Product::find($request->product_id);
             if (!$product || $product->stock_quantity < $request->quantity) {
-                return redirect()->back()
-                    ->with('error', 'Not enough stock available');
+                return response()->json(['error' => 'Not enough stock available'], 422);
             }
 
             // Update or create cart item
@@ -84,15 +80,23 @@ class ShoppingCartController extends Controller
 
             DB::commit();
             
-            return redirect()->back()
-                ->with('success', 'Product added to cart successfully');
-
+            return response()->json(['success' => 'Product added to cart successfully']);
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()
-                ->with('error', 'Error adding to cart: ' . $e->getMessage());
+            return response()->json(['error' => 'Error adding to cart: ' . $e->getMessage()], 500);
         }
     }
+
+
+    public function showHomePage()
+    {
+        $products = Product::all(); // Fetch all products from the database
+        return view('welcome', compact('products'));
+    }
+    
+    
+
+
 
     /**
      * Update the quantity of a cart item.
@@ -154,7 +158,7 @@ class ShoppingCartController extends Controller
                 'message' => 'Cart updated successfully',
                 'total_price' => $itemTotal,
                 'subtotal' => $total,
-                'cart_total' => $total // Assuming you might add shipping, adjust accordingly
+                'cart_total' => $total
             ]);
     
         } catch (\Exception $e) {
