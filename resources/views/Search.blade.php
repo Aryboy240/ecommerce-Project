@@ -14,7 +14,7 @@
 
 @extends('layouts.searchApp') <!-- This is a child of the "views/layouts/searchApp.balde.php" -->
 
-@section('title', 'Product Search') <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Product Search') <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 
 @section('content') <!-- The @yeild in searchApp's main is filled by everything in this section -->
 
@@ -81,7 +81,12 @@
           @endforeach
           <h3>{{ $product->name }}</h3>
           <p>Price: ${{ $product->price }}</p>
-          <button>Add to Cart</button>
+            <form action="{{ route('cart.add') }}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit">Add to Cart</button>
+            </form>
       </div>
       @endforeach
     </section>

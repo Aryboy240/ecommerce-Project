@@ -3,6 +3,10 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <!-- JS -->
+   <script defer src="/js/theme.js"></script>
+   <script defer src="/js/cart.js"></script>
+   <script src="js/scrollBar.js"></script>
    <!-- CSS -->
    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -34,7 +38,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="{{ route('contact') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -48,7 +52,7 @@
 
         <!--Store-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('product') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -63,9 +67,9 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <a href="{{ route('welcome') }}">
+    <a id="themeButton">
       <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
+        <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
 
@@ -90,7 +94,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="{{ route('shoppingCart') }}" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -104,7 +108,7 @@
 
         <!--Search-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('search') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -129,50 +133,57 @@
 
   <!-- Cart Content -->
   <section class="container">
-      @if(isset($items) && count($items) > 0)
-          <div class="product-card-con">
-              @foreach($items as $item)
-                  <div class="product-card" style="width: 100%; max-width: 800px; margin: 20px auto;">
-                      <div class="card-circle"></div>
-                      <div class="product-card-content" style="width: 70%; left: 0;">
-                          <h2>{{ $item->product_name }}</h2>
-                          <p style="margin: 10px 0;">Quantity: {{ $item->quantity }}</p>
-                          <p style="color: var(--mint); font-size: 1.2em;">£{{ number_format($item->price, 2) }}</p>
-                          <div style="margin-top: 20px;">
-                              <a href="#" onclick="updateQuantity()" style="margin-right: 20px;">Update</a>
-                              <a href="#" onclick="removeItem()" style="color: #ff4444;">Remove</a>
-                          </div>
-                      </div>
-                      <img class="imageSize-1" src="{{ asset('Images/product-placeholder.png') }}" style="height: 100px;">
-                  </div>
-              @endforeach
-          </div>
+    @if(isset($items) && $items->count() > 0)
+        <div class="product-card-con">
+            @foreach($items as $item)
+                <div class="product-card" style="width: 100%; max-width: 800px; margin: 20px auto;">
+                    <div class="card-circle"></div>
+                    <div class="product-card-content" style="width: 70%; left: 0;">
+                        <h2>{{ $item->product->name }}</h2>
+                        <p style="margin: 10px 0;">Price per unit: £{{ number_format($item->product->price, 2) }}</p>
+                        <div style="margin: 10px 0;">
+                            <label for="quantity_{{ $item->id }}">Quantity:</label>
+                            <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')" style="margin-left: 10px;">
+                                @for ($i = 1; $i <= 10; $i++) <!-- Set a max of 10 items -->
+                                    <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <p style="color: var(--mint); font-size: 1.2em;">Total: £<span id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span></p>
+                        <div style="margin-top: 20px;">
+                            <a href="#" onclick="removeItem('{{ $item->id }}')" style="color: #ff4444;">Remove</a>
+                        </div>
+                    </div>
+                    <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}" style="height: 100px;">
+                </div>
+            @endforeach
+        </div>
 
-          <!-- Cart Summary -->
-          <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
-              <div style="text-align: right;">
-                  <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
-                  <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £{{ number_format($total, 2) }}</p>
-                  <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
-                  <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total: £{{ number_format($total, 2) }}</h3>
-                  <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
-              </div>
-          </div>
-      @else
-          <div class="empty-cart">
-              <div class="empty-cart-animation">
-                  <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
-              </div>
-              <h2>Your Cart is Empty</h2>
-              <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
-              <a href="{{ route('welcome') }}" class="continue-shopping-btn">
-                  Continue Shopping
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-                      <path d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42L14.59 11H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 1.42 1.42l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76z"/>
-                  </svg>
-              </a>
-          </div>
-      @endif
+        <!-- Cart Summary -->
+        <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
+            <div style="text-align: right;">
+                <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £<span id="subtotal">{{ number_format($total, 2) }}</span></p>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
+                <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total: £<span id="cart-total">{{ number_format($total, 2) }}</span></h3>
+                <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
+            </div>
+        </div>
+    @else
+        <div class="empty-cart">
+            <div class="empty-cart-animation">
+                <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
+            </div>
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
+            <a href="{{ route('welcome') }}" class="continue-shopping-btn">
+                Continue Shopping
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42L14.59 11H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 1.42 1.42l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76z"/>
+                </svg>
+            </a>
+        </div>
+    @endif
   </section>
 </body>
 </html>

@@ -38,6 +38,9 @@ class ProductController extends Controller
         // Retrieve products with their related images, image types, and category
         $products = $query->with(['images.imageType', 'category'])->get();
 
+        // $products = $query->with(['images.imageType', 'category'])->paginate(10);
+        // This is for when the size of total products gets large - 10 per page
+
         // Return the view with the products
         return view('search', compact('products'));
     }
