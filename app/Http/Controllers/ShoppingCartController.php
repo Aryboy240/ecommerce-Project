@@ -168,31 +168,29 @@ class ShoppingCartController extends Controller
                 return response()->json(['error' => 'User not authenticated'], 401);
             }
 
+            // Validate cart_item_id in request
             $validator = Validator::make($request->all(), [
                 'cart_item_id' => 'required|exists:shopping_cart_items,id'
             ]);
 
             if ($validator->fails()) {
-                return response()->json([
-                    'error' => $validator->errors()->first()
-                ], 422);
+                return response()->json(['error' => $validator->errors()->first()], 422);
             }
 
             DB::beginTransaction();
 
+            // Fetch the item in the cart
             $cartItem = ShoppingCartItem::where('user_id', Auth::id())
-                ->with('product')
                 ->findOrFail($request->cart_item_id);
 
-            // Return quantity to product stock
+            // Return quantity to the product's stock
             $cartItem->product->increment('stock_quantity', $cartItem->quantity);
             $cartItem->delete();
 
-            // Calculate new cart total
+            // Recalculate the cart total
             $total = ShoppingCartItem::where('user_id', Auth::id())
-                ->with('product')
                 ->get()
-                ->sum(function($item) {
+                ->sum(function ($item) {
                     return $item->product->price * $item->quantity;
                 });
 
@@ -200,7 +198,7 @@ class ShoppingCartController extends Controller
 
             return response()->json([
                 'message' => 'Item removed from cart',
-                'total' => $total
+                'total' => number_format($total, 2)
             ]);
 
         } catch (\Exception $e) {
@@ -210,6 +208,7 @@ class ShoppingCartController extends Controller
             ], 500);
         }
     }
+
 
     /**
      * Clear the entire cart for the current user.

@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
    <meta charset="UTF-8" />
@@ -14,6 +13,34 @@
    <title>Shopping Cart - Optique</title>
 </head>
 <body>
+  <!-- Remove item from cart function -->
+  <script>
+    function removeItem(cartItemId) {
+        // Send AJAX request to remove the item
+        fetch('/cart/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',  // CSRF token for security
+            },
+            body: JSON.stringify({ cart_item_id: cartItemId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error); // Display error message if any
+            } else {
+                alert(data.message); // Success message
+                // Optionally, you could update the UI (e.g., remove the item from the cart)
+                location.reload(); // Refresh the page to reflect the changes
+            }
+        })
+        .catch(error => {
+            console.error('Error removing item:', error);
+        });
+    }
+  </script>
+
   <!-- Navigation  Bar:: Aryan Kora -->
   <section class="nav-section">
     <!--Left nav-->
