@@ -1,7 +1,8 @@
-// addToCart.js
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".add-to-cart");
+    const forms = document.querySelectorAll(".add-to-cart-form");
 
+    // Handle button clicks (homepage)
     buttons.forEach((button) => {
         button.addEventListener("click", function () {
             const productId = button.getAttribute("data-product-id");
@@ -11,8 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    // Handle form submissions (search page)
+    forms.forEach((form) => {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            const productId = form.querySelector(
+                'input[name="product_id"]'
+            ).value;
+            const quantity = form.querySelector('input[name="quantity"]').value;
+
+            addToCart(productId, quantity);
+        });
+    });
+
     function addToCart(productId, quantity) {
-        // Adjust the URL for your add-to-cart route
         fetch("/cart/add", {
             method: "POST",
             headers: {

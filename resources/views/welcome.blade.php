@@ -186,7 +186,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Adidas">Starting from £100</a>
         </div>
         <img class="imageSize-1" src="{{ asset('Images/brands/adidas_Logo.png') }}" />
       </div>
@@ -200,7 +200,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=HUGO">Starting from £100</a>
         </div>
         <img class="imageSize-2" src="{{ asset('Images/brands/hugo.png') }}" />
       </div>
@@ -214,7 +214,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=DKNY">Starting from £100</a>
         </div>
         <img class="imageSize-3" src="{{ asset('Images/brands/dnky.png') }}" />
       </div>
@@ -231,7 +231,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Disney">Starting from £100</a>
         </div>
         <img class="imageSize-4" src="{{ asset('Images/brands/disney.png') }}" />
       </div>
@@ -245,7 +245,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Karen+Millen">Starting from £100</a>
         </div>
         <img class="imageSize-5" src="{{ asset('Images/brands/karen_Millen.png') }}" />
       </div>
@@ -259,7 +259,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Jeff+Banks">Starting from £100</a>
         </div>
         <img class="imageSize-6" src="{{ asset('Images/brands/jeff_Banks.png') }}" />
       </div>
@@ -276,7 +276,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Harry+Potter">Starting from £100</a>
         </div>
         <img class="imageSize-7" src="{{ asset('Images/brands/harry_Potter.png') }}" />
       </div>
@@ -290,7 +290,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Barbour">Starting from £100</a>
         </div>
         <img class="imageSize-8" src="{{ asset('Images/brands/barbour.png') }}" />
       </div>
@@ -304,7 +304,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Comfit">Starting from £100</a>
         </div>
         <img class="imageSize-9" src="{{ asset('Images/brands/comfit.png') }}" />
       </div>
