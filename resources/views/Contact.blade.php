@@ -169,7 +169,7 @@
         <div class="card-con">
           <div class="cards">
             <div class="card-image">
-              <img src="/Images/Socials/Instagram.png" width="200px" />
+              <img src="{{ asset('Images/socials/instagram.png') }}" width="200px" />
             </div>
             <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
               <h1>Instagram</h1>
@@ -185,7 +185,7 @@
         <div class="card-con">
           <div class="cards">
             <div class="card-image">
-              <img src="/Images/Socials/YouTube.png" width="220px"
+              <img src="{{ asset('Images/socials/youtube.png') }}" width="220px"
                 />
             </div>
             <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
@@ -202,7 +202,7 @@
         <div class="card-con">
           <div class="cards">
             <div class="card-image">
-              <img src="/Images/Socials/Twitter.png" width="190px"
+              <img src="{{ asset('Images/socials/twitter.png') }}" width="190px"
                 />
             </div>
             <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
