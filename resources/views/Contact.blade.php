@@ -18,6 +18,8 @@
   <script defer src="/js/theme.js"></script>
   <script src="js/scrollBar.js"></script>
   <script src="js/contactForm.js"></script>
+  <script defer src="js/scrollReveal.js"></script>
+  <script src="js/scrollreveal.min.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href={{  asset('css/main.css') }}>
   <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
@@ -139,17 +141,90 @@
   <section class="container">
     <div class="contact-us">
       <h1>Contact Us</h1>
-      <p>We’d love to hear from you! Please reach out with any questions or feedback.</p>
     </div>
   </section>
 
   <!-- Embedded Map:: Aryan Kora-->
   <section>
-    <div id="map">
+    <div id="map" class="map-rev">
       <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1GSi1kD5UQeAz0wKjJCJm6kttwARrlf4&ehbc=2E312F" allow="geolocation" width="95%" height="750px" frameborder="0" scrolling="no" allowfullscreen style="border: 1px solid var(--mint); box-shadow: 0 0 20px var(--mint); border-radius: 15px"></iframe>
     </div>
   </section>
   <!-- Embedded Map End -->
+
+  <!-- Page information-->
+  <div class="contact-page-text">
+    <div class="contact-text-box">
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente cumque dolores incidunt beatae laudantium, eum asperiores porro inventore alias soluta voluptate et enim. Nam adipisci, facilis doloribus nulla velit error ducimus illum. Expedita possimus voluptatibus, non nesciunt asperiores saepe aperiam architecto illo earum odit nisi commodi iste iusto est cum laboriosam excepturi atque cupiditate optio laudantium? Quibusdam deleniti, nulla optio maxime consectetur in doloribus nobis vel! Autem temporibus, distinctio quibusdam beatae, magni et tempore nesciunt optio exercitationem error officiis id aliquid? Labore, tempora quod natus numquam quidem magni maiores similique! Debitis consectetur accusamus dolorem ipsa deleniti distinctio! Saepe, corporis.
+      </p>
+    </div>
+  </div>
+
+  <!--Info Cards-->
+  <section>
+    <div class="card-body">
+      <a href="https://www.instagram.com"
+        target="_blank" class="hyper-hider">
+        <div class="card-con">
+          <div class="cards">
+            <div class="card-image">
+              <img src="/Images/Socials/Instagram.png" width="200px" />
+            </div>
+            <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
+              <h1>Instagram</h1>
+              <p>
+                Follow us on Instagram!
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <a href="https://www.youtube.com"
+        target="_blank" class="hyper-hider">
+        <div class="card-con">
+          <div class="cards">
+            <div class="card-image">
+              <img src="/Images/Socials/YouTube.png" width="220px"
+                />
+            </div>
+            <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
+              <h1>YouTube</h1>
+              <p>
+                Follow us on YouTube!
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <a href="https://twitter.com" target="_blank"
+        class="hyper-hider">
+        <div class="card-con">
+          <div class="cards">
+            <div class="card-image">
+              <img src="/Images/Socials/Twitter.png" width="190px"
+                />
+            </div>
+            <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
+              <h1>Twitter</h1>
+              <p>
+                Follow us on Twitter!
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!--Info Cards End-->
+
+  <div class="contact-page-text">
+    <div class="contact-text-box">
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facilis dolorum quo dolore illo praesentium illum temporibus sed facere aliquam, asperiores pariatur odio atque, commodi placeat itaque eligendi cumque saepe soluta? Similique, quaerat. Necessitatibus perspiciatis adipisci ratione vel iure beatae error incidunt obcaecati aspernatur, officiis laboriosam consequatur consectetur facere ad non praesentium rem. Eos, voluptatum ipsam iusto quod quos consequatur nam maiores dicta quasi, ea quaerat sequi, non quae qui perspiciatis. Nobis vitae fuga impedit numquam culpa dolorum amet blanditiis exercitationem vero? Voluptates aut dolorum molestias dolorem enim fugiat unde. In repudiandae necessitatibus animi non vero eius explicabo consectetur delectus!
+      </p>
+    </div>
+  </div>
 
   <!-- Contact Form:: Aryan Kora -->
   <section id="formSection">

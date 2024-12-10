@@ -263,6 +263,10 @@
         <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
         <a href="mailto:support@optique.com">support@optique.com</a>
       </p>
+      <p>
+        <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="{{ route('contact') }}">Contact Us!</a>
+      </p>
     </div>
     <div>
       <h3>Shop</h3>

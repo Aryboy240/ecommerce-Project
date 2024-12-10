@@ -144,7 +144,7 @@
           elevate their eye-wear style and enchance their vision<br><br>
           <em>A digital solution for Opticians</em>
         </p>
-        <a href="" class="btn-order">Order</a>
+        <a href="{{ route('search') }}" class="btn-order">Order</a>
         <div class="pointer-wrapper">
           <img src="{{ asset('Images/arrow.png') }}">
           <p>Order from<br> here</p>
@@ -438,7 +438,7 @@
           Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
           <br><br>
         </p>
-        <button class="about-button">Learn More</button>
+        <a class="about-button" href="{{ route('about') }}">Learn More</a>
       </div>
       <div class="about-image">
         <div class="image-grid">

@@ -7,57 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <!-- JS -->
+    <script defer src="/js/theme.js"></script>
     <!-- Linking the CSS file -->
     <link href="{{ asset('css/about.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/aryansExtras.css') }}" rel="stylesheet">
-    <style>
-        /* I added hover effects for footer logos to make the interaction more dynamic */
-        .about-social-footer-links img {
-            width: 40px;
-            height: 40px;
-            transition: transform 0.3s ease;
-        }
-
-        .about-social-footer-links img:hover {
-            transform: scale(1.2);
-        }
-
-        /* I wanted the footer text to stand out, so I made it larger and bolder */
-        .about-footer p {
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        /* Center the section content and align with middle logo */
-        .section {
-            text-align: left;
-            font-size: 25px;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 40px;
-            border: 8px ridge #2a7f62;
-            background-color: #222;
-            box-sizing: border-box;
-          }
-
-          h1 {
-              font-size: 36px;
-              color: #4CAF50;
-              margin-bottom: 20px;
-          }
-
-          p {
-              font-size: 25px;
-              line-height: 1.6;
-          }
-
-          ul {
-              font-size: 20px; /* Reduced font size for bullet points */
-              line-height: 1.6;
-          }
-    </style>
+    <title>About Us</title>
 </head>
 <body>
   <!-- Navigation  Bar:: Aryan Kora -->
@@ -180,7 +136,7 @@
 
     <!-- Sections to display the content -->
   <!-- Content Sections -->
-  <div style="margin-left: 220px;">
+  <div style="margin-left: 220px; padding-bottom: 100px">
         <section id="welcome" class="section visible">
             <h1>Welcome to Optique</h1>
             <p>Optique – where vision and style come together with innovation. To the outside world, Optique is an organization that is fully devoted to offering the best eyeglasses that address not only your vision but also your fashion sense. If you are interested in the newest trends or classics, our glasses’ selection is created to meet every customer’s needs and preferences.</p>
@@ -208,17 +164,59 @@
 
     <!-- Footer Section -->
     <footer class="about-footer">
-        <p>Find us here:</p>
-        <div class="about-social-footer-links">
-            <a href="https://twitter.com" target="_blank">
-                <img src="{{ asset('Images/socials/twitter.png') }}" alt="Twitter Logo">
+        <!-- Footer Section:: Esta -->
+        <div class="footer">
+          <div>
+            <h3>Customer Support</h3>
+            <p>
+              <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+              1 (800) 555-OPTQ
+            </p>
+            <p>
+              <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+              <a href="mailto:support@optique.com">support@optique.com</a>
+            </p>
+            <p>
+              <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
+              <a href="{{ route('contact') }}">Contact Us!</a>
+            </p>
+          </div>
+          <div>
+            <h3>Shop</h3>
+            <a href="#">Glasses</a>
+            <a href="#">Sunglasses</a>
+            <a href="#">Accessories</a>
+            <a href="#">Contact Lenses</a>
+          </div>
+          <div>
+            <h3>About Optique</h3>
+            <a href="#">Our Story</a>
+            <a href="#">Testimonials</a>
+            <a href="#">Careers</a>
+            <a href="#">Store Locator</a>
+          </div>
+          <div class="social-icons">
+            <h3>Follow Us</h3>
+            <a href="#" id="social-footer-span">
+              <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+              <span>Facebook</span>
             </a>
-            <a href="https://youtube.com" target="_blank">
-                <img src="{{ asset('Images/socials/youtube.png') }}" alt="YouTube Logo">
+            <a href="#" id="social-footer-span">
+              <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+              <span>Instagram</span>
             </a>
-            <a href="https://instagram.com" target="_blank">
-                <img src="{{ asset('Images/socials/instagram.png') }}" alt="Instagram Logo">
+            <a href="#" id="social-footer-span">
+              <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+              <span>Twitter</span>
             </a>
+            <a href="#" id="social-footer-span">
+              <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+              <span>Pintrest</span>
+            </a>
+          </div>
+          <div class="powered-by">
+            <p>© Optique. Crafted for Visionaries.</p>
+          </div>
         </div>
     </footer>
 

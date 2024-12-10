@@ -185,18 +185,18 @@
   <!-- Hero Section -->
   <section class="hero" style="padding: 40px 20px;">
       <div class="hero-content">
-          <h1 style="font-size: 80px; margin-bottom: 20px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">YOUR CART</h1>
+          <h1 class="page-title">YOUR CART</h1>
       </div>
   </section>
 
-  <!-- Cart Content -->
+  <!-- Cart Content:: Aryan Kora -->
   <section class="container">
     @if(isset($items) && $items->count() > 0)
         <div class="product-card-con">
             @foreach($items as $item)
-                <div class="product-card" style="width: 100%; max-width: 800px; margin: 20px auto;">
+                <div class="product-card">
                     <div class="card-circle"></div>
-                    <div class="product-card-content" style="width: 70%; left: 0;">
+                    <div class="product-card-content" style="width: 60%; left: 0;">
                         <h2>{{ $item->product->name }}</h2>
                         <p style="margin: 10px 0;">Cost: £{{ number_format($item->product->price, 2) }}</p>
                         <div style="margin: 10px 0;">
@@ -212,7 +212,7 @@
                             <a href="#" onclick="removeItem('{{ $item->id }}')" style="color: #ff4444;">Remove</a>
                         </div>
                     </div>
-                    <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}" style="height: 100px;">
+                    <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}" style="height: 100px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.5)">
                 </div>
             @endforeach
         </div>

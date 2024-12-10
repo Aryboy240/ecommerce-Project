@@ -7,17 +7,15 @@
 /* === BODY STYLING === */
 
 /* Sets a margin around the body and adjusts font size */
-body {
-    font-size: 20px;
-}
-
 .account-section {
     margin: 0px 100px;
+    font-size: 20px;
 }
 
 .update-details {
     margin: 0px 100px;
     padding-bottom: 30px;
+    font-size: 20px;
 }
 
 #errorProne {

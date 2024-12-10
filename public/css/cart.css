@@ -1,3 +1,15 @@
+.page-title {
+    font-size: 80px;
+    margin-bottom: 20px;
+    text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
+}
+
+.light .page-title {
+    font-size: 80px;
+    margin-bottom: 20px;
+    text-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
 /* Cart Container */
 .container {
     max-width: 1200px;

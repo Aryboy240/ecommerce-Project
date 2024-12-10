@@ -5,7 +5,7 @@ const sr = ScrollReveal({
     reset: false,
 });
 
-// Global
+// Home
 sr.reveal(".hero", {
     duration: 1000,
     interval: 100,
@@ -48,6 +48,44 @@ sr.reveal(".about-section", {
 });
 
 sr.reveal(".product-container", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+//Contact
+
+sr.reveal(".contact-us", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".map-rev", {
+    duration: 1000,
+    interval: 100,
+    delay: 500,
+});
+
+sr.reveal(".contact-page-text", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".card-con", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".card-con", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".formCon", {
     duration: 1000,
     interval: 100,
     delay: 150,

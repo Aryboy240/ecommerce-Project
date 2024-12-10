@@ -135,7 +135,7 @@
     <!-- Checkout Content -->
     <section class="hero" style="padding: 40px 20px;">
         <div class="hero-content">
-            <h1 style="font-size: 80px; margin-bottom: 20px; text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);">Checkout</h1>
+            <h1 class="page-title">Checkout</h1>
         </div>
     </section>
     <section class="container">

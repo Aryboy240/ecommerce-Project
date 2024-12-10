@@ -766,6 +766,7 @@ nav:hover {
 .about-button {
     padding: 12px 30px;
     background-color: var(--floater);
+    text-decoration: none;
     border: none;
     border-radius: 8px;
     color: white;
@@ -777,7 +778,7 @@ nav:hover {
 .about-button:hover {
     background-color: var(--mint);
     box-shadow: 0 0 15px var(--mint);
-    transform: translateY(-2px);
+    width: 10px;
 }
 
 .about-image {
