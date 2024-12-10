@@ -212,7 +212,7 @@
                             <a href="#" onclick="removeItem('{{ $item->id }}')" style="color: #ff4444;">Remove</a>
                         </div>
                     </div>
-                    <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}" style="height: 100px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.5)">
+                    <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}" style="height: 100px; border-radius: 10px; box-shadow: 0px 0px 10px rgba()">
                 </div>
             @endforeach
         </div>
