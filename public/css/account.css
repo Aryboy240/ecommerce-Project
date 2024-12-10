@@ -4,20 +4,26 @@
     Function: Styling for the User Account page (for logged-in users) (resources/views/Account.blade.php)
 */
 
+/* just a random comment to test smth */
+
 /* === BODY STYLING === */
 
 /* Sets a margin around the body and adjusts font size */
-body {
+.account-section {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0px 100px;
     font-size: 20px;
 }
 
-.account-section {
-    margin: 0px 100px;
-}
-
 .update-details {
+    width: 66%;
     margin: 0px 100px;
     padding-bottom: 30px;
+    font-size: 20px;
 }
 
 #errorProne {
@@ -37,6 +43,7 @@ body {
 /* Styles for subheadings on the page */
 .subheading {
     font-size: 25px;
+    text-align: center;
 }
 
 /* === USER INFO SECTION === */
@@ -46,21 +53,67 @@ body {
     margin: 20px;
 }
 
+/* Made by Aryan Kora */
+
+.main-account-section {
+    position: relative;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 50px;
+    gap: 50px;
+    z-index: 5;
+}
+
+.account-wrapper {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 75px;
+    width: 85%;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
+}
+
+.light .account-wrapper {
+    background: linear-gradient(135deg, rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0));
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(255, 255, 255, 0.37);
+}
+
+.acc-info {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 /* === STYLING FOR FORMS === */
 
 /* Styles the container for forms to update user details */
 .update-details-forms {
-    margin: 20px; /* Adds margin around the forms section */
     display: flex; /* Enables flexible box layout */
     justify-content: center; /* Centers the forms */
     flex-wrap: wrap; /* Allows wrapping if content overflows */
+    width: 100%;
 }
 
 /* Individual form container styling */
 .form-container {
+    width: 100%;
     margin: 10px; /* Spacing between form containers */
     padding: 30px; /* Internal spacing inside the form container */
-    background-color: var(--darker); /* Background color using a CSS variable */
     border-radius: 20px; /* Rounded corners */
     flex-grow: 1; /* Allows the container to grow based on available space */
 }
@@ -75,12 +128,42 @@ body {
     font-size: 15px; /* Button font size */
 }
 
-/* Hover effect for buttons */
-.form-content button:hover {
-    color: var(--lighter); /* Text colour using CSS variable */
-    outline: auto; /* Applies an outline automatically */
-    outline-color: var(--darker); /* Sets outline color using CSS variable */
-    outline-offset: -2px; /* Adjusts outline position */
+.input input {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    background: transparent;
+    border-radius: 30px;
+    transition: var(--transition-speed);
+}
+
+.input button {
+    width: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 0px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    background-color: var(--darker);
+    border-radius: 30px;
+    transition: var(--transition-speed);
+    cursor: pointer;
+}
+
+.input button:hover {
+    transform: scale(1.02);
+    background-color: var(--mint);
+}
+
+.input span {
+    text-shadow: 0 0 15px rgba(255, 0, 0, 1);
+    margin-top: 15px;
 }
 
 /* === FORM TITLES === */
@@ -95,10 +178,10 @@ body {
 
 /* Aligns and centers form content */
 .form-content {
-    display: flex; /* Uses flexbox for layout */
     align-items: center; /* Vertically aligns content */
     flex-direction: column; /* Stacks items vertically */
     justify-content: center; /* Centers items horizontally */
+    width: 100%;
 }
 
 /* Input field styling */

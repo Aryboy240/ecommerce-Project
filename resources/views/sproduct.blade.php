@@ -152,8 +152,8 @@
       <div class="single-pro-details">
           <h6>Home / Shop</h6>
           <h4>Square Frame Glasses</h4>
-          <h2>$199.99</h2>
-          
+          <h2>£100</h2>
+        
           <select>
               <option>Select Frame Size</option>
               <option>Small</option>

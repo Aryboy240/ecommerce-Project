@@ -746,6 +746,22 @@ nav:hover {
     box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
+.light .about-wrapper {
+    display: flex;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 75px;
+    width: 85%;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(255, 255, 255, 0.37);
+}
+
 .about-content {
     margin: 0 25px;
     flex: 1;
@@ -766,6 +782,7 @@ nav:hover {
 .about-button {
     padding: 12px 30px;
     background-color: var(--floater);
+    text-decoration: none;
     border: none;
     border-radius: 8px;
     color: white;
@@ -777,7 +794,7 @@ nav:hover {
 .about-button:hover {
     background-color: var(--mint);
     box-shadow: 0 0 15px var(--mint);
-    transform: translateY(-2px);
+    width: 10px;
 }
 
 .about-image {
