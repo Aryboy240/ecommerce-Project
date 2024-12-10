@@ -14,6 +14,47 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/aryansExtras.css') }}" rel="stylesheet">
     <title>About Us</title>
+    <style>
+      /* I added hover effects for footer logos to make the interaction more dynamic */
+      .about-social-footer-links img {
+          width: 40px;
+          height: 40px;
+          transition: transform 0.3s ease;
+      }
+
+      .about-social-footer-links img:hover {
+          transform: scale(1.2);
+      }
+
+      /* I wanted the footer text to stand out, so I made it larger and bolder */
+      .about-footer p {
+          font-size: 28px;
+          font-weight: bold;
+      }
+
+      /* Center the section content and align with middle logo */
+      .section {
+          text-align: left;
+          font-size: 20px;
+          max-width: 1200px;
+          margin: 20px auto;
+          padding: 40px;
+          border: 8px ridge #2a7f62;
+          background-color: #222;
+          box-sizing: border-box;
+      }
+
+      h1 {
+          font-size: 20px;
+          color: #4caf50;
+          margin-bottom: 20px;
+      }
+
+      p {
+          font-size: 20px;
+          line-height: 1.6;
+      }
+    </style>
 </head>
 <body>
   <!-- Navigation  Bar:: Aryan Kora -->
