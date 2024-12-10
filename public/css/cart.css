@@ -14,7 +14,6 @@
 .container {
     width: 100%;
     margin: 0 auto;
-    padding: 20px;
 }
 
 /* Cart Item Styling */
@@ -255,6 +254,11 @@
     filter: drop-shadow(0 10px 15px rgba(0, 191, 174, 0.3));
     animation: float 3s ease-in-out infinite;
     transform-origin: center;
+}
+
+.empty-cart a {
+    width: 200px;
+    filter: drop-shadow(0px 0px 20px rgba(0, 191, 174, 0.3));
 }
 
 .empty-cart h2 {
