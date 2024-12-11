@@ -146,6 +146,9 @@ body {
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    cursor: zoom-in;
 }
 
 .product-card h3 {
@@ -182,10 +185,6 @@ body {
     .product-card {
         padding: 15px;
     }
-}
-
-.product-card img {
-    cursor: zoom-in;
 }
 
 .product-card img:hover {
