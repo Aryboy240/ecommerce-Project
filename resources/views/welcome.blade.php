@@ -11,8 +11,12 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- JS -->
   <script defer src="/js/theme.js"></script>
+
+  <!-- Move these -->
   <script defer src="/js/addToCart.js"></script>
   <script defer src="js/ProductSlider.js"></script>
+  <!-- Move these -->
+  
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/scrollBar.js"></script>
