@@ -65,6 +65,10 @@ Route::get('/Careers', function () {
 Route::get('/Testimonials', function () {
     return view('Testimonials'); // Refers to resources/views/Careers.blade.php
 })->name('Testimonials');
+
+Route::get('/OurStory', function () {
+    return view('OurStory'); // Refers to resources/views/OurStory.blade.php
+})->name('OurStory');
 /*
 |--------------------------------------------------------------------------
 | Account Routes

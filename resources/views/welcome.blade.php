@@ -477,7 +477,7 @@
     </div>
     <div>
       <h3>About Optique</h3>
-      <a href="#">Our Story</a>
+      <a href="{{ route('OurStory') }}">Our Story</a>
       <a href="{{ route('Testimonials') }}">Testimonials</a>
       <a href="{{ route('Careers') }}">Careers</a>
       <a href="#">Store Locator</a>

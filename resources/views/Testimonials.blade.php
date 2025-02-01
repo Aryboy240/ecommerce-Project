@@ -129,7 +129,7 @@
   <!-- Navigation  Bar End -->
 
 
-   <!--Our Testimonials : Man Kwok -->
+   <!--Testimonials : Man Kwok -->
   <section class="Testimonials-section">
 
     <!-- Big Title: Man Kwok-->
@@ -174,8 +174,8 @@
     </div>
     <div>
       <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
+      <a href="{{ route('OurStory') }}">Our Story</a>
+      <a href="{{ route('Testimonials') }}">Testimonials</a>
       <a href="{{ route('Careers') }}">Careers</a>
       <a href="#">Store Locator</a>
     </div>
