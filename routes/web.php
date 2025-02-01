@@ -58,6 +58,13 @@ Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
 
+Route::get('/Careers', function () {
+    return view('Careers'); // Refers to resources/views/Careers.blade.php
+})->name('Careers');
+
+Route::get('/Testimonials', function () {
+    return view('Testimonials'); // Refers to resources/views/Careers.blade.php
+})->name('Testimonials');
 /*
 |--------------------------------------------------------------------------
 | Account Routes

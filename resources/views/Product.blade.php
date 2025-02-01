@@ -279,7 +279,7 @@
       <h3>About Optique</h3>
       <a href="#">Our Story</a>
       <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
+      <a href="{{ route('Careers') }}">Careers</a>
       <a href="#">Store Locator</a>
     </div>
     <div class="social-icons">
