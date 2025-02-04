@@ -11,11 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <!-- Welcome only -->
-  <script defer src="/js/addToCart.js"></script>
-  <script defer src="js/ProductSlider.js"></script>
-  <!-- Welcome only -->
-
   <!-- JS -->
   <script defer src="/js/theme.js"></script>
   <script defer src="js/scrollReveal.js"></script>
@@ -25,7 +20,6 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
 
   <title>@yield('title', 'Laravel App')</title>
 </head>
