@@ -5,18 +5,28 @@
 -->
 
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <!-- Welcome only -->
+  <script defer src="/js/addToCart.js"></script>
+  <script defer src="js/ProductSlider.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+  <!-- Welcome only -->
+
   <!-- JS -->
   <script defer src="/js/theme.js"></script>
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
   <script src="js/scrollBar.js"></script>
+
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+
   <title>@yield('title', 'Laravel App')</title>
 </head>
 
@@ -130,63 +140,64 @@
   </section>
   <!-- Navigation  Bar End -->
 
-  <section>
+  <main>
     @yield('content')
-  </section>
+    </m>
 
-  <!-- Footer Section:: Esta -->
-  <div class="footer">
-    <div>
-      <h3>Customer Support</h3>
-      <p>
-        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
-        1 (800) 555-OPTQ
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="mailto:support@optique.com">support@optique.com</a>
-      </p>
-      <p>
-        <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="{{ route('contact') }}">Contact Us!</a>
-      </p>
+    <!-- Footer Section:: Esta -->
+    <div class="footer">
+      <div>
+        <h3>Customer Support</h3>
+        <p>
+          <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+          1 (800) 555-OPTQ
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+          <a href="mailto:support@optique.com">support@optique.com</a>
+        </p>
+        <p>
+          <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
+          <a href="{{ route('contact') }}">Contact Us!</a>
+        </p>
+      </div>
+      <div>
+        <h3>Shop</h3>
+        <a href="#">Glasses</a>
+        <a href="#">Sunglasses</a>
+        <a href="#">Accessories</a>
+        <a href="#">Contact Lenses</a>
+      </div>
+      <div>
+        <h3>About Optique</h3>
+        <a href="#">Our Story</a>
+        <a href="#">Testimonials</a>
+        <a href="#">Careers</a>
+        <a href="#">Store Locator</a>
+      </div>
+      <div class="social-icons">
+        <h3>Follow Us</h3>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Facebook</span>
+        </a>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Instagram</span>
+        </a>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Twitter</span>
+        </a>
+        <a href="#" id="social-footer-span">
+          <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+          <span>Pintrest</span>
+        </a>
+      </div>
+      <div class="powered-by">
+        <p>© Optique. Crafted for Visionaries.</p>
+      </div>
     </div>
-    <div>
-      <h3>Shop</h3>
-      <a href="#">Glasses</a>
-      <a href="#">Sunglasses</a>
-      <a href="#">Accessories</a>
-      <a href="#">Contact Lenses</a>
-    </div>
-    <div>
-      <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
-      <a href="#">Store Locator</a>
-    </div>
-    <div class="social-icons">
-      <h3>Follow Us</h3>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Facebook</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Instagram</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Twitter</span>
-      </a>
-      <a href="#" id="social-footer-span">
-        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
-        <span>Pintrest</span>
-      </a>
-    </div>
-    <div class="powered-by">
-      <p>© Optique. Crafted for Visionaries.</p>
-    </div>
-  </div>
 </body>
+
 </html>
