@@ -20,7 +20,7 @@
 @extends('layouts.mainLayout')
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'Welcome')
+@section('title', 'Account')
 
 <!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
@@ -31,16 +31,16 @@
         <div class="subheading">
             <h3>Update Your Information</h3>
             @if(@session('success'))
-            <div style=" color: green;">{{ session('success')}}</div>
+                <div style=" color: green;">{{ session('success')}}</div>
             @endif
             @if ($errors->any())
-            <div style="color: red;">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+                <div style="color: red;">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
         </div>
         <div class="acc-info">
@@ -80,12 +80,12 @@
                                     <input type="text" id="new-username" name="new_username" placeholder="New username"
                                         value="{{ old('new_username') }}">
                                     @error('new_username')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <input type="password" id="password" name="password" placeholder="Password">
                                     @error('password')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <button type="submit">SUBMIT</button>
@@ -106,19 +106,19 @@
                                     <input type="password" id="current-password" name="current_password"
                                         placeholder="Current password">
                                     @error('current_password')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <input type="password" id="new-password" name="new_password"
                                         placeholder="New password">
                                     @error('new_password')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <input type="password" id="confirm-new-password" name="new_password_confirmation"
                                         placeholder="Confirm new password">
                                     @error('new_password_confirmation')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <button type="submit">SUBMIT</button>
@@ -139,12 +139,12 @@
                                     <input type="email" id="new-email" name="new_email" placeholder="New email"
                                         value="{{ old('new_email') }}">
                                     @error('new_email')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <input type="password" id="password" name="password" placeholder="Password">
                                     @error('password')
-                                    <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
+                                        <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
                                     @enderror
                                     <br><br>
                                     <button type="submit">SUBMIT</button>
