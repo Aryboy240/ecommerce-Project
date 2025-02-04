@@ -19,3 +19,5 @@ This is Team 28's CS2TP website, Optique.
 ## If you would like to contact us:
 
 Aryan Kora's Socials
+
+-   [LinkedIn](https://www.linkedin.com/in/aryan-kora/).
