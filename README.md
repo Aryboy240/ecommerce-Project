@@ -6,18 +6,21 @@ This is Team 28's CS2TP website, Optique.
 
 ## Who's on the team?
 
--   230049488 Kwok Man
--   230228946 Muse Abdulrahman
--   230066670 Amjad Aqsa
--   230059030 Kora Aryan
--   230402373 Arowolo Oyinlola
--   230416624 Shergill Aronveer
--   230177600 Ahmed Hussen
--   230069888 Kainth Nikhil
--   220408633 Mehta Vatsal
+-   Man Kwok (230049488)
+-   Abdulrahman Muse (230228946)
+-   Aqsa Amjad (230066670)
+-   Aryan Kora (230059030)
+-   Oyinlola Arowolo (230402373)
+-   Aronveer Shergill (230416624)
+-   Hussen Ahmed (230177600)
+-   Nikhil Kainth (230069888)
+-   Vatsal Mehta (220408633)
 
 ## If you would like to contact us:
 
-Aryan Kora's Socials
+# Aryan Kora's Socials:
 
--   [LinkedIn](https://www.linkedin.com/in/aryan-kora/).
+-   **[LinkedIn](https://www.linkedin.com/in/aryan-kora/)**
+-   **[GitHub](https://github.com/Aryboy240)**
+
+-   **[Previous Website](https://littledessertshop.netlify.app/)**
