@@ -9,7 +9,6 @@
 <head>
   <script defer src="/js/addToCart.js"></script>
   <script defer src="js/ProductSlider.js"></script>
-  <link href="{{ asset('css/Product_Card.css') }}" rel="stylesheet">
 </head>
 
 </html>

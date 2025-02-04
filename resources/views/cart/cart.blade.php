@@ -2,7 +2,6 @@
 
 <head>
 
-  <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
   <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
 </head>

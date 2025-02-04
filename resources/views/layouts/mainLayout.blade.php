@@ -20,6 +20,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
 
   <title>@yield('title', 'Laravel App')</title>
 </head>
