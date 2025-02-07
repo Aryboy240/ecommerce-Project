@@ -25,16 +25,7 @@ function renderTestimonials() {
         const testimonialDiv = document.createElement("div");
         testimonialDiv.className = "testimonial";
 
-        let color;
-        if(testimonial.rating === "★★★★★") {
-            color = "#00bfae";
-        } else if (testimonial.rating === "★★★★☆") {
-            color = "#00a68c"; 
-        } else if (testimonial.rating === "★☆☆☆☆" || testimonial.rating === "★★☆☆☆" || testimonial.rating === "★★★☆☆") {
-            color = "#006d5d"; 
-        }
-
-        testimonialDiv.style.backgroundColor=color;
+        
 
         testimonialDiv.innerHTML = `
             <p class="testimonial-author">${testimonial.author}</p>
