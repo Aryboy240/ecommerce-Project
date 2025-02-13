@@ -140,3 +140,11 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+Route::get('/adminpanel', function () {
+    return view('Adminpanel');
+})->name('adminpanel');
+
+Route::get('/productadmin', function () {
+    return view('Productadmin'); // Refers to resources/views/Account.blade.php
+})->name('productadmin');
