@@ -78,7 +78,6 @@
       </div>
     </a>
 
-
     <!--Rigth nav-->
     <nav class="navbar-rigth">
       <ul class="navbar-nav">
@@ -257,4 +256,3 @@
   </section>
 </body>
 </html>
-
