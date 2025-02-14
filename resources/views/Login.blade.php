@@ -3,7 +3,7 @@
 	  University ID: 230059030
     Function: Front end for the login page
 
-    Developer: Hussen Ahmed 
+    Developer: Hussen Ahmed
 	  University ID: 230177600
     Function: Added the backend for logins
 -->
@@ -11,9 +11,11 @@
 <head>
   <title>Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- JS -->
+  <script defer src="/js/theme.js"></script>
   <!--CSS-->
-  <link rel="stylesheet" href="{{ asset('css/login.css') }}"> 
-  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}"> 
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,7 +43,7 @@
   <!--Log in Section-->
   <section>
     <div class="login-img">
-      <img src="Images/song_it.jpeg" />
+      <img src="Images/loginBackground.jpg" />
     </div>
     <div class="login-content">
       <div class="form">
@@ -72,10 +74,17 @@
         <form action="/login" method="POST">
           @csrf <!-- Extra protection against cookies -->
 
+          <!-- Error message for invalid credentials -->
+          @if ($errors->has('loginError'))
+            <div style="color: red; margin-bottom: 10px">
+                {{ $errors->first('loginError') }}
+            </div>
+          @endif
+
           <!-- Username -->
           <div class="input">
             <span>Username</span>
-            <input type="text" name="loginUsername" />
+            <input type="text" name="loginUsername" value="{{ old('loginUsername') }}" />
             @error('loginUsername')
               <span id="error">{{ $message }}</span>
             @enderror
@@ -113,19 +122,19 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/instagram.png"
-            /></a>
+            <a href="https://www.instagram.com" target="_blank">
+              <img src="Images/socials/instagram.png"/>
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/youtube.png"
-            /></a>
+            <a href="https://www.youtube.com" target="_blank">
+              <img src="Images/socials/youtube.png"/>
+            </a>
           </li>
           <li>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-              ><img src="Images/socials/twitter.png"
-            /></a>
+            <a href="https://www.twitter.com" target="_blank">
+              <img src="Images/socials/twitter.png"/>
+            </a>
           </li>
         </ul>
       </div>

@@ -1,11 +1,21 @@
-<!DOCTYPE html>
+<!--
+    Developer: Aryan Kora
+    university ID: 230059030
+    function: Landing page Frontend
+-->
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- JS -->
+  <script defer src="/js/theme.js"></script>
+  <script defer src="/js/addToCart.js"></script>
+  <script defer src="js/ProductSlider.js"></script>
   <script defer src="js/scrollReveal.js"></script>
   <script src="js/scrollreveal.min.js"></script>
+  <script src="js/scrollBar.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -37,7 +47,7 @@
 
         <!--About-->
         <li class="nav-item">
-          <a href="{{ route('contact') }}" class="nav-link">
+          <a href="{{ route('about') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -51,7 +61,7 @@
 
         <!--Store-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('product') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -66,9 +76,9 @@
     </nav>
 
     <!--MIDDLE LOGO-->
-    <a href="{{ route('welcome') }}">
+    <a id="themeButton">
       <div class="navbar-middle">
-          <img src="{{ asset('Images/circleLogo.png') }}">
+        <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
 
@@ -79,7 +89,7 @@
 
         <!--Account-->
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -93,7 +103,7 @@
 
         <!--Order-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('cart.view') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -107,7 +117,7 @@
 
         <!--Search-->
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('search') }}" class="nav-link">
             <div class="nav-item-wrapper">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -134,7 +144,7 @@
           elevate their eye-wear style and enchance their vision<br><br>
           <em>A digital solution for Opticians</em>
         </p>
-        <a href="" class="btn-order">Order</a>
+        <a href="{{ route('search') }}" class="btn-order">Order</a>
         <div class="pointer-wrapper">
           <img src="{{ asset('Images/arrow.png') }}">
           <p>Order from<br> here</p>
@@ -180,7 +190,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Adidas">Starting from £100</a>
         </div>
         <img class="imageSize-1" src="{{ asset('Images/brands/adidas_Logo.png') }}" />
       </div>
@@ -194,7 +204,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=HUGO">Starting from £100</a>
         </div>
         <img class="imageSize-2" src="{{ asset('Images/brands/hugo.png') }}" />
       </div>
@@ -208,7 +218,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=DKNY">Starting from £100</a>
         </div>
         <img class="imageSize-3" src="{{ asset('Images/brands/dnky.png') }}" />
       </div>
@@ -225,7 +235,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Disney">Starting from £100</a>
         </div>
         <img class="imageSize-4" src="{{ asset('Images/brands/disney.png') }}" />
       </div>
@@ -239,7 +249,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Karen+Millen">Starting from £100</a>
         </div>
         <img class="imageSize-5" src="{{ asset('Images/brands/karen_Millen.png') }}" />
       </div>
@@ -253,7 +263,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Jeff+Banks">Starting from £100</a>
         </div>
         <img class="imageSize-6" src="{{ asset('Images/brands/jeff_Banks.png') }}" />
       </div>
@@ -270,7 +280,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Harry+Potter">Starting from £100</a>
         </div>
         <img class="imageSize-7" src="{{ asset('Images/brands/harry_Potter.png') }}" />
       </div>
@@ -284,7 +294,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Barbour">Starting from £100</a>
         </div>
         <img class="imageSize-8" src="{{ asset('Images/brands/barbour.png') }}" />
       </div>
@@ -298,7 +308,7 @@
             Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
             delectus eveniet iusto tenetur.
           </p>
-          <a href="#">Starting from £100</a>
+          <a href="/products?category=Comfit">Starting from £100</a>
         </div>
         <img class="imageSize-9" src="{{ asset('Images/brands/comfit.png') }}" />
       </div>
@@ -306,44 +316,194 @@
   </section>
   <!-- Product Cards End -->
 
-  <!-- Categories Section:: Esta -->
-  <section class="container">
-    <div class="container">
-      <h2 class="section-title">View our range of categories</h2>
-      <div class="category-grid">
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Glasses" />
-            <h5 class="category-title">Glasses</h5>
-          </a>
+  <!-- Products Slider:: Aryan Kora -->
+  <section class="product">
+    <h2 class="section-title">Popular Products</h2>
+    <button class="pre-btn"><img src="Images/PSArrow.png" alt=""></button>
+    <button class="nxt-btn"><img src="Images/PSArrow.png" alt=""></button>
+    <div class="product-container">
+      <div class="product-card">
+          <div class="product-image">
+              <img src="Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="add-to-cart card-btn" data-product-id="32859928" data-quantity="1">Add to Cart</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">Adidas</h2>
+              <p class="product-short-description">ID: 32859928</p>
+              <span class="price">£100</span>
+          </div>
+      </div>
+      <div class="product-card">
+          <div class="product-image">
+              <span class="discount-tag">50% off</span>
+              <img src="Images/products/Featured/Barbour/33137483/33137483-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="add-to-cart card-btn" data-product-id="33137483" data-quantity="1">Add to Cart</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">Barbour</h2>
+              <p class="product-short-description">ID: 33137483</p>
+              <span class="price">£100</span><span class="actual-price">£150</span>
+          </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+            <img src="Images/products/Featured/Comfit/32861686/32861686-front-2000x1125.jpg" class="product-thumb" alt="">
+            <button class="card-btn">add to basket</button>
         </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Sunglasses" />
-            <h5 class="category-title">Sunglasses</h5>
-          </a>
+        <div class="product-info">
+            <h2 class="product-brand">Comfit</h2>
+            <p class="product-short-description">ID: 32861686</p>
+            <span class="price">£100</span>
         </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Contact Lenses" />
-            <h5 class="category-title">Contact Lenses</h5>
-          </a>
+    </div>
+      <div class="product-card">
+          <div class="product-image">
+              <img src="Images/products/Featured/Disney/33087542/33087542-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="add-to-cart card-btn" data-product-id="33087542" data-quantity="1">Add to Cart</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">Disney</h2>
+              <p class="product-short-description">ID: 33087542</p>
+              <span class="price">£100</span>
+          </div>
+      </div>
+      <div class="product-card">
+          <div class="product-image">
+              <span class="discount-tag">50% off</span>
+              <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.jpg" class="product-thumb" alt="">
+              <button class="add-to-cart card-btn" data-product-id="32677959" data-quantity="1">Add to Cart</button>
+          </div>
+          <div class="product-info">
+              <h2 class="product-brand">DKNY</h2>
+              <p class="product-short-description">ID: 32677959</p>
+              <span class="price">£100</span><span class="actual-price">£200</span>
+          </div>
+      </div>
+      <div class="product-card">
+        <div class="product-image">
+            <img src="Images/products/Featured/HUGO/33137346/33137346-front-2000x1125.jpg" class="product-thumb" alt="">
+            <button class="add-to-cart card-btn" data-product-id="33137346" data-quantity="1">Add to Cart</button>
         </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Frames" />
-            <h5 class="category-title">Frames</h5>
-          </a>
+        <div class="product-info">
+            <h2 class="product-brand">HUGO</h2>
+            <p class="product-short-description">ID: 33137346</p>
+            <span class="price">£100</span>
         </div>
-        <div class="category">
-          <a href="">
-            <img src="{{ asset('Images/filler.webp') }}" class="category-img" alt="Glasses Accessories" />
-            <h5 class="category-title">Glasses Accessories</h5>
-          </a>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+          <img src="Images/products/Featured/Jeff Banks/32860634/32860634-front-2000x1125.jpg" class="product-thumb" alt="">
+          <button class="add-to-cart card-btn" data-product-id="32860634" data-quantity="1">Add to Cart</button>
+      </div>
+      <div class="product-info">
+          <h2 class="product-brand">Jeff Banks</h2>
+          <p class="product-short-description">ID: 32860634</p>
+          <span class="price">£100</span>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+          <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="product-thumb" alt="">
+          <button class="add-to-cart card-btn" data-product-id="33039633" data-quantity="1">Add to Cart</button>
+      </div>
+      <div class="product-info">
+          <h2 class="product-brand">Karen Millen</h2>
+          <p class="product-short-description">ID: 33039633</p>
+          <span class="price">£100</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section:: Aryan Kora -->
+  <section class="about-section">
+    <div class="about-wrapper">
+      <div class="about-content">
+        <h2>Learn about us and what sets us apart</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum,
+          voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit
+          labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem
+          ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque
+          dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus,
+          deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci
+          fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui
+          voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
+          <br><br>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta
+          numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium
+          aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus
+          tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae
+          veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi
+          similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic
+          commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi.
+          Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
+          <br><br>
+        </p>
+        <a class="about-button" href="{{ route('about') }}">Learn More</a>
+      </div>
+      <div class="about-image">
+        <div class="image-grid">
+          <img src="{{ asset('Images/About/Goggle Box.png') }}" alt="About Image 1">
+          <img src="{{ asset('Images/About/LumiLens.png') }}" alt="About Image 2">
+          <img src="{{ asset('Images/About/Optivision.png') }}" alt="About Image 3">
+          <img src="{{ asset('Images/About/Optquie.png') }}" alt="About Image 4">
         </div>
       </div>
     </div>
   </section>
-</body>
 
+  <!-- Footer Section:: Esta -->
+  <div class="footer">
+    <div>
+      <h3>Customer Support</h3>
+      <p>
+        <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
+        1 (800) 555-OPTQ
+      </p>
+      <p>
+        <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="mailto:support@optique.com">support@optique.com</a>
+      </p>
+      <p>
+        <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
+        <a href="{{ route('contact') }}">Contact Us!</a>
+      </p>
+    </div>
+    <div>
+      <h3>Shop</h3>
+      <a href="#">Glasses</a>
+      <a href="#">Sunglasses</a>
+      <a href="#">Accessories</a>
+      <a href="#">Contact Lenses</a>
+    </div>
+    <div>
+      <h3>About Optique</h3>
+      <a href="#">Our Story</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Careers</a>
+      <a href="#">Store Locator</a>
+    </div>
+    <div class="social-icons">
+      <h3>Follow Us</h3>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Facebook</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Instagram</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Twitter</span>
+      </a>
+      <a href="#" id="social-footer-span">
+        <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
+        <span>Pintrest</span>
+      </a>
+    </div>
+    <div class="powered-by">
+      <p>© Optique. Crafted for Visionaries.</p>
+    </div>
+  </div>
+</body>
 </html>

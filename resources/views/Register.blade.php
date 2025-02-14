@@ -5,12 +5,14 @@
 
     Developer: Nikhil Kainth
 	  University ID: 230069888
-    Function: Front end modifications and back end
+    Function: Backend for registeration and front end modifications for backend
 -->
 
 <head>
   <title>Register</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- JS -->
+  <script defer src="/js/theme.js"></script>
   <!--CSS-->
   <link rel="stylesheet" href="css/register.css" />
   <link rel="stylesheet" href="css/aryansExtras.css" />
@@ -32,10 +34,10 @@
 </head>
 
 <body>
-  <!--Log in Section-->
+  <!-- Register Section -->
   <section>
     <div class="login-img">
-      <img src="Images/skater_girl.png" alt="Skater Girl" />
+      <img src="Images/registerBackground.jpg" alt="Skater Girl" />
     </div>
     <div class="login-content">
       <div class="form">
@@ -66,12 +68,12 @@
           
           @csrf <!-- Extra protection against cookies -->
 
-          <!-- Username -->
-          <div class="input">
-              <label for="username">Username</label>
-              <input type="text" id="username" name="username" value="{{ old('username') }}" />  <!-- Stores the current username in field if other validations fail -->
+          <!-- Username --> 
+          <div class="input"> 
+              <label for="name">Username</label>
+              <input type="text" id="name" name="name" value="{{ old('name') }}" />  <!-- Stores the current username in field if other validations fail -->
               <!-- Username validation checks: look at UserController.php in app/Http/Controllers for list of validations -->
-              @error('username')
+              @error('name')
                   <span>{{ $message }}</span>
               @enderror
           </div>
@@ -131,17 +133,17 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.instagram.com">
+            <a href="https://www.instagram.com" target="_blank">
               <img src="Images/socials/instagram.png" alt="Instagram" />
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com">
+            <a href="https://www.youtube.com" target="_blank">
               <img src="Images/socials/youtube.png" alt="YouTube" />
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com">
+            <a href="https://www.twitter.com" target="_blank">
               <img src="Images/socials/twitter.png" alt="Twitter" />
             </a>
           </li>
@@ -149,5 +151,5 @@
       </div>
     </div>
   </section>
-  <!--Log in Section End-->
+  <!-- Register Section End -->
 </body>
