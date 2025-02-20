@@ -8,6 +8,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
         <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/order.css') }}">
     </head>
     <body>
         <div class="container">
@@ -43,9 +44,8 @@
                             <div class="dropdown">
                                 <button class="dropbtn">Admin User</button>
                                 <div class="dropdown-content">
-                                    <a href="#profile">Profile</a>
-                                    <a href="#settings">Settings</a>
-                                    <a href="#logout">Logout</a>
+                                    <a href="{{ route('adminprofile') }}">Profile</a>
+                                    <a href="javascript:void(0);" onclick="openLogoutModal()">Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -162,5 +162,21 @@
                 </main>
             </div>
         </div>
+
+        <!-- Logout Modal -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLogoutModal()">&times;</span>
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <p>Logged in as <strong>Admin User</strong>.</p>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="logout()">Confirm Logout</button>
+                <button class="btn-secondary" onclick="closeLogoutModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('js/order.js') }}"></script>
     </body>
 </html>

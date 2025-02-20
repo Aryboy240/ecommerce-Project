@@ -29,30 +29,7 @@
         </nav>
 
         <div class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="header-right">
-                    <div class="notifications">
-                        <button><i class="fas fa-bell"></i></button>
-                    </div>
-                    <div class="profile">
-                        <i class="fas fa-user"></i>
-                        <div class="dropdown">
-                            <button class="dropbtn">Admin User</button>
-                            <div class="dropdown-content">
-                                <a href="#profile">Profile</a>
-                                <a href="#settings">Settings</a>
-                                <a href="#logout">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
+            
             <!-- Page Header -->
             <h1 class="page-header">Order Management</h1>
 
@@ -237,6 +214,6 @@
     <!-- Notification Container -->
     <div id="notificationContainer" class="notification-container"></div>
 
-    <script src="{{ asset('js/order.js') }}"></script>
+    
 </body>
 </html>
