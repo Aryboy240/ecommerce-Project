@@ -102,3 +102,29 @@ document.querySelector('.reset-button').onclick = function() {
         row.style.display = '';
     });
 };
+
+// Function to open the logout modal
+function openLogoutModal() {
+    document.getElementById('logoutModal').style.display = 'block';
+}
+
+// Function to close the logout modal
+function closeLogoutModal() {
+    document.getElementById('logoutModal').style.display = 'none';
+}
+
+// Function to handle logout (currently disabled)
+function logout() {
+    // For now, just log to the console instead of redirecting
+    console.log("Logout action is currently disabled.");
+    // Uncomment the line below when you want to enable the logout functionality
+    // window.location.href = '/login'; // Change this to your actual login URL
+}
+
+// Close the modal when clicking outside of the modal content
+window.onclick = function(event) {
+    const modal = document.getElementById('logoutModal');
+    if (event.target === modal) {
+        closeLogoutModal();
+    }
+};
