@@ -148,3 +148,8 @@ Route::get('/adminpanel', function () {
 Route::get('/productadmin', function () {
     return view('Productadmin'); // Refers to resources/views/Account.blade.php
 })->name('productadmin');
+
+// Order Management Route
+Route::get('/orders', function () {
+    return view('Order');
+})->name('orders');
