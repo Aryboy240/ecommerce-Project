@@ -153,3 +153,7 @@ Route::get('/productadmin', function () {
 Route::get('/orders', function () {
     return view('Order');
 })->name('orders');
+
+Route::get('/adminprofile', function () {
+    return view('Adminprofile');
+})->name('adminprofile');
