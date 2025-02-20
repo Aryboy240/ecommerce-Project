@@ -22,7 +22,7 @@
                 <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
                 <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
                 <li><a href="#customers"><i class="fas fa-users"></i> Customers</a></li>
-                <li><a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="{{ route('orders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
                 <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
                 <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
