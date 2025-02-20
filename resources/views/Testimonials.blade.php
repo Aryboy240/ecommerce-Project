@@ -146,6 +146,16 @@
     <!-- Button to switch testimonials -->
     <button onclick="changeTestimonials()">Next</button>
 
+    <div class="testimonial-form-container">
+      <div id="testimonial-form">
+        <h3>Add Your Testimonial</h3>
+        <form id="addTestimonialForm">
+            <input type="text" id="userName" placeholder="Your Name" required />
+            <textarea id="userMessage" placeholder="Your Testimonial" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
   </section>
   
   <!-- Footer Section:: Esta -->
