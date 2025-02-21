@@ -20,6 +20,4 @@ This is Team 28's CS2TP website, Optique.
 
 **Aryan Kora -** I worked on the website's front-end (landing page, account page, login/register etc...), back-end and hosting.
 
--   **[LinkedIn](https://www.linkedin.com/in/aryan-kora/)**
--   **[GitHub](https://github.com/Aryboy240)**
--   **[Previous Website](https://littledessertshop.netlify.app/)**
+-   **[Linktree](https://linktr.ee/AryanKora)**
