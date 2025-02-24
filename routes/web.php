@@ -157,3 +157,8 @@ Route::get('/orders', function () {
 Route::get('/adminprofile', function () {
     return view('Adminprofile');
 })->name('adminprofile');
+
+// Customer Management Route
+Route::get('/customer', function () {
+    return view('Customer'); 
+})->name('customer');
