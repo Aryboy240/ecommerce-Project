@@ -151,3 +151,8 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+//adminlogon page
+Route::get('/adminlogin', function () {
+    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
+})->name('adminlogin');
