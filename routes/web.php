@@ -146,7 +146,7 @@ Route::get('/adminpanel', function () {
 })->name('adminpanel');
 
 Route::get('/productadmin', function () {
-    return view('Productadmin'); // Refers to resources/views/Account.blade.php
+    return view('Productadmin'); 
 })->name('productadmin');
 
 // Order Management Route
@@ -159,6 +159,6 @@ Route::get('/adminprofile', function () {
 })->name('adminprofile');
 
 // Customer Management Route
-Route::get('/customer', function () {
-    return view('Customer'); 
-})->name('customer');
+Route::get('/customers', function () {
+    return view('Customers'); 
+})->name('customers');
