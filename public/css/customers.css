@@ -1,57 +1,88 @@
-table {
-    width: 90%;
-    margin: 20px auto;
+/*    
+    Developer: Aqsa Amjad
+    University ID: 230066670
+    Function: Front end for the User Account page (for logged-in users)
+
+    Developer: Aryan Kora
+    University ID: 230059030
+    Function: Front end improvements
+*/
+
+.main-content {
+    margin: 20px;
+    padding: 30px;
+    background-color: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+        
+.customer-table {
+    background-color: var(--bg-secondary);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
 }
 
-th, td {
-    padding: 12px;
+.customer-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customer-table th, .customer-table td {
+    padding: 10px;
     text-align: left;
-    border-bottom: 1px solid gray;
-
+    border-bottom: 1px solid var(--lighter);
 }
 
-table {
+.customer-table th {
+    background-color: var(--mint);
     color: var(--text-primary);
 }
 
-th {
-    background-color: var(--darker);
-    color: var(--text-primary);
-}
 
-tr:hover {
+.customer-table tbody tr:hover {
     background-color: var(--floater);
-    transition: var(--transition-speed);
 }
-
 
 .actions {
     display: flex;
-    gap: 10px; 
+    justify-content: center;
+    gap: 10px;
 }
 
 .btn {
     padding: 6px 12px;
+    border-radius: 5px;
     text-decoration: none;
-    border-radius: 4px;
-    transition: 0.3s;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 .btn-view {
     background-color: var(--lighter);
     color: var(--text-primary);
+    border: 1px solid var(--text-primary);
 }
 
 .btn-add {
     background-color: var(--mint);
     color: var(--bg-primary);
+    border: 1px solid var(--mint);
 }
 
 .btn-delete {
-    background-color: red;
+    background-color: #dc3545;
     color: white;
+    border: 1px solid #dc3545;
 }
 
 .btn:hover {
-    opacity: 0.8;
+    transform: scale(1.05);
+    filter: brightness(90%);
 }
