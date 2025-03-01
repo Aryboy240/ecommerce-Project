@@ -60,7 +60,7 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-add">Edit</a>
+                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -71,7 +71,7 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-add">Edit</a>
+                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -82,7 +82,7 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-add">Edit</a>
+                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -93,7 +93,7 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-add">Edit</a>
+                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
