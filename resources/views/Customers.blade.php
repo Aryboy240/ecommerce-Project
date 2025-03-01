@@ -111,7 +111,7 @@
         <p><strong>Name:</strong> John Doe</p>
         <p><strong>Email:</strong> johndoe@gmail.com</p>
         <p><strong>D.O.B:</strong> dd/mm/yyyy</p>
-        <button class="btn-edit" onclick="">Edit</button>
+        <button class="btn btn-edit" onclick="">Edit</button>
     </div>
 </div>
 
@@ -124,7 +124,9 @@
         <input type="email" placeholder="Email">
         <input type="number" placeholder="Orders">
         <input type="date" placeholder="dd/mm/yyyy">
-        <button class="btn-save">Save Changes</button>
+        <button class="btn btn-save">Save Changes</button>
+        <button class="btn btn-cancel" onclick="">Cancel</button>
+
     </div>
 </div>
 
@@ -135,8 +137,8 @@
         <h2>Confirm Deletion</h2>
         <p>Please enter your password to delete this user.</p>
         <input type="password" placeholder="Enter password">
-        <button class="btn-cancel" onclick="">Cancel</button>
-        <button class="btn-delete">Delete</button>
+        <button class="btn btn-confirmDelete">Delete</button>
+        <button class="btn btn-cancel" onclick="">Cancel</button>
     </div>
 </div>
 
