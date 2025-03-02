@@ -55,7 +55,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* ✅ Overlay Fix (Ensures Proper Layering) */
 .overlay {
     position: fixed;
     top: 0;
@@ -103,7 +102,6 @@ body {
     background: linear-gradient(145deg, #008f7a, #006f5a);
 }
 
-/* ✅ Fix for Next Modal */
 .modal {
     display: none;
     position: fixed;
@@ -159,7 +157,6 @@ body {
     margin: -10px -10px 10px 10px;
 }
 
-/* ✅ FIXED RECOMMENDED GLASSES SECTION */
 #recommendations {
     display: none;
     position: fixed;
@@ -232,7 +229,6 @@ body {
     text-align: center;
 }
 
-/* ✅ Popup Animation */
 @keyframes popup {
     0% {
         transform: translate(-50%, -50%) scale(0.8);
