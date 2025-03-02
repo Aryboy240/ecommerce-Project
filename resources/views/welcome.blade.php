@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/find_my_fit.css') }}">
   <title>Optique</title>
 </head>
 
@@ -132,6 +133,57 @@
     </nav>
   </section>
   <!-- Navigation  Bar End -->
+
+<!-- Find My Fit Feature Start -->
+<div class="overlay" onclick="closeModal()"></div> <!-- Overlay to cover the entire screen when modal is active -->
+
+<button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
+
+<!-- Initial Popup -->
+<div id="initialPopup" class="initial-popup">
+  <span class="close-modal" onclick="closeInitialPopup()">&times;</span>
+  <h2>Find glasses based on your face shape</h2>
+  <button class="continue-btn" onclick="showModal()">Continue</button>
+</div>
+
+<!-- Modal for Selecting Face Shape -->
+<div id="findMyFitModal" class="modal">
+  <span class="close-modal" onclick="closeModal()">&times;</span>
+  <h2>Select Your Face Shape</h2>
+  <div class="face-options">
+    <div class="face-item">
+      <img src="{{ asset('images/round.png') }}" alt="Round" onclick="showRecommendations('Round')">
+      <div class="face-label">Round</div>
+    </div>
+    <div class="face-item">
+      <img src="{{ asset('images/square.png') }}" alt="Square" onclick="showRecommendations('Square')">
+      <div class="face-label">Square</div>
+    </div>
+    <div class="face-item">
+      <img src="{{ asset('images/oval.png') }}" alt="Oval" onclick="showRecommendations('Oval')">
+      <div class="face-label">Oval</div>
+    </div>
+    <div class="face-item">
+      <img src="{{ asset('images/heart.png') }}" alt="Heart" onclick="showRecommendations('Heart')">
+      <div class="face-label">Heart</div>
+    </div>
+    <div class="face-item">
+      <img src="{{ asset('images/diamond.png') }}" alt="Diamond" onclick="showRecommendations('Diamond')">
+      <div class="face-label">Diamond</div>
+    </div>
+    <div class="face-item">
+      <img src="{{ asset('images/triangle.png') }}" alt="Triangular" onclick="showRecommendations('Triangular')">
+      <div class="face-label">Triangular</div>
+    </div>
+  </div>
+</div>
+
+<!-- Recommendations Section -->
+<div id="recommendations" style="display: none;">
+  <h2>Recommended Glasses</h2>
+  <div id="glasses-options" class="glasses-options"></div>
+</div>
+<!-- Find My Fit Feature End -->
 
   <!-- Intro Title (Frame your world):: Aryan Kora -->
   <section class="hero">
@@ -499,11 +551,84 @@
       <a href="#" id="social-footer-span">
         <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
         <span>Pintrest</span>
-      </a>
-    </div>
-    <div class="powered-by">
-      <p>© Optique. Crafted for Visionaries.</p>
-    </div>
+    </a>
   </div>
+  <div class="powered-by">
+    <p>© Optique. Crafted for Visionaries.</p>
+  </div>
+</div>
+<script>
+const basePath = "{{ asset('images') }}/"; // Define the base path for images
+
+function resetAndShowModal() {
+    closeModal();
+    closeInitialPopup();
+    document.getElementById('initialPopup').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block'; // Show overlay
+}
+
+function showModal() {
+    document.getElementById('initialPopup').style.display = 'none';
+    document.getElementById('findMyFitModal').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block'; // Show overlay
+}
+
+function closeModal() {
+    document.getElementById('findMyFitModal').style.display = 'none';
+    document.getElementById('initialPopup').style.display = 'none';
+    document.getElementById('recommendations').style.display = 'none';
+    document.querySelector('.overlay').style.display = 'none'; // Hide overlay
+}
+
+function closeInitialPopup() {
+    document.getElementById('initialPopup').style.display = 'none';
+    document.querySelector('.overlay').style.display = 'none'; // Hide overlay
+}
+function showRecommendations(shape) {
+    document.getElementById('findMyFitModal').style.display = 'none';
+    document.getElementById('recommendations').style.display = 'block';
+
+    const glassesData = {
+        "Round": ["glasses1.png", "glasses2.png", "glasses3.png"],
+        "Square": ["glasses4.png", "glasses5.png", "glasses6.png"],
+        "Oval": ["glasses7.png", "glasses8.png", "glasses9.png"],
+        "Heart": ["glasses10.png", "glasses11.png", "glasses12.png"],
+        "Diamond": ["glasses13.png", "glasses14.png", "glasses15.png"],
+        "Triangular": ["glasses16.png", "glasses17.png", "glasses18.png"]
+    };
+
+    const glassesContainer = document.getElementById('glasses-options');
+    glassesContainer.innerHTML = ''; // Clear previous entries
+
+    // Ensure only three recommendations are displayed
+    glassesData[shape].slice(0, 3).forEach(img => {
+        glassesContainer.innerHTML += `
+            <div class="glasses-card">
+                <img src="${basePath + img}" alt="Recommended Glasses">
+                <p>Glasses Model ${img}</p>
+                <button>Add to Cart</button>
+            </div>`;
+    });
+}
+// Prevent clicks inside the modal from closing it
+document.getElementById('findMyFitModal').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
+document.getElementById('initialPopup').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
+document.getElementById('recommendations').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
+// Close modal when clicking on the overlay
+document.querySelector('.overlay').addEventListener('click', function(event) {
+    if (event.target === this) {
+        closeModal();
+    }
+});
+</script>
 </body>
 </html>
