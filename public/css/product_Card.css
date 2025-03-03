@@ -331,10 +331,6 @@
         margin: 10px;
     }
 
-    .product-card:hover {
-        height: 600px;
-    }
-
     .product-card .product-card-content {
         width: 100%;
         left: -9%;
