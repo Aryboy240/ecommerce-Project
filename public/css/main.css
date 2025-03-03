@@ -1084,13 +1084,13 @@ nav:hover {
     }
 }
 
-@media only screen and (max-width: 991px) {
-    /* Nav section goes across whole screen & padding of 25px up and down */
-    .nav-section {
-        padding: 25px 0;
-        width: 100%;
+@media only screen and (max-width: 1500px) {
+    .nav-item .link-text {
+        display: none;
     }
+}
 
+@media only screen and (max-width: 991px) {
     /* Left side of the logo */
     .navbar-left {
         border-radius: 50px;
