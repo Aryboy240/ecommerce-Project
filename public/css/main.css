@@ -1221,7 +1221,7 @@ nav:hover {
     .hero {
         position: relative;
         background-color: var(--bg-primary);
-        padding: 100px 20px 60px 20px;
+        padding: 150px 20px 60px 20px;
         text-align: center;
     }
 
@@ -1250,6 +1250,11 @@ nav:hover {
         transform: scale(0.75) rotate(20deg) translate(-30%, -110%);
         filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
     }
+
+    .about-section {
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media only screen and (max-width: 764px) {
@@ -1273,6 +1278,10 @@ nav:hover {
     }
 
     /* Hero (Intro Title) */
+
+    .hero {
+        padding-top: 150px;
+    }
 
     .hero-content h1 {
         z-index: 2;

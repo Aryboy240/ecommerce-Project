@@ -32,7 +32,6 @@
     <nav class="navbar-left">
       <ul class="navbar-nav">
 
-
         <!--Home-->
         <li class="nav-item">
           <a href="{{ route('welcome') }}" class="nav-link">
@@ -83,7 +82,6 @@
         <img src="{{ asset('Images/circleLogo.png') }}">
       </div>
     </a>
-
 
     <!--Rigth nav-->
     <nav class="navbar-rigth">
