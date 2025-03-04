@@ -38,7 +38,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Styling the navigation items */
@@ -116,7 +116,7 @@ body {
 }
 
 /* Footer at the bottom of the page */
-.about-footer {
+.footer {
     margin-left: 9vw;
     text-align: center;
     background-color: #181818;
@@ -132,18 +132,18 @@ body {
 /* Additions moved to css file */
 
 /* I added hover effects for footer logos to make the interaction more dynamic */
-.about-social-footer-links img {
+.social-footer-links img {
     width: 40px;
     height: 40px;
     transition: transform 0.3s ease;
 }
 
-.about-social-footer-links img:hover {
+.social-footer-links img:hover {
     transform: scale(1.2);
 }
 
 /* I wanted the footer text to stand out, so I made it larger and bolder */
-.about-footer p {
+.footer p {
     font-size: 28px;
     font-weight: bold;
 }
