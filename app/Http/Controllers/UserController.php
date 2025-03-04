@@ -84,6 +84,8 @@ class UserController extends Controller
     //This allows the user to update their username in the account page - Hussen
     public function updateUsername(Request $request){
         $request->validate([
+        auth()->user()->update([
+            'username' => $request->input('new_username')
             'new_username' => 'required|string|max:255|unique:users,name,'.auth()->id(),
             'password' => 'required|current_password',
         ]);
