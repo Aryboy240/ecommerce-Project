@@ -331,8 +331,13 @@
         margin: 10px;
     }
 
+    .product-card {
+        height: 500px;
+    }
+
     .product-card .product-card-content {
-        width: 100%;
+        width: 90%;
+        margin-left: 5%;
         left: -9%;
         padding: 30px;
         transition: var(--transition-speed);
@@ -340,6 +345,7 @@
 
     .product-card:hover .product-card-content {
         left: -9%;
+        text-align: center;
     }
 
     /* Menu Resizes */
@@ -421,7 +427,7 @@
     .product-card:hover .imageSize-9 {
         top: 70%;
         left: 50%;
-        padding-top: 25px;
+        padding-top: 55px;
         height: 250px;
     }
 }
