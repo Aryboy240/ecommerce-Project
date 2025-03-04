@@ -154,7 +154,7 @@ nav:hover {
     width: 0rem;
 }
 
-/*dropdown bat form Navigation  Bar*/
+/*dropdown bat form Navigation Bar*/
 .dropdown-content {
     display: none;
     background-color: #00bfae;
@@ -177,10 +177,143 @@ nav:hover {
     display: block;
 }
 
-/* Hero (Intro Title)*/
+@media only screen and (max-width: 1500px) {
+    .nav-item .link-text {
+        display: none;
+    }
+}
+
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Mobile Navigaion bar
+*/
+
+@media (min-width: 991px) {
+    .mobile-nav-section {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .nav-section {
+        display: none;
+    }
+
+    .mobile-nav-section {
+        padding: 25px 0;
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Right side of the logo */
+    .mobile-navbar {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--floater);
+        z-index: 5;
+        transition: var(--transition-speed) ease;
+        border-radius: 50px;
+        width: 90%;
+    }
+
+    .navbar-rigth .nav-item:nth-child(1) {
+        margin-left: 38px;
+    }
+
+    /* glows on hover */
+    nav:hover {
+        box-shadow: 0 0 15px var(--mint);
+    }
+
+    .mobile-nav-item:hover {
+        box-shadow: 0 0 15px var(--mint);
+    }
+
+    /* Changes list settings */
+    .mobile-nav {
+        max-width: 100%;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        z-index: 5;
+    }
+
+    /* Each item in the nav */
+    .mobile-nav-item {
+        width: 100%;
+        z-index: 5;
+        transition: var(--transition-speed) ease;
+    }
+
+    /* The middle logo section */
+    .mobile-nav-logo {
+        position: relative;
+        display: flex;
+        box-shadow: 0 0 15px var(--mint);
+        border: 15px solid var(--floater);
+        border-radius: 50%;
+        z-index: 100;
+        transition: var(--transition-speed);
+        cursor: pointer;
+        margin-left: 50px;
+    }
+
+    .mobile-nav-logo:hover {
+        transform: scale(1.05);
+    }
+
+    .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 5rem;
+        color: white;
+        text-decoration: none;
+        transition: var(--transition-speed);
+        z-index: 5;
+    }
+
+    /* changes item colour when hovering */
+    .mobile-nav-link:hover {
+        background: var(--mint);
+        z-index: 5;
+    }
+
+    /* Each element (span and svbg) in the nav-item */
+    .mobile-nav-item-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .mobile-nav-link svg {
+        min-width: 30px;
+        z-index: 5;
+        filter: invert(100%);
+    }
+
+    /* No scrollbar on the navbar (even tho overflow is hidden, I just wanna make sure) */
+    .navbar::-webkit-scrollbar {
+        width: 0rem;
+    }
+}
+
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Hero (Intro Title)
+*/
 
 .hero {
     position: relative;
+    overflow: hidden;
     padding: 150px 20px 60px 20px;
     text-align: center;
 }
@@ -218,6 +351,7 @@ nav:hover {
     z-index: -1;
     left: 50%;
     right: 50%;
+    overflow: hidden;
     transform: scale(1) rotate(20deg) translate(0%, -105%);
     filter: drop-shadow(0px 0px 50px rgba(114, 200, 243, 0.502));
 }
@@ -289,9 +423,46 @@ nav:hover {
     background-color: var(--lighter);
 }
 
+/* mobile view for hero */
+
+@media only screen and (max-width: 991px) {
+    .hero {
+        position: relative;
+        padding: 150px 20px 60px 20px;
+        text-align: center;
+    }
+
+    .hero-content {
+        position: relative;
+        max-width: 100%;
+        font-weight: 100;
+        font-size: 15px;
+        justify-items: center;
+        z-index: 2;
+        text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
+    }
+
+    .hero-content h1 {
+        z-index: 2;
+        font-size: 50px;
+        margin-bottom: 30px;
+    }
+
+    .hero-content img {
+        pointer-events: none;
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        right: 50%;
+        transform: scale(0.75) rotate(20deg) translate(-30%, -110%);
+        filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
+    }
+}
+
 /*  Developer: Aryan Kora
-	  University ID: 230059030
-	  Function: Floaters CSS */
+	University ID: 230059030
+	Function: Floaters CSS
+*/
 
 .floater-body {
     margin: 0;
@@ -357,6 +528,60 @@ nav:hover {
     transform: scale(1.6);
 }
 
+/* Floaters mobile view */
+
+@media only screen and (max-width: 991px) {
+    .floater-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .floater-containter {
+        position: relative;
+        width: auto;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        margin: -5% 0 0 0;
+    }
+
+    /* The middle floater controller (main floater) */
+
+    .floaters {
+        position: relative;
+        transform: rotate(0);
+    }
+
+    .floaters img {
+        max-height: 100%;
+        margin-right: 50px;
+    }
+
+    /* Floater children inside the floater container */
+
+    .floaters:nth-child(2) {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: rotate(0);
+        z-index: 1;
+    }
+
+    .floaters:nth-child(3) {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        transform: rotate(0);
+        z-index: 0;
+    }
+
+    .floaters p {
+        margin-top: 17px;
+        transform: scale(1.6);
+    }
+}
+
 /* Titles */
 
 .section-title {
@@ -409,8 +634,9 @@ nav:hover {
 }
 
 /*  Developer: Aryan Kora
-	  University ID: 230059030
-	  Function: Card CSS */
+	University ID: 230059030
+	Function: Card CSS (Unused)
+*/
 
 .card-body {
     margin: 0;
@@ -513,13 +739,13 @@ nav:hover {
     Function: Products slider CSS
 */
 
-.product {
+.f-product {
     position: relative;
     overflow: hidden;
     padding: 20px;
 }
 
-.product-category {
+.f-product-category {
     padding: 0 10vw;
     font-size: 30px;
     font-weight: 500;
@@ -527,7 +753,7 @@ nav:hover {
     text-transform: capitalize;
 }
 
-.product-container {
+.f-product-container {
     padding: 0 10vw;
     display: flex;
     overflow-x: auto;
@@ -535,18 +761,24 @@ nav:hover {
     height: 500px;
 }
 
-.product-container::-webkit-scrollbar {
+.f-product-container::-webkit-scrollbar {
     display: none;
 }
 
-.product-card {
+.f-product-card {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
     flex: 0 0 auto;
-    width: 250px;
-    height: 450px;
+    width: 550px;
+    height: 350px;
     margin-right: 40px;
+    transition: var(--transition-speed);
 }
 
-.product-image {
+.f-product-image {
     position: relative;
     width: 100%;
     height: 350px;
@@ -554,7 +786,7 @@ nav:hover {
     transition: var(--transition-speed);
 }
 
-.product-thumb {
+.f-product-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -591,17 +823,17 @@ nav:hover {
     color: #fff;
 }
 
-.product-card:hover .card-btn {
+.f-product-card:hover .card-btn {
     opacity: 1;
 }
 
-.product-card .product-thumb {
+.f-product-card .f-product-thumb {
     position: relative;
     z-index: 0;
     transition: var(--transition-speed);
 }
 
-.product-thumb:hover {
+.f-product-thumb:hover {
     transition: var(--transition-speed);
     transform: scale(1.1);
 }
@@ -611,18 +843,18 @@ nav:hover {
     box-shadow: 0px 0px 10px rgba(4, 129, 129, 0.7);
 }
 
-.product-info {
+.f-product-info {
     width: 100%;
     height: 100px;
     padding-top: 10px;
     color: var(--text-primary);
 }
 
-.product-brand {
+.f-product-brand {
     text-transform: uppercase;
 }
 
-.product-short-description {
+.f-product-short-description {
     width: 100%;
     height: 20px;
     line-height: 20px;
@@ -713,6 +945,19 @@ nav:hover {
     margin-bottom: 10px;
 }
 
+@media (max-width: 800px) {
+    .f-product-info {
+        text-align: center;
+    }
+
+    .f-product-card {
+        flex: 0 0 auto;
+        width: 300px;
+        height: 350px;
+        margin-right: 40px;
+    }
+}
+
 /* About Section Styling */
 
 .about-section {
@@ -798,7 +1043,7 @@ nav:hover {
 }
 
 .about-image {
-    flex: 1;
+    width: 50%;
     padding: 20px;
 }
 
@@ -850,23 +1095,55 @@ nav:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 992px) {
+@media (max-width: 1350px) {
     .about-section {
         flex-direction: column;
         padding: 40px 20px;
     }
 
+    .about-wrapper {
+        display: flex;
+        flex-direction: column;
+        place-content: center;
+        align-items: center;
+        justify-content: center;
+        padding: 75px;
+        width: 75%;
+        border-radius: 20px;
+    }
+
+    .about-image {
+        width: 75%;
+    }
+
     .image-grid {
+        margin-top: 50px;
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 20px;
     }
 
     .image-grid img {
-        height: 200px; /* Slightly smaller height on tablets */
+        height: 250px; /* Slightly smaller height on tablets */
     }
 }
 
 @media (max-width: 576px) {
+    .about-wrapper {
+        display: flex;
+        flex-direction: column;
+        place-content: center;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 75px;
+        width: 60%;
+        border-radius: 20px;
+    }
+
+    .about-image {
+        display: none;
+    }
+
     .about-section {
         padding: 30px 15px;
     }
@@ -876,12 +1153,8 @@ nav:hover {
     }
 
     .image-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .image-grid img {
-        height: 180px; /* Even smaller height on mobile */
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -1052,173 +1325,16 @@ nav:hover {
     .footer .social-icons {
         justify-content: center;
     }
+
+    .footer #social-footer-span {
+        margin-left: 35%;
+    }
 }
 
 @media only screen and (max-width: 991px) {
-    /* Nav section goes across whole screen & padding of 25px up and down */
-    .nav-section {
-        padding: 25px 0;
-        width: 100%;
-    }
-
-    /* Left side of the logo */
-    .navbar-left {
-        border-radius: 50px;
-        margin-right: -50px;
-    }
-
-    /* Pushes the bar into the logo */
-    .navbar-left .nav-item:last-child {
-        margin-right: 38px;
-    }
-
-    /* Right side of the logo */
-    .navbar-rigth {
-        border-radius: 50px;
-        margin-left: -50px;
-    }
-
-    .navbar-rigth .nav-item:nth-child(1) {
-        margin-left: 38px;
-    }
-
-    /* glows on hover */
-    nav:hover {
-        box-shadow: 0 0 15px var(--mint);
-    }
-
-    .nav-item:hover {
-        box-shadow: 0 0 15px var(--mint);
-    }
-
-    /* Changes list settings */
-    .navbar-nav {
-        max-width: 100%;
-        padding: 0;
-        margin: 0;
-        z-index: 5;
-    }
-
-    /* Each item in the nav */
-    .nav-item {
-        width: 100%;
-        z-index: 5;
-    }
-
-    /* The middle logo section */
-    .navbar-middle {
-        box-shadow: 0 0 15px var(--mint);
-        border: 15px solid var(--floater);
-        border-radius: 50%;
-    }
-
-    /* The middle logo image */
-    .navbar-middle img {
-        filter: drop-shadow(0px 0px 50px rgba(0, 0, 0, 0.5));
-        width: 100px;
-        transform: scale(1.2);
-        z-index: 101;
-    }
-
-    .nav-link {
-        height: 5rem;
-    }
-
-    .link-text {
-        font-weight: 700;
-        margin-left: 1rem;
-    }
-
-    .nav-link svg {
-        width: 2rem;
-        min-width: 2rem;
-        z-index: 5;
-        filter: invert(100%);
-    }
-
-    .floater-body {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .floater-containter {
-        position: relative;
-        width: auto;
-        display: flex;
+    .about-section {
         justify-content: center;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        margin: -5% 0 0 0;
-    }
-
-    /* The middle floater controller (main floater) */
-
-    .floaters {
-        position: relative;
-        transform: rotate(0);
-    }
-
-    .floaters img {
-        max-height: 100%;
-        margin-right: 50px;
-    }
-
-    /* Floater children inside the floater container */
-
-    .floaters:nth-child(2) {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: rotate(0);
-        z-index: 1;
-    }
-
-    .floaters:nth-child(3) {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        transform: rotate(0);
-        z-index: 0;
-    }
-
-    .floaters p {
-        margin-top: 17px;
-        transform: scale(1.6);
-    }
-
-    /* Hero (Intro Title) */
-
-    .hero {
-        position: relative;
-        background-color: var(--bg-primary);
-        padding: 100px 20px 60px 20px;
-        text-align: center;
-    }
-
-    .hero-content {
-        position: relative;
-        max-width: 100%;
-        font-weight: 100;
-        font-size: 15px;
-        justify-items: center;
-        z-index: 2;
-        text-shadow: 0px 10px 10px rgba(0, 0, 0, 1);
-    }
-
-    .hero-content h1 {
-        z-index: 2;
-        font-size: 50px;
-        margin-bottom: 30px;
-    }
-
-    .hero-content img {
-        pointer-events: none;
-        position: absolute;
-        z-index: -1;
-        left: 50%;
-        right: 50%;
-        transform: scale(0.75) rotate(20deg) translate(-30%, -110%);
-        filter: drop-shadow(0px 0px 50px rgba(255, 255, 255, 0.5));
+        align-items: center;
     }
 }
 
@@ -1230,19 +1346,11 @@ nav:hover {
         overflow-x: hidden;
     }
 
-    /* Hides PC Navbar */
-
-    nav {
-        visibility: hidden;
-        display: none;
-    }
-
-    .smol_nav {
-        visibility: visible;
-        display: flex;
-    }
-
     /* Hero (Intro Title) */
+
+    .hero {
+        padding-top: 150px;
+    }
 
     .hero-content h1 {
         z-index: 2;

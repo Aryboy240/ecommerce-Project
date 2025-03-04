@@ -206,107 +206,107 @@
 <!-- Product Cards End -->
 
 <!-- Products Slider:: Aryan Kora -->
-<section class="product">
+<section class="f-product">
   <h2 class="section-title">Popular Products</h2>
   <button class="pre-btn"><img src="Images/PSArrow.png" alt=""></button>
   <button class="nxt-btn"><img src="Images/PSArrow.png" alt=""></button>
-  <div class="product-container">
-    <div class="product-card">
-      <div class="product-image">
-        <img src="Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg" class="product-thumb" alt="">
+  <div class="f-product-container">
+    <div class="f-product-card">
+      <div class="f-product-image">
+        <img src="Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="add-to-cart card-btn" data-product-id="32859928" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">Adidas</h2>
-        <p class="product-short-description">ID: 32859928</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">Adidas</h2>
+        <p class="f-product-short-description">ID: 32859928</p>
         <span class="price">£100</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
+    <div class="f-product-card">
+      <div class="f-product-image">
         <span class="discount-tag">50% off</span>
-        <img src="Images/products/Featured/Barbour/33137483/33137483-front-2000x1125.jpg" class="product-thumb" alt="">
+        <img src="Images/products/Featured/Barbour/33137483/33137483-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="add-to-cart card-btn" data-product-id="33137483" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">Barbour</h2>
-        <p class="product-short-description">ID: 33137483</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">Barbour</h2>
+        <p class="f-product-short-description">ID: 33137483</p>
         <span class="price">£100</span><span class="actual-price">£150</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
-        <img src="Images/products/Featured/Comfit/32861686/32861686-front-2000x1125.jpg" class="product-thumb" alt="">
+    <div class="f-product-card">
+      <div class="f-product-image">
+        <img src="Images/products/Featured/Comfit/32861686/32861686-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="card-btn">add to basket</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">Comfit</h2>
-        <p class="product-short-description">ID: 32861686</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">Comfit</h2>
+        <p class="f-product-short-description">ID: 32861686</p>
         <span class="price">£100</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
-        <img src="Images/products/Featured/Disney/33087542/33087542-front-2000x1125.jpg" class="product-thumb" alt="">
+    <div class="f-product-card">
+      <div class="f-product-image">
+        <img src="Images/products/Featured/Disney/33087542/33087542-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="add-to-cart card-btn" data-product-id="33087542" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">Disney</h2>
-        <p class="product-short-description">ID: 33087542</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">Disney</h2>
+        <p class="f-product-short-description">ID: 33087542</p>
         <span class="price">£100</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
+    <div class="f-product-card">
+      <div class="f-product-image">
         <span class="discount-tag">50% off</span>
-        <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.jpg" class="product-thumb" alt="">
+        <img src="Images/products/Featured/DKNY/32677959/32677959-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="add-to-cart card-btn" data-product-id="32677959" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">DKNY</h2>
-        <p class="product-short-description">ID: 32677959</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">DKNY</h2>
+        <p class="f-product-short-description">ID: 32677959</p>
         <span class="price">£100</span><span class="actual-price">£200</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
-        <img src="Images/products/Featured/HUGO/33137346/33137346-front-2000x1125.jpg" class="product-thumb" alt="">
+    <div class="f-product-card">
+      <div class="f-product-image">
+        <img src="Images/products/Featured/HUGO/33137346/33137346-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="add-to-cart card-btn" data-product-id="33137346" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">HUGO</h2>
-        <p class="product-short-description">ID: 33137346</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">HUGO</h2>
+        <p class="f-product-short-description">ID: 33137346</p>
         <span class="price">£100</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
-        <img src="Images/products/Featured/Jeff Banks/32860634/32860634-front-2000x1125.jpg" class="product-thumb"
+    <div class="f-product-card">
+      <div class="f-product-image">
+        <img src="Images/products/Featured/Jeff Banks/32860634/32860634-front-2000x1125.jpg" class="f-product-thumb"
           alt="">
         <button class="add-to-cart card-btn" data-product-id="32860634" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">Jeff Banks</h2>
-        <p class="product-short-description">ID: 32860634</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">Jeff Banks</h2>
+        <p class="f-product-short-description">ID: 32860634</p>
         <span class="price">£100</span>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-image">
-        <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="product-thumb"
+    <div class="f-product-card">
+      <div class="f-product-image">
+        <img src="Images/products/Featured/Karen Millen/33039633/33039633-front-2000x1125.jpg" class="f-product-thumb"
           alt="">
         <button class="add-to-cart card-btn" data-product-id="33039633" data-quantity="1">Add to
           Cart</button>
       </div>
-      <div class="product-info">
-        <h2 class="product-brand">Karen Millen</h2>
-        <p class="product-short-description">ID: 33039633</p>
+      <div class="f-product-info">
+        <h2 class="f-product-brand">Karen Millen</h2>
+        <p class="f-product-short-description">ID: 33039633</p>
         <span class="price">£100</span>
       </div>
     </div>
