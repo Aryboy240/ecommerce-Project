@@ -45,4 +45,12 @@ class ProductController extends Controller
         return view('search', compact('products'));
     }
 
+    public function show($id)
+    {
+        $product = Product::with(['images.imageType', 'category'])->findOrFail($id);
+
+        return view('sproduct', compact('product'));
+    }
+
+
 }

@@ -8,7 +8,12 @@
     Function: search page css
 */
 
-/* just a random comment to test smth */
+/* Test */
+
+.search-product-link {
+    text-decoration: none !important;
+    color: inherit; /* Ensure it inherits the text color */
+}
 
 /* General Page Styling */
 body {
@@ -40,7 +45,6 @@ body {
 .search-header {
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    margin-top: 20px;
     color: #00bfae; /* Accent color */
     font-size: 2.5rem;
 }
@@ -49,6 +53,7 @@ body {
 .search-bar {
     text-align: center;
     margin: 20px auto;
+    margin-top: 50px;
     width: 80%;
 }
 
@@ -125,17 +130,18 @@ body {
 }
 
 /* Product Cards Grid */
-.product-grid {
+.search-product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
     width: 90%;
     margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 /* Product Card Styling */
-.product-card {
+.search-product-card {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     border: 2px solid #00bfae;
@@ -146,24 +152,24 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.product-card img {
+.search-product-card img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
 }
 
-.product-card h3 {
+.search-product-card h3 {
     font-size: 1.2rem;
     margin: 10px 0;
 }
 
-.product-card p {
+.search-product-card p {
     font-size: 1rem;
     margin: 5px 0;
 }
 
-.product-card button {
+.search-product-card button {
     margin-top: 5px;
     padding: 10px 15px;
     font-size: 1rem;
@@ -175,7 +181,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.product-card button:hover {
+.search-product-card button:hover {
     background-color: #00a68c;
 }
 

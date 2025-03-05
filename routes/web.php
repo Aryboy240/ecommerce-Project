@@ -34,14 +34,6 @@ Route::get('/welcome', function () {
     return view('welcome'); // Refers to resources/views/welcome.blade.php
 })->name('welcome');
 
-Route::get('/product', function () {
-    return view('Product'); // Refers to resources/views/Product.blade.php
-})->name('product');
-
-Route::get('/sproduct', function () {
-    return view('sproduct'); // Refers to resources/views/sproduct.blade.php
-})->name('sproduct');
-
 Route::get('/about', function () {
     return view('about'); // Refers to resources/views/about.blade.php
 })->name('about');
@@ -57,6 +49,24 @@ Route::get('/checkout', function () {
 Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
+
+/*
+|--------------------------------------------------------------------------
+| Products Page
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/product', function () {
+    $products = Product::with('images', 'category')->get(); // Fetch products with relationships
+    return view('Product', ['products' => $products]);  // Pass data to the view with the correct variable name
+})->name('product');
+
+Route::get('/sproduct', function () {
+    $products = Product::with('images', 'category')->get();
+    return view('sproduct', ['products' => $products]);
+})->name('sproduct');
+
+Route::get('/sproduct/{id}', [ProductController::class, 'show'])->name('product.details');
 
 /*
 |--------------------------------------------------------------------------

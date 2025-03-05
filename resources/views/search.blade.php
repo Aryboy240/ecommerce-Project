@@ -12,8 +12,21 @@
     function: Search page backend
 -->
 
+<html lang="en">
+<head>
+    <!-- JS -->
+    <script defer src="/js/theme.js"></script>
+    <script defer src="/js/addToCart.js"></script>
+    <script src="js/scrollBar.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/search.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+</html>
+
 <!-- This is a child of the "views/layouts/searchApp.balde.php" -->
-@extends('layouts.searchApp')
+@extends('layouts.mainLayout')
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Optique | Product Search')
@@ -21,17 +34,9 @@
 <!-- The @yeild in searchApp's main is filled by everything in this section -->
 @section('content')
 
-<!-- Home Icon -->
-<div class="HomeIcon">
-    <a href="{{ route('welcome') }}">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="home" class="home" role="img"
-            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path fill="currentColor"
-                d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
-            </path>
-        </svg>
-    </a>
-</div>
+<section class="search-header" style="padding-top: 50px">
+    <h1>Find Your Perfect Product</h1>
+</section>
 
 <!-- Search Form -->
 <section class="search-bar">
@@ -63,19 +68,23 @@
 
 
 <!-- Product Grid -->
-<section class="product-grid" id="product-grid">
+<section class="search-product-grid" id="search-product-grid">
     @foreach ($products as $product)
-        <div class="product-card" data-category="{{ $product->category->name }}">
+        <div class="search-product-card" data-category="{{ $product->category->name }}">
             <!-- Display Only Front Image -->
             @foreach($product->images as $image)
                 @if($image->imageType && $image->imageType->name == 'front')
-                    <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                    <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+                        <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                    </a>
                     @break
                     <!-- Break after showing the front image -->
                 @endif
             @endforeach
-            <h3>{{ $product->name }}</h3>
-            <p>Price: ${{ $product->price }}</p>
+            <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link" style="text-decoration: none !important">
+                <h3>{{ $product->name }}</h3>
+                <p >Price: £{{ $product->price }}</p>
+            </a>
             <form class="add-to-cart-form" action="{{ route('cart.add') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
