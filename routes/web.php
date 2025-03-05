@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,3 +141,33 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+// Account Management Routes
+Route::middleware(['auth'])->group(function () {
+    // Account Page
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    
+    // Update Username
+    Route::post('/account/update-username', [AccountController::class, 'updateUsername'])
+        ->name('update.username');
+    
+    // Update Password
+    Route::post('/account/update-password', [AccountController::class, 'updatePassword'])
+        ->name('update.password');
+    
+    // Update Email
+    Route::post('/account/update-email', [AccountController::class, 'updateEmail'])
+        ->name('update.email');
+    
+    // Update Personal Info
+    Route::post('/account/update-personal-info', [AccountController::class, 'updatePersonalInfo'])
+        ->name('update.personal-info');
+    
+    // Update Profile Picture
+    Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])
+        ->name('update.profile-picture');
+    
+    // Update Billing Address
+    Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
+        ->name('update.billing-address');
+});
