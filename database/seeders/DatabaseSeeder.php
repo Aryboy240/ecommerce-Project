@@ -98,7 +98,7 @@ class DatabaseSeeder extends Seeder
                     $product = Product::create([
                         'id' => $productId,
                         'name' => "{$categoryName}: Product {$productId}",
-                        'description' => "Description for product {$productId}",
+                        'description' => "Experience timeless elegance this {$categoryName} product. Crafted from premium materials, these versatile frames offer both style and comfort. Features include anti-reflective coating, scratch-resistant lenses, and adjustable nose pads for the perfect fit.",
                         'category_id' => $category->id,
                         'price' => 100,  // Example price
                         'stock_quantity' => 10  // Example stock

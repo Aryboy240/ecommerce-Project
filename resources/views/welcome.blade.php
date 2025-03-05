@@ -228,12 +228,12 @@
         <span class="discount-tag">50% off</span>
         <img src="Images/products/Featured/Barbour/33137483/33137483-front-2000x1125.jpg" class="f-product-thumb" alt="">
         <button class="add-to-cart card-btn" data-product-id="33137483" data-quantity="1">Add to
-          Cart</button>
+Cart</button>
       </div>
       <div class="f-product-info">
         <h2 class="f-product-brand">Barbour</h2>
         <p class="f-product-short-description">ID: 33137483</p>
-        <span class="price">£100</span><span class="actual-price">£150</span>
+        <span class="price">£100</span><span class="actual-price">£200</span>
       </div>
     </div>
     <div class="f-product-card">
