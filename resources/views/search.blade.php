@@ -17,6 +17,7 @@
     <!-- JS -->
     <script defer src="/js/theme.js"></script>
     <script defer src="/js/addToCart.js"></script>
+    <script defer src="/js/activeCatagory.js"></script>
     <script src="js/scrollBar.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -62,6 +63,20 @@
         <button type="submit" name="category" value="Karen Millen" class="category-btn">Karen Millen</button>
     </form>
 </section>
+
+<!-- Price Filters -->
+<section class="price-filters">
+    <form method="GET" action="{{ route('products.index') }}">
+        <label for="min_price">Min Price</label>
+        <input type="number" name="min_price" id="min_price" value="{{ request('min_price') }}" placeholder="Min Price" />
+
+        <label for="max_price">Max Price</label>
+        <input type="number" name="max_price" id="max_price" value="{{ request('max_price') }}" placeholder="Max Price" />
+
+        <button type="submit" class="filter-btn">Filter by Price</button>
+    </form>
+</section>
+
 
 
 <!-- Product Grid -->
