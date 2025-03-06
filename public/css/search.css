@@ -55,6 +55,17 @@ body {
     margin: 20px auto;
     margin-top: 50px;
     width: 80%;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center the items horizontally */
+    gap: 10px; /* Space between search and toggle button */
+}
+
+.search-bar form {
+    width: 100%; /* Ensure the form takes full width */
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between input and buttons */
 }
 
 .search-bar input {
@@ -63,7 +74,7 @@ body {
     font-size: 1.2rem;
     border: 2px solid #00bfae;
     border-radius: 8px;
-    background-color: var(--bg-primary); /* Matches dark theme */
+    background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: border-color 0.3s;
 }
@@ -84,7 +95,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.search-bar a {
+.search-bar button {
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
@@ -92,7 +103,6 @@ body {
     color: black;
     border-radius: 8px;
     cursor: pointer;
-    text-decoration: none;
     transition: background-color 0.3s;
 }
 
@@ -100,7 +110,12 @@ body {
     background-color: #00a68c;
 }
 
+.search-bar button:hover {
+    background-color: #00a68c;
+}
+
 /* Category Filters Styling */
+
 .category-filters {
     text-align: center;
     margin: 20px 0;
@@ -130,8 +145,6 @@ body {
 }
 
 /* Price filter */
-
-/* Price filter */
 .price-filters {
     position: relative;
     display: flex;
@@ -143,7 +156,7 @@ body {
 .price-filters form {
     text-align: center;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
     max-width: 600px;
     width: 100%;
@@ -151,6 +164,9 @@ body {
 }
 
 .price-filters form label {
+    display: flex;
+    justify-content: left;
+    align-items: center;
     font-size: 1rem;
     font-weight: bold;
     color: #00bfae; /* Consistent accent color */
@@ -158,7 +174,8 @@ body {
     text-align: left;
 }
 
-.price-filters form input {
+.price-filters form input,
+.price-filters form select {
     padding: 10px;
     font-size: 1rem;
     border: 2px solid #00bfae;
@@ -169,7 +186,8 @@ body {
     transition: border-color 0.3s;
 }
 
-.price-filters form input:focus {
+.price-filters form input:focus,
+.price-filters form select:focus {
     border-color: #00a68c;
     outline: none;
 }
@@ -197,6 +215,45 @@ body {
 
 .price-filters form button:active {
     background-color: #00bfae;
+}
+
+/* Dropdown Styling */
+.price-filters form select {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #00bfae;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color 0.3s;
+}
+
+.price-filters form select:focus {
+    border-color: #00a68c;
+    outline: none;
+}
+
+/* Collapsible Filter Styles */
+
+.filters {
+    display: none;
+}
+
+.filter-toggle {
+    padding: 8px 15px;
+    font-size: 1rem;
+    background-color: #00bfae;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto; /* Let the button take its natural width */
+    margin-top: 10px; /* Space between the search form and the button */
+}
+
+.filter-toggle:hover {
+    background-color: #00a68c;
 }
 
 /* Product Cards Grid */
