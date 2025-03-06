@@ -10,6 +10,7 @@
     <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
     <!-- JS -->
     <script defer src="{{ asset('js/product_page.js') }}"></script>
+    <script defer src="{{ asset('js/addToCart.js') }}"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}"> 
 </head>
@@ -103,59 +104,4 @@
           </div>
       </div>
   </section>
-
-  <script>
-    function addToCart(event, productId, quantity = 1) {
-        event.preventDefault(); // Prevent full page reload
-
-        fetch("{{ route('cart.add') }}", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": "{{ csrf_token() }}"
-            },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: quantity
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                showNotification(data.success, "success");
-            } else if (data.error) {
-                showNotification(data.error, "error");
-            }
-        })
-        .catch(error => {
-            showNotification("An error occurred. Please try again.", "error");
-        });
-    }
-
-    function showNotification(message, type) {
-        let notification = document.createElement("div");
-        notification.className = "notification";
-        notification.style.backgroundColor = type === "success" ? "#4CAF50" : "#FF5733";
-        notification.innerText = message;
-
-        document.body.appendChild(notification);
-
-        // Trigger animation to slide in
-        setTimeout(() => {
-            notification.classList.add("show");
-        }, 10);
-
-        // Remove notification after 3 seconds
-        setTimeout(() => {
-            notification.classList.remove("show");
-            setTimeout(() => {
-                notification.remove();
-            }, 500); // Wait for slide-out animation
-        }, 3000);
-    }
-  </script>
-
-
-
-
 @endsection

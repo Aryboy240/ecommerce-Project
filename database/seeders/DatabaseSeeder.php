@@ -9,6 +9,7 @@ use App\Models\ProductImage;
 use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -81,6 +82,8 @@ class DatabaseSeeder extends Seeder
             
         ];
 
+        $faker = Faker::create();
+
         // Loop through each category and its product IDs
         foreach ($productsByCategory as $categoryName => $productIds) {
             // Get the category instance by name (or create it if not found)
@@ -94,13 +97,14 @@ class DatabaseSeeder extends Seeder
                 // Ensure the product exists
                 $product = Product::find($productId);
                 if (!$product) {
-                    // Optionally, create the product if it doesn't exist (remove this if you expect the product to be already created)
                     $product = Product::create([
                         'id' => $productId,
                         'name' => "{$categoryName}: Product {$productId}",
                         'description' => "Experience timeless elegance this {$categoryName} product. Crafted from premium materials, these versatile frames offer both style and comfort. Features include anti-reflective coating, scratch-resistant lenses, and adjustable nose pads for the perfect fit.",
                         'category_id' => $category->id,
-                        'price' => 100,  // Example price
+                        // 'price' => 100,  // This sets the price to a default 100
+                        // 'price' => rand(50, 500),  // Random price between 50 and 500
+                        'price' => $faker->randomFloat(2, 50, 500),  // Random price between 50 and 500 with two decimal places
                         'stock_quantity' => 10  // Example stock
                     ]);
                 }
