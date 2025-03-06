@@ -61,9 +61,6 @@
         <button type="submit" name="category" value="Jeff Banks" class="category-btn">Jeff Banks</button>
         <button type="submit" name="category" value="Karen Millen" class="category-btn">Karen Millen</button>
     </form>
-    <!-- <button class="category-btn" data-category="glasses">Brands</button> -->
-    <!-- Preferably make a dropdown menu for each brand you can filter from -->
-    <!-- But if time is short, then forget it -->
 </section>
 
 
@@ -85,11 +82,11 @@
                 <h3>{{ $product->name }}</h3>
                 <p >Price: £{{ $product->price }}</p>
             </a>
-            <form class="add-to-cart-form" action="{{ route('cart.add') }}" method="POST">
+            <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <input type="hidden" name="quantity" value="1">
-                <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                <button type="submit" class="add-to-cart">Add to Cart</button>
             </form>
         </div>
     @endforeach
