@@ -812,9 +812,9 @@ input:checked + .slider:before {
     
     .notification-item {
         flex-direction: column;
-        text-align: center;
-    }
-    
+    text-align: center;
+}
+
     .section-header {
         flex-direction: column;
         text-align: center;
@@ -1106,4 +1106,21 @@ input:checked + .slider:before {
 .modal-actions .confirm-btn {
     background: var(--mint);
     color: var(--bg-primary);
+}
+
+/* Add this to your CSS file */
+.sidebar-item button[type="submit"] {
+    box-shadow: none;
+    padding: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    width: 100%;
+    text-align: left;
+    font-size: inherit;
+}
+
+.sidebar-item button[type="submit"]:hover {
+    box-shadow: none;
+    transform: none;
 }

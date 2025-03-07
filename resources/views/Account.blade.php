@@ -79,28 +79,27 @@
                     <i class="fa-solid fa-universal-access"></i>
                     <span>Accessibility</span>
                 </div>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <div class="sidebar-item">
+                    <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                        @csrf
+                    <div class="sidebar-item no-tab">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <button type="submit" style="background: none; border: none; color: inherit; width: 100%; text-align: left;">Sign out</button>
+                        <button type="submit">Sign out</button>
                     </div>
-                </form>
-            </div>
+                    </form>
+                </div>
 
             <!-- Content Area -->
             <div class="content-area">
-                <!-- Welcome Message -->
-                <div class="welcome-message">
-                    <h1>Welcome, {{ auth()->user()->name }}</h1>
-                </div>
-
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success')}}</div>
                 @endif
 
                 <!-- Account Tab -->
                 <div class="tab-content active" id="account">
+                    <div class="welcome-message">
+                        <h1>Welcome, {{ auth()->user()->name }}</h1>
+                    </div>
+
                     <div class="section-header">
                         <i class="fa-regular fa-user"></i>
                         <h2>Account Overview</h2>
@@ -118,9 +117,9 @@
                         <div class="stat-card">
                             <div class="stat-value">2</div>
                             <div class="stat-label">Active Orders</div>
-                        </div>
-                    </div>
-                    
+                </div>
+                </div>
+
                     <h2>Login & Security</h2>
                     <div class="form-container">
                         <div class="form-title">
@@ -162,7 +161,10 @@
 
                 <!-- Personal Info Tab -->
                 <div class="tab-content" id="personal-info">
-                    <h2>Personal Information</h2>
+                    <div class="section-header">
+                        <i class="fa-regular fa-address-card"></i>
+                        <h2>Personal Information</h2>
+                    </div>
                     <div class="profile-info">
                         <form id="personal-info-form">
                             <div class="input-group">
@@ -176,11 +178,11 @@
                             <div class="input-group">
                                 <label>Date of Birth</label>
                                 <input type="date">
-                            </div>
+                                </div>
                             <button type="submit">Save Changes</button>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
                 <!-- Purchases Tab -->
                 <div class="tab-content" id="purchases">
@@ -274,12 +276,12 @@
                                 <div class="input-group">
                                     <label>Country</label>
                                     <input type="text" placeholder="Country">
+                        </div>
                                 </div>
-                            </div>
                             <button type="submit" class="save-address-btn">Save Address</button>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
                 <!-- Notifications Tab -->
                 <div class="tab-content" id="notifications">
@@ -639,7 +641,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Tab switching functionality
-    const sidebarItems = document.querySelectorAll('.sidebar-item');
+    const sidebarItems = document.querySelectorAll('.sidebar-item:not(.no-tab)');
     const tabContents = document.querySelectorAll('.tab-content');
 
     sidebarItems.forEach(item => {
@@ -712,7 +714,7 @@ document.querySelectorAll('form').forEach(form => {
 });
 
 // Sign out confirmation
-document.querySelector('form[action="{{ route("logout") }}"]').addEventListener('submit', function(e) {
+document.getElementById('logout-form').addEventListener('submit', function(e) {
     e.preventDefault();
     
     showModal(
