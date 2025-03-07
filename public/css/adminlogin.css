@@ -23,15 +23,17 @@
     width: 40px;
     margin-left: px;
     height: auto; 
-    color: #b2b2b2; 
+    color: var(--lighter);
     transition: transform 0.3s ease-in-out;
+    opacity: 0.7;
   }
   
   .home:hover {
     transform: scale(1.1); 
-    color: #00bfae; 
+    color: var(--mint);
+    fill: var(--mint);
   }
-  
+
   .form-wrapper {
     display: flex;
     justify-content: center;
