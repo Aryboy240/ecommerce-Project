@@ -19,7 +19,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--bg-primary); /* Dark background */
+    background: linear-gradient(
+        135deg,
+        var(--bg-primary) 0%,
+        var(--bg-secondary) 100%
+    );
+    min-height: 100vh;
     color: white; /* Light text for readability */
     font-family: "Lato", sans-serif;
 }
@@ -43,7 +48,7 @@ body {
 
 /* Search Header */
 .search-header {
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(0, 191, 174, 0.3);
     text-align: center;
     color: #00bfae; /* Accent color */
     font-size: 2.5rem;
@@ -62,10 +67,12 @@ body {
     position: sticky;
     top: 20px;
     z-index: 100;
-    background-color: var(--bg-primary);
+    background: rgba(14, 14, 14, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 191, 174, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
 }
 
 .search-bar form {
@@ -79,17 +86,19 @@ body {
     width: 70%;
     padding: 15px;
     font-size: 1.2rem;
-    border: 2px solid #00bfae;
+    border: 1px solid rgba(0, 191, 174, 0.3);
     border-radius: 12px;
-    background-color: var(--bg-primary);
+    background: rgba(14, 14, 14, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: var(--text-primary);
     transition: all 0.3s ease;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar input:focus {
-    border-color: #00a68c;
-    box-shadow: 0 0 0 3px rgba(0, 191, 174, 0.2);
+    border-color: var(--mint);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.2);
     outline: none;
     transform: translateY(-1px);
 }
@@ -97,16 +106,20 @@ body {
 .search-bar button {
     padding: 10px 20px;
     font-size: 1rem;
-    border: none;
-    background-color: #00bfae;
-    color: black;
+    border: 1px solid rgba(0, 191, 174, 0.3);
+    background: rgba(0, 191, 174, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-primary);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .search-bar button:hover {
-    background-color: #00a68c;
+    background: rgba(0, 166, 140, 0.9);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.3);
 }
 
 /* Category Filters Styling */
@@ -125,10 +138,12 @@ body {
     display: inline-block;
     padding: 12px 20px;
     font-size: 1rem;
-    border: 2px solid #00bfae;
+    border: 1px solid rgba(0, 191, 174, 0.3);
     border-radius: 25px;
-    color: #00bfae;
-    background-color: transparent;
+    background: rgba(14, 14, 14, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--mint);
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
@@ -136,16 +151,17 @@ body {
 }
 
 .category-filters .category-btn.active {
-    background-color: #00bfae;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0, 191, 174, 0.3);
+    background: rgba(0, 191, 174, 0.8);
+    color: var(--text-primary);
+    border-color: transparent;
+    box-shadow: 0 0 20px rgba(0, 191, 174, 0.3);
 }
 
 .category-filters .category-btn:hover {
-    background-color: #00a68c;
-    color: black;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 191, 174, 0.2);
+    background: rgba(0, 191, 174, 0.2);
+    border-color: var(--mint);
+    color: var(--text-primary);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.2);
 }
 
 /* Price filter */
@@ -154,15 +170,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px 0 100px 0;
+    margin: 20px 0;
+    width: 100%;
 }
 
 .price-filters form {
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 15px;
-    max-width: 600px;
     width: 100%;
     padding: 10px;
 }
@@ -173,7 +188,7 @@ body {
     align-items: center;
     font-size: 1rem;
     font-weight: bold;
-    color: #00bfae; /* Consistent accent color */
+    color: var(--mint);
     margin-bottom: 5px;
     text-align: left;
 }
@@ -182,65 +197,74 @@ body {
 .price-filters form select {
     padding: 10px;
     font-size: 1rem;
-    border: 2px solid #00bfae;
+    border: 1px solid rgba(0, 191, 174, 0.3);
     border-radius: 8px;
-    background-color: var(--bg-primary); /* Matches dark theme */
+    background: rgba(14, 14, 14, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     color: var(--text-primary);
     width: 100%;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .price-filters form input:focus,
 .price-filters form select:focus {
-    border-color: #00a68c;
+    background: rgba(14, 14, 14, 0.7);
+    border-color: var(--mint);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.2);
     outline: none;
 }
 
-.price-filters form button {
-    position: absolute;
-    width: 250px;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
+.price-filters form .filter-btn {
+    width: 100%;
     padding: 12px 20px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: bold;
-    border: none;
-    background-color: #00bfae;
-    color: black;
+    border: 1px solid rgba(0, 191, 174, 0.3);
+    background: rgba(0, 191, 174, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-primary);
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.price-filters form button:hover {
-    background-color: #00a68c;
+.price-filters form .filter-btn:hover {
+    background: rgba(0, 166, 140, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 191, 174, 0.3);
 }
 
-.price-filters form button:active {
-    background-color: #00bfae;
+.price-filters form .filter-btn:active {
+    transform: translateY(0);
+    background: rgba(0, 191, 174, 0.8);
 }
 
-/* Dropdown Styling */
-.price-filters form select {
-    font-size: 1rem;
-    padding: 10px;
-    border-radius: 8px;
-    border: 2px solid #00bfae;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    transition: border-color 0.3s;
+/* Price input group */
+.price-input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 10px;
 }
 
-.price-filters form select:focus {
-    border-color: #00a68c;
-    outline: none;
+@media (max-width: 768px) {
+    .price-input-group {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Collapsible Filter Styles */
 
 .filters {
-    background-color: var(--bg-primary);
+    background: rgba(14, 14, 14, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 191, 174, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
     border-radius: 15px;
     padding: 20px;
     margin: 20px auto;
@@ -252,9 +276,12 @@ body {
 .filter-toggle {
     padding: 12px 25px;
     font-size: 1.1rem;
-    background-color: #00bfae;
-    color: black;
-    border: none;
+    background: rgba(0, 191, 174, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 191, 174, 0.3);
+    color: var(--text-primary);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -264,7 +291,7 @@ body {
 }
 
 .filter-toggle:hover {
-    background-color: #00a68c;
+    background: rgba(0, 166, 140, 0.9);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 191, 174, 0.3);
 }
@@ -299,13 +326,15 @@ body {
 
 /* Product Card Styling */
 .search-product-card {
-    background-color: var(--bg-primary);
+    background: rgba(14, 14, 14, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 191, 174, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
     color: var(--text-primary);
-    border: 2px solid #00bfae;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -313,8 +342,9 @@ body {
 
 .search-product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 191, 174, 0.2);
-    border-color: #00a68c;
+    background: rgba(14, 14, 14, 0.8);
+    border-color: var(--mint);
+    box-shadow: 0 12px 32px 0 rgba(0, 191, 174, 0.2);
 }
 
 .search-product-card img {
@@ -327,6 +357,7 @@ body {
 
 .search-product-card:hover img {
     transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
 }
 
 .search-product-card h3 {
@@ -343,9 +374,12 @@ body {
     margin-top: 5px;
     padding: 10px 15px;
     font-size: 1rem;
-    border: none;
-    background-color: #00bfae;
-    color: black;
+    border: 1px solid rgba(0, 191, 174, 0.3);
+    background: rgba(0, 191, 174, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-primary);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -354,9 +388,8 @@ body {
 }
 
 .search-product-card button:hover {
-    background-color: #00a68c;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 191, 174, 0.3);
+    background: rgba(0, 166, 140, 0.9);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.3);
 }
 
 .search-product-card button:active {
@@ -448,44 +481,52 @@ html {
     top: 20px;
     height: calc(100vh - 40px);
     overflow-y: auto;
-    background-color: var(--bg-primary);
+    background: rgba(14, 14, 14, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 191, 174, 0.2);
     border-radius: 15px;
     padding: 25px;
     margin: 0;
     width: 300px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
     transition: all 0.3s ease;
-    border: 1px solid rgba(0, 191, 174, 0.2);
 }
 
 /* Scrollbar styling for the sidebar */
 .filters::-webkit-scrollbar {
     width: 8px;
+    background: rgba(14, 14, 14, 0.3);
 }
 
 .filters::-webkit-scrollbar-track {
-    background: var(--bg-primary);
+    background: rgba(14, 14, 14, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 4px;
 }
 
 .filters::-webkit-scrollbar-thumb {
-    background: #00bfae;
+    background: rgba(0, 191, 174, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 4px;
 }
 
 .filters::-webkit-scrollbar-thumb:hover {
-    background: #00a68c;
+    background: rgba(0, 166, 140, 0.7);
 }
 
 /* Filter sections */
 .filter-section {
     margin-bottom: 30px;
-    border-bottom: 1px solid rgba(0, 191, 174, 0.2);
+    border-bottom: 1px solid rgba(0, 191, 174, 0.1);
     padding-bottom: 20px;
 }
 
 .filter-section h3 {
-    color: #00bfae;
+    color: var(--mint);
+    text-shadow: 0 0 10px rgba(0, 191, 174, 0.2);
     margin-bottom: 15px;
     font-size: 1.2rem;
     display: flex;
@@ -678,6 +719,7 @@ html {
     content: '✓';
     margin-right: 8px;
     color: #00bfae;
+    text-shadow: 0 0 10px rgba(0, 191, 174, 0.5);
 }
 
 /* Improve price filter inputs */
@@ -703,7 +745,12 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 191, 174, 0.1), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 191, 174, 0.1),
+        transparent
+    );
     animation: loading 1.5s infinite;
 }
 
@@ -825,7 +872,12 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 191, 174, 0.1), transparent);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 191, 174, 0.1),
+        transparent
+    );
     animation: loading 1.5s infinite;
 }
 
@@ -836,6 +888,55 @@ html {
     100% {
         transform: translateX(100%);
     }
+}
+
+/* Glassmorphism Base Styles */
+.glass-effect {
+    background: rgba(14, 14, 14, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 191, 174, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
+}
+
+/* Enhanced Glassmorphism Effects */
+.search-header h1 {
+    text-shadow: 0 0 10px rgba(0, 191, 174, 0.3);
+}
+
+/* Glow Effects */
+.search-product-card:hover img {
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
+}
+
+.category-btn.active::before {
+    text-shadow: 0 0 10px rgba(0, 191, 174, 0.5);
+}
+
+/* Background Gradient */
+body {
+    background: linear-gradient(
+        135deg,
+        var(--bg-primary) 0%,
+        var(--bg-secondary) 100%
+    );
+    min-height: 100vh;
+}
+
+/* Mobile Adjustments for Glassmorphism */
+@media (max-width: 1024px) {
+    .filters.show {
+        background: rgba(14, 14, 14, 0.95);
+    }
+}
+
+/* Glow Effects */
+.search-product-card:hover img {
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
+}
+
+.category-btn.active::before {
+    text-shadow: 0 0 10px rgba(0, 191, 174, 0.5);
 }
 
 

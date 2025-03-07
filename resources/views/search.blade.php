@@ -41,18 +41,52 @@
         <div class="filter-section categories">
             <h3>Categories</h3>
             <div class="filter-section-content">
-                <div class="category-filters">
-                    <button type="submit" name="category" value="all" class="category-btn active">All</button>
-                    <button type="submit" name="category" value="Adidas" class="category-btn">Adidas</button>
-                    <button type="submit" name="category" value="Barbour" class="category-btn">Barbour</button>
-                    <button type="submit" name="category" value="Comfit" class="category-btn">Comfit</button>
-                    <button type="submit" name="category" value="Disney" class="category-btn">Disney</button>
-                    <button type="submit" name="category" value="DKNY" class="category-btn">DKNY</button>
-                    <button type="submit" name="category" value="Harry Potter" class="category-btn">Harry Potter</button>
-                    <button type="submit" name="category" value="HUGO" class="category-btn">HUGO</button>
-                    <button type="submit" name="category" value="Jeff Banks" class="category-btn">Jeff Banks</button>
-                    <button type="submit" name="category" value="Karen Millen" class="category-btn">Karen Millen</button>
-                </div>
+                <form method="GET" action="{{ route('products.index') }}" class="category-filters">
+                    <!-- Preserve existing search parameters -->
+                    @if(request('search'))
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+                    @endif
+                    @if(request('min_price'))
+                        <input type="hidden" name="min_price" value="{{ request('min_price') }}">
+                    @endif
+                    @if(request('max_price'))
+                        <input type="hidden" name="max_price" value="{{ request('max_price') }}">
+                    @endif
+                    @if(request('sort_by_price'))
+                        <input type="hidden" name="sort_by_price" value="{{ request('sort_by_price') }}">
+                    @endif
+
+                    <button type="submit" name="category" value="all" class="category-btn {{ !request('category') || request('category') == 'all' ? 'active' : '' }}">
+                        All
+                    </button>
+                    <button type="submit" name="category" value="Adidas" class="category-btn {{ request('category') == 'Adidas' ? 'active' : '' }}">
+                        Adidas
+                    </button>
+                    <button type="submit" name="category" value="Barbour" class="category-btn {{ request('category') == 'Barbour' ? 'active' : '' }}">
+                        Barbour
+                    </button>
+                    <button type="submit" name="category" value="Comfit" class="category-btn {{ request('category') == 'Comfit' ? 'active' : '' }}">
+                        Comfit
+                    </button>
+                    <button type="submit" name="category" value="Disney" class="category-btn {{ request('category') == 'Disney' ? 'active' : '' }}">
+                        Disney
+                    </button>
+                    <button type="submit" name="category" value="DKNY" class="category-btn {{ request('category') == 'DKNY' ? 'active' : '' }}">
+                        DKNY
+                    </button>
+                    <button type="submit" name="category" value="Harry Potter" class="category-btn {{ request('category') == 'Harry Potter' ? 'active' : '' }}">
+                        Harry Potter
+                    </button>
+                    <button type="submit" name="category" value="HUGO" class="category-btn {{ request('category') == 'HUGO' ? 'active' : '' }}">
+                        HUGO
+                    </button>
+                    <button type="submit" name="category" value="Jeff Banks" class="category-btn {{ request('category') == 'Jeff Banks' ? 'active' : '' }}">
+                        Jeff Banks
+                    </button>
+                    <button type="submit" name="category" value="Karen Millen" class="category-btn {{ request('category') == 'Karen Millen' ? 'active' : '' }}">
+                        Karen Millen
+                    </button>
+                </form>
             </div>
         </div>
 
@@ -62,18 +96,33 @@
             <div class="filter-section-content">
                 <div class="price-filters">
                     <form method="GET" action="{{ route('products.index') }}">
-                        <label for="min_price">Min Price</label>
-                        <input type="number" name="min_price" id="min_price" value="{{ request('min_price') ?? $minPrice ?? 0 }}" placeholder="Min Price" />
+                        <div class="price-input-group">
+                            <div>
+                                <label for="min_price">Min Price</label>
+                                <input type="number" name="min_price" id="min_price" value="{{ request('min_price') ?? $minPrice ?? 0 }}" placeholder="Min Price" />
+                            </div>
+                            <div>
+                                <label for="max_price">Max Price</label>
+                                <input type="number" name="max_price" id="max_price" value="{{ request('max_price') ?? $maxPrice ?? 1000 }}" placeholder="Max Price" />
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="price_sort">Sort by Price</label>
+                            <select name="sort_by_price" id="price_sort">
+                                <option value="none" {{ request('sort_by_price') == 'none' ? 'selected' : '' }}>ID</option>
+                                <option value="asc" {{ request('sort_by_price') == 'asc' ? 'selected' : '' }}>Low to High</option>
+                                <option value="desc" {{ request('sort_by_price') == 'desc' ? 'selected' : '' }}>High to Low</option>
+                            </select>
+                        </div>
 
-                        <label for="max_price">Max Price</label>
-                        <input type="number" name="max_price" id="max_price" value="{{ request('max_price') ?? $maxPrice ?? 1000 }}" placeholder="Max Price" />
-
-                        <label for="price_sort">Sort by Price</label>
-                        <select name="sort_by_price" id="price_sort">
-                            <option value="none" {{ request('sort_by_price') == 'none' ? 'selected' : '' }}>ID</option>
-                            <option value="asc" {{ request('sort_by_price') == 'asc' ? 'selected' : '' }}>Low to High</option>
-                            <option value="desc" {{ request('sort_by_price') == 'desc' ? 'selected' : '' }}>High to Low</option>
-                        </select>
+                        <!-- Preserve any existing search parameters -->
+                        @if(request('search'))
+                            <input type="hidden" name="search" value="{{ request('search') }}">
+                        @endif
+                        @if(request('category'))
+                            <input type="hidden" name="category" value="{{ request('category') }}">
+                        @endif
 
                         <button type="submit" class="filter-btn">Apply Filters</button>
                     </form>
