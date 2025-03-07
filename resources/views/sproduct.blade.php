@@ -1,7 +1,11 @@
 <!--
     Developer: Oyinlola Arowolo
-	  University ID: 230402373
+	University ID: 230402373
     Function: Front end for the Products page
+
+    Developer: Aryan Kora
+    university ID: 230059030
+    function: Remastering and Reviews
 -->
 
 <html lang="en">
@@ -12,21 +16,20 @@
     <!-- JS -->
     <script defer src="{{ asset('js/product_page.js') }}"></script>
     <script defer src="{{ asset('js/addToCart.js') }}"></script>
+    <script src="{{ asset('js/scrollBar.js') }}"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/feedback.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 </head>
 
 </html>
 
 
-<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
 
-<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Product Information')
 
-<!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
 
     <!-- Main Content:: Esta -->
@@ -58,15 +61,13 @@
                 <option>Large</option>
             </select>
 
-            <div class="quantity">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" value="1" min="1">
-            </div>
-
             <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
                 @csrf
+                <div class="quantity">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" value="1" min="1" class="quantity-input">
+                </div>
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <input type="hidden" name="quantity" value="1">
                 <button type="submit" class="add-to-cart">Add to Cart</button>
             </form>
 
@@ -87,7 +88,7 @@
     </section>
 
 
-    <!-- Feedback Comments -->
+    <!-- Feedback Comments:: Aryan Kora -->
     <section id="testimonials">
         <!--Heading--->
         <div class="testimonial-heading">
@@ -98,38 +99,37 @@
         <div class="testimonial-box-container">
             <!--BOX 1-------------->
             <div class="testimonial-box">
-                <a>
-                    <!--Top------------------------->
-                    <div class="box-top">
-                        <!--Profile----->
-                        <div class="profile">
-                            <!--Image---->
-                            <div class="profile-img">
-                                <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
-                            </div>
-                            <!--Name And Username-->
-                            <div class="name-user">
-                                <strong>User1</strong>
-                                <span>@DefaultUser</span>
-                            </div>
+                <!--Top------------------------->
+                <div class="box-top">
+                    <!--Profile----->
+                    <div class="profile">
+                        <!--Image---->
+                        <div class="profile-img">
+                            <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
                         </div>
-                        <!--Reviews------>
-                        <div class="reviews">
-                            <b class="fas fa-star">⭐</b>
-                            <b class="fas fa-star">⭐</b>
-                            <b class="fas fa-star">⭐</b>
-                            <b class="fas fa-star">⭐</b>
-                            <b class="fas fa-star">⭐</b>
-                            <!--Star Ratings-->
+                        <!--Name And Username-->
+                        <div class="name-user">
+                            <strong>User1</strong>
+                            <span>@DefaultUser</span>
                         </div>
                     </div>
-                    <!--Comments---------------------------------------->
-                    <div class="client-comment">
-                        <p>
-                            These are some pretty amazing glasses. They're lightweight, durable and really comfortable to
-                            wear!
-                        </p>
+                    <!--Reviews------>
+                    <div class="reviews">
+                        <b class="fas fa-star">⭐</b>
+                        <b class="fas fa-star">⭐</b>
+                        <b class="fas fa-star">⭐</b>
+                        <b class="fas fa-star">⭐</b>
+                        <b class="fas fa-star">⭐</b>
+                        <!--Star Ratings-->
                     </div>
+                </div>
+                <!--Comments---------------------------------------->
+                <div class="client-comment">
+                    <p>
+                        These are some pretty amazing glasses. They're lightweight, durable and really comfortable to
+                        wear!
+                    </p>
+                </div>
             </div>
             </a>
             <!--BOX 2-------------->
@@ -274,4 +274,72 @@
     </section>
     <!-- Feedback Comments End -->
 
+    <div class="testimonial-heading">
+        <span>Please review our products!</span>
+    </div>
+
+    <!-- Contact Form:: Aryan Kora -->
+    <section id="formSection">
+        <form class="formCon">
+            <div class="contactInfo">
+                <div>
+                <h2>Contact Info</h2>
+                <ul class="info">
+                    <li>
+                    <span><img src="{{ asset('Images/svg/location-svgrepo-com.svg') }}"></span>
+                    <span>Aston St, Birmingham B4 7ET</span>
+                    </li>
+                    <li>
+                    <span><img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}"></span>
+                    <span>support@optique.com</span>
+                    </li>
+                    <li>
+                    <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
+                    <span>1 (800) 555-OPTQ</span>
+                    </li>
+                </ul>
+                </div>
+                <ul class="sci">
+                <li><a href="https://www.facebook.com" target="_blank"><img
+                        src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}"></a></li>
+                <li><a href="https://twitter.com" target="_blank"><img
+                        src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}"></a></li>
+                <li><a href="https://www.instagram.com" target="_blank"><img
+                        src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}"></a></li>
+                <li><a href="https://uk.pinterest.com/" target="_blank"><img
+                        src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}"></a></li>
+                </ul>
+            </div>
+            <div class="contactForm">
+                <h2>Send a Message</h2>
+                <div class="formBox">
+                <div class="inputBox w50">
+                    <input type="text" id="fname" required>
+                    <span>First Name</span>
+                </div>
+                <div class="inputBox w50">
+                    <input type="text" id="lname" required>
+                    <span>Last Name</span>
+                </div>
+                <div class="inputBox w50">
+                    <input type="text" id="email" required>
+                    <span>Email Address</span>
+                </div>
+                <div class="inputBox w50">
+                    <input type="text" id="pNumber" required>
+                    <span>Mobile Number</span>
+                </div>
+                <div class="inputBox w100">
+                    <textarea id="desc" required></textarea>
+                    <span>Write you message here...</span>
+                </div>
+                <div class="inputBox w100">
+                    <input type="button" value="Send">
+                </div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!--Contact Form End-->
+    
 @endsection

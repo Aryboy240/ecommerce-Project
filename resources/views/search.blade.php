@@ -16,14 +16,10 @@
 
 <head>
     <!-- JS -->
-    <script defer src="/js/theme.js"></script>
     <script defer src="/js/addToCart.js"></script>
     <script defer src="/js/activeCatagory.js"></script>
-    <script src="js/scrollBar.js"></script>
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 </html>

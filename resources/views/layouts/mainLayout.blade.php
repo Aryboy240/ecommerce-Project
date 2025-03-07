@@ -11,11 +11,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
   <!-- JS -->
-  <script defer src="/js/theme.js"></script>
-  <script defer src="js/scrollReveal.js"></script>
-  <script src="js/scrollreveal.min.js"></script>
-  <script src="js/scrollBar.js"></script>
+  <script defer src="{{ asset('/js/theme.js') }}"></script>
+  <script defer src="{{ asset('js/scrollReveal.js') }}"></script>
+  <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+  <script src="{{ asset('js/scrollBar.js') }}"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
