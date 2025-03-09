@@ -6,6 +6,7 @@ use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 
 /*
@@ -67,6 +68,11 @@ Route::get('/sproduct', function () {
 })->name('sproduct');
 
 Route::get('/sproduct/{id}', [ProductController::class, 'show'])->name('product.details');
+
+Route::post('/reviews/{product}', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+
+Route::post('/sproduct/{id}/review', [ReviewController::class, 'store'])->name('review.store');
+
 
 /*
 |--------------------------------------------------------------------------

@@ -46,11 +46,36 @@
 
 .testimonial-box-container {
     display: flex;
+    flex-direction: column;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 75px;
+    width: 85%;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
+}
+
+/*
+
+.testimonial-box-container {
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
 }
+
+*/
 
 .testimonial-box {
     width: 600px;
@@ -122,6 +147,28 @@
     transition: var(--transition-speed);
 }
 
+.no-reviews {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 75px;
+    width: 85%;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
+    font-size: 20px;
+}
+
 @media (max-width: 1060px) {
     .testimonial-box {
         width: 500px;
@@ -145,5 +192,521 @@
     }
     .reviews {
         margin-top: 10px;
+    }
+}
+
+#reviewSection {
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    box-sizing: border-box;
+    margin: 20px 0px;
+}
+
+.reviewForm {
+    position: relative;
+    min-width: 800px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--floater);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+}
+
+.reviewInfo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reviewInfo h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.profile-img img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.name-user strong {
+    display: block;
+    color: white;
+    font-size: 18px;
+}
+
+.name-user span {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/*
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rating label {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.stars {
+    display: flex;
+    justify-content: start;
+    gap: 5px;
+    direction: rtl;
+}
+
+.stars input[type="radio"] {
+    display: none;
+}
+
+.stars label {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ddd;
+}
+
+.stars input[type="radio"]:checked ~ label {
+    color: #f39c12; 
+}
+
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #f39c12; 
+}
+
+.stars label {
+    font-size: 24px;
+    cursor: var(--pointer);
+    color: gray;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars input:checked ~ label {
+    color: gold;
+}
+
+*/
+
+/* Style for stars */
+.rating {
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+    cursor: var(--pointer);
+    direction: rtl; /* Fixes reverse order */
+}
+
+.star {
+    font-size: 2rem;
+    cursor: var(--pointer);
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+/* Hover effect for stars */
+.star:hover,
+.star:hover ~ .star {
+    color: #f39c12; /* Gold color on hover */
+}
+
+/* When the radio input is checked, apply the gold color to selected stars */
+input[type="radio"]:checked ~ .star[data-value="1"],
+input[type="radio"]:checked ~ .star[data-value="2"],
+input[type="radio"]:checked ~ .star[data-value="3"],
+input[type="radio"]:checked ~ .star[data-value="4"],
+input[type="radio"]:checked ~ .star[data-value="5"] {
+    color: #f39c12; /* Gold color when selected */
+}
+
+/* Handle hover on labels */
+.star:hover {
+    color: #f39c12;
+}
+
+.inputBox {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.inputBox textarea {
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--text-primary);
+    background: var(--floater);
+    color: white;
+    border-radius: 5px;
+}
+
+.inputBox input[type="submit"] {
+    width: 100%;
+    cursor: var(--pointer);
+    background: var(--mint);
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.inputBox input[type="submit"]:hover {
+    background: var(--lighter);
+    box-shadow: 0px 0px 10px var(--lighter);
+    transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+    .reviewForm {
+        min-width: 90%;
+    }
+}
+
+@media (max-width: 600px) {
+    .reviewForm {
+        padding: 20px;
+    }
+
+    .profile {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+#formSection {
+    padding-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    box-sizing: border-box;
+    margin: 20px 0px;
+}
+
+.formCon {
+    position: relative;
+    min-width: 1100px;
+    min-height: 550px;
+    display: flex;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo {
+    position: absolute;
+    border-radius: 30px;
+    top: 40px;
+    width: 350px;
+    height: calc(100% - 80px);
+    background: var(--lighter);
+    z-index: 1;
+    padding: 40px;
+    display: flex;
+    text-align: center;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo img {
+    position: relative;
+    border-radius: 25px;
+}
+
+.formCon .contactInfo h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+    padding-left: 0px;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.info li {
+    position: relative;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    cursor: var(--text);
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.info li span:nth-child(1) {
+    width: 30px;
+    min-width: 30px;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.info li span:nth-child(1) img {
+    max-width: 100%;
+    filter: invert(1);
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.info li span:nth-child(2) {
+    color: white;
+    margin-left: 10px;
+    font-weight: 300;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.sci {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.sci li {
+    list-style: none;
+    margin-right: 15px;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.sci li a {
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.formCon .contactInfo ul.sci li a img {
+    filter: invert(1);
+    box-sizing: border-box;
+    width: 30px;
+}
+
+.formCon .contactForm {
+    border-radius: 30px;
+    position: absolute;
+    padding: 70px 50px;
+    padding-left: 250px;
+    margin-left: 150px;
+    width: calc(100% - 150px);
+    height: 100%;
+    background: var(--floater);
+    box-shadow: 0 50px 50px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+.formCon .contactForm h2 {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.formCon .contactForm .formBox {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    box-sizing: border-box;
+}
+
+.formCon .contactForm .formBox .inputBox {
+    position: relative;
+    margin-bottom: 35px;
+    box-sizing: border-box;
+    background: var(--floater);
+}
+
+.formCon .contactForm .formBox .inputBox.w50 {
+    width: 47%;
+    box-sizing: border-box;
+    background: var(--floater);
+}
+
+.formCon .contactForm .formBox .inputBox.w100 {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--floater);
+}
+
+.formCon .contactForm .formBox .inputBox input,
+.formCon .contactForm .formBox .inputBox textarea {
+    width: 100%;
+    resize: none;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--text-primary);
+    background: var(--floater);
+    box-sizing: border-box;
+}
+
+.formCon .contactForm .formBox .inputBox textarea {
+    height: 120px;
+    box-sizing: border-box;
+    background: var(--floater);
+}
+
+.formCon .contactForm .formBox .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    pointer-events: none;
+    font-size: 18px;
+    font-weight: 300;
+    transition: 0.3s;
+    box-sizing: border-box;
+    color: white;
+}
+
+.formCon .contactForm .formBox .inputBox input:focus ~ span,
+.formCon .contactForm .formBox .inputBox input:valid ~ span,
+.formCon .contactForm .formBox .inputBox textarea:focus ~ span,
+.formCon .contactForm .formBox .inputBox textarea:valid ~ span {
+    transform: translateY(-20px);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: white;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.formCon .contactForm .formBox .inputBox input[type="button"] {
+    position: relative;
+    cursor: var(--pointer);
+    background: var(--mint);
+    color: white;
+    border: none;
+    max-width: 150px;
+    border-radius: 10px;
+    padding: 12px;
+    box-sizing: border-box;
+    transition: var(--transition-speed);
+}
+
+.formCon .contactForm .formBox .inputBox input[type="button"]:hover {
+    background: var(--lighter);
+    box-shadow: 0px 0px 10px var(--lighter);
+    transform: scale(1.05);
+    box-sizing: border-box;
+}
+
+.formCon .contactForm .formBox .inputBox input[type="submit"] {
+    position: relative;
+    cursor: var(--pointer);
+    background: var(--mint);
+    color: white;
+    border: none;
+    max-width: 150px;
+    border-radius: 10px;
+    padding: 12px;
+    box-sizing: border-box;
+    transition: var(--transition-speed);
+}
+
+.formCon .contactForm .formBox .inputBox input[type="submit"]:hover {
+    background: var(--lighter);
+    box-shadow: 0px 0px 10px var(--lighter);
+    transform: scale(1.05);
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .formCon {
+        width: 90%;
+        min-width: auto;
+        margin: 20px;
+    }
+
+    .formCon .contactInfo {
+        position: relative;
+        top: 0;
+        height: 550px;
+    }
+
+    .formCon .contactForm {
+        position: relative;
+        width: calc(100% - 350px);
+        padding-left: 0;
+        margin-left: 0;
+        padding: 40px;
+        height: 550px;
+    }
+}
+
+@media (max-width: 991px) {
+    .formCon {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .formCon .contactForm {
+        width: 100%;
+        height: auto;
+    }
+
+    .formCon .contactInfo {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+    }
+
+    .formCon .contactInfo ul.sci {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .formCon .contactForm {
+        padding: 25px;
+        padding-top: 0px;
+    }
+
+    .formCon .contactInfo {
+        padding: 25px;
+        margin-bottom: 75px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .formCon .contactInfo ul.sci {
+        margin-top: 40px;
+    }
+
+    .formCon .contactForm .formBox .inputBox.w50 {
+        width: 100%;
     }
 }

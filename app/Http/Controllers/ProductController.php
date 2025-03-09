@@ -67,10 +67,15 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = Product::with(['images.imageType', 'category'])->findOrFail($id);
+        $product = Product::with([
+            'images.imageType',
+            'category',
+            'reviews.user' // Load reviews with user data
+        ])->findOrFail($id);
 
         return view('sproduct', compact('product'));
     }
+
 
 
 }

@@ -5,7 +5,7 @@
 
     Developer: Aryan Kora
     university ID: 230059030
-    function: Remastering and Reviews
+    function: Frontend reworks and Review system
 -->
 
 <html lang="en">
@@ -16,11 +16,9 @@
     <!-- JS -->
     <script defer src="{{ asset('js/product_page.js') }}"></script>
     <script defer src="{{ asset('js/addToCart.js') }}"></script>
-    <script src="{{ asset('js/scrollBar.js') }}"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/feedback.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 </head>
 
 </html>
@@ -32,7 +30,7 @@
 
 @section('content')
 
-    <!-- Main Content:: Esta -->
+    <!-- Main Content:: Esta && Aryan Kora -->
     <section class="prodetails">
         <div class="single-pro-image">
             <img src="{{ asset($product->images->first()->image_path) }}" width="100%" id="MainImg"
@@ -87,189 +85,52 @@
         </div>
     </section>
 
-
     <!-- Feedback Comments:: Aryan Kora -->
     <section id="testimonials">
-        <!--Heading--->
+        <!-- Heading -->
         <div class="testimonial-heading">
             <span>Comments</span>
             <h1>Customer Feedback</h1>
         </div>
-        <!--Testimonials Box Container------>
+
+        <!-- Testimonials Box Container -->
         <div class="testimonial-box-container">
-            <!--BOX 1-------------->
-            <div class="testimonial-box">
-                <!--Top------------------------->
-                <div class="box-top">
-                    <!--Profile----->
-                    <div class="profile">
-                        <!--Image---->
-                        <div class="profile-img">
-                            <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
-                        </div>
-                        <!--Name And Username-->
-                        <div class="name-user">
-                            <strong>User1</strong>
-                            <span>@DefaultUser</span>
-                        </div>
-                    </div>
-                    <!--Reviews------>
-                    <div class="reviews">
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <!--Star Ratings-->
-                    </div>
+            @if($product->reviews->isEmpty())
+                <div class="no-reviews">
+                    <p>There are no reviews for this product yet. Be the first to review it!</p>
                 </div>
-                <!--Comments---------------------------------------->
-                <div class="client-comment">
-                    <p>
-                        These are some pretty amazing glasses. They're lightweight, durable and really comfortable to
-                        wear!
-                    </p>
-                </div>
-            </div>
-            </a>
-            <!--BOX 2-------------->
-            <div class="testimonial-box">
-                <!--Top------------------------->
-                <div class="box-top">
-                    <!--Profile----->
-                    <div class="profile">
-                        <!--Image---->
-                        <div class="profile-img">
-                            <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
+            @else
+                @foreach($product->reviews as $review)
+                <!-- BOX -->
+                <div class="testimonial-box">
+                    <!-- Top -->
+                    <div class="box-top">
+                        <!-- Profile -->
+                        <div class="profile">
+                            <!-- Image -->
+                            <div class="profile-img">
+                                <img src="{{ asset('Images/Users/Profile_Pics/' . ($review->user->profile_pic ?? 'Default/default_pf.png')) }}" />
+                            </div>
+                            <!-- Name And Username -->
+                            <div class="name-user">
+                                <strong>{{ $review->user->name }}</strong>
+                                <span>{{ $review->user->email }}</span>
+                            </div>
                         </div>
-                        <!--Name And Username-->
-                        <div class="name-user">
-                            <strong>User1</strong>
-                            <span>DefaultUser</span>
+                        <!-- Reviews -->
+                        <div class="reviews">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '☆' }}</b>
+                            @endfor
                         </div>
                     </div>
-                    <!--Reviews------>
-                    <div class="reviews">
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star"></b>
-                        <b class="fas fa-star"></b>
-                        <b class="fas fa-star"></b>
-                        <!--Star Ratings-->
+                    <!-- Comments -->
+                    <div class="client-comment">
+                        <p>{{ $review->comment }}</p>
                     </div>
                 </div>
-                <!--Comments---------------------------------------->
-                <div class="client-comment">
-                    <p>
-                        The glasses straight up just fell apart, tripped me over into a ditch and now I've been stuck here
-                        for the past 17 years.
-                    </p>
-                </div>
-            </div>
-            <!--BOX 3-------------->
-            <div class="testimonial-box">
-                <!--Top------------------------->
-                <div class="box-top">
-                    <!--Profile----->
-                    <div class="profile">
-                        <!--Image---->
-                        <div class="profile-img">
-                            <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
-                        </div>
-                        <!--Name And Username-->
-                        <div class="name-user">
-                            <strong>User1</strong>
-                            <span>DefaultUser</span>
-                        </div>
-                    </div>
-                    <!--Reviews------>
-                    <div class="reviews">
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star"></b>
-                        <!--Star Ratings-->
-                    </div>
-                </div>
-                <!--Comments---------------------------------------->
-                <div class="client-comment">
-                    <p>
-                        These glasses just saved my life! Here I was, minding my own business when a bug flies into my
-                        lense. I take them off to clean them and I saw a guy's glasses fall apart and trip them over into a
-                        ditch. I would have fallen in instead if I didn't stop to clean my glasses!
-                    </p>
-                </div>
-            </div>
-            <!--BOX 4-------------->
-            <div class="testimonial-box">
-                <!--Top------------------------->
-                <div class="box-top">
-                    <!--Profile----->
-                    <div class="profile">
-                        <!--Image---->
-                        <div class="profile-img">
-                            <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
-                        </div>
-                        <!--Name And Username-->
-                        <div class="name-user">
-                            <strong>User1</strong>
-                            <span>DefaultUser</span>
-                        </div>
-                    </div>
-                    <!--Reviews------>
-                    <div class="reviews">
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star"></b>
-                        <b class="fas fa-star"></b>
-                        <!--Star Ratings-->
-                    </div>
-                </div>
-                <!--Comments---------------------------------------->
-                <div class="client-comment">
-                    <p>
-                        I wanted to see how durable my glasses were, so I threw a small rock at someone who was wearing the
-                        same pair. They broke on impact and tripped the poor lad into a ditch. What poor quality glasses.
-                    </p>
-                </div>
-            </div>
-            <!--BOX 5-------------->
-            <div class="testimonial-box">
-                <!--Top------------------------->
-                <div class="box-top">
-                    <!--Profile----->
-                    <div class="profile">
-                        <!--Image---->
-                        <div class="profile-img">
-                            <img src={{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }} />
-                        </div>
-                        <!--Name And Username-->
-                        <div class="name-user">
-                            <strong>User1</strong>
-                            <span>DefaultUser</span>
-                        </div>
-                    </div>
-                    <!--Reviews------>
-                    <div class="reviews">
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <b class="fas fa-star">⭐</b>
-                        <!--Star Ratings-->
-                    </div>
-                </div>
-                <!--Comments---------------------------------------->
-                <div class="client-comment">
-                    <p>
-                        I dropped these glasses into a nuclear reactor by accident ater it started melting down. To my
-                        suprise, it was a superb control rod and managed to stop the nuclear fission all together! Saved my
-                        entire country from a nuclear meltdown!
-                    </p>
-                </div>
-            </div>
+                @endforeach
+            @endif
         </div>
     </section>
     <!-- Feedback Comments End -->
@@ -278,68 +139,139 @@
         <span>Please review our products!</span>
     </div>
 
-    <!-- Contact Form:: Aryan Kora -->
+
+    <!-- Review Form:: Aryan Kora -->
     <section id="formSection">
-        <form class="formCon">
+        <form class="formCon" action="{{ route('review.store', $product->id) }}" method="POST" id="reviewForm">
+            @csrf
+
+            <!-- Current Product Information -->
             <div class="contactInfo">
                 <div>
-                <h2>Contact Info</h2>
-                <ul class="info">
-                    <li>
-                    <span><img src="{{ asset('Images/svg/location-svgrepo-com.svg') }}"></span>
-                    <span>Aston St, Birmingham B4 7ET</span>
-                    </li>
-                    <li>
-                    <span><img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}"></span>
-                    <span>support@optique.com</span>
-                    </li>
-                    <li>
-                    <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
-                    <span>1 (800) 555-OPTQ</span>
-                    </li>
-                </ul>
+                    <h2>Product Info</h2>
+                    <img src="{{ asset($product->images->first()->image_path) }}" width="100%" id="MainImg" alt="{{ $product->name }}">
+                    <ul class="info">
+                        <li>
+                            <strong>Product Name:&nbsp;</strong> {{ $product->name }}
+                        </li>
+                        <li>
+                            <strong>Category:&nbsp;</strong> {{ $product->category->name }}
+                        </li>
+                        <li>
+                            <strong>Price:&nbsp;</strong> {{ '£' .$product->price }}
+                        </li>
+                    </ul>
                 </div>
-                <ul class="sci">
-                <li><a href="https://www.facebook.com" target="_blank"><img
-                        src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}"></a></li>
-                <li><a href="https://twitter.com" target="_blank"><img
-                        src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}"></a></li>
-                <li><a href="https://www.instagram.com" target="_blank"><img
-                        src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}"></a></li>
-                <li><a href="https://uk.pinterest.com/" target="_blank"><img
-                        src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}"></a></li>
-                </ul>
             </div>
+
+            <!-- Review Form -->
             <div class="contactForm">
-                <h2>Send a Message</h2>
+                <h2 style="margin-bottom: 50px">Write your own review!</h2>
+                
+                <!-- Profile Section -->
+                <div class="profile">
+                    <div class="profile-img">
+                        @auth
+                            <img src="{{ asset('Images/Users/Profile_Pics/' . (Auth::user()->profile_pic ?? 'Default/default_pf.png')) }}" id="userProfilePic" />
+                        @else
+                            <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}" id="userProfilePic" />
+                        @endauth
+                    </div>
+                    <div class="name-user">
+                        @auth
+                            <strong>{{ Auth::user()->name }}</strong>
+                            <span>{{ Auth::user()->email }}</span>
+                        @else
+                            <strong>Guest</strong>
+                            <span>@GuestUser</span>
+                        @endauth
+                    </div>
+                </div>
+
+                <!-- Rating Section -->
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" style="display:none">
+                    <label for="star5" class="star" data-value="5">&#9733;</label>
+
+                    <input type="radio" id="star4" name="rating" value="4" style="display:none">
+                    <label for="star4" class="star" data-value="4">&#9733;</label>
+
+                    <input type="radio" id="star3" name="rating" value="3" style="display:none">
+                    <label for="star3" class="star" data-value="3">&#9733;</label>
+
+                    <input type="radio" id="star2" name="rating" value="2" style="display:none">
+                    <label for="star2" class="star" data-value="2">&#9733;</label>
+
+                    <input type="radio" id="star1" name="rating" value="1" style="display:none">
+                    <label for="star1" class="star" data-value="1">&#9733;</label>
+                </div>
+
+
+
+                <!-- Comment Section -->
                 <div class="formBox">
-                <div class="inputBox w50">
-                    <input type="text" id="fname" required>
-                    <span>First Name</span>
-                </div>
-                <div class="inputBox w50">
-                    <input type="text" id="lname" required>
-                    <span>Last Name</span>
-                </div>
-                <div class="inputBox w50">
-                    <input type="text" id="email" required>
-                    <span>Email Address</span>
-                </div>
-                <div class="inputBox w50">
-                    <input type="text" id="pNumber" required>
-                    <span>Mobile Number</span>
-                </div>
-                <div class="inputBox w100">
-                    <textarea id="desc" required></textarea>
-                    <span>Write you message here...</span>
-                </div>
-                <div class="inputBox w100">
-                    <input type="button" value="Send">
-                </div>
+                    <div class="inputBox w100">
+                        <textarea name="comment" required></textarea>
+                        <span>Write your message here...</span>
+                    </div>
+                    <div class="inputBox w100">
+                        @auth
+                            <!-- Show Submit Button for Logged-in Users -->
+                            <input type="submit" value="Submit Review">
+                        @else
+                            <!-- Show Login Button for Guests -->
+                            <input type="button" value="Login to Review" onclick="redirectToLogin()">
+                        @endauth
+                    </div>
                 </div>
             </div>
         </form>
     </section>
-    <!--Contact Form End-->
-    
+    <!-- Review Form End -->
+
+
+    <!-- Script for the review system:: Aryan Kora  -->
+    <script>
+
+        function redirectToLogin() {
+            window.location.href = "{{ route('login') }}"; // Redirect to login page
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            let currentRating = 0;
+
+            // Handle hover effect
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    updateStars(value);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    updateStars(currentRating); // Revert to the selected rating
+                });
+
+                star.addEventListener('click', function() {
+                    currentRating = parseInt(star.getAttribute('data-value')); // Set the selected rating
+                    updateStars(currentRating);
+                    document.querySelector(`input[name="rating"][value="${currentRating}"]`).checked = true;
+                });
+            });
+
+            // Update the stars based on the current rating
+            function updateStars(rating) {
+                stars.forEach(star => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    if (value <= rating) {
+                        star.style.color = '#f39c12'; // Highlight selected stars
+                    } else {
+                        star.style.color = '#ccc'; // Default unselected stars
+                    }
+                });
+            }
+        });
+
+    </script>
+
 @endsection

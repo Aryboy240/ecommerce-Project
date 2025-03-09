@@ -61,6 +61,19 @@ return new class extends Migration
             $table->index('category_id');
         });
 
+        // Product reviews
+        Schema::create('product_reviews', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->decimal('rating', 2, 1);
+            $table->string('title')->nullable();
+            $table->text('comment')->nullable();
+            $table->boolean('verified')->default(false); // Marks verified reviews
+            $table->timestamps();
+        });
+        
+
         // Image Type Table Migration
         Schema::create('image_types', function (Blueprint $table) {
             $table->id(); // This is typically an unsignedBigInteger
