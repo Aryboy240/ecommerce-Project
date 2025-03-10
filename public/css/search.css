@@ -56,16 +56,15 @@ body {
 
 /* Search Bar Styling */
 .search-bar {
+    max-width: 90%;
     text-align: center;
     margin: 20px auto;
     margin-top: 50px;
-    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    position: sticky;
-    top: 20px;
+    position: relative;
     z-index: 100;
     background: rgba(14, 14, 14, 0.8);
     backdrop-filter: blur(12px);
@@ -76,9 +75,11 @@ body {
 }
 
 .search-bar form {
+    margin-top: 15px;
     width: 100%; /* Ensure the form takes full width */
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px; /* Space between input and buttons */
 }
 
@@ -94,6 +95,10 @@ body {
     color: var(--text-primary);
     transition: all 0.3s ease;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.light .search-bar input {
+    color: var(--bg-primary);
 }
 
 .search-bar input:focus {
@@ -140,11 +145,11 @@ body {
     font-size: 1rem;
     border: 1px solid rgba(0, 191, 174, 0.3);
     border-radius: 25px;
-    background: rgba(14, 14, 14, 0.5);
+    background: var(--bg-primary);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    color: var(--mint);
-    cursor: pointer;
+    color: var(--text-primary);
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -199,7 +204,7 @@ body {
     font-size: 1rem;
     border: 1px solid rgba(0, 191, 174, 0.3);
     border-radius: 8px;
-    background: rgba(14, 14, 14, 0.5);
+    background: var(--bg-primary);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     color: var(--text-primary);
@@ -209,7 +214,7 @@ body {
 
 .price-filters form input:focus,
 .price-filters form select:focus {
-    background: rgba(14, 14, 14, 0.7);
+    background: var(--bg-primary);
     border-color: var(--mint);
     box-shadow: 0 0 15px rgba(0, 191, 174, 0.2);
     outline: none;
@@ -335,9 +340,14 @@ body {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+        border-color 0.3s ease;
     position: relative;
     overflow: hidden;
+}
+
+.light .search-product-card {
+    color: var(--bg-primary);
 }
 
 .search-product-card:hover {
@@ -385,6 +395,10 @@ body {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+}
+
+.light .search-product-card button {
+    color: var(--bg-primary);
 }
 
 .search-product-card button:hover {
@@ -537,19 +551,27 @@ html {
 }
 
 .filter-section h3::after {
-    content: '−';
+    content: "−";
     font-size: 1.5rem;
     transition: transform 0.3s ease;
 }
 
 .filter-section.collapsed h3::after {
-    content: '+';
+    content: "+";
 }
 
 .filter-section-content {
     max-height: 500px;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
+}
+
+.filter-section-content form {
+    color: var(--text-primary);
+}
+
+.light .filter-section-content form {
+    color: var(--bg-primary);
 }
 
 .filter-section.collapsed .filter-section-content {
@@ -575,13 +597,13 @@ html {
 }
 
 .category-filters .category-btn::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 2px;
-    background-color: #00bfae;
+    background-color: var(--floater);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -598,10 +620,7 @@ html {
 
 /* Search Bar in Main Content */
 .search-bar {
-    position: sticky;
-    top: 20px;
     z-index: 100;
-    margin-bottom: 30px;
     width: 100%;
 }
 
@@ -695,7 +714,7 @@ html {
 }
 
 .filter-section h3::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 50%;
@@ -716,7 +735,7 @@ html {
 
 /* Active filter indicators */
 .category-btn.active::before {
-    content: '✓';
+    content: "✓";
     margin-right: 8px;
     color: #00bfae;
     text-shadow: 0 0 10px rgba(0, 191, 174, 0.5);
@@ -739,7 +758,7 @@ html {
 }
 
 .search-product-card.loading::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -780,20 +799,13 @@ html {
     color: #00a68c;
 }
 
-/* Smooth transitions for filter sections */
-.filter-section-content {
-    max-height: 500px;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-}
-
 .filter-section.collapsed .filter-section-content {
     max-height: 0;
 }
 
 /* Active filter indicators */
 .category-btn.active::before {
-    content: '✓';
+    content: "✓";
     margin-right: 8px;
     color: #00bfae;
 }
@@ -834,13 +846,13 @@ html {
 }
 
 .category-filters .category-btn::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     height: 2px;
-    background-color: #00bfae;
+    background-color: var(--floater);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -866,7 +878,7 @@ html {
 }
 
 .search-product-card.loading::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -938,7 +950,3 @@ body {
 .category-btn.active::before {
     text-shadow: 0 0 10px rgba(0, 191, 174, 0.5);
 }
-
-
-
-

@@ -34,6 +34,23 @@
 
 <!-- The @yeild in searchApp's main is filled by everything in this section -->
 @section('content')
+
+<div class="search-fix">
+    <section class="search-header">
+        <h1>Find Your Perfect Product</h1>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="search-bar">
+        <form method="GET" action="{{ route('products.index') }}">
+            <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
+            <button type="submit">Search</button>
+        </form>
+        <!-- Filter Toggle Button (visible only on mobile) -->
+        <button class="filter-toggle" onclick="toggleFilters()">Show Filters</button>
+    </section>
+</div>
+
 <div class="search-container">
     <!-- Sidebar Filters -->
     <aside class="filters">
@@ -42,7 +59,6 @@
             <h3>Categories</h3>
             <div class="filter-section-content">
                 <form method="GET" action="{{ route('products.index') }}" class="category-filters">
-                    <!-- Preserve existing search parameters -->
                     @if(request('search'))
                         <input type="hidden" name="search" value="{{ request('search') }}">
                     @endif
@@ -133,19 +149,6 @@
 
     <!-- Main Content Area -->
     <main class="main-content">
-        <section class="search-header">
-            <h1>Find Your Perfect Product</h1>
-        </section>
-
-        <!-- Search Bar -->
-        <section class="search-bar">
-            <form method="GET" action="{{ route('products.index') }}">
-                <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
-                <button type="submit">Search</button>
-            </form>
-            <!-- Filter Toggle Button (visible only on mobile) -->
-            <button class="filter-toggle" onclick="toggleFilters()">Show Filters</button>
-        </section>
 
         <!-- Product Grid -->
         <section class="search-product-grid">
