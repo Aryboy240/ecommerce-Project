@@ -190,7 +190,7 @@
 
                 <!-- Rating Section -->
                 <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5" style="display:none">
+                    <input type="radio" id="star5" name="rating" value="5" style="display:none" required>
                     <label for="star5" class="star" data-value="5">&#9733;</label>
 
                     <input type="radio" id="star4" name="rating" value="4" style="display:none">
@@ -269,6 +269,14 @@
                         star.style.color = '#ccc'; // Default unselected stars
                     }
                 });
+            }
+        });
+
+        document.getElementById("reviewForm").addEventListener("submit", function(event) {
+            const ratingChecked = document.querySelector('input[name="rating"]:checked');
+            if (!ratingChecked) {
+                event.preventDefault(); // Stop form submission
+                alert("Please select a rating before submitting your review.");
             }
         });
 

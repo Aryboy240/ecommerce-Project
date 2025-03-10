@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\product_categories;
 
 class ProductController extends Controller
 {
@@ -61,10 +62,6 @@ class ProductController extends Controller
         return view('search', compact('products', 'minPrice', 'maxPrice'));
     }
     
-    
-
-
-
     public function show($id)
     {
         $product = Product::with([
@@ -76,6 +73,12 @@ class ProductController extends Controller
         return view('sproduct', compact('product'));
     }
 
+    public function featuredProducts()
+    {
+        $products = Product::whereIn('id', [
+            32859928, 33137483, 32861686, 33087542, 32677959, 33137346, 32860634, 33039633
+        ])->with('category', 'images.imageType')->get();
 
-
+        return view('welcome', compact('products'));
+    }
 }

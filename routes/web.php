@@ -25,15 +25,10 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
 
-
 // Routes to other pages
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
-Route::get('/welcome', function () {
-    return view('welcome'); // Refers to resources/views/welcome.blade.php
-})->name('welcome');
+Route::get('/', [ProductController::class, 'featuredProducts'])->name('welcome');
+Route::get('/welcome', [ProductController::class, 'featuredProducts'])->name('welcome'); // This sends the 'featured products' information to the homepage
 
 Route::get('/about', function () {
     return view('about'); // Refers to resources/views/about.blade.php
@@ -142,17 +137,10 @@ Route::middleware(['auth'])->prefix('cart')->group(function () {
     Route::post('/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
 });
 
-// Additions from homepage featured products
-Route::get('/welcome', [ShoppingCartController::class, 'showHomePage'])->name('welcome');
-Route::middleware(['auth'])->prefix('welcome')->group(function () {
-    Route::post('/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
-});
-
 Route::get('/check-login', [UserController::class, 'checkLogin']);
 Route::get('/check-login', function () {
     return response()->json(['logged_in' => auth()->check()]);
 });
-
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');

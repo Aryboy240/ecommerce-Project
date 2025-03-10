@@ -61,18 +61,15 @@ return new class extends Migration
             $table->index('category_id');
         });
 
-        // Product reviews
+        // Product Reviews Table
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->decimal('rating', 2, 1);
-            $table->string('title')->nullable();
+            $table->unsignedTinyInteger('rating');
             $table->text('comment')->nullable();
-            $table->boolean('verified')->default(false); // Marks verified reviews
             $table->timestamps();
         });
-        
 
         // Image Type Table Migration
         Schema::create('image_types', function (Blueprint $table) {
@@ -116,16 +113,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->unsignedInteger('quantity');
-            $table->timestamps();
-        });
-
-        // Product Reviews Table
-        Schema::create('product_reviews', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('rating');
-            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
