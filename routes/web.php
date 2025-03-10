@@ -162,3 +162,8 @@ Route::get('/adminprofile', function () {
 Route::get('/customers', function () {
     return view('Customers'); 
 })->name('customers');
+
+// Report Route
+Route::get('/adminreport', function () {
+    return view('adminreport'); 
+})->name('adminreport');
