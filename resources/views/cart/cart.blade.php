@@ -8,13 +8,10 @@
 
 </html>
 
-<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
 
-<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'cart')
 
-<!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
 <!-- Dynamic cart functions:: Aryan Kora -->
 <script>
@@ -87,7 +84,7 @@
   </div>
 </section>
 
-<!-- Cart Content:: Aryan Kora -->
+<!-- Cart Content:: Vatsal -->
 <section class="container">
   @if(isset($items) && $items->count() > 0)
     <div class="product-card-con">
@@ -120,7 +117,7 @@
   @endforeach
     </div>
 
-    <!-- Cart Summary -->
+    <!-- Cart Summary:: Vatsal-->
     <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
     <div style="text-align: right;">
       <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>

@@ -21,6 +21,10 @@
     --darker: #006d5d;
     --floater: rgb(4, 129, 129);
     --transition-speed: 600ms;
+    --cursor: url("../Images/cursors/default.png") 0 0, auto !important;
+    --pointer: url("../Images/cursors/Link-Select.png") 0 0, pointer !important;
+    --text: url("../Images/cursors/Text-Select.png") 0 0, text !important;
+    --move: url("../Images/cursors/move.png") 0 0, move !important;
 }
 
 .dark {
@@ -91,23 +95,23 @@ body::-webkit-scrollbar-thumb {
 
 /* Default Cursor */
 body {
-    cursor: url("../Images/cursors/default.png") 0 0, auto !important;
+    cursor: var(--cursor);
 }
 
 /* Pointer (For links, buttons) */
 a,
 button {
-    cursor: url("../Images/cursors/Link-Select.png") 0 0, pointer !important;
+    cursor: var(--pointer);
 }
 
 /* Text (I-Beam for input fields) */
 input,
 textarea {
-    cursor: url("../Images/cursors/Text-Select.png") 0 0, text !important;
+    cursor: var(--text);
 }
 
 /* Move (For draggable elements) */
 .draggable,
 .move {
-    cursor: url("../Images/cursors/move.png") 0 0, move !important;
+    cursor: var(--move);
 }

@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const productId = form.querySelector(
                 'input[name="product_id"]'
             ).value;
-            const quantity = form.querySelector('input[name="quantity"]').value;
+            const quantity = form.querySelector('input[name="quantity"]').value; // Get actual input value
             checkUserLoggedIn(productId, quantity);
         });
     });

@@ -99,7 +99,7 @@ class DatabaseSeeder extends Seeder
                 if (!$product) {
                     $product = Product::create([
                         'id' => $productId,
-                        'name' => "{$categoryName}: Product {$productId}",
+                        'name' => "{$categoryName} - {$productId}",
                         'description' => "Experience timeless elegance this {$categoryName} product. Crafted from premium materials, these versatile frames offer both style and comfort. Features include anti-reflective coating, scratch-resistant lenses, and adjustable nose pads for the perfect fit.",
                         'category_id' => $category->id,
                         // 'price' => 100,  // This sets the price to a default 100
