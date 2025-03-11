@@ -20,7 +20,7 @@
             <nav class="sidebar">
                 <div class="logo">
                     <img src="{{ asset('Images/logo.png') }}" alt="Logo">
-                    <h2>report -------</h2>
+                    <h2>Admin Dashboard</h2>
                 </div>
                 <ul class="nav-links">
                     <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
