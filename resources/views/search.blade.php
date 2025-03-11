@@ -33,9 +33,6 @@
 <!-- The @yeild in searchApp's main is filled by everything in this section -->
 @section('content')
 
-<body style="height: auto !important;">
-</body>
-
 <div class="search-fix">
     <section class="search-header">
         <h1>Find Your Perfect Product</h1>
