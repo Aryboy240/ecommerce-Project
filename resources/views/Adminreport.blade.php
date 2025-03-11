@@ -1,3 +1,8 @@
+<!--
+    Developer: man huen Angus kwok
+	  University ID: 230049488
+    Function: Front end for the admin report page
+-->
 <!DOCTYPE html>
 <html lang="en">
     <head>
