@@ -124,6 +124,8 @@
                     </div>
                     
                     <h2>Login & Security</h2>
+
+                    <!-- Update Username -->
                     <div class="form-container">
                         <div class="form-title">
                             <h4>Update Username</h4>
@@ -132,15 +134,18 @@
                             <form id="username-form">
                                 <div class="input-group">
                                     <input type="text" name="new_username" placeholder="New username">
+                                    <span id="username-error" class="error-message"></span>
                                 </div>
                                 <div class="input-group">
                                     <input type="password" name="current_password" placeholder="Current password">
+                                    <span id="password-error" class="error-message"></span>
                                 </div>
                                 <button type="submit">Update Username</button>
                             </form>
                         </div>
                     </div>
 
+                    <!-- Update Password -->
                     <div class="form-container">
                         <div class="form-title">
                             <h4>Update Password</h4>
@@ -149,17 +154,21 @@
                             <form id="password-form">
                                 <div class="input-group">
                                     <input type="password" name="current_password" placeholder="Current password">
+                                    <span id="current-password-error" class="error-message"></span>
                                 </div>
                                 <div class="input-group">
                                     <input type="password" name="new_password" placeholder="New password">
+                                    <span id="new-password-error" class="error-message"></span>
                                 </div>
                                 <div class="input-group">
                                     <input type="password" name="confirm_new_password" placeholder="Confirm new password">
+                                    <span id="confirm-password-error" class="error-message"></span>
                                 </div>
                                 <button type="submit">Update Password</button>
                             </form>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Personal Info Tab -->
@@ -700,71 +709,121 @@
     }
     
     // Handle username update form submission
-    document.getElementById('username-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const newUsername = event.target.querySelector('input[name="new_username"]').value;
-        const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+document.getElementById('username-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const newUsername = event.target.querySelector('input[name="new_username"]').value.trim();
+    const currentPassword = event.target.querySelector('input[name="current_password"]').value;
     
-        showModal(
-            'Confirm Update',
-            'Are you sure you want to update your username?',
-            () => {
-                fetch('/update-username', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        new_username: newUsername,
-                        password: currentPassword
-                    })
+    // Clear previous errors
+    document.getElementById('username-error').textContent = '';
+    document.getElementById('password-error').textContent = '';
+
+    let isValid = true;
+
+    // Frontend validation checks for username
+    if (newUsername.length < 3 || newUsername.length > 15) {
+        document.getElementById('username-error').textContent = 'Username must be 3-15 characters.';
+        isValid = false;
+    } else if (!/^[a-zA-Z0-9]+$/.test(newUsername)) {
+        document.getElementById('username-error').textContent = 'Username must be alphanumeric.';
+        isValid = false;
+    }
+
+    // Frontend validation for password input
+    if (currentPassword === '') {
+        document.getElementById('password-error').textContent = 'Current password is required.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
+    showModal(
+        'Confirm Update',
+        'Are you sure you want to update your username?',
+        () => {
+            fetch('/update-username', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    new_username: newUsername,
+                    password: currentPassword
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showToast('Username updated successfully!');
-                    } else {
-                        showToast('Error updating username: ' + data.message, 'error');
-                    }
-                });
-            }
-        );
-    });
-    
-    // Handle password update form submission
-    document.getElementById('password-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const currentPassword = event.target.querySelector('input[name="current_password"]').value;
-        const newPassword = event.target.querySelector('input[name="new_password"]').value;
-        const confirmPassword = event.target.querySelector('input[name="confirm_new_password"]').value;
-    
-        showModal(
-            'Confirm Update',
-            'Are you sure you want to update your password?',
-            () => {
-                fetch('/update-password', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                    },
-                    body: JSON.stringify({
-                        current_password: currentPassword,
-                        new_password: newPassword,
-                        new_password_confirmation: confirmPassword
-                    })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Username updated successfully!');
+                } else {
+                    document.getElementById('username-error').textContent = data.message;
+                }
+            });
+        }
+    );
+});
+
+// Handle password update form submission
+document.getElementById('password-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+    const newPassword = event.target.querySelector('input[name="new_password"]').value;
+    const confirmPassword = event.target.querySelector('input[name="confirm_new_password"]').value;
+
+    // Clear previous errors
+    document.getElementById('current-password-error').textContent = '';
+    document.getElementById('new-password-error').textContent = '';
+    document.getElementById('confirm-password-error').textContent = '';
+
+    let isValid = true;
+
+    // Validate current password
+    if (currentPassword === '') {
+        document.getElementById('current-password-error').textContent = 'Current password is required.';
+        isValid = false;
+    }
+
+    // Validate new password
+    if (newPassword.length < 8 || newPassword.length > 25) {
+        document.getElementById('new-password-error').textContent = 'Password must be between 8-25 characters.';
+        isValid = false;
+    }
+
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
+    showModal(
+        'Confirm Update',
+        'Are you sure you want to update your password?',
+        () => {
+            fetch('/update-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                    new_password_confirmation: confirmPassword
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showToast('Password updated successfully!');
-                    } else {
-                        showToast('Error updating password: ' + data.message, 'error');
-                    }
-                });
-            }
-        );
-    });
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Password updated successfully!');
+                } else {
+                    document.getElementById('current-password-error').textContent = data.message;
+                }
+            });
+        }
+    );
+});
 </script>
 @endsection

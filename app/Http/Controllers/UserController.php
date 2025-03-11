@@ -88,7 +88,7 @@ class UserController extends Controller
         return view('Account',['user' => $user]);
     }
 
-    //This allows the user to update their username in the account page - Aryan
+    // This allows the user to update their username in the account page - Aryan
     public function updateUsername(Request $request)
     {
         $request->validate([
