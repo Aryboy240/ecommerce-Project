@@ -670,11 +670,9 @@ nav:hover {
 }
 
 @media (max-width: 1100px) {
-
     .card-body {
         flex-direction: column;
     }
-
 }
 
 .card-con {
