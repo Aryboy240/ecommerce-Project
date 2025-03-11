@@ -8,10 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".add-to-cart");
     const forms = document.querySelectorAll(".add-to-cart-form");
 
-    // Create notification container
-    const notification = document.createElement("div");
-    notification.classList.add("notification");
-    document.body.appendChild(notification);
+    // Ensure only one notification container is created
+    let notification = document.querySelector(".notification");
+    if (!notification) {
+        notification = document.createElement("div");
+        notification.classList.add("notification");
+        document.body.appendChild(notification);
+    }
 
     function showNotification(message, success = true) {
         notification.textContent = message;
@@ -23,26 +26,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 3000);
     }
 
-    // Handle button clicks (homepage)
-    buttons.forEach((button) => {
-        button.addEventListener("click", function () {
-            const productId = button.getAttribute("data-product-id");
-            const quantity = button.getAttribute("data-quantity");
-            checkUserLoggedIn(productId, quantity);
-        });
-    });
+    // Handle button clicks (homepage & search page)
+    function handleAddToCart(event) {
+        event.preventDefault(); // Prevent form submission if triggered by a form
 
-    // Handle form submissions (search page)
-    forms.forEach((form) => {
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission
-            const productId = form.querySelector(
-                'input[name="product_id"]'
-            ).value;
-            const quantity = form.querySelector('input[name="quantity"]').value; // Get actual input value
-            checkUserLoggedIn(productId, quantity);
-        });
-    });
+        const button = event.currentTarget;
+        const productId =
+            button.getAttribute("data-product-id") ||
+            button.closest("form").querySelector('input[name="product_id"]')
+                .value;
+        const quantity =
+            button.getAttribute("data-quantity") ||
+            button.closest("form").querySelector('input[name="quantity"]')
+                .value;
+
+        if (!productId) {
+            showNotification("Error: Product ID is missing!", false);
+            return;
+        }
+
+        checkUserLoggedIn(productId, quantity);
+    }
+
+    // Attach event listeners to buttons (homepage & search page)
+    buttons.forEach((button) =>
+        button.addEventListener("click", handleAddToCart)
+    );
+    forms.forEach((form) => form.addEventListener("submit", handleAddToCart));
 
     function checkUserLoggedIn(productId, quantity) {
         fetch("/check-login", {
@@ -75,10 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     .querySelector('meta[name="csrf-token"]')
                     .getAttribute("content"),
             },
-            body: JSON.stringify({
-                product_id: productId,
-                quantity: quantity,
-            }),
+            body: JSON.stringify({ product_id: productId, quantity: quantity }),
         })
             .then((response) => response.json())
             .then((data) => {

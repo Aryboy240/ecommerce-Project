@@ -239,7 +239,6 @@
   </div>
 </section>
 
-
 <!-- About Section:: Aryan Kora -->
 <section class="about-section">
   <div class="about-wrapper">
