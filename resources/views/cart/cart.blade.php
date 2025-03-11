@@ -34,7 +34,6 @@
           alert(data.error); // Display error message if any
         } else {
           alert(data.message); // Success message
-          // Optionally, you could update the UI (e.g., remove the item from the cart)
           location.reload(); // Refresh the page to reflect the changes
         }
       })
@@ -43,9 +42,19 @@
       });
   }
 
-  // Function for upadting the quantity of a product
-  function updateQuantity(selectElement, itemId) {
-    const quantity = selectElement.value;
+  // Function for updating the quantity of a product
+  function updateQuantity(button, itemId) {
+    const quantitySpan = button.parentElement.querySelector('.qty-value');
+    let currentQty = parseInt(quantitySpan.textContent);
+    const action = button.classList.contains('minus') ? 'decrease' : 'increase';
+    
+    if (action === 'decrease' && currentQty > 1) {
+      currentQty--;
+    } else if (action === 'increase' && currentQty < 10) {
+      currentQty++;
+    } else {
+      return; // Don't proceed if trying to go below 1 or above 10
+    }
 
     fetch('/cart/update', {
       method: 'POST',
@@ -55,7 +64,7 @@
       },
       body: JSON.stringify({
         cart_item_id: itemId,
-        quantity: quantity
+        quantity: currentQty
       })
     })
       .then(response => response.json())
@@ -63,6 +72,9 @@
         if (data.error) {
           alert(data.error);
         } else {
+          // Update the quantity display
+          quantitySpan.textContent = currentQty;
+          
           // Update the total price for the individual item
           document.getElementById(`total_${itemId}`).textContent =
             `${parseFloat(data.total_price).toFixed(2)}`;
@@ -76,66 +88,74 @@
   }
 </script>
 
-
-<!-- TITLE -->
-<section class="hero" style="padding: 40px 20px;">
-  <div class="hero-content">
-    <h1 class="page-title">YOUR CART</h1>
-  </div>
-</section>
-
-<!-- Cart Content:: Vatsal -->
 <section class="container">
   @if(isset($items) && $items->count() > 0)
-    <div class="product-card-con"> <!-- THE PRODUCT CARD CSS IS INSIDE OF THE CART.CSS FILE, BUT I'D PREFER IT IF YOU COULD START FROM SCRATCH -->
-    @foreach($items as $item)
-    <div class="product-card">
-      <div class="card-circle"></div>
-        <div class="product-card-content">
-          <h2>{{ $item->product->name }}</h2>
-          <p> Cost: £{{ number_format($item->product->price, 2) }} </p>
-        <div>
-        <label for="quantity_{{ $item->id }}">Quantity:</label>
-        <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')" style="margin-left: 10px;">
-        @for ($i = 1; $i <= 10; $i++)
-        <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
-    @endfor
-        </select>
+    <div class="cart-list">
+      <div class="cart-header">
+        <div class="header-item">Product</div>
+        <div class="header-item">Price</div>
+        <div class="header-item">Quantity</div>
+        <div class="header-item">Total</div>
       </div>
-      <p>Total: £ <span id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span> </p>
-      <div>
-      <a href="#" onclick="removeItem('{{ $item->id }}')">Remove</a>
-      </div>
-      </div>
-      <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
-    </div>
-  @endforeach
+      
+      @foreach($items as $item)
+        <div class="cart-item">
+          <div class="item-image">
+            <img src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
+          </div>
+          <div class="item-details">
+            <h3>{{ $item->product->name }}</h3>
+          </div>
+          <div class="item-price">£{{ number_format($item->product->price, 2) }}</div>
+          <div class="item-quantity">
+            <button class="qty-btn minus" onclick="updateQuantity(this, '{{ $item->id }}')">-</button>
+            <span class="qty-value">{{ $item->quantity }}</span>
+            <button class="qty-btn plus" onclick="updateQuantity(this, '{{ $item->id }}')">+</button>
+          </div>
+          <div class="item-total">£<span id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span></div>
+          <button class="remove-btn" onclick="removeItem('{{ $item->id }}')">Remove</button>
+        </div>
+      @endforeach
     </div>
 
-    <!-- Cart Summary:: Vatsal-->
-    <!-- This part is okay, you don't have to touch this if you don't wanna edit this bit 👍 -->
-    <div>
-      <h2>Cart Summary</h2>
-      <p>Subtotal: <span id="subtotal">{{ number_format($total, 2) }}</span> </p>
-      <p>Shipping: Calculated at checkout</p>
-      <h3>Total: £ <span id="cart-total">{{ number_format($total, 2) }}</span> </h3>
-      <a href="{{ route('checkout') }}" class="btn-order">Proceed to Checkout</a>
+    <div class="cart-summary">
+      <h2>Cart Total</h2>
+      <div class="summary-row">
+        <span>SUBTOTAL</span>
+        <span id="subtotal">£{{ number_format($total, 2) }}</span>
+      </div>
+      <div class="summary-row">
+        <span>DISCOUNT</span>
+        <span>—</span>
+      </div>
+      <div class="summary-row total">
+        <span>TOTAL</span>
+        <span id="cart-total">£{{ number_format($total, 2) }}</span>
+      </div>
+      <a href="{{ route('checkout') }}" class="btn-order">Proceed To Checkout</a>
     </div>
+    <section class="recommendations">
+      <h2>You May Also Like</h2>
+      <div class="recommendation-grid">
+        @for ($i = 0; $i < 4; $i++)
+        <div class="recommendation-card">
+          <div class="card-tag">New</div>
+          <div class="card-image"></div>
+          <h3>Glasses</h3>
+          <p>£599.00</p>
+        </div>
+        @endfor
+      </div>
+    </section>
+
   @else
     <div class="empty-cart">
-    <div class="empty-cart-animation">
-      <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
-    </div>
-    <h2>Your Cart is Empty</h2>
-    <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something
-      special!</p>
-    <a href="{{ route('welcome') }}" class="continue-shopping-btn">
-      Continue Shopping
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-      <path
-        d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42L14.59 11H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 1.42 1.42l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76z" />
-      </svg>
-    </a>
+      <div class="empty-cart-animation">
+        <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
+      </div>
+      <h2>Your Cart is Empty</h2>
+      <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
+      <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
     </div>
   @endif
 </section>
