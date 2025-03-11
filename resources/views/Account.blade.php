@@ -83,7 +83,7 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" id="button-off">
-                        <div class="sidebar-item" data-tab="signOut">
+                        <div class="sidebar-item">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span>Sign out</span>
                         </div>
@@ -633,71 +633,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Sign Out Message -->
-                <div class="tab-content active" id="signOut">
-                    <div class="welcome-message">
-                        <h1 >Welcome, {{ auth()->user()->name }}</h1>
-                    </div>
-                    
-                    <div class="section-header">
-                        <i class="fa-regular fa-user"></i>
-                        <h2>Account Overview</h2>
-                    </div>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Total Orders</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">£249</div>
-                            <div class="stat-label">Total Spent</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">Active Orders</div>
-                        </div>
-                    </div>
-                    
-                    <h2>Login & Security</h2>
-                    <div class="form-container">
-                        <div class="form-title">
-                            <h4>Update Username</h4>
-                        </div>
-                        <div class="form-content">
-                            <form id="username-form">
-                                <div class="input-group">
-                                    <input type="text" placeholder="New username">
-                                </div>
-                                <div class="input-group">
-                                    <input type="password" placeholder="Current password">
-                                </div>
-                                <button type="submit">Update Username</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="form-container">
-                        <div class="form-title">
-                            <h4>Update Password</h4>
-                        </div>
-                        <div class="form-content">
-                            <form id="password-form">
-                                <div class="input-group">
-                                    <input type="password" placeholder="Current password">
-                                </div>
-                                <div class="input-group">
-                                    <input type="password" placeholder="New password">
-                                </div>
-                                <div class="input-group">
-                                    <input type="password" placeholder="Confirm new password">
-                                </div>
-                                <button type="submit">Update Password</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -711,12 +646,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     sidebarItems.forEach(item => {
         item.addEventListener('click', function() {
+            if (this.closest('form')) return; // Prevent sign-out button from acting as a tab switcher
+
             const tabId = this.dataset.tab;
-            
+
             // Remove active class from all items
             sidebarItems.forEach(si => si.classList.remove('active'));
             tabContents.forEach(tc => tc.classList.remove('active'));
-            
+
             // Add active class to clicked item and corresponding tab
             this.classList.add('active');
             document.getElementById(tabId)?.classList.add('active');
@@ -732,9 +669,9 @@ function showToast(message, type = 'success') {
         <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
         <span>${message}</span>
     `;
-    
+
     document.querySelector('.toast-container').appendChild(toast);
-    
+
     setTimeout(() => {
         toast.style.opacity = '0';
         setTimeout(() => toast.remove(), 300);
@@ -747,11 +684,11 @@ function showModal(title, message, onConfirm) {
     const modalTitle = document.getElementById('modalTitle');
     const modalMessage = document.getElementById('modalMessage');
     const confirmButton = document.getElementById('confirmButton');
-    
+
     modalTitle.textContent = title;
     modalMessage.textContent = message;
     modal.classList.add('active');
-    
+
     confirmButton.onclick = () => {
         onConfirm();
         closeModal();
@@ -766,7 +703,7 @@ function closeModal() {
 document.querySelectorAll('form').forEach(form => {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         showModal(
             'Confirm Update',
             'Are you sure you want to save these changes?',
@@ -778,23 +715,32 @@ document.querySelectorAll('form').forEach(form => {
     });
 });
 
-// Sign out confirmation
-document.querySelector('form[action="{{ route("logout") }}"]').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    showModal(
-        'Confirm Sign Out',
-        'Are you sure you want to sign out?',
-        () => {
-            this.submit();
-        }
-    );
-});
+// Sign out confirmation (Prevents tab switching)
+const logoutForm = document.querySelector('form[action="{{ route("logout") }}"]');
+if (logoutForm) {
+    logoutForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-// Add this to your existing JavaScript
+        showModal(
+            'Confirm Sign Out',
+            'Are you sure you want to sign out?',
+            () => {
+                this.submit();
+            }
+        );
+    });
+
+    // Prevent sign-out button from acting as a sidebar navigation
+    logoutForm.querySelector('button').addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevents sidebar click event from triggering
+    });
+}
+
+// Purchase item toggle function
 function togglePurchase(header) {
     const purchaseItem = header.closest('.purchase-item');
     purchaseItem.classList.toggle('expanded');
 }
+
 </script>
 @endsection
