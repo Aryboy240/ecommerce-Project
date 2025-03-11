@@ -82,26 +82,27 @@
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <div class="sidebar-item">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <button type="submit" style="background: none; border: none; color: inherit; width: 100%; text-align: left;">Sign out</button>
-                    </div>
+                    <button type="submit" id="button-off">
+                        <div class="sidebar-item" data-tab="signOut">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span>Sign out</span>
+                        </div>
+                    </button>
                 </form>
             </div>
 
             <!-- Content Area -->
             <div class="content-area">
-                <!-- Welcome Message -->
-                <div class="welcome-message">
-                    <h1>Welcome, {{ auth()->user()->name }}</h1>
-                </div>
-
                 @if(session('success'))
                     <div class="alert alert-success">{{ session('success')}}</div>
                 @endif
 
                 <!-- Account Tab -->
                 <div class="tab-content active" id="account">
+                    <div class="welcome-message">
+                        <h1 >Welcome, {{ auth()->user()->name }}</h1>
+                    </div>
+                    
                     <div class="section-header">
                         <i class="fa-regular fa-user"></i>
                         <h2>Account Overview</h2>
@@ -629,6 +630,71 @@
                                     Screen Reader Optimization
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sign Out Message -->
+                <div class="tab-content active" id="signOut">
+                    <div class="welcome-message">
+                        <h1 >Welcome, {{ auth()->user()->name }}</h1>
+                    </div>
+                    
+                    <div class="section-header">
+                        <i class="fa-regular fa-user"></i>
+                        <h2>Account Overview</h2>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Total Orders</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">£249</div>
+                            <div class="stat-label">Total Spent</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Active Orders</div>
+                        </div>
+                    </div>
+                    
+                    <h2>Login & Security</h2>
+                    <div class="form-container">
+                        <div class="form-title">
+                            <h4>Update Username</h4>
+                        </div>
+                        <div class="form-content">
+                            <form id="username-form">
+                                <div class="input-group">
+                                    <input type="text" placeholder="New username">
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" placeholder="Current password">
+                                </div>
+                                <button type="submit">Update Username</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="form-container">
+                        <div class="form-title">
+                            <h4>Update Password</h4>
+                        </div>
+                        <div class="form-content">
+                            <form id="password-form">
+                                <div class="input-group">
+                                    <input type="password" placeholder="Current password">
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" placeholder="New password">
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" placeholder="Confirm new password">
+                                </div>
+                                <button type="submit">Update Password</button>
+                            </form>
                         </div>
                     </div>
                 </div>
