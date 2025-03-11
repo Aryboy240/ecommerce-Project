@@ -1,19 +1,33 @@
 /* 
     Developer: Aryan Kora
-    university ID: 230059030
-    function: Adding to the cart backend
+    University ID: 230059030
+    Function: Adding to the cart backend with notification pop-up
 */
 
 document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".add-to-cart");
     const forms = document.querySelectorAll(".add-to-cart-form");
 
+    // Create notification container
+    const notification = document.createElement("div");
+    notification.classList.add("notification");
+    document.body.appendChild(notification);
+
+    function showNotification(message, success = true) {
+        notification.textContent = message;
+        notification.classList.add("show");
+        notification.style.backgroundColor = success ? "#4CAF50" : "#f44336"; // Green for success, red for error
+
+        setTimeout(() => {
+            notification.classList.remove("show");
+        }, 3000);
+    }
+
     // Handle button clicks (homepage)
     buttons.forEach((button) => {
         button.addEventListener("click", function () {
             const productId = button.getAttribute("data-product-id");
             const quantity = button.getAttribute("data-quantity");
-
             checkUserLoggedIn(productId, quantity);
         });
     });
@@ -21,12 +35,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle form submissions (search page)
     forms.forEach((form) => {
         form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault(); // Prevent default form submission
             const productId = form.querySelector(
                 'input[name="product_id"]'
             ).value;
-            const quantity = form.querySelector('input[name="quantity"]').value;
-
+            const quantity = form.querySelector('input[name="quantity"]').value; // Get actual input value
             checkUserLoggedIn(productId, quantity);
         });
     });
@@ -43,18 +56,15 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((response) => response.json())
             .then((data) => {
                 if (data.logged_in) {
-                    // If the user is logged in, add the item to the cart
                     addToCart(productId, quantity);
                 } else {
-                    // If the user is not logged in, redirect to login page
-                    window.location.href = "/login"; // Adjust to your login URL
+                    window.location.href = "/login";
                 }
             })
             .catch((error) => console.log("Error:", error));
     }
 
     function addToCart(productId, quantity) {
-        // Ensure quantity is an integer
         quantity = parseInt(quantity);
 
         fetch("/cart/add", {
@@ -73,9 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    alert("Product added to cart!");
+                    showNotification("Product added to cart successfully!");
                 } else {
-                    alert("Error: " + data.error);
+                    showNotification("Error: " + data.error, false);
                 }
             })
             .catch((error) => console.log("Error:", error));

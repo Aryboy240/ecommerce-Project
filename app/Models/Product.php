@@ -25,6 +25,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductReview::class);
     }
+    
 
     // Relationship with Order Items
     public function orderItems()
