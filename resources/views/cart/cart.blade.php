@@ -13,7 +13,7 @@
 @section('title', 'cart')
 
 @section('content')
-<!-- Dynamic cart functions:: Aryan Kora -->
+<!-- Dynamic cart functions:: Aryan Kora DO NOT TOUCH, PLEASE -->
 <script>
   // Function for removing an item from the cart
   function removeItem(cartItemId) {
@@ -77,7 +77,7 @@
 </script>
 
 
-<!-- Hero Section -->
+<!-- TITLE -->
 <section class="hero" style="padding: 40px 20px;">
   <div class="hero-content">
     <h1 class="page-title">YOUR CART</h1>
@@ -87,47 +87,39 @@
 <!-- Cart Content:: Vatsal -->
 <section class="container">
   @if(isset($items) && $items->count() > 0)
-    <div class="product-card-con">
+    <div class="product-card-con"> <!-- THE PRODUCT CARD CSS IS INSIDE OF THE CART.CSS FILE, BUT I'D PREFER IT IF YOU COULD START FROM SCRATCH -->
     @foreach($items as $item)
     <div class="product-card">
       <div class="card-circle"></div>
-      <div class="product-card-content" style="width: 60%; left: 0;">
-      <h2>{{ $item->product->name }}</h2>
-      <p style="margin: 10px 0;">Cost: £{{ number_format($item->product->price, 2) }}</p>
-      <div style="margin: 10px 0;">
-      <label for="quantity_{{ $item->id }}">Quantity:</label>
-      <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')"
-      style="margin-left: 10px;">
-      @for ($i = 1; $i <= 10; $i++)
-      <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
+        <div class="product-card-content">
+          <h2>{{ $item->product->name }}</h2>
+          <p> Cost: £{{ number_format($item->product->price, 2) }} </p>
+        <div>
+        <label for="quantity_{{ $item->id }}">Quantity:</label>
+        <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')" style="margin-left: 10px;">
+        @for ($i = 1; $i <= 10; $i++)
+        <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
     @endfor
-      </select>
+        </select>
       </div>
-      <p style="color: var(--mint); font-size: 1.2em;">Total: £<span
-      id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span>
-      </p>
-      <div style="margin-top: 20px;">
-      <a href="#" onclick="removeItem('{{ $item->id }}')" style="color: #ff4444;">Remove</a>
+      <p>Total: £ <span id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span> </p>
+      <div>
+      <a href="#" onclick="removeItem('{{ $item->id }}')">Remove</a>
       </div>
       </div>
-      <img class="imageSize-1"
-      src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}"
-      alt="{{ $item->product->name }}" style="height: 100px; border-radius: 10px; box-shadow: 0px 0px 10px rgba()">
+      <img class="imageSize-1" src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
     </div>
   @endforeach
     </div>
 
     <!-- Cart Summary:: Vatsal-->
-    <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
-    <div style="text-align: right;">
-      <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £<span
-        id="subtotal">{{ number_format($total, 2) }}</span></p>
-      <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
-      <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total: £<span
-        id="cart-total">{{ number_format($total, 2) }}</span></h3>
-      <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
-    </div>
+    <!-- This part is okay, you don't have to touch this if you don't wanna edit this bit 👍 -->
+    <div>
+      <h2>Cart Summary</h2>
+      <p>Subtotal: <span id="subtotal">{{ number_format($total, 2) }}</span> </p>
+      <p>Shipping: Calculated at checkout</p>
+      <h3>Total: £ <span id="cart-total">{{ number_format($total, 2) }}</span> </h3>
+      <a href="{{ route('checkout') }}" class="btn-order">Proceed to Checkout</a>
     </div>
   @else
     <div class="empty-cart">
