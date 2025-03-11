@@ -83,7 +83,7 @@
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" id="button-off">
-                        <div class="sidebar-item" data-tab="signOut">
+                        <div class="sidebar-item">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <span>Sign out</span>
                         </div>
@@ -124,6 +124,8 @@
                     </div>
                     
                     <h2>Login & Security</h2>
+
+                    <!-- Update Username -->
                     <div class="form-container">
                         <div class="form-title">
                             <h4>Update Username</h4>
@@ -131,16 +133,19 @@
                         <div class="form-content">
                             <form id="username-form">
                                 <div class="input-group">
-                                    <input type="text" placeholder="New username">
+                                    <input type="text" name="new_username" placeholder="New username">
+                                    <span id="username-error" class="error-message"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="Current password">
+                                    <input type="password" name="current_password" placeholder="Current password">
+                                    <span id="password-error" class="error-message"></span>
                                 </div>
                                 <button type="submit">Update Username</button>
                             </form>
                         </div>
                     </div>
 
+                    <!-- Update Password -->
                     <div class="form-container">
                         <div class="form-title">
                             <h4>Update Password</h4>
@@ -148,18 +153,22 @@
                         <div class="form-content">
                             <form id="password-form">
                                 <div class="input-group">
-                                    <input type="password" placeholder="Current password">
+                                    <input type="password" name="current_password" placeholder="Current password">
+                                    <span id="current-password-error" class="error-message"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="New password">
+                                    <input type="password" name="new_password" placeholder="New password">
+                                    <span id="new-password-error" class="error-message"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="Confirm new password">
+                                    <input type="password" name="confirm_new_password" placeholder="Confirm new password">
+                                    <span id="confirm-password-error" class="error-message"></span>
                                 </div>
                                 <button type="submit">Update Password</button>
                             </form>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Personal Info Tab -->
@@ -633,168 +642,188 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Sign Out Message -->
-                <div class="tab-content active" id="signOut">
-                    <div class="welcome-message">
-                        <h1 >Welcome, {{ auth()->user()->name }}</h1>
-                    </div>
-                    
-                    <div class="section-header">
-                        <i class="fa-regular fa-user"></i>
-                        <h2>Account Overview</h2>
-                    </div>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-card">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Total Orders</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">£249</div>
-                            <div class="stat-label">Total Spent</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">Active Orders</div>
-                        </div>
-                    </div>
-                    
-                    <h2>Login & Security</h2>
-                    <div class="form-container">
-                        <div class="form-title">
-                            <h4>Update Username</h4>
-                        </div>
-                        <div class="form-content">
-                            <form id="username-form">
-                                <div class="input-group">
-                                    <input type="text" placeholder="New username">
-                                </div>
-                                <div class="input-group">
-                                    <input type="password" placeholder="Current password">
-                                </div>
-                                <button type="submit">Update Username</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="form-container">
-                        <div class="form-title">
-                            <h4>Update Password</h4>
-                        </div>
-                        <div class="form-content">
-                            <form id="password-form">
-                                <div class="input-group">
-                                    <input type="password" placeholder="Current password">
-                                </div>
-                                <div class="input-group">
-                                    <input type="password" placeholder="New password">
-                                </div>
-                                <div class="input-group">
-                                    <input type="password" placeholder="Confirm new password">
-                                </div>
-                                <button type="submit">Update Password</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Tab switching functionality
-    const sidebarItems = document.querySelectorAll('.sidebar-item');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    sidebarItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const tabId = this.dataset.tab;
-            
-            // Remove active class from all items
-            sidebarItems.forEach(si => si.classList.remove('active'));
-            tabContents.forEach(tc => tc.classList.remove('active'));
-            
-            // Add active class to clicked item and corresponding tab
-            this.classList.add('active');
-            document.getElementById(tabId)?.classList.add('active');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+    
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.closest('form')) return; // Prevent sign-out button from acting as a tab switcher
+    
+                const tabId = this.dataset.tab;
+    
+                // Remove active class from all items
+                sidebarItems.forEach(si => si.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+    
+                // Add active class to clicked item and corresponding tab
+                this.classList.add('active');
+                document.getElementById(tabId)?.classList.add('active');
+            });
         });
     });
-});
-
-// Toast notification function
-function showToast(message, type = 'success') {
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-        <span>${message}</span>
-    `;
     
-    document.querySelector('.toast-container').appendChild(toast);
+    // Toast notification function
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            <span>${message}</span>
+        `;
     
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
-}
-
-// Confirmation modal functions
-function showModal(title, message, onConfirm) {
-    const modal = document.getElementById('confirmationModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalMessage = document.getElementById('modalMessage');
-    const confirmButton = document.getElementById('confirmButton');
+        document.querySelector('.toast-container').appendChild(toast);
     
-    modalTitle.textContent = title;
-    modalMessage.textContent = message;
-    modal.classList.add('active');
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
     
-    confirmButton.onclick = () => {
-        onConfirm();
-        closeModal();
-    };
-}
-
-function closeModal() {
-    document.getElementById('confirmationModal').classList.remove('active');
-}
-
-// Update form submissions
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        showModal(
-            'Confirm Update',
-            'Are you sure you want to save these changes?',
-            () => {
-                // Here you would normally submit the form
-                showToast('Changes saved successfully!');
-            }
-        );
-    });
-});
-
-// Sign out confirmation
-document.querySelector('form[action="{{ route("logout") }}"]').addEventListener('submit', function(e) {
-    e.preventDefault();
+    // Confirmation modal functions
+    function showModal(title, message, onConfirm) {
+        const modal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const confirmButton = document.getElementById('confirmButton');
     
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modal.classList.add('active');
+    
+        confirmButton.onclick = () => {
+            onConfirm();
+            closeModal();
+        };
+    }
+    
+    function closeModal() {
+        document.getElementById('confirmationModal').classList.remove('active');
+    }
+    
+    // Handle username update form submission
+document.getElementById('username-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const newUsername = event.target.querySelector('input[name="new_username"]').value.trim();
+    const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+    
+    // Clear previous errors
+    document.getElementById('username-error').textContent = '';
+    document.getElementById('password-error').textContent = '';
+
+    let isValid = true;
+
+    // Frontend validation checks for username
+    if (newUsername.length < 3 || newUsername.length > 15) {
+        document.getElementById('username-error').textContent = 'Username must be 3-15 characters.';
+        isValid = false;
+    } else if (!/^[a-zA-Z0-9]+$/.test(newUsername)) {
+        document.getElementById('username-error').textContent = 'Username must be alphanumeric.';
+        isValid = false;
+    }
+
+    // Frontend validation for password input
+    if (currentPassword === '') {
+        document.getElementById('password-error').textContent = 'Current password is required.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
     showModal(
-        'Confirm Sign Out',
-        'Are you sure you want to sign out?',
+        'Confirm Update',
+        'Are you sure you want to update your username?',
         () => {
-            this.submit();
+            fetch('/update-username', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    new_username: newUsername,
+                    password: currentPassword
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Username updated successfully!');
+                } else {
+                    document.getElementById('username-error').textContent = data.message;
+                }
+            });
         }
     );
 });
 
-// Add this to your existing JavaScript
-function togglePurchase(header) {
-    const purchaseItem = header.closest('.purchase-item');
-    purchaseItem.classList.toggle('expanded');
-}
+// Handle password update form submission
+document.getElementById('password-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+    const newPassword = event.target.querySelector('input[name="new_password"]').value;
+    const confirmPassword = event.target.querySelector('input[name="confirm_new_password"]').value;
+
+    // Clear previous errors
+    document.getElementById('current-password-error').textContent = '';
+    document.getElementById('new-password-error').textContent = '';
+    document.getElementById('confirm-password-error').textContent = '';
+
+    let isValid = true;
+
+    // Validate current password
+    if (currentPassword === '') {
+        document.getElementById('current-password-error').textContent = 'Current password is required.';
+        isValid = false;
+    }
+
+    // Validate new password
+    if (newPassword.length < 8 || newPassword.length > 25) {
+        document.getElementById('new-password-error').textContent = 'Password must be between 8-25 characters.';
+        isValid = false;
+    }
+
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
+    showModal(
+        'Confirm Update',
+        'Are you sure you want to update your password?',
+        () => {
+            fetch('/update-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                    new_password_confirmation: confirmPassword
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Password updated successfully!');
+                } else {
+                    document.getElementById('current-password-error').textContent = data.message;
+                }
+            });
+        }
+    );
+});
 </script>
 @endsection

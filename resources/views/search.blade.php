@@ -146,7 +146,7 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="main-content">
+    <div class="main-content">
 
         <!-- Product Grid -->
         <section class="search-product-grid">
@@ -173,7 +173,7 @@
                 </div>
             @endforeach
         </section>
-    </main>
+    </div>
 </div>
 
 <script>
