@@ -17,14 +17,10 @@
 
 /* General Page Styling */
 body {
+    height: auto !important;
     margin: 0;
     padding: 0;
-    background: linear-gradient(
-        135deg,
-        var(--bg-primary) 0%,
-        var(--bg-secondary) 100%
-    );
-    min-height: 100vh;
+    background: var(--bg-primary) !important;
     color: white; /* Light text for readability */
     font-family: "Lato", sans-serif;
 }

@@ -131,10 +131,10 @@
                         <div class="form-content">
                             <form id="username-form">
                                 <div class="input-group">
-                                    <input type="text" placeholder="New username">
+                                    <input type="text" name="new_username" placeholder="New username">
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="Current password">
+                                    <input type="password" name="current_password" placeholder="Current password">
                                 </div>
                                 <button type="submit">Update Username</button>
                             </form>
@@ -148,13 +148,13 @@
                         <div class="form-content">
                             <form id="password-form">
                                 <div class="input-group">
-                                    <input type="password" placeholder="Current password">
+                                    <input type="password" name="current_password" placeholder="Current password">
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="New password">
+                                    <input type="password" name="new_password" placeholder="New password">
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="Confirm new password">
+                                    <input type="password" name="confirm_new_password" placeholder="Confirm new password">
                                 </div>
                                 <button type="submit">Update Password</button>
                             </form>
@@ -639,108 +639,132 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Tab switching functionality
-    const sidebarItems = document.querySelectorAll('.sidebar-item');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    sidebarItems.forEach(item => {
-        item.addEventListener('click', function() {
-            if (this.closest('form')) return; // Prevent sign-out button from acting as a tab switcher
-
-            const tabId = this.dataset.tab;
-
-            // Remove active class from all items
-            sidebarItems.forEach(si => si.classList.remove('active'));
-            tabContents.forEach(tc => tc.classList.remove('active'));
-
-            // Add active class to clicked item and corresponding tab
-            this.classList.add('active');
-            document.getElementById(tabId)?.classList.add('active');
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+    
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.closest('form')) return; // Prevent sign-out button from acting as a tab switcher
+    
+                const tabId = this.dataset.tab;
+    
+                // Remove active class from all items
+                sidebarItems.forEach(si => si.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+    
+                // Add active class to clicked item and corresponding tab
+                this.classList.add('active');
+                document.getElementById(tabId)?.classList.add('active');
+            });
         });
     });
-});
-
-// Toast notification function
-function showToast(message, type = 'success') {
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-        <span>${message}</span>
-    `;
-
-    document.querySelector('.toast-container').appendChild(toast);
-
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
-}
-
-// Confirmation modal functions
-function showModal(title, message, onConfirm) {
-    const modal = document.getElementById('confirmationModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalMessage = document.getElementById('modalMessage');
-    const confirmButton = document.getElementById('confirmButton');
-
-    modalTitle.textContent = title;
-    modalMessage.textContent = message;
-    modal.classList.add('active');
-
-    confirmButton.onclick = () => {
-        onConfirm();
-        closeModal();
-    };
-}
-
-function closeModal() {
-    document.getElementById('confirmationModal').classList.remove('active');
-}
-
-// Update form submissions
-document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
+    
+    // Toast notification function
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            <span>${message}</span>
+        `;
+    
+        document.querySelector('.toast-container').appendChild(toast);
+    
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+    
+    // Confirmation modal functions
+    function showModal(title, message, onConfirm) {
+        const modal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const confirmButton = document.getElementById('confirmButton');
+    
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modal.classList.add('active');
+    
+        confirmButton.onclick = () => {
+            onConfirm();
+            closeModal();
+        };
+    }
+    
+    function closeModal() {
+        document.getElementById('confirmationModal').classList.remove('active');
+    }
+    
+    // Handle username update form submission
+    document.getElementById('username-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const newUsername = event.target.querySelector('input[name="new_username"]').value;
+        const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+    
         showModal(
             'Confirm Update',
-            'Are you sure you want to save these changes?',
+            'Are you sure you want to update your username?',
             () => {
-                // Here you would normally submit the form
-                showToast('Changes saved successfully!');
+                fetch('/update-username', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        new_username: newUsername,
+                        password: currentPassword
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast('Username updated successfully!');
+                    } else {
+                        showToast('Error updating username: ' + data.message, 'error');
+                    }
+                });
             }
         );
     });
-});
-
-// Sign out confirmation (Prevents tab switching)
-const logoutForm = document.querySelector('form[action="{{ route("logout") }}"]');
-if (logoutForm) {
-    logoutForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
+    
+    // Handle password update form submission
+    document.getElementById('password-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+        const newPassword = event.target.querySelector('input[name="new_password"]').value;
+        const confirmPassword = event.target.querySelector('input[name="confirm_new_password"]').value;
+    
         showModal(
-            'Confirm Sign Out',
-            'Are you sure you want to sign out?',
+            'Confirm Update',
+            'Are you sure you want to update your password?',
             () => {
-                this.submit();
+                fetch('/update-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        current_password: currentPassword,
+                        new_password: newPassword,
+                        new_password_confirmation: confirmPassword
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast('Password updated successfully!');
+                    } else {
+                        showToast('Error updating password: ' + data.message, 'error');
+                    }
+                });
             }
         );
     });
-
-    // Prevent sign-out button from acting as a sidebar navigation
-    logoutForm.querySelector('button').addEventListener('click', function(e) {
-        e.stopPropagation(); // Prevents sidebar click event from triggering
-    });
-}
-
-// Purchase item toggle function
-function togglePurchase(header) {
-    const purchaseItem = header.closest('.purchase-item');
-    purchaseItem.classList.toggle('expanded');
-}
-
 </script>
 @endsection

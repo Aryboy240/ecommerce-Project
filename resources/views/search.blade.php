@@ -33,6 +33,9 @@
 <!-- The @yeild in searchApp's main is filled by everything in this section -->
 @section('content')
 
+<body style="height: auto !important;">
+</body>
+
 <div class="search-fix">
     <section class="search-header">
         <h1>Find Your Perfect Product</h1>
@@ -146,7 +149,7 @@
     </aside>
 
     <!-- Main Content Area -->
-    <main class="main-content">
+    <div class="main-content">
 
         <!-- Product Grid -->
         <section class="search-product-grid">
@@ -173,7 +176,7 @@
                 </div>
             @endforeach
         </section>
-    </main>
+    </div>
 </div>
 
 <script>

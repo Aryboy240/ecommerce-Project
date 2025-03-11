@@ -1,3 +1,8 @@
+/*  Developer: Aryan Kora
+    University ID: 230059030
+    Function: Custom scroll bar script
+*/
+
 let lastScrollTop = 0; // Variable to store the last scroll position
 
 // Add event listener for scrolling
