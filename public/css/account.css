@@ -119,7 +119,7 @@
     padding: 1rem;
     margin: 0.5rem 0;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     color: var(--text-secondary);
     position: relative;
@@ -127,7 +127,7 @@
 }
 
 .sidebar-item::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -194,7 +194,7 @@
 }
 
 .form-container::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -249,11 +249,24 @@ button {
     background: linear-gradient(135deg, var(--mint), var(--lighter));
     color: var(--bg-primary);
     font-weight: 500;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 191, 174, 0.2);
+}
+
+#button-off {
+    margin-top: -5px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    width: 100%;
+}
+
+#button-off:hover {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 button:hover {
@@ -280,7 +293,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+    cursor: var(--pointer);
     background: rgba(255, 255, 255, 0.02);
 }
 
@@ -428,7 +441,7 @@ button:hover {
     right: 0;
     bottom: 0;
     background-color: var(--bg-primary);
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 34px;
     border: 1px solid var(--mint);
 }
@@ -441,7 +454,7 @@ button:hover {
     left: 4px;
     bottom: 4px;
     background-color: var(--mint);
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 50%;
 }
 
@@ -501,11 +514,16 @@ input:checked + .slider:before {
 }
 
 /* Update text colors */
-label, p, h2, h3, h4 {
+label,
+p,
+h2,
+h3,
+h4 {
     color: var(--text-primary);
 }
 
-.purchase-date, .product-text p {
+.purchase-date,
+.product-text p {
     color: var(--text-secondary);
 }
 
@@ -686,13 +704,13 @@ label, p, h2, h3, h4 {
 
 .slider {
     position: absolute;
-    cursor: pointer;
+    cursor: var(--pointer);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.1);
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 34px;
 }
 
@@ -704,7 +722,7 @@ label, p, h2, h3, h4 {
     left: 4px;
     bottom: 4px;
     background-color: var(--bg-primary);
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 50%;
 }
 
@@ -805,16 +823,16 @@ input:checked + .slider:before {
     .stats-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .accessibility-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .notification-item {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .section-header {
         flex-direction: column;
         text-align: center;
@@ -841,7 +859,7 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    cursor: pointer;
+    cursor: var(--pointer);
 }
 
 /* Connected Services */
@@ -969,7 +987,7 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    cursor: pointer;
+    cursor: var(--pointer);
 }
 
 /* Responsive adjustments */
