@@ -148,7 +148,9 @@ function showNotification(message, success = true) {
       @foreach($items as $item)
         <div class="cart-item">
           <div class="item-image">
-            <img src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
+            <a href="{{ route('product.details', ['id' => $item->product->id]) }}">
+              <img src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
+            </a>
           </div>
           <div class="item-details">
             <h3>{{ $item->product->name }}</h3>
