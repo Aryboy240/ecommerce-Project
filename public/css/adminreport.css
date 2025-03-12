@@ -3,13 +3,14 @@
     University ID: 230049488
     Function: Styling for the admin report page.
 */
-.dashboard{
+.dashboarditem{
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 100%;
     align-items: flex-start;
     align-content: flex-start;
+    margin: 0px;
 } 
 
 .report-container {
@@ -20,7 +21,7 @@
     border-radius: 8px;
     width: 40%;
     height: 120px;
-    margin: 10px;
+    margin: 22px;
     min-width: 350px;
 }
 
@@ -36,7 +37,7 @@
 .product-name {
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 .bar-container {
     width: 100%;
@@ -62,16 +63,6 @@
     width: 50px;
     justify-content: space-evenly;
 }
-button {
-    background-color: #fff;
-    font-weight: bold;
-    border-radius: 50%;
-    border: 2px solid var(--lighter);
-}
-button:hover {
-    border: 2px solid var(--mint);
-    background-color: #ddd;
-}
 .stock-bar { 
     background-color: #28a745; 
 } 
@@ -80,4 +71,237 @@ button:hover {
 }
 .outgoing-bar { 
     background-color: #dc3545; 
+}
+
+.title{
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+.bar1{
+    display: flex;
+    margin-bottom: 20px;
+}
+.info{
+    justify-content: space-evenly;
+    width: 50%;
+    height: 350px;
+}
+.info1{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    height: 160px;
+    align-items: stretch;
+}
+
+.info-detail{
+    width: 40%;
+    border-radius: 5px;
+    background-color: black;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+}
+
+.info-first{
+    display: flex;
+    margin-top: 15px;
+    margin-left: 25px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    padding-right: 10px;
+    align-items: center;
+}
+.info-title{
+    padding-block: 5px;
+    text-decoration-line: underline;
+    text-decoration-color: var(--lighter);
+}
+.info-per{
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    border-radius: 5px;
+    padding-block: 5px;
+    padding-inline: 10px;
+}
+.info-secound{
+    margin-left: 20px;
+    font-size: 45px;
+    font-family: "Lato"
+}
+.table{
+    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    width: 35%;
+    margin-top: 20px;
+    margin-left: 35px;
+    border-radius: 20px;
+    background-color: var(--bg-secondary);
+    height: 325px;
+}
+.tabletitle{
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+.glassrank{
+    box-shadow: 1px 1px 1px var(--mint), 1px 0px 9px var(--darker);
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding-left: 10px;
+    display: flex;
+    background-color: var(--bg-primary);
+}
+.glassrank p{
+    padding: 3px;
+}
+.rankp{
+    text-decoration-line: underline;
+    text-decoration-color: var(--lighter);
+}
+.rankproduct{
+    width: 245px;
+    justify-content: space-between;
+    display: flex;
+    margin-right: 20px;
+    align-items: center;
+}
+.table-img img{
+    width: 64px;
+    height: 42px;
+    border-radius: 8px;
+}
+.order{
+    display: flex;
+    height: 30px;
+    gap: 3px;
+    align-items: center;
+}
+.stockorder{
+    color: #007bff;
+}
+.incomeorder{
+    color: #28a745;
+}
+.outcomeorder{
+    color: #dc3545;
+}
+.inoutcomeboard{
+    border: #28a745;
+}
+.inoutcomeboard{
+    border: 1px solid var(--lighter);
+    border-radius: 5px;
+    margin: 40px;
+    margin-right: 90px;
+    display: flex;
+    background-color: black;
+}
+.board{
+    width: 50%;
+    padding: 30px;
+}
+.boardlist{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--lighter);
+}
+.itemlist{
+    display: flex;
+    justify-content: flex-start;;
+    border-bottom: 1px solid var(--lighter);
+    padding-bottom: 20px;
+    margin-block: 20px;
+}
+.listdetail{
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+}
+.item{
+    align-self: center;
+}
+.item-img{
+    width: 80px;
+    height: 50px;
+    border-radius: 8px;
+    margin-right: 0px;
+}
+.listdetail1{
+    display: flex;
+    justify-content: space-evenly;
+    width: 271px;
+}
+.dashboard-bar{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    padding-right: 70px
+}
+.bar-nota{
+    display: flex;
+    align-self: center;
+}
+.error-img{
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    margin-right: 5px;
+}
+.searchbar{
+    display: flex;
+    justify-content:space-around;
+    height: 38px;
+    margin-top: 9px;
+    align-self: center;
+}
+.search-bar-button{
+    align-self: center;
+    background-color: var(--mint);
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+button:hover {
+    background-color: var(--lighter);
+}
+.search-bar{
+    align-self: center;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+.search-bar:focus {
+    border-bottom: 2px solid var(--darker);
+    border-radius: 4px 4px 2px 2px;
+  }
+.search-bar:hover {
+   outline: 1px solid var(--darker);
+}
+.out-of-stock{
+    color: #dc3545;
+}
+.hidden-ids {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    align-self: center;
+    margin-left: 30px;
+    line-height: 23px;
+    color: #dc3545;
+}
+
+.out-of-stock:hover + .hidden-ids {
+    opacity: 1; 
 }
