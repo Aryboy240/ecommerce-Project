@@ -1,11 +1,11 @@
 <!--
     Developer: man kwok angus
 	  University ID: 
-    Function: Front end for the contacts page
+    Function: Front end for the admin login page
 
     Developer: Nikhil Kainth
 	  University ID: 230069888
-    Function: Backend and frontend final edits for the admin login page
+    Function: Back-end and final edits on front-end for the new backend features integrations
 
 -->
 <!DOCTYPE html>
@@ -46,49 +46,34 @@
         </svg>
       </a>
     </div>
-    <div class="title-container">
-      <h1>Admin login </h1>
-    </div>
   </div>
 
     <div class="form-wrapper">
       <div class="login-container">
-        <h1>Login In</h1>
-          <form class="form"> <!--lacking a ligin function action-->
-            <div class="form-group">
-              <label>Admin name</label>
-              <input type="text" name="username" required>
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <button class="form-submit-btn" type="submit">Login</button>
-          </form>
-      </div>
-  
-      <div class="login-container">
-        <h1>Create Account</h1>
-        <form class="form"> <!--lacking a create function action-->
-            <div class="form-group">
-                <label>Admin Name</label>
-                <input type="text" name="username" required>
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm-password" required>
-            </div>
-            <button class="form-submit-btn" type="submit">Create Account</button>
-        </form>
-      </div>
-    </div>
+        <h1>ADMIN LOGIN</h1>
+        @if (session('success'))
+        <p class="success-message">{{ session('success') }}</p>
+    @endif
+
+    @if ($errors->has('loginError'))
+        <p class="error-message">{{ $errors->first('loginError') }}</p>
+    @endif
+
+    <form class="form" method="POST" action="{{ route('adminlogin') }}">
+        @csrf
+        <div class="form-group">
+            <label for="username">Admin Name</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button class="form-submit-btn" type="submit">Login</button>
+    </form>
+</div>
+</div>
 </body>
 </html>
