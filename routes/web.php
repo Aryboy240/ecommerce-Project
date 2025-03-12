@@ -48,16 +48,17 @@ Route::get('/shoppingCart', function () {
 })->name('shoppingCart');
 
 Route::get('/Careers', function () {
-    return view('Careers'); // Refers to resources/views/Careers.blade.php
+    return view('extras/Careers'); // Refers to resources/views/Careers.blade.php
 })->name('Careers');
 
 Route::get('/Testimonials', function () {
-    return view('Testimonials'); // Refers to resources/views/Careers.blade.php
+    return view('extras/Testimonials'); // Refers to resources/views/Testimonials.blade.php
 })->name('Testimonials');
 
 Route::get('/OurStory', function () {
-    return view('OurStory'); // Refers to resources/views/OurStory.blade.php
+    return view('extras/OurStory'); // Refers to resources/views/OurStory.blade.php
 })->name('OurStory');
+
 /*
 |--------------------------------------------------------------------------
 | Products Page
