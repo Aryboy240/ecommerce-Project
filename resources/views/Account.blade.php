@@ -2,259 +2,828 @@
     Developer: Aqsa Amjad
     University ID: 230066670
     Function: Front end for the User Account page (for logged-in users)
+
+    Developer: Aryan Kora
+    University ID: 230059030
+    Function: Front end improvements
 -->
 
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- JS -->
-  <script defer src="/js/theme.js"></script>
-  <!-- CSS -->
-  <link rel="stylesheet" href={{  asset('css/main.css') }}>
-  <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-  <link rel="stylesheet" href={{  asset('css/account.css') }}>
-
-  <title>User Account | Optique</title>
+    <link rel="stylesheet" href={{  asset('css/account.css') }}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
-<body>
-  <!-- Navigation  Bar:: Aryan Kora -->
-  <section class="nav-section">
-    <!--Left nav-->
-    <nav class="navbar-left">
-      <ul class="navbar-nav">
-
-
-        <!--Home-->
-        <li class="nav-item">
-          <a href="{{ route('welcome') }}" class="nav-link">
-            <div class="nav-item-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
-              </svg>
-              <span class="link-text">Home</span>
-            </div>
-          </a>
-        </li>
-
-        <!--About-->
-        <li class="nav-item">
-          <a href="{{ route('about') }}" class="nav-link">
-            <div class="nav-item-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  d="M112 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm40 304l0 128c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-223.1L59.4 304.5c-9.1 15.1-28.8 20-43.9 10.9s-20-28.8-10.9-43.9l58.3-97c17.4-28.9 48.6-46.6 82.3-46.6l29.7 0c33.7 0 64.9 17.7 82.3 46.6l58.3 97c9.1 15.1 4.2 34.8-10.9 43.9s-34.8 4.2-43.9-10.9L232 256.9 232 480c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-128-16 0z" />
-              </svg>
-              <span class="link-text">About</span>
-            </div>
-          </a>
-        </li>
-
-        <!--Store-->
-        <li class="nav-item">
-          <a href="{{ route('product') }}" class="nav-link">
-            <div class="nav-item-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  d="M118.6 80c-11.5 0-21.4 7.9-24 19.1L57 260.3c20.5-6.2 48.3-12.3 78.7-12.3c32.3 0 61.8 6.9 82.8 13.5c10.6 3.3 19.3 6.7 25.4 9.2c3.1 1.3 5.5 2.4 7.3 3.2c.9 .4 1.6 .7 2.1 1l.6 .3 .2 .1c0 0 .1 0 .1 0c0 0 0 0 0 0s0 0 0 0L247.9 288s0 0 0 0l6.3-12.7c5.8 2.9 10.4 7.3 13.5 12.7l40.6 0c3.1-5.3 7.7-9.8 13.5-12.7l6.3 12.7s0 0 0 0c-6.3-12.7-6.3-12.7-6.3-12.7s0 0 0 0s0 0 0 0c0 0 .1 0 .1 0l.2-.1 .6-.3c.5-.2 1.2-.6 2.1-1c1.8-.8 4.2-1.9 7.3-3.2c6.1-2.6 14.8-5.9 25.4-9.2c21-6.6 50.4-13.5 82.8-13.5c30.4 0 58.2 6.1 78.7 12.3L481.4 99.1c-2.6-11.2-12.6-19.1-24-19.1c-3.1 0-6.2 .6-9.2 1.8L416.9 94.3c-12.3 4.9-26.3-1.1-31.2-13.4s1.1-26.3 13.4-31.2l31.3-12.5c8.6-3.4 17.7-5.2 27-5.2c33.8 0 63.1 23.3 70.8 56.2l43.9 188c1.7 7.3 2.9 14.7 3.5 22.1c.3 1.9 .5 3.8 .5 5.7l0 6.7 0 41.3 0 16c0 61.9-50.1 112-112 112l-44.3 0c-59.4 0-108.5-46.4-111.8-105.8L306.6 352l-37.2 0-1.2 22.2C264.9 433.6 215.8 480 156.3 480L112 480C50.1 480 0 429.9 0 368l0-16 0-41.3L0 304c0-1.9 .2-3.8 .5-5.7c.6-7.4 1.8-14.8 3.5-22.1l43.9-188C55.5 55.3 84.8 32 118.6 32c9.2 0 18.4 1.8 27 5.2l31.3 12.5c12.3 4.9 18.3 18.9 13.4 31.2s-18.9 18.3-31.2 13.4L127.8 81.8c-2.9-1.2-6-1.8-9.2-1.8zM64 325.4L64 368c0 26.5 21.5 48 48 48l44.3 0c25.5 0 46.5-19.9 47.9-45.3l2.5-45.6c-2.3-.8-4.9-1.7-7.5-2.5c-17.2-5.4-39.9-10.5-63.6-10.5c-23.7 0-46.2 5.1-63.2 10.5c-3.1 1-5.9 1.9-8.5 2.9zM512 368l0-42.6c-2.6-.9-5.5-1.9-8.5-2.9c-17-5.4-39.5-10.5-63.2-10.5c-23.7 0-46.4 5.1-63.6 10.5c-2.7 .8-5.2 1.7-7.5 2.5l2.5 45.6c1.4 25.4 22.5 45.3 47.9 45.3l44.3 0c26.5 0 48-21.5 48-48z" />
-              </svg>
-              <span class="link-text">Store</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <!--MIDDLE LOGO-->
-    <a id="themeButton">
-      <div class="navbar-middle">
-        <img src="{{ asset('Images/circleLogo.png') }}">
-      </div>
-    </a>
-
-
-    <!--Rigth nav-->
-    <nav class="navbar-rigth">
-      <ul class="navbar-nav">
-
-        <!--Account-->
-        <li class="nav-item">
-          <a href="{{ auth()->check() ? route('account') : route('login') }}" class="nav-link">
-            <div class="nav-item-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm80 256l64 0c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16L80 384c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64l128 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-128 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z" />
-              </svg>
-              <span class="link-text">Account</span>
-            </div>
-          </a>
-        </li>
-
-        <!--Order-->
-        <li class="nav-item">
-          <a href="{{ route('cart.view') }}" class="nav-link">
-            <div class="nav-item-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-              </svg>
-              <span class="link-text">Orders</span>
-            </div>
-          </a>
-        </li>
-
-        <!--Search-->
-        <li class="nav-item">
-          <a href="{{ route('search') }}" class="nav-link">
-            <div class="nav-item-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
-              </svg>
-              <span class="link-text">Search</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </section>
-  <!-- Navigation  Bar End -->
-
-  <!-- Account page -->
-  <section class="main-account-section">
-    <div class="account-wrapper">
-      <div class="subheading">
-        <h3>Update Your Information</h3>
-        @if(@session('success'))
-            <div style=" color: green;">{{ session('success')}}</div>              
-          @endif
-          @if ($errors->any())
-            <div style="color: red;">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li> 
-                    @endforeach
-                </ul>
-            </div>
-          @endif
-      </div>
-      <div class="acc-info">
-        <!-- User Info -->
-        <section class="account-section">
-          <div class = "username-heading">
-            <!--Displays users name-->
-            <h1> Welcome, {{ auth()->user()->name}} </h1>
-            <form action="{{ route('logout') }}" method="POST">
-              @csrf
-              <button type="submit" class="logout-button">Logout</button>
-            </form>
-          </div>
-          <div class="subheading">
-            <h3>Your Account Details</h3>
-          </div>
-          <div class="user-info">
-            <!--Displays user information-->
-            <p><strong>Username:</strong> {{ auth()->user()->name}}</p>
-            <p><strong>Email:</strong> {{ auth()->user()->email}}</p>
-            <p><strong>D.O.B:</strong> {{ date('d/m/Y',strtotime(auth()->user()->birthday))}}</p>
-          </div>
-        </section>
-        
-        <!-- Update Details Forms -->
-        <section class="update-details">
-          <div class="update-details-forms">
-            <!-- Update Username Form -->
-            <div class="form-container">
-              <div class="form-title">
-                <h4>Update Username</h4>
-              </div>
-              <div class="form-content">
-                <form action="{{ route('update.username') }}" method="POST" id="errorProne">
-                    @csrf
-                    <div class="input">
-                      <input type="text" id="new-username" name="new_username" placeholder="New username" value="{{ old('new_username') }}">
-                      @error('new_username')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <input type="password" id="password" name="password" placeholder="Password">
-                      @error('password')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <button type="submit">SUBMIT</button>
-                    </div>
-                </form>
-              </div>        
-            </div>
-      
-            <!-- Update Password Form -->
-            <div class="form-container">
-              <div class="form-title">
-                <h4>Update Password</h4>
-              </div>
-              <div class="form-content">
-                <form action="{{ route('update.password') }}" method="POST" id="errorProne">
-                    @csrf
-                    <div class="input">
-                      <input type="password" id="current-password" name="current_password" placeholder="Current password">
-                      @error('current_password')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <input type="password" id="new-password" name="new_password" placeholder="New password">
-                      @error('new_password')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <input type="password" id="confirm-new-password" name="new_password_confirmation" placeholder="Confirm new password">
-                      @error('new_password_confirmation')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <button type="submit">SUBMIT</button>
-                    </div>
-                </form>
-              </div>
-            </div>
-      
-            <!-- Update Email Form -->
-            <div class="form-container">
-              <div class="form-title">
-                <h4>Update Email</h4>
-              </div>
-              <div class="form-content">
-                <form action="{{ route('update.email') }}" method="POST" id="errorProne">
-                    @csrf
-                    <div class="input">
-                      <input type="email" id="new-email" name="new_email" placeholder="New email" value="{{ old('new_email') }}">
-                      @error('new_email')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <input type="password" id="password" name="password" placeholder="Password">
-                      @error('password')
-                          <span style="color: rgb(255, 0, 0);">{{ $message }}</span>
-                      @enderror
-                      <br><br>
-                      <button type="submit">SUBMIT</button>
-                    </div>
-                </form>
-              </div>      
-            </div>
-        </section>
-      </div>
-    </div>
-  </section>
-</body>
 </html>
 
+<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
+@extends('layouts.mainLayout')
+
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Account')
+
+<!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
+@section('content')
+
+<!-- Add this right after the opening body tag -->
+<div class="toast-container"></div>
+
+<!-- Add this before closing body tag -->
+<div class="modal-overlay" id="confirmationModal">
+    <div class="modal">
+        <div class="modal-header">
+            <i class="fas fa-exclamation-circle"></i>
+            <h3 id="modalTitle">Confirm Action</h3>
+        </div>
+        <div class="modal-content" id="modalMessage">
+            Are you sure you want to proceed with this action?
+        </div>
+        <div class="modal-actions">
+            <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+            <button class="confirm-btn" id="confirmButton">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<!-- Account page -->
+<section class="main-account-section">
+    <div class="account-wrapper">
+        <div class="account-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-item active" data-tab="account">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Account</span>
+                </div>
+                <div class="sidebar-item" data-tab="personal-info">
+                    <i class="fa-regular fa-address-card"></i>
+                    <span>Personal info</span>
+                </div>
+                <div class="sidebar-item" data-tab="purchases">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Purchases</span>
+                </div>
+                <div class="sidebar-item" data-tab="notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>Notifications</span>
+                </div>
+                <div class="sidebar-item" data-tab="privacy">
+                    <i class="fa-regular fa-eye"></i>
+                    <span>Privacy & sharing</span>
+                </div>
+                <div class="sidebar-item" data-tab="preferences">
+                    <i class="fa-solid fa-sliders"></i>
+                    <span>Global preferences</span>
+                </div>
+                <div class="sidebar-item" data-tab="accessibility">
+                    <i class="fa-solid fa-universal-access"></i>
+                    <span>Accessibility</span>
+                </div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" id="button-off">
+                        <div class="sidebar-item">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <span>Sign out</span>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success')}}</div>
+                @endif
+
+                <!-- Account Tab -->
+                <div class="tab-content active" id="account">
+                    <div class="welcome-message">
+                        <h1 >Welcome, {{ auth()->user()->name }}</h1>
+                    </div>
+                    
+                    <div class="section-header">
+                        <i class="fa-regular fa-user"></i>
+                        <h2>Account Overview</h2>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">5</div>
+                            <div class="stat-label">Total Orders</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">£249</div>
+                            <div class="stat-label">Total Spent</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">2</div>
+                            <div class="stat-label">Active Orders</div>
+                        </div>
+                    </div>
+                    
+                    <h2>Login & Security</h2>
+
+                    <!-- Update Username -->
+                    <div class="form-container">
+                        <div class="form-title">
+                            <h4>Update Username</h4>
+                        </div>
+                        <div class="form-content">
+                            <form id="username-form">
+                                <div class="input-group">
+                                    <input type="text" name="new_username" placeholder="New username">
+                                    <span id="username-error" class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" name="current_password" placeholder="Current password">
+                                    <span id="password-error" class="error-message"></span>
+                                </div>
+                                <button type="submit">Update Username</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Update Password -->
+                    <div class="form-container">
+                        <div class="form-title">
+                            <h4>Update Password</h4>
+                        </div>
+                        <div class="form-content">
+                            <form id="password-form">
+                                <div class="input-group">
+                                    <input type="password" name="current_password" placeholder="Current password">
+                                    <span id="current-password-error" class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" name="new_password" placeholder="New password">
+                                    <span id="new-password-error" class="error-message"></span>
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" name="confirm_new_password" placeholder="Confirm new password">
+                                    <span id="confirm-password-error" class="error-message"></span>
+                                </div>
+                                <button type="submit">Update Password</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Personal Info Tab -->
+                <div class="tab-content" id="personal-info">
+                    <h2>Personal Information</h2>
+                    <div class="profile-info">
+                        <form id="personal-info-form">
+                            <div class="input-group">
+                                <label>Full Name</label>
+                                <input type="text" placeholder="Your full name">
+                            </div>
+                            <div class="input-group">
+                                <label>Email</label>
+                                <input type="email" placeholder="Your email">
+                            </div>
+                            <div class="input-group">
+                                <label>Date of Birth</label>
+                                <input type="date">
+                            </div>
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Purchases Tab -->
+                <div class="tab-content" id="purchases">
+                    <div class="section-header">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <h2>Your Purchases</h2>
+                    </div>
+
+                    <div class="purchase-history">
+                        <!-- Purchase Item 1 -->
+                        <div class="purchase-item">
+                            <div class="purchase-header" onclick="togglePurchase(this)">
+                                <h4>
+                                    <i class="fa-solid fa-box"></i>
+                                    Order #12345
+                                </h4>
+                                <div class="purchase-meta">
+                                    <span class="purchase-date">March 15, 2024</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                            </div>
+                            <div class="purchase-details">
+                                <div class="product-info">
+                                    <img src="{{ asset('images/glasses1.jpg') }}" alt="Product" class="product-thumbnail">
+                                    <div class="product-text">
+                                        <h5>Ray-Ban Aviator Classic</h5>
+                                        <p>Color: Gold</p>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                </div>
+                                <div class="purchase-status">
+                                    <span class="status-badge delivered">Delivered</span>
+                                    <span class="purchase-price">£129.99</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Purchase Item 2 -->
+                        <div class="purchase-item">
+                            <div class="purchase-header" onclick="togglePurchase(this)">
+                                <h4>
+                                    <i class="fa-solid fa-box"></i>
+                                    Order #12346
+                                </h4>
+                                <div class="purchase-meta">
+                                    <span class="purchase-date">March 10, 2024</span>
+                                    <i class="fas fa-chevron-down expand-icon"></i>
+                                </div>
+                            </div>
+                            <div class="purchase-details">
+                                <div class="product-info">
+                                    <img src="{{ asset('images/glasses2.jpg') }}" alt="Product" class="product-thumbnail">
+                                    <div class="product-text">
+                                        <h5>Oakley Holbrook</h5>
+                                        <p>Color: Matte Black</p>
+                                        <p>Quantity: 1</p>
+                                    </div>
+                                </div>
+                                <div class="purchase-status">
+                                    <span class="status-badge processing">Processing</span>
+                                    <span class="purchase-price">£119.99</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-container billing-address">
+                        <h3>Billing Address</h3>
+                        <form class="billing-form">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label>Street Address</label>
+                                    <input type="text" placeholder="123 Main St">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label>City</label>
+                                    <input type="text" placeholder="City">
+                                </div>
+                                <div class="input-group">
+                                    <label>Postcode</label>
+                                    <input type="text" placeholder="Postcode">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label>County</label>
+                                    <input type="text" placeholder="County">
+                                </div>
+                                <div class="input-group">
+                                    <label>Country</label>
+                                    <input type="text" placeholder="Country">
+                                </div>
+                            </div>
+                            <button type="submit" class="save-address-btn">Save Address</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div class="tab-content" id="notifications">
+                    <div class="section-header">
+                        <i class="fa-regular fa-bell"></i>
+                        <h2>Notification Preferences</h2>
+                    </div>
+
+                    <div class="notification-groups">
+                        <!-- Order Updates -->
+                        <div class="notification-group">
+                            <h4>Order & Shipping</h4>
+                            <div class="notification-items">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-truck"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h5>Order Status Updates</h5>
+                                        <p>Stay informed about your order's journey from purchase to delivery.</p>
+                                    </div>
+                                    <label class="toggle">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Promotional Updates -->
+                        <div class="notification-group">
+                            <h4>Promotions & Offers</h4>
+                            <div class="notification-items">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-tag"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h5>Promotional Offers & Discounts</h5>
+                                        <p>Be the first to know about exclusive discounts, limited-time offers, and seasonal sales!</p>
+                                    </div>
+                                    <label class="toggle">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-gift"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h5>Birthday & Anniversary Alerts</h5>
+                                        <p>We'd love to celebrate with you! Receive special discounts or offers on your special days.</p>
+                                    </div>
+                                    <label class="toggle">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Updates -->
+                        <div class="notification-group">
+                            <h4>Product Updates</h4>
+                            <div class="notification-items">
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-box-open"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h5>Back in Stock Alerts</h5>
+                                        <p>Never miss your favorite items again! Get notified when out-of-stock products are available.</p>
+                                    </div>
+                                    <label class="toggle">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                                <div class="notification-item">
+                                    <div class="notification-icon">
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <h5>Review Requests</h5>
+                                        <p>We'd love to hear your feedback! Get notified when it's time to rate your recent purchase.</p>
+                                    </div>
+                                    <label class="toggle">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacy & Sharing Tab -->
+                <div class="tab-content" id="privacy">
+                    <div class="section-header">
+                        <i class="fa-regular fa-eye"></i>
+                        <h2>Privacy & Sharing</h2>
+                    </div>
+
+                    <div class="privacy-grid">
+                        <!-- Profile Visibility -->
+                        <div class="privacy-option">
+                            <div class="privacy-option-header">
+                                <div>
+                                    <h4>Profile Visibility</h4>
+                                    <p class="privacy-description">Control who can see your profile information</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="privacy-settings">
+                                <select class="privacy-select">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                    <option value="friends">Friends Only</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Data Usage -->
+                        <div class="privacy-option">
+                            <div class="privacy-option-header">
+                                <div>
+                                    <h4>Data Usage & Analytics</h4>
+                                    <p class="privacy-description">Manage how we use your data to improve our services</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Marketing Preferences -->
+                        <div class="privacy-option">
+                            <div class="privacy-option-header">
+                                <div>
+                                    <h4>Marketing Communications</h4>
+                                    <p class="privacy-description">Control which marketing communications you receive</p>
+                                </div>
+                            </div>
+                            <div class="marketing-options">
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        Email Newsletters
+                                    </label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        Product Updates
+                                    </label>
+                                </div>
+                                <div class="checkbox-group">
+                                    <label>
+                                        <input type="checkbox">
+                                        Special Offers
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Connected Services -->
+                        <div class="privacy-option">
+                            <div class="privacy-option-header">
+                                <div>
+                                    <h4>Connected Services</h4>
+                                    <p class="privacy-description">Manage third-party services connected to your account</p>
+                                </div>
+                            </div>
+                            <div class="connected-services">
+                                <div class="service-item">
+                                    <i class="fab fa-google"></i>
+                                    <span>Google</span>
+                                    <button class="disconnect-btn">Disconnect</button>
+                                </div>
+                                <div class="service-item">
+                                    <i class="fab fa-facebook"></i>
+                                    <span>Facebook</span>
+                                    <button class="connect-btn">Connect</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Global Preferences Tab -->
+                <div class="tab-content" id="preferences">
+                    <div class="section-header">
+                        <i class="fa-solid fa-sliders"></i>
+                        <h2>Global Preferences</h2>
+                    </div>
+
+                    <div class="preferences-grid">
+                        <!-- Language & Region -->
+                        <div class="preference-group">
+                            <h4>Language & Region</h4>
+                            <div class="option-group">
+                                <label>Language</label>
+                                <select>
+                                    <option>English (UK)</option>
+                                    <option>English (US)</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                    <option>Spanish</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label>Time Zone</label>
+                                <select>
+                                    <option>GMT (London)</option>
+                                    <option>CET (Paris, Berlin)</option>
+                                    <option>EST (New York)</option>
+                                    <option>PST (Los Angeles)</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label>Date Format</label>
+                                <select>
+                                    <option>DD/MM/YYYY</option>
+                                    <option>MM/DD/YYYY</option>
+                                    <option>YYYY-MM-DD</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Communication -->
+                        <div class="preference-group">
+                            <h4>Communication</h4>
+                            <div class="option-group">
+                                <label>Preferred Contact Method</label>
+                                <select>
+                                    <option>Email</option>
+                                    <option>SMS</option>
+                                    <option>Both</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Display -->
+                        <div class="preference-group">
+                            <h4>Display Settings</h4>
+                            <div class="option-group">
+                                <label>Theme</label>
+                                <select>
+                                    <option>System Default</option>
+                                    <option>Light Mode</option>
+                                    <option>Dark Mode</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Show Order History
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    Show Price in List View
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessibility Tab -->
+                <div class="tab-content" id="accessibility">
+                    <div class="section-header">
+                        <i class="fa-solid fa-universal-access"></i>
+                        <h2>Accessibility</h2>
+                    </div>
+
+                    <div class="accessibility-grid">
+                        <!-- Visual Preferences -->
+                        <div class="accessibility-option">
+                            <h4>Visual Preferences</h4>
+                            <div class="option-group">
+                                <label>Text Size</label>
+                                <div class="text-size-controls">
+                                    <button class="size-btn">A-</button>
+                                    <span class="current-size">100%</span>
+                                    <button class="size-btn">A+</button>
+                                </div>
+                            </div>
+                            <div class="option-group">
+                                <label>Contrast</label>
+                                <select>
+                                    <option>Default</option>
+                                    <option>High Contrast</option>
+                                    <option>Low Contrast</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox">
+                                    Reduce Motion
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Reading Preferences -->
+                        <div class="accessibility-option">
+                            <h4>Reading Preferences</h4>
+                            <div class="option-group">
+                                <label>Font Family</label>
+                                <select>
+                                    <option>Default</option>
+                                    <option>OpenDyslexic</option>
+                                    <option>Arial</option>
+                                    <option>Times New Roman</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label>Line Spacing</label>
+                                <select>
+                                    <option>Normal</option>
+                                    <option>Relaxed</option>
+                                    <option>Spacious</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Preferences -->
+                        <div class="accessibility-option">
+                            <h4>Navigation Preferences</h4>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox">
+                                    Enable Keyboard Navigation
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox">
+                                    Screen Reader Optimization
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching functionality
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+        const tabContents = document.querySelectorAll('.tab-content');
+    
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (this.closest('form')) return; // Prevent sign-out button from acting as a tab switcher
+    
+                const tabId = this.dataset.tab;
+    
+                // Remove active class from all items
+                sidebarItems.forEach(si => si.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+    
+                // Add active class to clicked item and corresponding tab
+                this.classList.add('active');
+                document.getElementById(tabId)?.classList.add('active');
+            });
+        });
+    });
+    
+    // Toast notification function
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            <span>${message}</span>
+        `;
+    
+        document.querySelector('.toast-container').appendChild(toast);
+    
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    }
+    
+    // Confirmation modal functions
+    function showModal(title, message, onConfirm) {
+        const modal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const confirmButton = document.getElementById('confirmButton');
+    
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modal.classList.add('active');
+    
+        confirmButton.onclick = () => {
+            onConfirm();
+            closeModal();
+        };
+    }
+    
+    function closeModal() {
+        document.getElementById('confirmationModal').classList.remove('active');
+    }
+    
+    // Handle username update form submission
+document.getElementById('username-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const newUsername = event.target.querySelector('input[name="new_username"]').value.trim();
+    const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+    
+    // Clear previous errors
+    document.getElementById('username-error').textContent = '';
+    document.getElementById('password-error').textContent = '';
+
+    let isValid = true;
+
+    // Frontend validation checks for username
+    if (newUsername.length < 3 || newUsername.length > 15) {
+        document.getElementById('username-error').textContent = 'Username must be 3-15 characters.';
+        isValid = false;
+    } else if (!/^[a-zA-Z0-9]+$/.test(newUsername)) {
+        document.getElementById('username-error').textContent = 'Username must be alphanumeric.';
+        isValid = false;
+    }
+
+    // Frontend validation for password input
+    if (currentPassword === '') {
+        document.getElementById('password-error').textContent = 'Current password is required.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
+    showModal(
+        'Confirm Update',
+        'Are you sure you want to update your username?',
+        () => {
+            fetch('/update-username', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    new_username: newUsername,
+                    password: currentPassword
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Username updated successfully!');
+                } else {
+                    document.getElementById('username-error').textContent = data.message;
+                }
+            });
+        }
+    );
+});
+
+// Handle password update form submission
+document.getElementById('password-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const currentPassword = event.target.querySelector('input[name="current_password"]').value;
+    const newPassword = event.target.querySelector('input[name="new_password"]').value;
+    const confirmPassword = event.target.querySelector('input[name="confirm_new_password"]').value;
+
+    // Clear previous errors
+    document.getElementById('current-password-error').textContent = '';
+    document.getElementById('new-password-error').textContent = '';
+    document.getElementById('confirm-password-error').textContent = '';
+
+    let isValid = true;
+
+    // Validate current password
+    if (currentPassword === '') {
+        document.getElementById('current-password-error').textContent = 'Current password is required.';
+        isValid = false;
+    }
+
+    // Validate new password
+    if (newPassword.length < 8 || newPassword.length > 25) {
+        document.getElementById('new-password-error').textContent = 'Password must be between 8-25 characters.';
+        isValid = false;
+    }
+
+    // Check if passwords match
+    if (newPassword !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Passwords do not match.';
+        isValid = false;
+    }
+
+    if (!isValid) return; // Stop if validation fails
+
+    showModal(
+        'Confirm Update',
+        'Are you sure you want to update your password?',
+        () => {
+            fetch('/update-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    current_password: currentPassword,
+                    new_password: newPassword,
+                    new_password_confirmation: confirmPassword
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast('Password updated successfully!');
+                } else {
+                    document.getElementById('current-password-error').textContent = data.message;
+                }
+            });
+        }
+    );
+});
+</script>
+@endsection
