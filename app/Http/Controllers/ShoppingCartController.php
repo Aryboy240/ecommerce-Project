@@ -21,21 +21,29 @@ class ShoppingCartController extends Controller
                 return redirect()->route('login');
             }
 
-            $items = ShoppingCartItem::with(['product' => function($query) {
-                $query->select('id', 'name', 'price', 'description');
+            // Fetch the cart items, including the product and its images
+            $items = ShoppingCartItem::with(['product' => function ($query) {
+                $query->select('id', 'name', 'price', 'description')
+                    ->with('images');  // Eager load images for the product
             }])
             ->where('user_id', Auth::id())
             ->get();
 
-            $total = $items->sum(function($item) {
+            // Calculate the total price of the items in the cart
+            $total = $items->sum(function ($item) {
                 return $item->product->price * $item->quantity;
             });
 
-            return view('cart.cart', compact('items', 'total'));
+            // Get 4 random recommended products
+            $recommendedProducts = Product::inRandomOrder()->take(4)->get();
+
+            return view('cart.cart', compact('items', 'total', 'recommendedProducts'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error loading cart: ' . $e->getMessage());
         }
     }
+
+
 
     /**
      * Add an item to the shopping cart.
@@ -103,9 +111,6 @@ class ShoppingCartController extends Controller
         $products = Product::all(); // Fetch all products from the database
         return view('welcome', compact('products'));
     }
-    
-    
-
 
 
     /**

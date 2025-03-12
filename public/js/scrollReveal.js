@@ -5,7 +5,8 @@ const sr = ScrollReveal({
     reset: false,
 });
 
-// Home
+// Homepage
+
 sr.reveal(".hero", {
     duration: 1000,
     interval: 100,
@@ -47,7 +48,7 @@ sr.reveal(".about-section", {
     delay: 250,
 });
 
-sr.reveal(".product-container", {
+sr.reveal(".f-product-container", {
     duration: 1000,
     interval: 100,
     delay: 150,
