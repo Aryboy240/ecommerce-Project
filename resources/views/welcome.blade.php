@@ -589,26 +589,63 @@ function showRecommendations(shape) {
     document.getElementById('recommendations').style.display = 'block';
 
     const glassesData = {
-        "Round": ["glasses1.png", "glasses2.png", "glasses3.png"],
-        "Square": ["glasses4.png", "glasses5.png", "glasses6.png"],
-        "Oval": ["glasses7.png", "glasses8.png", "glasses9.png"],
-        "Heart": ["glasses10.png", "glasses11.png", "glasses12.png"],
-        "Diamond": ["glasses13.png", "glasses14.png", "glasses15.png"],
-        "Triangular": ["glasses16.png", "glasses17.png", "glasses18.png"]
+      "Round":[
+        { id: "32859935", image: "Adidas/32859935/32859935-front-2000x1125.jpg", name: "Adidas: Product 32859935", price: "100.00" },
+        { id: "32859928", image: "Adidas/32859928/32859928-front-2000x1125.jpg", name: "Adidas: Product 32859928", price: "100.00" },
+        { id: "33039947", image: "DKNY/33039947/33039947-front-2000x1125.jpg", name: "DKNY: Product 33039947", price: "100.00" }
+      ],
+      "Square":[
+        { id: "33137490", image: "Barbour/33137490/33137490-front-2000x1125.jpg", name: "Barbour: Product 33137490", price: "100.00" },
+        { id: "33135175", image: "Karen Millen/33135175/33135175-front-2000x1125.jpg", name: "Karen Millen: Product 33135175", price: "100.00" },
+        { id: "33155449", image: "Harry Potter/33155449/33155449-front-2000x1125.jpg", name: "Harry Potter: Product 33155449", price: "100.00" },
+        ],
+      "Oval":[
+        { id: "33087542", image: "Disney/33087542/33087542-front-2000x1125.jpg", name: "Disney: Product 33087542", price: "100.00" },
+        { id: "32860634", image: "Jeff Banks/32860634/32860634-front-2000x1125.jpg", name: "Jeff Banks: Product 32860634", price: "100.00" },
+        { id: "33137346", image: "HUGO/33137346/33137346-front-2000x1125.jpg", name: "HUGO: Product 33137346", price: "100.00" },
+      ],
+      "Heart":[
+        { id: "33039633", image: "Karen Millen/33039633/33039633-front-2000x1125.jpg", name: "Karen Millen: Product 33039633", price: "100.00" },
+        { id: "33145006", image: "Comfit/33145006/33145006-front-2000x1125.jpg", name: "Comfit: Product 33145006", price: "100.00" },
+        { id: "33137353", image: "HUGO/33137353/33137353-front-2000x1125.jpg", name: "HUGO: Product 33137353", price: "100.00" },   
+      ],
+      "Diamond":[
+      { id: "33039640", image: "Karen Millen/33039640/33039640-front-2000x1125.jpg", name: "Karen Millen: Product 33039640", price: "100.00" },
+      { id: "33040011", image: "DKNY/33040011/33040011-front-2000x1125.jpg", name: "DKNY: Product 33040011", price: "100.00" },
+      { id: "33145013", image: "Comfit/33145013/33145013-front-2000x1125.jpg", name: "Comfit: Product 33145013", price: "100.00" },
+      ],
+      "Triangular":[
+      { id: "32677959", image: "DKNY/32677959/32677959-front-2000x1125.jpg", name: "DKNY: Product 32677959", price: "100.00" },
+      { id: "32859942", image: "Adidas/32859942/32859942-front-2000x1125.jpg", name: "Adidas: Product 32859942", price: "100.00" },
+      { id: "32908640", image: "Harry Potter/32908640/32908640-front-2000x1125.jpg", name: "Harry Potter: Product 32908640", price: "100.00" },
+          
+      ],
     };
 
     const glassesContainer = document.getElementById('glasses-options');
     glassesContainer.innerHTML = ''; // Clear previous entries
 
-    // Ensure only three recommendations are displayed
-    glassesData[shape].slice(0, 3).forEach(img => {
+    if (glassesData[shape]){
+      glassesData[shape].forEach(product =>{
         glassesContainer.innerHTML += `
-            <div class="glasses-card">
-                <img src="${basePath + img}" alt="Recommended Glasses">
-                <p>Glasses Model ${img}</p>
-                <button>Add to Cart</button>
-            </div>`;
-    });
+                <div class="glasses-card">
+                    <img src="{{ asset('Images/products/Featured/') }}/${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>£${product.price}</p>
+                    <button>Add to Cart</button>
+                </div>`;
+      });
+    }
+
+    // // Ensure only three recommendations are displayed
+    // glassesData[shape].slice(0, 3).forEach(img => {
+    //     glassesContainer.innerHTML += `
+    //         <div class="glasses-card">
+    //             <img src="${basePath + img}" alt="Recommended Glasses">
+    //             <p>Glasses Model ${img}</p>
+    //             <button>Add to Cart</button>
+    //         </div>`;
+    // });
 }
 // Prevent clicks inside the modal from closing it
 document.getElementById('findMyFitModal').addEventListener('click', function(event) {
