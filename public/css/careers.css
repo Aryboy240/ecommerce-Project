@@ -1,0 +1,91 @@
+/*  Developer: man kwok
+    University ID: 230049488
+*/
+.Card {
+    background-color: var(--bg-primary);
+}
+
+#Careers-info {
+    margin: 70px auto; 
+    width: 300px; 
+    padding: 20px; 
+    border-radius: 10px;
+    transition: background-color 0.6s ease-in-out,border-radius 0.4s ease-in-out;;
+    text-align: center;
+}
+
+#Careers-info h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+#Careers-info:hover {
+    background-color: var(--darker); 
+    border-radius: 30px;
+    transition: background-color 0.6s ease-in, border-radius 0.4s ease-in-out;
+}
+
+#Careers-card{
+    justify-content: space-evenly;
+    display:flex;
+    margin:40px;
+}
+
+.Card{
+    width: 400px;
+    min-height: 200px;
+    height: auto;
+    background-color: var(--text-secondary);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+    box-shadow: 0 0 0 6px var(--darker);
+    transition:  0.6s cubic-bezier( 0.76, 0.42, 0.25, 0.58 ) ;
+}
+
+.Careers-title{ 
+    font-size:larger;
+    color: var(--bg-primary);
+    transition:  0.6s cubic-bezier( 0.76, 0.42, 0.25, 0.58 ) ;
+}
+
+.Card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px var(--text-secondary);
+}
+
+
+.content{ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: var(--text-secondary);
+    transform: rotateX(-90deg);
+    transform-origin: bottom;
+    transition:  0.6s cubic-bezier( 0.76, 0.42, 0.25, 0.58 ) ;
+}
+
+.Card:hover .content{
+    transform: rotateX(0deg);
+}
+
+.title{
+    margin: 0;
+    font-size: 24px;
+    color: var(--bg-primary);
+    font-weight: 700;
+}
+
+.descition{
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: var(--bg-secondary);
+    line-height: 1.4;
+}
