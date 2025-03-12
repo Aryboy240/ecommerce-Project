@@ -1,172 +1,37 @@
-/* Developer: Abdulrahman Muse
-   university ID: 230228946
-   function: about page 
-*/
-/* Styling the body of the page */
-body {
-    margin: 0; /* Removes the default browser margin */
-    font-family: "Lato", sans-serif; /* Sets a clean and modern font */
-    background-color: #0e0e0e; /* Gives the page a dark theme */
-    color: white; /* Ensures readability with white text */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-}
-
-/* Header section where the logo is */
-.header {
-    text-align: center; /* Centers the content */
-    background-color: black; /* Matches the theme */
-    padding: 20px; /* Adds some breathing room */
-}
-
-.logo {
-    width: 120px; /* Size of the logo */
-    height: auto; /* Maintains aspect ratio */
-}
-
-/* Styling the side navigation */
-.side-nav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%; /* Full height of the page */
-    width: 200px; /* Makes the nav bar more prominent */
-    background-color: #1c1c1c; /* Darker color for contrast */
-    padding: 20px 0;
-    border-right: 2px solid #00bfae; /* Accent border */
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-}
-
-/* Styling the navigation items */
-.side-nav ul {
-    list-style: none; /* Removes bullet points */
-    padding: 0;
-    margin: 0;
-    width: 100%; /* Makes full use of the nav bar width */
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Adds space between items */
-}
-
-.side-nav ul li {
-    text-align: center;
-    width: 100%; /* Aligns the links */
-}
-
-.side-nav ul li a {
-    text-decoration: none; /* Removes underline */
-    color: #00bfae; /* Matches the theme */
-    font-size: 1.5rem; /* Larger text for visibility */
-    padding: 15px 0;
-    width: 100%;
-    display: block;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
-}
-
-.side-nav ul li a:hover {
-    background-color: #00a68c; /* Slightly different shade on hover */
-    color: black; /* Text changes to black for contrast */
-}
-
-/* Styling the sections */
-.section {
-    color: white;
-    display: none; /* Hidden by default */
-    padding: 100px 20px;
-    margin-left: 200px; /* Leaves space for the nav bar */
-    text-align: center;
-}
-
-.section.visible {
-    display: block; /* Makes only the active section visible */
-}
-
-.section h1 {
-    font-size: 2.5rem; /* Headline size */
-    color: #00bfae; /* Accent color */
-    margin-bottom: 20px; /* Adds spacing */
-}
-
-.section p {
-    font-size: 1.2rem; /* Text size */
-    max-width: 800px; /* Restricts line width for readability */
-    margin: 0 auto; /* Centers the paragraph */
-}
-
-/* Styling social media icons */
-.about-social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* Space between icons */
-    margin-top: 20px;
-}
-
-.about-social-links img {
-    width: 50px; /* Icon size */
-    transition: transform 0.3s; /* Animation for hover effect */
-}
-
-.about-social-links img:hover {
-    transform: scale(1.2); /* Enlarges icon on hover */
-}
-
-/* Footer at the bottom of the page */
 .footer {
-    margin-left: 9vw;
-    text-align: center;
-    background-color: #181818;
-    color: white;
-    position: relative; /* Sticks to the bottom */
-    bottom: 0;
+    display: none !important;
     width: 100%;
-    font-size: 0.9rem; /* Small text for copyright */
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5); /* Adds shadow for depth */
-    z-index: 0;
+    position: absolute !important;
+    bottom: 0 !important;
 }
 
-/* Additions moved to css file */
-
-/* I added hover effects for footer logos to make the interaction more dynamic */
-.social-footer-links img {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.3s ease;
+.construct-mid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.social-footer-links img:hover {
-    transform: scale(1.2);
+.construct-mid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(15deg);
 }
 
-/* I wanted the footer text to stand out, so I made it larger and bolder */
-.footer p {
-    font-size: 28px;
-    font-weight: bold;
+.construct-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-/* Center the section content and align with middle logo */
-.section {
-    text-align: left;
-    font-size: 20px;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 40px;
-    border: 8px ridge #2a7f62;
-    background-color: #222;
-    box-sizing: border-box;
-}
-
-h1 {
-    font-size: 20px;
-    color: #4caf50;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 20px;
-    line-height: 1.6;
+.construct-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
