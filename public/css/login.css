@@ -79,6 +79,21 @@
     width: 100%;
 }
 
+.AdminIcon {
+    width: 52px;
+}
+
+.admin-icon, .home {
+    fill: var(--lighter); 
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .admin-icon:hover, .home:hover {
+    transform: scale(1.1);
+    color: var(--mint); /* Ensure they change color the same way */
+    fill: var(--mint);
+  }
+
 .home {
     color: var(--lighter);
     position: relative;

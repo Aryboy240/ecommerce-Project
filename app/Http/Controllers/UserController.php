@@ -23,6 +23,8 @@ class UserController extends Controller
             'name.alpha_num' => 'The username must only contain letters and numbers.',
             'name.min' => 'The username must be at least 3 characters.',
             'name.max' => 'The username must not exceed 15 characters.',
+            'name.unique' => 'This username is already taken.',
+            'email.max' => 'The email must not exceed 255 characters.',
             'email.required' => 'The email is required.',
             'email.email' => 'The email address must be valid.',
             'email.unique' => 'This email address is already in use.',
@@ -34,6 +36,11 @@ class UserController extends Controller
             'birthday.date' => 'The birthdate must be a valid date.',
             'birthday.before' => 'You must be 18 or older to make an account!',
         ]);
+
+        // Extra check for username uniqueness - Aryan
+        if (User::where('name', $incomingFields['name'])->exists()) {
+            return back()->withErrors(['name' => 'This username is already taken.'])->onlyInput('name');
+        }
 
         // You need to encrypt the password too - Aryan
         $incomingFields['password'] = bcrypt($incomingFields['password']);
@@ -81,21 +88,37 @@ class UserController extends Controller
         return view('Account',['user' => $user]);
     }
 
-    //This allows the user to update their username in the account page - Hussen
-    public function updateUsername(Request $request){
+    // This allows the user to update their username in the account page - Aryan
+    public function updateUsername(Request $request)
+    {
         $request->validate([
-            'new_username' => 'required|string|max:255|unique:users,name,'.auth()->id(),
+            'new_username' => 'required|string|max:255|unique:users,name,' . auth()->id(),
             'password' => 'required|current_password',
         ]);
 
         auth()->user()->update([
             'name' => $request->input('new_username')
         ]);
-        return back()->with('success','Successfully updated your Username!!');
 
+        return response()->json(['success' => true, 'message' => 'Successfully updated your Username!']);
     }
 
-    //This allows the user to update their email in the account page - Hussen
+    //This allows the user to update their password in the account page - Aryan
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required|current_password',
+            'new_password' => 'required|string|min:8|confirmed'
+        ]);
+
+        auth()->user()->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Successfully updated your Password!']);
+    }
+
+    // This allows the user to update their email in the account page - Hussen
     public function updateEmail(Request $request){
         $request->validate([
             'new_email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
@@ -106,21 +129,6 @@ class UserController extends Controller
             'email' => $request->new_email
         ]);
         return back()->with('success','Successfully updated your Email!');
-
-    }
-
-    //This allows the user to update their password in the account page - Hussen
-    public function updatePassword(Request $request){
-        $request->validate([
-           'current_password' => 'required|current_password',
-           'new_password' => 'required|string|min:8|confirmed'        
-        ]);
-
-        auth()->user()->update([
-            'password' => Hash::make($request->new_password)
-        ]);
-        
-        return back()->with('success','Successfully updated your Password!');
 
     }
 

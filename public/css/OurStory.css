@@ -1,0 +1,150 @@
+
+/*  Developer: man kwok
+    University ID: 230049488
+*/
+#our-Story-info{
+    padding:30px;
+    line-height: 1;
+    background: var(--bg-primary) ;
+}
+
+#our-Story-info h1{
+    opacity:1;
+    font-size: 60px;
+    margin: 5px;
+    letter-spacing: 0px;
+    color: var(--text-primary);
+    animation-name: infoAnH1;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    text-shadow: 0 0 3px var(--text-primary);
+}
+
+#our-Story-info h2{
+    font-size: 100px;
+    margin: 5px;
+    color: var(--text-primary);
+    letter-spacing: 0px;
+    animation-name: infoAnH2;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    text-shadow: 0 0 4px var(--text-primary);
+}
+
+@keyframes infoAnH1{
+    0%{letter-spacing: 0px;}
+    50%{letter-spacing: 1px;}
+    100%{letter-spacing: 0px;}
+}
+
+@keyframes infoAnH2{
+    0%{letter-spacing: 0px;}
+    50%{letter-spacing: 3px;}
+    100%{letter-spacing: 0px;}
+}
+
+/* Info of our story end*/
+
+#our-Story-dialog {
+    height: 1000px;
+    padding: 30px;
+    position: relative;
+    background-image: linear-gradient(to bottom right, var(--darker) ,var(--bg-primary) );
+}
+
+#dialog-1, #dialog-3{
+
+    position: relative;
+    text-align:center;
+    width:15%;
+    height: 10%;
+    border-radius: 100px;
+    background-color: var(--floater);
+    padding: 20px;
+    margin: 100px;
+    transition:width 0.5s, border-radius 0.5s;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#dialog-2, #dialog-4{
+    position: relative;
+    text-align:center;
+    width:15%;
+    left: 60%;
+    height: 10%;
+    border-radius: 100px;
+    background-color: var(--floater);
+    padding: 20px;
+    margin: 100px;
+    transition:width 0.5s, border-radius 0.5s, left 0.5s;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+#dialog-1 h1,#dialog-2 h1,#dialog-3 h1,#dialog-4 h1{
+    opacity: 1;
+    color: white;
+    font-size: 30px;
+    letter-spacing: 1px;
+    padding: 10px 10px;
+    animation-name: dialog-H1;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-name: infoAnH2;
+    animation-duration: 2s;
+}
+
+#dialog-1 p, #dialog-2 p,#dialog-3 p,#dialog-4 p{
+    opacity: 0;
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 80%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0; 
+    color: white;
+    transition: opacity 1s;
+    font-size: 25px;
+    text-align:left;
+}
+
+#dialog-1:hover, #dialog-3:hover{
+    position: relative;
+    text-align: right;
+    width:65%;
+    border-radius: 20px;
+}
+
+#dialog-2:hover, #dialog-4:hover{
+    position: relative;
+    text-align: right;
+    width:65%;
+    border-radius: 20px;
+    left:100px;
+}
+
+#dialog-1:hover h1, #dialog-2:hover h1, #dialog-3:hover h1, #dialog-4:hover h1{
+    opacity:0;
+}
+
+#dialog-1:hover p, #dialog-2:hover p, #dialog-3:hover p, #dialog-4:hover p{
+    opacity:1;
+}
+
+#dialog-1:not(:hover) p, #dialog-2:not(:hover) p, #dialog-3:not(:hover) p, #dialog-4:not(:hover) p{
+    opacity:0;
+    transition: opacity 0s; 
+}
+
+#dialog-1:not(:hover) h1, #dialog-2:not(:hover) h1, #dialog-3:not(:hover) h1, #dialog-4:not(:hover) h1{
+    opacity:1;
+    transition: opacity 4s; 
+}
+
+
