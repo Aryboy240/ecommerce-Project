@@ -58,6 +58,17 @@ Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
 
+Route::get('/Careers', function () {
+    return view('Careers'); // Refers to resources/views/Careers.blade.php
+})->name('Careers');
+
+Route::get('/Testimonials', function () {
+    return view('Testimonials'); // Refers to resources/views/Careers.blade.php
+})->name('Testimonials');
+
+Route::get('/OurStory', function () {
+    return view('OurStory'); // Refers to resources/views/OurStory.blade.php
+})->name('OurStory');
 /*
 |--------------------------------------------------------------------------
 | Account Routes
@@ -141,6 +152,7 @@ Route::get('/check-login', function () {
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
 
+
 Route::get('/adminpanel', function () {
     return view('Adminpanel');
 })->name('adminpanel');
@@ -167,3 +179,9 @@ Route::get('/customers', function () {
 Route::get('/adminreport', function () {
     return view('adminreport'); 
 })->name('adminreport');
+
+//adminlogon page
+Route::get('/adminlogin', function () {
+    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
+})->name('adminlogin');
+

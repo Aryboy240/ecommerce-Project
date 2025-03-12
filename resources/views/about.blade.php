@@ -43,7 +43,6 @@
       Whether you browse our site from the comfort of your own home or visit our store, we are here to assist you
       in choosing the right frames and lenses for you. Welcome to a new world of glasses—welcome to Optique.</p>
   </section>
-
   <section id="goal" class="section hidden">
     <h1>Our Goal</h1>
     <ul>

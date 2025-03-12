@@ -1,7 +1,7 @@
 <!--
     Developer: Nikhil Kainth
 	University ID: 230069888
-    Function: Front end for the search page
+    Function: Frontend and backend for the search page
 
     Developer: Abdulrahman Muse
     university ID: 230228946
