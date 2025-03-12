@@ -11,9 +11,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 70px;
+    gap: 26px;
+    margin-left: 15px;
   }
-    
+  
+  .title-container{
+    text-align: center;
+    width: 270px;
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%,#006d5d, #00bfae) border-box;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 13px;
+    font-size: 14px;
+    font-weight: 200;
+    margin-top: 30px;
+    margin-left: 56px;
+  }
+  
+  .title-container h1{
+    color: #b2b2b2;
+    transition: color 0.4s ease-out;
+  }
+  
+  .title-container h1:hover{
+    color: #006d5d;
+    transition: color 0.4s ease-out;
+  }
+  
   .logo {
     height: 150px; 
     width: auto;
@@ -23,15 +48,36 @@
     width: 40px;
     margin-left: px;
     height: auto; 
-    color: var(--lighter);
+    color: #b2b2b2; 
     transition: transform 0.3s ease-in-out;
-    opacity: 0.7;
   }
   
   .home:hover {
     transform: scale(1.1); 
-    color: var(--mint);
-    fill: var(--mint);
+    color: #00bfae; 
+  }
+  
+  @media (max-width: 768px) {
+    .top-level {
+      flex-direction: column;
+         align-items: center; 
+    }
+  
+    .top-icons {
+      display: flex;
+      flex-direction: row;
+      margin-left: 0px;
+      gap: 0px;
+      margin-right: 90px;
+    }
+  
+    .title-container{
+      padding: 11px;
+      width: 380px;
+      margin-left: 0px;
+      margin-bottom: 30px;
+      margin-top: 0px;
+    }
   }
 
   .form-wrapper {
@@ -58,7 +104,7 @@
     .login-container .form {
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 20px;
     }
     
     .login-container .form-group {
@@ -72,7 +118,7 @@
       margin-bottom: 5px;
       color: #b2b2b2;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 15px;
       transition: color 0.4s ease-out;
     }
   
@@ -83,7 +129,7 @@
     
     .login-container .form-group input {
       width: 90%;
-      padding: 20px 15px;
+      padding: 12px 16px;
       border-radius: 8px;
       color: #fff;
       font-family: inherit;

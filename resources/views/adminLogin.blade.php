@@ -42,11 +42,14 @@
         </svg>
       </a>
     </div>
+    <div class="title-container">
+      <h1>Admin login </h1>
+    </div>
   </div>
 
     <div class="form-wrapper">
       <div class="login-container">
-        <h1>Admin login in</h1>
+        <h1>Login In</h1>
           <form class="form"> <!--lacking a ligin function action-->
             <div class="form-group">
               <label>Admin name</label>
@@ -58,6 +61,29 @@
             </div>
             <button class="form-submit-btn" type="submit">Login</button>
           </form>
+      </div>
+  
+      <div class="login-container">
+        <h1>Create Account</h1>
+        <form class="form"> <!--lacking a create function action-->
+            <div class="form-group">
+                <label>Admin Name</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm-password" required>
+            </div>
+            <button class="form-submit-btn" type="submit">Create Account</button>
+        </form>
       </div>
     </div>
 </body>
