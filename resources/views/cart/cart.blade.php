@@ -2,6 +2,7 @@
 
 <head>
 
+  <script defer src="/js/addToCart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
 </head>
@@ -19,33 +20,88 @@
   function removeItem(cartItemId) {
     // Send AJAX request to remove the item
     fetch('/cart/remove', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}', // CSRF token for security
-      },
-      body: JSON.stringify({
-        cart_item_id: cartItemId
-      })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}', // CSRF token for security
+        },
+        body: JSON.stringify({
+            cart_item_id: cartItemId
+        })
     })
-      .then(response => response.json())
-      .then(data => {
+    .then(response => response.json())
+    .then(data => {
         if (data.error) {
-          alert(data.error); // Display error message if any
+            // Store error message in sessionStorage
+            sessionStorage.setItem('notification', JSON.stringify({ message: data.error, success: false }));
         } else {
-          alert(data.message); // Success message
-          // Optionally, you could update the UI (e.g., remove the item from the cart)
-          location.reload(); // Refresh the page to reflect the changes
+            // Store success message in sessionStorage
+            sessionStorage.setItem('notification', JSON.stringify({ message: data.message, success: true }));
         }
-      })
-      .catch(error => {
+        
+        // Reload the page
+        location.reload();
+    })
+    .catch(error => {
         console.error('Error removing item:', error);
-      });
-  }
+        // Store error message in sessionStorage
+        sessionStorage.setItem('notification', JSON.stringify({ message: 'An error occurred while removing the item.', success: false }));
+        
+        // Reload the page
+        location.reload();
+    });
+}
 
-  // Function for upadting the quantity of a product
-  function updateQuantity(selectElement, itemId) {
-    const quantity = selectElement.value;
+// Check for a stored notification and display it
+window.onload = function() {
+    const notificationData = sessionStorage.getItem('notification');
+    if (notificationData) {
+        const { message, success } = JSON.parse(notificationData);
+        // Show the notification with the stored message
+        showNotification(message, success);
+        // Clear the notification from sessionStorage after it's shown
+        sessionStorage.removeItem('notification');
+    }
+};
+
+// Notification function to show the message
+function showNotification(message, success = true) {
+    // Create the notification element
+    const notification = document.createElement("div");
+    notification.textContent = message;
+
+    // Apply styles for success or failure
+    notification.classList.add("remove-notification");
+    notification.style.backgroundColor = success ? "red" : "red";
+
+    // Append the notification to the body
+    document.body.appendChild(notification);
+
+    // Show the notification with animation
+    setTimeout(() => {
+        notification.classList.add("show");
+    }, 10); // Slight delay for animation to trigger
+
+    // Remove the notification after 3 seconds
+    setTimeout(() => {
+            notification.classList.remove("show");
+        }, 3000); // Notification stays visible for 3 seconds
+}
+
+
+  // Function for updating the quantity of a product
+  function updateQuantity(button, itemId) {
+    const quantitySpan = button.parentElement.querySelector('.qty-value');
+    let currentQty = parseInt(quantitySpan.textContent);
+    const action = button.classList.contains('minus') ? 'decrease' : 'increase';
+    
+    if (action === 'decrease' && currentQty > 1) {
+      currentQty--;
+    } else if (action === 'increase' && currentQty < 10) {
+      currentQty++;
+    } else {
+      return; // Don't proceed if trying to go below 1 or above 10
+    }
 
     fetch('/cart/update', {
       method: 'POST',
@@ -55,7 +111,7 @@
       },
       body: JSON.stringify({
         cart_item_id: itemId,
-        quantity: quantity
+        quantity: currentQty
       })
     })
       .then(response => response.json())
@@ -63,6 +119,9 @@
         if (data.error) {
           alert(data.error);
         } else {
+          // Update the quantity display
+          quantitySpan.textContent = currentQty;
+          
           // Update the total price for the individual item
           document.getElementById(`total_${itemId}`).textContent =
             `${parseFloat(data.total_price).toFixed(2)}`;
@@ -76,74 +135,93 @@
   }
 </script>
 
-
-<!-- Hero Section -->
-<section class="hero" style="padding: 40px 20px;">
-  <div class="hero-content">
-    <h1 class="page-title">YOUR CART</h1>
-  </div>
-</section>
-
-<!-- Cart Content:: Vatsal -->
 <section class="container">
   @if(isset($items) && $items->count() > 0)
-    <div class="product-card-con">
-    @foreach($items as $item)
-    <div class="product-card">
-      <div class="card-circle"></div>
-      <div class="product-card-content" style="width: 60%; left: 0;">
-      <h2>{{ $item->product->name }}</h2>
-      <p style="margin: 10px 0;">Cost: £{{ number_format($item->product->price, 2) }}</p>
-      <div style="margin: 10px 0;">
-      <label for="quantity_{{ $item->id }}">Quantity:</label>
-      <select id="quantity_{{ $item->id }}" name="quantity" onchange="updateQuantity(this, '{{ $item->id }}')"
-      style="margin-left: 10px;">
-      @for ($i = 1; $i <= 10; $i++)
-      <option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
-    @endfor
-      </select>
+    <div class="cart-list">
+      <div class="cart-header">
+        <div class="header-item">Product</div>
+        <div class="header-item">Price</div>
+        <div class="header-item">Quantity</div>
+        <div class="header-item">Total</div>
       </div>
-      <p style="color: var(--mint); font-size: 1.2em;">Total: £<span
-      id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span>
-      </p>
-      <div style="margin-top: 20px;">
-      <a href="#" onclick="removeItem('{{ $item->id }}')" style="color: #ff4444;">Remove</a>
-      </div>
-      </div>
-      <img class="imageSize-1"
-      src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}"
-      alt="{{ $item->product->name }}" style="height: 100px; border-radius: 10px; box-shadow: 0px 0px 10px rgba()">
-    </div>
-  @endforeach
+      
+      @foreach($items as $item)
+        <div class="cart-item">
+          <div class="item-image">
+            <a href="{{ route('product.details', ['id' => $item->product->id]) }}">
+              <img src="{{ $item->product->images->first()?->image_path ?? asset('Images/default-product.png') }}" alt="{{ $item->product->name }}">
+            </a>
+          </div>
+          <div class="item-details">
+            <h3>{{ $item->product->name }}</h3>
+          </div>
+          <div class="item-price">£{{ number_format($item->product->price, 2) }}</div>
+          <div class="item-quantity">
+            <button class="qty-btn minus" onclick="updateQuantity(this, '{{ $item->id }}')">-</button>
+            <span class="qty-value">{{ $item->quantity }}</span>
+            <button class="qty-btn plus" onclick="updateQuantity(this, '{{ $item->id }}')">+</button>
+          </div>
+          <div class="item-total">£<span id="total_{{ $item->id }}">{{ number_format($item->product->price * $item->quantity, 2) }}</span></div>
+          <button class="remove-btn" onclick="removeItem('{{ $item->id }}')">Remove</button>
+        </div>
+      @endforeach
     </div>
 
-    <!-- Cart Summary:: Vatsal-->
-    <div class="product-card" style="width: 100%; max-width: 800px; margin: 40px auto; padding: 30px;">
-    <div style="text-align: right;">
-      <h2 style="color: var(--text-primary); margin-bottom: 20px;">Cart Summary</h2>
-      <p style="color: var(--text-secondary); margin-bottom: 10px;">Subtotal: £<span
-        id="subtotal">{{ number_format($total, 2) }}</span></p>
-      <p style="color: var(--text-secondary); margin-bottom: 20px;">Shipping: Calculated at checkout</p>
-      <h3 style="color: var(--mint); font-size: 1.5em; margin-bottom: 30px;">Total: £<span
-        id="cart-total">{{ number_format($total, 2) }}</span></h3>
-      <a href="{{ route('checkout') }}" class="btn-order" style="font-size: 1.1em;">Proceed to Checkout</a>
+    <div class="cart-summary">
+      <h2>Cart Total</h2>
+      <div class="summary-row">
+        <span>SUBTOTAL</span>
+        <span id="subtotal">£{{ number_format($total, 2) }}</span>
+      </div>
+      <div class="summary-row">
+        <span>DISCOUNT</span>
+        <span>—</span>
+      </div>
+      <div class="summary-row total">
+        <span>TOTAL</span>
+        <span id="cart-total">£{{ number_format($total, 2) }}</span>
+      </div>
+      <a href="{{ route('checkout') }}" class="btn-order">Proceed To Checkout</a>
     </div>
-    </div>
+
+    <!-- Recommended Glasses -->
+    <section class="recommendations">
+      <h2>You May Also Like</h2>
+      <div class="recommendation-grid">
+          @foreach ($recommendedProducts as $product)
+          <a href="{{ route('product.details', ['id' => $product->id]) }}">
+              <div class="recommendation-card">
+                  <div class="card-details">
+                      @foreach($product->images as $image)
+                          @if($image->imageType && $image->imageType->name == 'front')
+                              <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                            @break
+                          @endif
+                      @endforeach
+                    <h3>{{ $product->name }}</h3>
+                    <p>£{{ number_format($product->price, 2) }}</p>
+                    <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add-to-cart">Add to Cart</button>
+                    </form>
+                  </div>
+                </div>
+              </a>
+          @endforeach
+      </div>
+    </section>
+
+
   @else
     <div class="empty-cart">
-    <div class="empty-cart-animation">
-      <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
-    </div>
-    <h2>Your Cart is Empty</h2>
-    <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something
-      special!</p>
-    <a href="{{ route('welcome') }}" class="continue-shopping-btn">
-      Continue Shopping
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-      <path
-        d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42L14.59 11H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 1.42 1.42l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76z" />
-      </svg>
-    </a>
+      <div class="empty-cart-animation">
+        <img src="{{ asset('Images/gifs/glasses.gif') }}" alt="Empty Cart">
+      </div>
+      <h2>Your Cart is Empty</h2>
+      <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
+      <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
     </div>
   @endif
 </section>

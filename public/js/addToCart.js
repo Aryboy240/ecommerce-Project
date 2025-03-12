@@ -16,14 +16,28 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.appendChild(notification);
     }
 
+    // Check if a notification message exists in sessionStorage
+    const storedNotification = sessionStorage.getItem("notificationMessage");
+    const storedSuccess = sessionStorage.getItem("notificationSuccess");
+
+    if (storedNotification) {
+        showNotification(storedNotification, storedSuccess === "true");
+        // Clear sessionStorage after showing the notification
+        sessionStorage.removeItem("notificationMessage");
+        sessionStorage.removeItem("notificationSuccess");
+    }
+
     function showNotification(message, success = true) {
         notification.textContent = message;
-        notification.classList.add("show");
         notification.style.backgroundColor = success ? "#4CAF50" : "#f44336"; // Green for success, red for error
 
         setTimeout(() => {
+            notification.classList.add("show");
+        }, 10); // Slight delay for animation to trigger
+
+        setTimeout(() => {
             notification.classList.remove("show");
-        }, 3000);
+        }, 3000); // Notification stays visible for 3 seconds
     }
 
     // Handle button clicks (homepage & search page)
@@ -90,9 +104,23 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    showNotification("Product added to cart successfully!");
+                    // Store notification data in sessionStorage before reload
+                    sessionStorage.setItem(
+                        "notificationMessage",
+                        "Product added to cart successfully!"
+                    );
+                    sessionStorage.setItem("notificationSuccess", "true");
+                    // Immediately reload the page after storing the notification
+                    location.reload();
                 } else {
-                    showNotification("Error: " + data.error, false);
+                    // Store error notification in sessionStorage before reload
+                    sessionStorage.setItem(
+                        "notificationMessage",
+                        "Error: " + data.error
+                    );
+                    sessionStorage.setItem("notificationSuccess", "false");
+                    // Immediately reload the page after storing the notification
+                    location.reload();
                 }
             })
             .catch((error) => console.log("Error:", error));
