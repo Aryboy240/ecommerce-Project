@@ -103,13 +103,13 @@ Route::middleware(['auth'])->group(function(){
 */
 
 // Admin Login page view
-Route::get('/admin/login', function () {
-    return view('adminlogin'); // Refers to resources/views/adminLogin.blade.php
+Route::get('/adminLogin', function () {
+    return view('adminLogin'); // Refers to resources/views/adminLogin.blade.php
 })->name('admin.login');
 
 // Admin Dashboard page view
-Route::get('/admin/dashboard', function () {
-    return view('adminpanel'); // Refers to resources/views/adminPanel.blade.php
+Route::get('/Adminpanel', function () {
+    return view('Adminpanel'); // Refers to resources/views/adminPanel.blade.php
 })->middleware('auth')->name('admin.dashboard');
 
 // Admin Authentication Routes
