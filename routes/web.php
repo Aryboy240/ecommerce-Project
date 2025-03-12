@@ -6,7 +6,9 @@ use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
 use App\Models\Product;
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,23 +26,10 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
 
-
 // Routes to other pages
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
-Route::get('/welcome', function () {
-    return view('welcome'); // Refers to resources/views/welcome.blade.php
-})->name('welcome');
-
-Route::get('/product', function () {
-    return view('Product'); // Refers to resources/views/Product.blade.php
-})->name('product');
-
-Route::get('/sproduct', function () {
-    return view('sproduct'); // Refers to resources/views/sproduct.blade.php
-})->name('sproduct');
+Route::get('/', [ProductController::class, 'featuredProducts'])->name('welcome');
+Route::get('/welcome', [ProductController::class, 'featuredProducts'])->name('welcome'); // This sends the 'featured products' information to the homepage
 
 Route::get('/about', function () {
     return view('about'); // Refers to resources/views/about.blade.php
@@ -69,6 +58,29 @@ Route::get('/Testimonials', function () {
 Route::get('/OurStory', function () {
     return view('OurStory'); // Refers to resources/views/OurStory.blade.php
 })->name('OurStory');
+/*
+|--------------------------------------------------------------------------
+| Products Page
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/product', function () {
+    $products = Product::with('images', 'category')->get(); // Fetch products with relationships
+    return view('Product', ['products' => $products]);  // Pass data to the view with the correct variable name
+})->name('product');
+
+Route::get('/sproduct', function () {
+    $products = Product::with('images', 'category')->get();
+    return view('sproduct', ['products' => $products]);
+})->name('sproduct');
+
+Route::get('/sproduct/{id}', [ProductController::class, 'show'])->name('product.details');
+
+Route::post('/reviews/{product}', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+
+Route::post('/sproduct/{id}/review', [ReviewController::class, 'store'])->name('review.store');
+
+
 /*
 |--------------------------------------------------------------------------
 | Account Routes
@@ -137,22 +149,46 @@ Route::middleware(['auth'])->prefix('cart')->group(function () {
     Route::post('/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
 });
 
-// Additions from homepage featured products
-Route::get('/welcome', [ShoppingCartController::class, 'showHomePage'])->name('welcome');
-Route::middleware(['auth'])->prefix('welcome')->group(function () {
-    Route::post('/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
-});
-
 Route::get('/check-login', [UserController::class, 'checkLogin']);
 Route::get('/check-login', function () {
     return response()->json(['logged_in' => auth()->check()]);
 });
 
-
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
 
 //adminlogon page
 Route::get('/adminlogin', function () {
     return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
 })->name('adminlogin');
+
+// Account Management Routes
+Route::middleware(['auth'])->group(function () {
+    // Account Page
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    
+    // Update Username
+    Route::post('/account/update-username', [AccountController::class, 'updateUsername'])
+        ->name('update.username');
+    
+    // Update Password
+    Route::post('/account/update-password', [AccountController::class, 'updatePassword'])
+        ->name('update.password');
+    
+    // Update Email
+    Route::post('/account/update-email', [AccountController::class, 'updateEmail'])
+        ->name('update.email');
+    
+    // Update Personal Info
+    Route::post('/account/update-personal-info', [AccountController::class, 'updatePersonalInfo'])
+        ->name('update.personal-info');
+    
+    // Update Profile Picture
+    Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])
+        ->name('update.profile-picture');
+    
+    // Update Billing Address
+    Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
+        ->name('update.billing-address');
+});

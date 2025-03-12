@@ -14,6 +14,7 @@
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    margin-bottom: 125px;
     padding: 40px 20px;
 }
 
@@ -99,7 +100,7 @@ input:focus {
     border-radius: 20px;
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
     padding: 30px;
-    position: sticky;
+    position: relative;
     top: 20px;
 }
 
