@@ -21,21 +21,26 @@ class ShoppingCartController extends Controller
                 return redirect()->route('login');
             }
 
-            $items = ShoppingCartItem::with(['product' => function($query) {
+            // Fetch the cart items
+            $items = ShoppingCartItem::with(['product' => function ($query) {
                 $query->select('id', 'name', 'price', 'description');
             }])
             ->where('user_id', Auth::id())
             ->get();
 
-            $total = $items->sum(function($item) {
+            $total = $items->sum(function ($item) {
                 return $item->product->price * $item->quantity;
             });
 
-            return view('cart.cart', compact('items', 'total'));
+            // Get 4 random products from the database
+            $recommendedProducts = Product::inRandomOrder()->take(4)->get();
+
+            return view('cart.cart', compact('items', 'total', 'recommendedProducts'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error loading cart: ' . $e->getMessage());
         }
     }
+
 
     /**
      * Add an item to the shopping cart.
@@ -103,9 +108,6 @@ class ShoppingCartController extends Controller
         $products = Product::all(); // Fetch all products from the database
         return view('welcome', compact('products'));
     }
-    
-    
-
 
 
     /**

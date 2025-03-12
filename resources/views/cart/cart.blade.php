@@ -2,6 +2,7 @@
 
 <head>
 
+  <script defer src="/js/addToCart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
 </head>
@@ -13,34 +14,80 @@
 @section('title', 'cart')
 
 @section('content')
-<!-- Dynamic cart functions:: Aryan Kora DO NOT TOUCH, PLEASE -->
+<!-- Dynamic cart functions:: Aryan Kora -->
 <script>
   // Function for removing an item from the cart
   function removeItem(cartItemId) {
     // Send AJAX request to remove the item
     fetch('/cart/remove', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}', // CSRF token for security
-      },
-      body: JSON.stringify({
-        cart_item_id: cartItemId
-      })
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}', // CSRF token for security
+        },
+        body: JSON.stringify({
+            cart_item_id: cartItemId
+        })
     })
-      .then(response => response.json())
-      .then(data => {
+    .then(response => response.json())
+    .then(data => {
         if (data.error) {
-          alert(data.error); // Display error message if any
+            // Store error message in sessionStorage
+            sessionStorage.setItem('notification', JSON.stringify({ message: data.error, success: false }));
         } else {
-          alert(data.message); // Success message
-          location.reload(); // Refresh the page to reflect the changes
+            // Store success message in sessionStorage
+            sessionStorage.setItem('notification', JSON.stringify({ message: data.message, success: true }));
         }
-      })
-      .catch(error => {
+        
+        // Reload the page
+        location.reload();
+    })
+    .catch(error => {
         console.error('Error removing item:', error);
-      });
-  }
+        // Store error message in sessionStorage
+        sessionStorage.setItem('notification', JSON.stringify({ message: 'An error occurred while removing the item.', success: false }));
+        
+        // Reload the page
+        location.reload();
+    });
+}
+
+// Check for a stored notification and display it
+window.onload = function() {
+    const notificationData = sessionStorage.getItem('notification');
+    if (notificationData) {
+        const { message, success } = JSON.parse(notificationData);
+        // Show the notification with the stored message
+        showNotification(message, success);
+        // Clear the notification from sessionStorage after it's shown
+        sessionStorage.removeItem('notification');
+    }
+};
+
+// Notification function to show the message
+function showNotification(message, success = true) {
+    // Create the notification element
+    const notification = document.createElement("div");
+    notification.textContent = message;
+
+    // Apply styles for success or failure
+    notification.classList.add("remove-notification");
+    notification.style.backgroundColor = success ? "red" : "red";
+
+    // Append the notification to the body
+    document.body.appendChild(notification);
+
+    // Show the notification with animation
+    setTimeout(() => {
+        notification.classList.add("show");
+    }, 10); // Slight delay for animation to trigger
+
+    // Remove the notification after 3 seconds
+    setTimeout(() => {
+            notification.classList.remove("show");
+        }, 3000); // Notification stays visible for 3 seconds
+}
+
 
   // Function for updating the quantity of a product
   function updateQuantity(button, itemId) {
@@ -134,19 +181,37 @@
       </div>
       <a href="{{ route('checkout') }}" class="btn-order">Proceed To Checkout</a>
     </div>
+
+    <!-- Recommended Glasses -->
     <section class="recommendations">
       <h2>You May Also Like</h2>
       <div class="recommendation-grid">
-        @for ($i = 0; $i < 4; $i++)
-        <div class="recommendation-card">
-          <div class="card-tag">New</div>
-          <div class="card-image"></div>
-          <h3>Glasses</h3>
-          <p>£599.00</p>
-        </div>
-        @endfor
+          @foreach ($recommendedProducts as $product)
+          <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+              <div class="recommendation-card">
+                  <div class="card-tag">New</div>
+                    <div class="card-image">
+                      @foreach($product->images as $image)
+                          @if($image->imageType && $image->imageType->name == 'front')
+                              <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                            @break
+                          @endif
+                      @endforeach
+                    </div>
+                  <h3>{{ $product->name }}</h3>
+                  <p>£{{ number_format($product->price, 2) }}</p>
+                  <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
+                      @csrf
+                      <input type="hidden" name="product_id" value="{{ $product->id }}">
+                      <input type="hidden" name="quantity" value="1">
+                      <button type="submit" class="add-to-cart">Add to Cart</button>
+                  </form>
+                </div>
+              </a>
+          @endforeach
       </div>
     </section>
+
 
   @else
     <div class="empty-cart">
