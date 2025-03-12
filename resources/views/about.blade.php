@@ -29,5 +29,4 @@
   <img src="{{ asset(path: 'Images/caution.png') }}">
 </div>
 
-
 @endsection
