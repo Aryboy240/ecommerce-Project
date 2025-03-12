@@ -187,25 +187,24 @@ function showNotification(message, success = true) {
       <h2>You May Also Like</h2>
       <div class="recommendation-grid">
           @foreach ($recommendedProducts as $product)
-          <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+          <a href="{{ route('product.details', ['id' => $product->id]) }}">
               <div class="recommendation-card">
-                  <div class="card-tag">New</div>
-                    <div class="card-image">
+                  <div class="card-details">
                       @foreach($product->images as $image)
                           @if($image->imageType && $image->imageType->name == 'front')
                               <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
                             @break
                           @endif
                       @endforeach
-                    </div>
-                  <h3>{{ $product->name }}</h3>
-                  <p>£{{ number_format($product->price, 2) }}</p>
-                  <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
-                      @csrf
-                      <input type="hidden" name="product_id" value="{{ $product->id }}">
-                      <input type="hidden" name="quantity" value="1">
-                      <button type="submit" class="add-to-cart">Add to Cart</button>
-                  </form>
+                    <h3>{{ $product->name }}</h3>
+                    <p>£{{ number_format($product->price, 2) }}</p>
+                    <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add-to-cart">Add to Cart</button>
+                    </form>
+                  </div>
                 </div>
               </a>
           @endforeach

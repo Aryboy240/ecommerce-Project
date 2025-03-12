@@ -202,11 +202,32 @@
     font-size: 0.8rem;
 }
 
+.card-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    color: var(--text-primary);
+}
+
+.recommendation-grid a {
+    text-decoration: none !important;
+}
+
+.card-details img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+/*
 .recommendation-card h3 {
     color: var(--text-primary);
     font-size: 0.9rem;
     margin: 0;
-    position: absolute;
+    position: relative;
     bottom: 2rem;
     left: 1rem;
 }
@@ -215,10 +236,12 @@
     color: var(--text-primary);
     font-size: 0.8rem;
     margin: 0;
-    position: absolute;
+    position: relative;
     bottom: 1rem;
     left: 1rem;
 }
+
+*/
 
 /* Responsive Design */
 @media (max-width: 1024px) {
