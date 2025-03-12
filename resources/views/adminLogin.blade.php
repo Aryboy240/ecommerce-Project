@@ -1,7 +1,7 @@
 <!--
     Developer: man kwok angus
 	  University ID: 
-    Function: Front end for the contacts page
+    Function: Front end for the admin login page
 
     Developer: Nikhil Kainth
 	  University ID: 230069888
@@ -59,7 +59,7 @@
         <p class="error-message">{{ $errors->first('loginError') }}</p>
     @endif
 
-    <form class="form" method="POST" action="{{ route('admin.login') }}">
+    <form class="form" method="POST" action="{{ route('adminlogin') }}">
         @csrf
         <div class="form-group">
             <label for="username">Admin Name</label>

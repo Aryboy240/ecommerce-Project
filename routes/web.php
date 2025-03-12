@@ -80,6 +80,10 @@ Route::get('/login', function () {
     return view('Login'); // Refers to resources/views/Login.blade.php
 })->name('login');
 
+Route::get('/adminLogin', function () {
+    return view('adminLogin'); // Refers to resources/views/adminLogin.blade.php
+})->name('adminlogin');
+
 Route::get('/register', function () {
     return view('Register'); // Refers to resources/views/Register.blade.php
 })->name('register');
