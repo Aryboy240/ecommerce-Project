@@ -3,6 +3,10 @@
 	  University ID: 
     Function: Front end for the contacts page
 
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Back-end and final edits on front-end for the new backend features integrations
+
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -46,19 +50,30 @@
 
     <div class="form-wrapper">
       <div class="login-container">
-        <h1>Admin login in</h1>
-          <form class="form"> <!--lacking a ligin function action-->
-            <div class="form-group">
-              <label>Admin name</label>
-              <input type="text" name="username" required>
-            </div>
-            <div class="form-group">
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Password" required>
-            </div>
-            <button class="form-submit-btn" type="submit">Login</button>
-          </form>
-      </div>
-    </div>
+        <h1>ADMIN LOGIN</h1>
+        @if (session('success'))
+        <p class="success-message">{{ session('success') }}</p>
+    @endif
+
+    @if ($errors->has('loginError'))
+        <p class="error-message">{{ $errors->first('loginError') }}</p>
+    @endif
+
+    <form class="form" method="POST" action="{{ route('admin.login') }}">
+        @csrf
+        <div class="form-group">
+            <label for="username">Admin Name</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button class="form-submit-btn" type="submit">Login</button>
+    </form>
+</div>
+</div>
 </body>
 </html>

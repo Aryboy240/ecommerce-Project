@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +72,7 @@ Route::get('/OurStory', function () {
 })->name('OurStory');
 /*
 |--------------------------------------------------------------------------
-| Account Routes
+| Customer Account Routes
 |--------------------------------------------------------------------------
 */
 
@@ -94,6 +95,26 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
     Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Admin Account Routes
+|--------------------------------------------------------------------------
+*/
+
+// Admin Login page view
+Route::get('/admin/login', function () {
+    return view('adminlogin'); // Refers to resources/views/adminLogin.blade.php
+})->name('admin.login');
+
+// Admin Dashboard page view
+Route::get('/admin/dashboard', function () {
+    return view('adminpanel'); // Refers to resources/views/adminPanel.blade.php
+})->middleware('auth')->name('admin.dashboard');
+
+// Admin Authentication Routes
+Route::post('/admin/login', [AdminController::class, 'login']);
+Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -180,8 +201,4 @@ Route::get('/adminreport', function () {
     return view('adminreport'); 
 })->name('adminreport');
 
-//adminlogon page
-Route::get('/adminlogin', function () {
-    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
-})->name('adminlogin');
 
