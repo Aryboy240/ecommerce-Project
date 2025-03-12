@@ -21,7 +21,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 // Basic routes
 
-// login system routes - Aryan
+// Login system routes - Aryan
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
@@ -46,6 +46,11 @@ Route::get('/checkout', function () {
 Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
+
+// "Find My Fit" feature route
+Route::get('/find-my-fit', function () {
+    return view('find_my_fit'); // Ensure this Blade file exists in resources/views
+})->name('find_my_fit');
 
 /*
 |--------------------------------------------------------------------------
@@ -90,10 +95,10 @@ Route::get('/account', function () {
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function(){
-    Route::post('/update-username',[UserController::class, 'updateUsername'])->name('update.username');
-    Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
-    Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/update-username', [UserController::class, 'updateUsername'])->name('update.username');
+    Route::post('/update-email', [UserController::class, 'updateEmail'])->name('update.email');
+    Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
 });
 
 /*
@@ -145,6 +150,7 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
 
 // Account Management Routes
 Route::middleware(['auth'])->group(function () {
