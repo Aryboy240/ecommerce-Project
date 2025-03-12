@@ -1125,3 +1125,8 @@ input:checked + .slider:before {
     background: var(--mint);
     color: var(--bg-primary);
 }
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+}

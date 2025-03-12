@@ -31,6 +31,27 @@ body {
     opacity: 1;
 }
 
+.remove-notification {
+    position: fixed;
+    bottom: -50px; /* Start off-screen */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+.remove-notification.show {
+    bottom: 20px; /* Slide up */
+    opacity: 1;
+}
+
 /*  Developer: Aryan Kora
     University ID: 230059030
     Function: Navigaion bar

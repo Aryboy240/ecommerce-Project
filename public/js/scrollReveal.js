@@ -5,7 +5,8 @@ const sr = ScrollReveal({
     reset: false,
 });
 
-// Home
+// Homepage
+
 sr.reveal(".hero", {
     duration: 1000,
     interval: 100,
