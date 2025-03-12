@@ -47,6 +47,17 @@ Route::get('/shoppingCart', function () {
     return view('Cart'); // Refers to resources/views/contact.blade.php
 })->name('shoppingCart');
 
+Route::get('/Careers', function () {
+    return view('Careers'); // Refers to resources/views/Careers.blade.php
+})->name('Careers');
+
+Route::get('/Testimonials', function () {
+    return view('Testimonials'); // Refers to resources/views/Careers.blade.php
+})->name('Testimonials');
+
+Route::get('/OurStory', function () {
+    return view('OurStory'); // Refers to resources/views/OurStory.blade.php
+})->name('OurStory');
 /*
 |--------------------------------------------------------------------------
 | Products Page
@@ -145,6 +156,12 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+
+//adminlogon page
+Route::get('/adminlogin', function () {
+    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
+})->name('adminlogin');
 
 // Account Management Routes
 Route::middleware(['auth'])->group(function () {
