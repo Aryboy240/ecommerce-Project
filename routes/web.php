@@ -80,7 +80,6 @@ Route::post('/reviews/{product}', [ReviewController::class, 'store'])->name('rev
 
 Route::post('/sproduct/{id}/review', [ReviewController::class, 'store'])->name('review.store');
 
-
 /*
 |--------------------------------------------------------------------------
 | Account Routes
@@ -158,6 +157,34 @@ Route::get('/check-login', function () {
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
 
 
+
+Route::get('/adminpanel', function () {
+    return view('Adminpanel');
+})->name('adminpanel');
+
+Route::get('/productadmin', function () {
+    return view('Productadmin'); 
+})->name('productadmin');
+
+// Order Management Route
+Route::get('/orders', function () {
+    return view('Order');
+})->name('orders');
+
+Route::get('/adminprofile', function () {
+    return view('Adminprofile');
+})->name('adminprofile');
+
+// Customer Management Route
+Route::get('/customers', function () {
+    return view('Customers'); 
+})->name('customers');
+
+// Report Route
+Route::get('/adminreport', function () {
+    return view('adminreport'); 
+})->name('adminreport');
+
 //adminlogon page
 Route::get('/adminlogin', function () {
     return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
@@ -192,3 +219,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
         ->name('update.billing-address');
 });
+
