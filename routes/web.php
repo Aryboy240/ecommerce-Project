@@ -108,6 +108,17 @@ Route::middleware(['auth'])->group(function(){
 
 /*
 |--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+//admin login page
+Route::get('/adminlogin', function () {
+    return view('adminlogin'); // Refers to resources/views/adminlogin.blade.php
+})->name('adminlogin');
+
+/*
+|--------------------------------------------------------------------------
 | Search Routes
 |--------------------------------------------------------------------------
 */
@@ -184,11 +195,6 @@ Route::get('/customers', function () {
 Route::get('/adminreport', function () {
     return view('adminreport'); 
 })->name('adminreport');
-
-//adminlogon page
-Route::get('/adminlogin', function () {
-    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
-})->name('adminlogin');
 
 // Account Management Routes
 Route::middleware(['auth'])->group(function () {
