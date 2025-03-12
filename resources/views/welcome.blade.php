@@ -8,6 +8,7 @@
 
 <head>
   <script defer src="/js/addToCart.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/find_my_fit.css') }}">
   <script defer src="js/ProductSlider.js"></script>
 </head>
 
@@ -67,8 +68,9 @@
 <!-- Find My Fit Feature Start -->
 <div class="overlay" onclick="closeModal()"></div> <!-- Overlay to cover the entire screen when modal is active -->
 
-<button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
-
+<div class="fit-button-con">
+  <button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
+</div>
 <!-- Initial Popup -->
 <div id="initialPopup" class="initial-popup">
   <span class="close-modal" onclick="closeInitialPopup()">&times;</span>
