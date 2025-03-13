@@ -3,6 +3,11 @@
     University ID: 230049488
     Function: Styling for the admin report page.
 */
+.main-content {
+    padding: 0px;
+    margin: 45px;
+    margin-right: 90px;
+}
 .dashboarditem{
     display: flex;
     justify-content: flex-start;
@@ -15,14 +20,16 @@
 
 .report-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: 20px;
     border: 1px solid var(--lighter);
     border-radius: 8px;
     width: 40%;
     height: 120px;
     margin: 22px;
-    min-width: 350px;
+    min-width: 391px;
+    height: auto;
+    align-items: stretch;
 }
 
 .product-img {
@@ -32,7 +39,7 @@
     margin-right: 20px;
 }
 .product-info {
-    flex-grow: 1;
+    flex-grow: 0;
 }
 .product-name {
     font-size: 16px;
@@ -82,12 +89,17 @@
 }
 .bar1{
     display: flex;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-right: 100px;
 }
 .info{
     justify-content: space-evenly;
     width: 50%;
     height: 350px;
+    flex: 1 1 50%; 
+    min-width: 500px;
 }
 .info1{
     display: flex;
@@ -134,12 +146,15 @@
 }
 .table{
     box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
-    width: 35%;
     margin-top: 20px;
     margin-left: 35px;
     border-radius: 20px;
     background-color: var(--bg-secondary);
     height: 325px;
+    flex: 1 1 300px;
+    width: auto;
+    min-width: 280px;
+    align-items: stretch;
 }
 .tabletitle{
     font-size: 24px;
@@ -158,6 +173,7 @@
     padding-left: 10px;
     display: flex;
     background-color: var(--bg-primary);
+    justify-content: space-evenly;
 }
 .glassrank p{
     padding: 3px;
@@ -199,8 +215,8 @@
 .inoutcomeboard{
     border: 1px solid var(--lighter);
     border-radius: 5px;
-    margin: 40px;
-    margin-right: 90px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     display: flex;
     background-color: black;
 }
@@ -215,7 +231,7 @@
 }
 .itemlist{
     display: flex;
-    justify-content: flex-start;;
+    justify-content: space-between;
     border-bottom: 1px solid var(--lighter);
     padding-bottom: 20px;
     margin-block: 20px;
@@ -243,7 +259,7 @@
     display: flex;
     justify-content: space-between;
     margin-left: 20px;
-    padding-right: 70px
+    width: 90%;
 }
 .bar-nota{
     display: flex;
@@ -305,3 +321,65 @@ button:hover {
 .out-of-stock:hover + .hidden-ids {
     opacity: 1; 
 }
+.inoutcome-status{
+    display: flex;
+    justify-content:space-around;
+    border-bottom: 1px solid var(--lighter);
+    margin-left: 15px;
+    width: 150px;
+}
+.inoutcome-status p{
+   margin: 0;
+   font-size: small;
+}
+.inoutcome-detail{
+    display: flex;
+    justify-content:space-around;
+    border-bottom: 1px solid var(--lighter);
+    margin-left: 15px;
+    width: 150px;
+}
+.inoutcome-detail p{
+    margin-bottom: 0;
+    font-size: small;
+ }
+ .inoutcome-viewdetail{
+    text-align: left;
+    color: var(--lighter);
+    margin-left: 15px;
+ }
+ .inoutcome-viewdetail:hover{
+    color:#1cfbe8
+ }
+ .inoutcome-outofstock{
+    text-align: left;
+    margin-left: 15px;
+    color: #dc3545;
+    margin-top: 9px;
+ }
+ .inoutcome-outofstock p{
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.warn{
+    animation-name: warn;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+@keyframes warn {
+    0%   {color: red;}
+    50%  {color: #dc3545;}
+    100% {color: red;}
+}
+
+ .inoutcome-viewdetail p{
+    margin-bottom: 0;
+    margin-top: 10px;
+ }
+ .Done{
+    color: #28a745;
+ }
+ .unDone{
+    color: #dc3545;
+ }
+

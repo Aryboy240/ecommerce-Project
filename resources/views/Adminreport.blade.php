@@ -136,26 +136,20 @@
                     </div>
                     <div class="itemlist">                             
                         <img src="{{ asset('Images/products/Featured/Comfit/33145006/33145006-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                        <div class="listdetail">
-                            <div class="listdetail1">
-                                <p class="itemid">33145006</p> 
-                                <p class="stock">8</p>
-                                <p class="date">01/04/2025</p>
-                            </div>
+                        <p class="itemid">33145006</p> 
+                        <p class="stock">8</p>
+                        <p class="date">01/04/2025</p>                        
                         <p class="orderid">0001</p>
-                        </div>
+                        
                     </div>
                     <div class="itemlist">                             
                         <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                        <div class="listdetail">
-                            <div class="listdetail1">
-                                <p class="itemid">32859928</p> 
-                                <p class="stock">2</p>
-                                <p class="date">03/09/2025</p>
-                            </div>
+                        <p class="itemid">32859928</p> 
+                        <p class="stock">2</p>
+                        <p class="date">03/09/2025</p>
                         <p class="orderid">0002</p>
-                        </div>
                     </div>
+                    
                 </div>
                 <div class="board outcomeboard">
                     <p>Outcoming Order</p>
@@ -168,14 +162,14 @@
                     </div>
                     <div class="boarditem">
                     <div class="itemlist">                             
-                        <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
+                        <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
                         <div class="listdetail">
                             <div class="listdetail1">
-                                <p class="itemid">32859928</p> 
-                                <p class="stock">2</p>
-                                <p class="date">03/09/2025</p>
+                                <p class="itemid">32859935</p> 
+                                <p class="stock">3</p>
+                                <p class="date">5/02/2023</p>
                             </div>
-                        <p class="orderid">0002</p>
+                        <p class="orderid">0003</p>
                         </div>
                     </div>
                     </div>
@@ -190,7 +184,7 @@
                             <img src="{{ asset('Images/error.png') }}" alt="Product Image" class="error-img">
                             <p class="out-of-stock">4 item out of stock</p>
                             <div class="hidden-ids">
-                                33137148 33137131
+                                33137148 ,33137131
                                 <br>
                                 33204995
                             </div>
@@ -211,29 +205,60 @@
                             <div class="product-name">Square Frame Glasses</div>
                             <div class="order stockorder">
                                 <p>In stock:</p>
-                                <p>3</p>
+                                <p>10</p>
+                            </div>
+                            <div class="order incomeorder">
+                                <p>Income order:</p>
+                                <p>0</p>
+                            </div>
+                            <div class="order outcomeorder">
+                                <p>Outcome order:</p>
+                                <p>0</p>
+                            </div>
+                        </div>
+                        <div class="product-inoutcome">
+                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
+                            <div class="inoutcome-detail"><p>27/1</p><p class="Done">Done</p><p>in</p><p>001</p></div>
+                            <div class="inoutcome-detail"><p>23/2</p><p class="Done">Done</p><p>out</p><p>002</p></div>
+                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
+                        </div>
+                    </div>
+
+                    <div class="report-container">
+                        <div class="report-glass">
+                            <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
+                            <p>Adidas</p>
+                            <p>32859935</p>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">Square Frame Glasses</div>
+                            <div class="order stockorder warn">
+                                <p>In stock:</p>
+                                <p>0</p>
                             </div>
                             <div class="order incomeorder">
                                 <p>Income order:</p>
                                 <p>3</p>
                             </div>
                             <div class="order outcomeorder">
-                                <p>Instock order:</p>
-                                <p>3</p>
+                                <p>Outcome order:</p>
+                                <p>2</p>
                             </div>
                         </div>
-                        <div class="product-detail">
-                            <div class="detail-order">
-
-                            </div>
+                        <div class="product-inoutcome">
+                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
+                            <div class="inoutcome-detail"><p>1/2</p><p class="Done">Done</p><p>in</p><p>004</p></div>
+                            <div class="inoutcome-detail"><p>3/2</p><p class="Done">Done</p><p>out</p><p>003</p></div>
+                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
+                            <div class="inoutcome-outofstock warn"><p>Out Of Stock !</p></div>
                         </div>
                     </div>
 
                     <div class="report-container">
                         <div class="report-glass">
-                            <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
-                            <p>32859928</p>
+                            <img src="{{ asset('Images/products/Featured/Adidas/32859942/32859942-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
                             <p>Adidas</p>
+                            <p>32859942</p>
                         </div>
                         <div class="product-info">
                             <div class="product-name">Square Frame Glasses</div>
@@ -246,32 +271,15 @@
                                 <p>3</p>
                             </div>
                             <div class="order outcomeorder">
-                                <p>Instock order:</p>
+                                <p>Outcome order:</p>
                                 <p>3</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="report-container">
-                        <div class="report-glass">
-                            <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
-                            <p>32859928</p>
-                            <p>Adidas</p>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-name">Square Frame Glasses</div>
-                            <div class="order stockorder">
-                                <p>In stock:</p>
-                                <p>3</p>
-                            </div>
-                            <div class="order incomeorder">
-                                <p>Income order:</p>
-                                <p>3</p>
-                            </div>
-                            <div class="order outcomeorder">
-                                <p>Instock order:</p>
-                                <p>3</p>
-                            </div>
+                        <div class="product-inoutcome">
+                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
+                            <div class="inoutcome-detail"><p>3/4</p><p class="Done">Done</p><p>in</p><p>005</p></div>
+                            <div class="inoutcome-detail"><p>5/3</p><p class="warn">UnDone</p><p>out</p><p>006</p></div>
+                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
                         </div>
                     </div>
                     </main> 
