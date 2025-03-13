@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,6 @@ Route::post('/reviews/{product}', [ReviewController::class, 'store'])->name('rev
 
 Route::post('/sproduct/{id}/review', [ReviewController::class, 'store'])->name('review.store');
 
-
 /*
 |--------------------------------------------------------------------------
 | Account Routes
@@ -107,6 +107,78 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
     Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
 });
+
+// Account Management Routes
+Route::middleware(['auth'])->group(function () {
+    // Account Page
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    
+    // Update Username
+    Route::post('/account/update-username', [AccountController::class, 'updateUsername'])
+        ->name('update.username');
+    
+    // Update Password
+    Route::post('/account/update-password', [AccountController::class, 'updatePassword'])
+        ->name('update.password');
+    
+    // Update Email
+    Route::post('/account/update-email', [AccountController::class, 'updateEmail'])
+        ->name('update.email');
+    
+    // Update Personal Info
+    Route::post('/account/update-personal-info', [AccountController::class, 'updatePersonalInfo'])
+        ->name('update.personal-info');
+    
+    // Update Profile Picture
+    Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])
+        ->name('update.profile-picture');
+    
+    // Update Billing Address
+    Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
+        ->name('update.billing-address');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Account Routes
+|--------------------------------------------------------------------------
+*/
+
+// Admin login route
+Route::get('/adminlogin', function () {
+    return view('admin/Adminlogin'); // Refers to resources/views/adminlogin.blade.php
+})->name('adminlogin');
+
+// Admin post login route
+Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
+
+// Admin panel route
+Route::get('/adminpanel', function () {
+    return view('admin/AdminPanel');
+})->name('adminpanel');
+
+Route::get('/productadmin', function () {
+    return view('admin/AdminProduct'); 
+})->name('productadmin');
+
+// Order Management Route
+Route::get('/AdminOrders', function () {
+    return view('admin/AdminOrder');
+})->name('AdminOrders');
+
+Route::get('/adminprofile', function () {
+    return view('admin/AdminProfile');
+})->name('adminprofile');
+
+// Customer Management Route
+Route::get('/customers', function () {
+    return view('admin/AdminCustomers'); 
+})->name('customers');
+
+// Report Route
+Route::get('/adminreport', function () {
+    return view('admin/AdminReport'); 
+})->name('adminreport');
 
 /*
 |--------------------------------------------------------------------------
@@ -159,37 +231,3 @@ Route::get('/check-login', function () {
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
 
 
-//adminlogon page
-Route::get('/adminlogin', function () {
-    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
-})->name('adminlogin');
-
-// Account Management Routes
-Route::middleware(['auth'])->group(function () {
-    // Account Page
-    Route::get('/account', [AccountController::class, 'index'])->name('account');
-    
-    // Update Username
-    Route::post('/account/update-username', [AccountController::class, 'updateUsername'])
-        ->name('update.username');
-    
-    // Update Password
-    Route::post('/account/update-password', [AccountController::class, 'updatePassword'])
-        ->name('update.password');
-    
-    // Update Email
-    Route::post('/account/update-email', [AccountController::class, 'updateEmail'])
-        ->name('update.email');
-    
-    // Update Personal Info
-    Route::post('/account/update-personal-info', [AccountController::class, 'updatePersonalInfo'])
-        ->name('update.personal-info');
-    
-    // Update Profile Picture
-    Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])
-        ->name('update.profile-picture');
-    
-    // Update Billing Address
-    Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
-        ->name('update.billing-address');
-});
