@@ -17,7 +17,13 @@
     align-content: flex-start;
     margin: 0px;
 } 
-
+.dashboard {
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+}
 .report-container {
     display: flex;
     align-items: flex-start;
@@ -213,12 +219,12 @@
     border: #28a745;
 }
 .inoutcomeboard{
-    border: 1px solid var(--lighter);
     border-radius: 5px;
     margin-top: 40px;
     margin-bottom: 40px;
     display: flex;
     background-color: black;
+    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
 }
 .board{
     width: 50%;
