@@ -181,3 +181,35 @@
     filter: brightness(90%);
     transform: scale(1.05);
 }
+
+/* Slide-in customer details panel */
+.customer-details-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 550px; /* Increased width */
+    height: 100%;
+    background-color: var(--bg-secondary);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    padding: 24px; /* More padding for better spacing */
+    overflow-y: auto;
+    z-index: 1050;
+    transition: transform 0.3s ease;
+    transform: translateX(0); /* Keep visible for testing */
+    /* transform: translateX(100%); */ /* Uncomment to hide it */
+}
+
+/* Header */
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--lighter);
+}
+
+.details-header h2 {
+    font-size: 22px;
+    color: var(--text-primary);
+}
+
