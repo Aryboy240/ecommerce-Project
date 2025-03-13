@@ -108,6 +108,78 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
 });
 
+// Account Management Routes
+Route::middleware(['auth'])->group(function () {
+    // Account Page
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    
+    // Update Username
+    Route::post('/account/update-username', [AccountController::class, 'updateUsername'])
+        ->name('update.username');
+    
+    // Update Password
+    Route::post('/account/update-password', [AccountController::class, 'updatePassword'])
+        ->name('update.password');
+    
+    // Update Email
+    Route::post('/account/update-email', [AccountController::class, 'updateEmail'])
+        ->name('update.email');
+    
+    // Update Personal Info
+    Route::post('/account/update-personal-info', [AccountController::class, 'updatePersonalInfo'])
+        ->name('update.personal-info');
+    
+    // Update Profile Picture
+    Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])
+        ->name('update.profile-picture');
+    
+    // Update Billing Address
+    Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
+        ->name('update.billing-address');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Account Routes
+|--------------------------------------------------------------------------
+*/
+
+// Admin login route
+Route::get('/adminlogin', function () {
+    return view('admin/Adminlogin'); // Refers to resources/views/adminlogin.blade.php
+})->name('adminlogin');
+
+// Admin post login route
+Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
+
+// Admin panel route
+Route::get('/adminpanel', function () {
+    return view('admin/AdminPanel');
+})->name('adminpanel');
+
+Route::get('/productadmin', function () {
+    return view('admin/AdminProduct'); 
+})->name('productadmin');
+
+// Order Management Route
+Route::get('/AdminOrders', function () {
+    return view('admin/AdminOrder');
+})->name('AdminOrders');
+
+Route::get('/adminprofile', function () {
+    return view('admin/AdminProfile');
+})->name('adminprofile');
+
+// Customer Management Route
+Route::get('/customers', function () {
+    return view('admin/AdminCustomers'); 
+})->name('customers');
+
+// Report Route
+Route::get('/adminreport', function () {
+    return view('admin/AdminReport'); 
+})->name('adminreport');
+
 /*
 |--------------------------------------------------------------------------
 | Search Routes
@@ -158,70 +230,4 @@ Route::get('/check-login', function () {
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
 
-
-// Admin login route
-Route::get('/adminlogin', function () {
-    return view('adminlogin'); // Refers to resources/views/adminlogin.blade.php
-})->name('adminlogin');
-
-// Admin post login route
-Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
-
-// Admin panel route
-Route::get('/adminpanel', function () {
-    return view('Adminpanel');
-})->name('adminpanel');
-
-Route::get('/productadmin', function () {
-    return view('Productadmin'); 
-})->name('productadmin');
-
-// Order Management Route
-Route::get('/orders', function () {
-    return view('Order');
-})->name('orders');
-
-Route::get('/adminprofile', function () {
-    return view('Adminprofile');
-})->name('adminprofile');
-
-// Customer Management Route
-Route::get('/customers', function () {
-    return view('Customers'); 
-})->name('customers');
-
-// Report Route
-Route::get('/adminreport', function () {
-    return view('adminreport'); 
-})->name('adminreport');
-
-// Account Management Routes
-Route::middleware(['auth'])->group(function () {
-    // Account Page
-    Route::get('/account', [AccountController::class, 'index'])->name('account');
-    
-    // Update Username
-    Route::post('/account/update-username', [AccountController::class, 'updateUsername'])
-        ->name('update.username');
-    
-    // Update Password
-    Route::post('/account/update-password', [AccountController::class, 'updatePassword'])
-        ->name('update.password');
-    
-    // Update Email
-    Route::post('/account/update-email', [AccountController::class, 'updateEmail'])
-        ->name('update.email');
-    
-    // Update Personal Info
-    Route::post('/account/update-personal-info', [AccountController::class, 'updatePersonalInfo'])
-        ->name('update.personal-info');
-    
-    // Update Profile Picture
-    Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])
-        ->name('update.profile-picture');
-    
-    // Update Billing Address
-    Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
-        ->name('update.billing-address');
-});
 
