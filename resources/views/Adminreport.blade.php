@@ -182,11 +182,9 @@
                         <div class="bar-nota">
                             
                             <img src="{{ asset('Images/error.png') }}" alt="Product Image" class="error-img">
-                            <p class="out-of-stock">4 item out of stock</p>
-                            <div class="hidden-ids">
-                                33137148 ,33137131
-                                <br>
-                                33204995
+                            <p class="out-of-stock warn">1 item out of stock</p>
+                            <div class="hidden-ids warn">
+                            32859935
                             </div>
                         </div>
                         <div class="searchbar">
