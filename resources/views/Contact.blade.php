@@ -130,30 +130,21 @@
   <form class="formCon">
     <div class="contactInfo">
       <div>
-        <h3>About Optique</h3>
-        <a href="{{ route('OurStory') }}">Our Story</a>
-        <a href="{{ route('Testimonials') }}">Testimonials</a>
-        <a href="{{ route('Careers') }}">Careers</a>
-        <a href="#">Store Locator</a>
-      </div>
-      <div class="social-icons">
-        <h3>Follow Us</h3>
-        <a href="#" id="social-footer-span">
-          <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
-          <span>Facebook</span>
-        </a>
-        <a href="#" id="social-footer-span">
-          <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
-          <span>Instagram</span>
-        </a>
-        <a href="#" id="social-footer-span">
-          <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
-          <span>Twitter</span>
-        </a>
-        <a href="#" id="social-footer-span">
-          <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
-          <span>Pintrest</span>
-        </a>
+        <h2>Contact Info</h2>
+        <ul class="info">
+          <li>
+            <span><img src="{{ asset('Images/svg/location-svgrepo-com.svg') }}"></span>
+            <span>Aston St, Birmingham B4 7ET</span>
+          </li>
+          <li>
+            <span><img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}"></span>
+            <span>support@optique.com</span>
+          </li>
+          <li>
+            <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
+            <span>1 (800) 555-OPTQ</span>
+          </li>
+        </ul>
       </div>
       <ul class="sci">
         <li><a href="https://www.facebook.com" target="_blank"><img
