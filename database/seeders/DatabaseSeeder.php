@@ -31,6 +31,15 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password123'),
             'birthday' => '2000-01-01'
         ]);
+        
+        // Creates a default admin user
+        $adminUser = User::create([
+            'name' => 'Admin001',
+            'email' => 'Admin001@example.com',
+            'password' => Hash::make('Admin001'),
+            'birthday' => '2000-01-01',
+            'is_admin' => true
+        ]);
 
         // Define products by category
         $productsByCategory = [
