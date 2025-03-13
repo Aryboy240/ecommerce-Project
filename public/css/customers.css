@@ -187,11 +187,11 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 550px; /* Increased width */
+    width: 550px;
     height: 100%;
     background-color: var(--bg-secondary);
     box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-    padding: 24px; /* More padding for better spacing */
+    padding: 24px;
     overflow-y: auto;
     z-index: 1050;
     transition: transform 0.3s ease;

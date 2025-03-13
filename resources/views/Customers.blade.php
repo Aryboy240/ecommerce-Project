@@ -108,6 +108,13 @@
         <h2>Edit Customer</h2>
         <span class="close-btn">&times;</span>
     </div>
+
+    <div class="customer-info">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> johndoe@gmail.com</p>
+        <p><strong>D.O.B:</strong> dd/mm/yyyy
+        <p><strong>Address:</strong> 123 Main St, Springfield</p>
+    </div>
 </div>
 
 <script src="{{ asset('js/customers.js') }}"></script>
