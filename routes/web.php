@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,17 +109,6 @@ Route::middleware(['auth'])->group(function(){
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-*/
-
-//admin login page
-Route::get('/adminlogin', function () {
-    return view('adminlogin'); // Refers to resources/views/adminlogin.blade.php
-})->name('adminlogin');
-
-/*
-|--------------------------------------------------------------------------
 | Search Routes
 |--------------------------------------------------------------------------
 */
@@ -168,7 +158,15 @@ Route::get('/check-login', function () {
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
 
 
+// Admin login route
+Route::get('/adminlogin', function () {
+    return view('adminlogin'); // Refers to resources/views/adminlogin.blade.php
+})->name('adminlogin');
 
+// Admin post login route
+Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
+
+// Admin panel route
 Route::get('/adminpanel', function () {
     return view('Adminpanel');
 })->name('adminpanel');
