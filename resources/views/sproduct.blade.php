@@ -120,7 +120,7 @@
                         <!-- Reviews -->
                         <div class="reviews">
                             @for ($i = 1; $i <= 5; $i++)
-                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '☆' }}</b>
+                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '•' }}</b>
                             @endfor
                         </div>
                     </div>
