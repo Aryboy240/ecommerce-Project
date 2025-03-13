@@ -115,6 +115,33 @@
         <p><strong>D.O.B:</strong> dd/mm/yyyy
         <p><strong>Address:</strong> 123 Main St, Springfield</p>
     </div>
+
+    <div class="order-list">
+        <h3>Orders</h3>
+        <div class="order-item">
+            <p><strong>Order #12345</strong></p>
+            <p>Ray-Ban Aviator Classic - £129.99</p>
+            <p>Status: 
+                <select class="order-status">
+                    <option value="Pending">Pending</option>
+                    <option value="Dispatched">Dispatched</option>
+                    <option value="Delivered">Delivered</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="order-item">
+            <p><strong>Order #12346</strong></p>
+            <p>Adidas Sunglasses - £199.99</p>
+            <p>Status: 
+                <select class="order-status">
+                    <option value="Pending">Pending</option>
+                    <option value="Dispatched">Dispatched</option>
+                    <option value="Delivered">Delivered</option>
+                </select>
+            </p>
+        </div>
+    </div>
 </div>
 
 <script src="{{ asset('js/customers.js') }}"></script>
