@@ -3,6 +3,7 @@
 	  University ID: 230049488
     Function: Front end for the admin report page
 -->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,8 +12,6 @@
         <title> Admin Reports </title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-        <!-- JS -->
-        <script defer src="/js/adminreport.js"></script>
         <!-- CSS -->
         <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
         <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
@@ -39,367 +38,250 @@
 
             <!-- Main Content Area -->
             <div class="main-content">
-                <header class="header">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fas fa-search"></i></button>
-                    </div>
-                    <div class="header-right">
-                        <div class="notifications">
-                            <button><i class="fas fa-bell"></i></button>
+                
+                <div class="hearer">
+                    <p class="title">Report</p>
+                </div>
+                <div class="bar1">
+                        
+                    <div class="info">
+                        <div class="info1">
+                            <div class="info-detail">
+                                <div class="info-first">
+                                    <div class="info-title">Revenue</div>
+                                    <div class="info-per">+33%</div>
+                                </div>
+                                <div class="info-secound">
+                                    $4510
+                                </div>
+                            </div>
+                            <div class="info-detail">
+                                <div class="info-first">
+                                    <div class="info-title">New order</div>
+                                    <div class="info-per">+10%</div>
+                                </div>
+                                <div class="info-secound">
+                                    59
+                                </div>
+                            </div>
                         </div>
-                        <div class="profile">
-                            <i class="fas fa-user"></i>
-                            <div class="dropdown">
-                                <button class="dropbtn">Admin User</button>
-                                <div class="dropdown-content">
-                                    <a href="{{ route('adminprofile') }}">Profile</a>
-                                    <a href="javascript:void(0);" onclick="openLogoutModal()">Logout</a>
+                        <div class="info1">
+                            <div class="info-detail">
+                                <div class="info-first">
+                                    <div class="info-title">Total page view</div>
+                                    <div class="info-per">+398</div>
+                                </div>
+                                <div class="info-secound">
+                                    4,358
+                                </div>
+                            </div>
+                            <div class="info-detail">
+                                <div class="info-first">
+                                    <div class="info-title">User</div>
+                                    <div class="info-per">+102</div>
+                                </div>
+                                <div class="info-secound">
+                                    2,360
                                 </div>
                             </div>
                         </div>
                     </div>
-                </header>
 
-                <main class="dashboard">
+                    <div class="table">
+                        <div class="tabletitle">Top 3 sales</div>
+                        <div class="tablerank">
+                            
+                            <div class="glassrank">
+                                <p class="rankp">no1</p>
+                                <div class="rankproduct">
+                                    <p>Square Frame Glasses</p>
+                                    <div class="table-img">
+                                        <img src="{{ asset('Images/products/glasses1.jpeg') }}" alt="Product Image">
+                                    </div>
+                                </div>
+                                <p>19%</p>
+                            </div>
+                            <div class="glassrank">
+                                <p class="rankp">no2</p>
+                                <div class="rankproduct">
+                                    <p>Square Sunglasses</p>
+                                    <div class="table-img">
+                                        <img src="{{ asset('Images/products/sun2.jpeg') }}" alt="Product Image">
+                                    </div>
+                                </div>
+                                <p>12%</p>
+                            </div>
+                            <div class="glassrank">
+                                <p class="rankp">no3</p>
+                                <div class="rankproduct">
+                                    <p>Classic Round Glasses</p>
+                                    <div class="table-img">
+                                        <img src="{{ asset('Images/products/glasses2.png') }}" alt="Product Image">
+                                    </div>
+                                </div>    
+                                <p>8%</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <main class="inoutcomeboard">
+                <div class="board incomeboard">
+                    <p>Incoming Order</p>
+                    <div class="boardlist">
+                        <p>Item Image</p>
+                        <p>Item Id</p>
+                        <p>Stock</p>
+                        <p>Date</p>
+                        <p>Order Id</p>
+                    </div>
+                    <div class="itemlist">                             
+                        <img src="{{ asset('Images/products/Featured/Comfit/33145006/33145006-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
+                        <p class="itemid">33145006</p> 
+                        <p class="stock">8</p>
+                        <p class="date">01/04/2025</p>                        
+                        <p class="orderid">0001</p>
+                        
+                    </div>
+                    <div class="itemlist">                             
+                        <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
+                        <p class="itemid">32859928</p> 
+                        <p class="stock">2</p>
+                        <p class="date">03/09/2025</p>
+                        <p class="orderid">0002</p>
+                    </div>
+                    
+                </div>
+                <div class="board outcomeboard">
+                    <p>Outcoming Order</p>
+                    <div class="boardlist">
+                        <p>Item Image</p>
+                        <p>Item Id</p>
+                        <p>Stock</p>
+                        <p>Date</p>
+                        <p>Order Id</p>
+                    </div>
+                    <div class="boarditem">
+                    <div class="itemlist">                             
+                        <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
+                        <div class="listdetail">
+                            <div class="listdetail1">
+                                <p class="itemid">32859935</p> 
+                                <p class="stock">3</p>
+                                <p class="date">5/02/2023</p>
+                            </div>
+                        <p class="orderid">0003</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </main>
+
                 
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/glasses1.jpeg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Square Frame Glasses</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
+                <main class="dashboard">
+                    <div class="dashboard-bar">
+                        <div class="bar-nota">
+                            
+                            <img src="{{ asset('Images/error.png') }}" alt="Product Image" class="error-img">
+                            <p class="out-of-stock warn">1 item out of stock</p>
+                            <div class="hidden-ids warn">
+                            32859935
                             </div>
-                            <div class="bar stock-bar" data-stock="100"></div>                      
                         </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
+                        <div class="searchbar">
+                            <input type="text" placeholder="Search orders..." class="search-bar">
+                            <button class="search-bar-button">Search</button>
                         </div>
                     </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/sun1.jpeg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Aviator Sunglasses</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
+                    <main class="dashboarditem">
+                    <div class="report-container">
+                        <div class="report-glass">
+                            <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
+                            <p>Adidas</p>
+                            <p>32859928</p>
                         </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
+                        <div class="product-info">
+                            <div class="product-name">Square Frame Glasses</div>
+                            <div class="order stockorder">
+                                <p>In stock:</p>
+                                <p>10</p>
                             </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
+                            <div class="order incomeorder">
+                                <p>Income order:</p>
+                                <p>0</p>
+                            </div>
+                            <div class="order outcomeorder">
+                                <p>Outcome order:</p>
+                                <p>0</p>
+                            </div>
                         </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/case1.jpeg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Hard Shell Case</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
+                        <div class="product-inoutcome">
+                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
+                            <div class="inoutcome-detail"><p>27/1</p><p class="Done">Done</p><p>in</p><p>001</p></div>
+                            <div class="inoutcome-detail"><p>23/2</p><p class="Done">Done</p><p>out</p><p>002</p></div>
+                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
                         </div>
                     </div>
-                </div>
 
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/glasses2.png') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Classic Round Glasses</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
+                    <div class="report-container">
+                        <div class="report-glass">
+                            <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
+                            <p>Adidas</p>
+                            <p>32859935</p>
                         </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
+                        <div class="product-info">
+                            <div class="product-name">Square Frame Glasses</div>
+                            <div class="order stockorder warn">
+                                <p>In stock:</p>
+                                <p>0</p>
                             </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
+                            <div class="order incomeorder">
+                                <p>Income order:</p>
+                                <p>3</p>
+                            </div>
+                            <div class="order outcomeorder">
+                                <p>Outcome order:</p>
+                                <p>2</p>
+                            </div>
                         </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
+                        <div class="product-inoutcome">
+                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
+                            <div class="inoutcome-detail"><p>1/2</p><p class="Done">Done</p><p>in</p><p>004</p></div>
+                            <div class="inoutcome-detail"><p>3/2</p><p class="Done">Done</p><p>out</p><p>003</p></div>
+                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
+                            <div class="inoutcome-outofstock warn"><p>Out Of Stock !</p></div>
                         </div>
                     </div>
-                </div>
 
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/sun2.jpeg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Square Sunglasses</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
+                    <div class="report-container">
+                        <div class="report-glass">
+                            <img src="{{ asset('Images/products/Featured/Adidas/32859942/32859942-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
+                            <p>Adidas</p>
+                            <p>32859942</p>
                         </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
+                        <div class="product-info">
+                            <div class="product-name">Square Frame Glasses</div>
+                            <div class="order stockorder">
+                                <p>In stock:</p>
+                                <p>3</p>
                             </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
+                            <div class="order incomeorder">
+                                <p>Income order:</p>
+                                <p>3</p>
+                            </div>
+                            <div class="order outcomeorder">
+                                <p>Outcome order:</p>
+                                <p>3</p>
+                            </div>
                         </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
+                        <div class="product-inoutcome">
+                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
+                            <div class="inoutcome-detail"><p>3/4</p><p class="Done">Done</p><p>in</p><p>005</p></div>
+                            <div class="inoutcome-detail"><p>5/3</p><p class="warn">UnDone</p><p>out</p><p>006</p></div>
+                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
                         </div>
                     </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/case2.png') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Premium Leather Case</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/glasses3.png') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Oval Frame Glasses</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/sun3.png') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Sport Sunglasses</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/case3.jpeg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Travel Case</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/glasses cleaner.jpg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Glasses Cleaner</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/contacts cleaner.jpg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Contacts Cleaner</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <img src="{{ asset('Images/products/case4.jpg') }}" alt="Product Image" class="product-img">
-                    <div class="product-info">
-                        <div class="product-name">Travel Case</div>
-                        <div class="bar-container"> <!--stock bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar stock-bar" data-stock="100"></div>
-                        </div>
-                        <div class="bar-container"> <!--income bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar incoming-bar" data-incoming="50"></div>
-                        </div>
-                        <div class="bar-container"> <!--outgoing bar-->
-                            <div class="button-group">
-                                <button class="decrease-btn">−</button>
-                                <button class="increase-btn">+</button>
-                            </div>
-                            <div class="bar outgoing-bar" data-outgoing="30"></div>
-                        </div>
-                    </div>
-                </div>
-
-
+                    </main> 
                 </main>
             </div>
         </div>
