@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,7 +81,6 @@ Route::get('/sproduct/{id}', [ProductController::class, 'show'])->name('product.
 Route::post('/reviews/{product}', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
 
 Route::post('/sproduct/{id}/review', [ReviewController::class, 'store'])->name('review.store');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -159,10 +159,41 @@ Route::get('/check-login', function () {
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
 
 
-//adminlogon page
+// Admin login route
 Route::get('/adminlogin', function () {
-    return view('adminlogin'); // Refers to resources/views/OurStory.blade.php
+    return view('adminlogin'); // Refers to resources/views/adminlogin.blade.php
 })->name('adminlogin');
+
+// Admin post login route
+Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
+
+// Admin panel route
+Route::get('/adminpanel', function () {
+    return view('Adminpanel');
+})->name('adminpanel');
+
+Route::get('/productadmin', function () {
+    return view('Productadmin'); 
+})->name('productadmin');
+
+// Order Management Route
+Route::get('/orders', function () {
+    return view('Order');
+})->name('orders');
+
+Route::get('/adminprofile', function () {
+    return view('Adminprofile');
+})->name('adminprofile');
+
+// Customer Management Route
+Route::get('/customers', function () {
+    return view('Customers'); 
+})->name('customers');
+
+// Report Route
+Route::get('/adminreport', function () {
+    return view('adminreport'); 
+})->name('adminreport');
 
 // Account Management Routes
 Route::middleware(['auth'])->group(function () {
@@ -193,3 +224,4 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])
         ->name('update.billing-address');
 });
+
