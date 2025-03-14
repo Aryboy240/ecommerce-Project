@@ -143,7 +143,7 @@
             <div class="member-card">
                 <h3 class="member-name">Aryan Kora</h3>
                 <p class="member-title">Team Leader</p>
-                <p class="member-bio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum doloremque aperiam ad iste vero, tenetur sunt praesentium tempora alias, nobis velit rem reprehenderit nihil cumque rerum molestias ab dolorem eius.</p>
+                <p class="member-bio">Aryan is a visionary leader with a passion for innovation in the eyewear industry. With years of experience in both frontend and backend development, he ensures that Optique remains at the forefront of technology and design.</p>
                 <div class="member-contact">
                     <a href="#">Email</a>
                     <a href="#">LinkedIn</a>
@@ -163,7 +163,7 @@
               <div class="member-card">
                   <h3 class="member-name">Abdul</h3>
                   <p class="member-title">Full Stack Developer</p>
-                  <p class="member-bio">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt ad, alias quasi est dolore voluptatem culpa provident obcaecati voluptatum distinctio nisi. Sapiente modi enim beatae commodi dignissimos? Officia, molestias sapiente!</p>
+                  <p class="member-bio">Abdul is a skilled full stack developer with expertise in both frontend and backend technologies. He is dedicated to creating seamless user experiences and ensuring that the Optique platform runs smoothly.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -180,7 +180,7 @@
               <div class="member-card">
                   <h3 class="member-name">Angus</h3>
                   <p class="member-title">Front-end Developer</p>
-                  <p class="member-bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores nam facilis officia, sit nihil asperiores placeat inventore, ex dolorum, neque suscipit. Quisquam a beatae iure? Odio ab earum corporis consectetur!</p>
+                  <p class="member-bio">Angus is a creative front-end developer who specializes in crafting beautiful and responsive web interfaces. His attention to detail ensures that every aspect of the user experience is polished and engaging.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -197,7 +197,7 @@
               <div class="member-card">
                   <h3 class="member-name">Aqsa</h3>
                   <p class="member-title">Front-end Developer</p>
-                  <p class="member-bio">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto iste deleniti consequatur, delectus et cupiditate consequuntur excepturi asperiores provident accusamus quis, ab sapiente neque minus error optio. Sapiente, aperiam ipsum.</p>
+                  <p class="member-bio">Aqsa is a passionate front-end developer with a knack for creating intuitive user interfaces. She enjoys collaborating with designers to bring innovative ideas to life and enhance the overall user experience.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -217,7 +217,7 @@
               <div class="member-card">
                   <h3 class="member-name">Aron</h3>
                   <p class="member-title">Backend Developer</p>
-                  <p class="member-bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab sequi similique deserunt minima perferendis ducimus natus magnam dicta voluptas neque vero enim eveniet accusantium porro architecto necessitatibus dolor, facilis modi?</p>
+                  <p class="member-bio">Aron is a dedicated backend developer who focuses on building robust and scalable server-side applications. His expertise ensures that the Optique platform is efficient and reliable.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -234,7 +234,7 @@
               <div class="member-card">
                   <h3 class="member-name">Hussen</h3>
                   <p class="member-title">Backend Developer</p>
-                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, assumenda cumque nisi impedit deleniti ex. Ipsam quos sapiente dolorum fugiat quisquam quam odio cumque qui vel? In distinctio a quae?</p>
+                  <p class="member-bio">Hussen is a backend developer with a strong focus on database management and server optimization. He is committed to ensuring that all data processes run smoothly and efficiently.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -251,7 +251,7 @@
               <div class="member-card">
                   <h3 class="member-name">Nikhil</h3>
                   <p class="member-title">Backend Developer</p>
-                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime veritatis blanditiis iure reiciendis fuga culpa magnam neque consectetur ipsa qui, distinctio velit voluptatem recusandae? Itaque accusamus explicabo labore ipsa harum?</p>
+                  <p class="member-bio">Nikhil is a backend developer who specializes in API development and integration. His work ensures that the Optique platform communicates effectively with various services and applications.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -268,7 +268,7 @@
               <div class="member-card">
                   <h3 class="member-name">Oyinlola</h3>
                   <p class="member-title">Front-end Developer</p>
-                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere officiis, veritatis deserunt eos fugit omnis laborum eveniet ducimus enim reprehenderit iure sunt qui sapiente at quod explicabo vel neque nemo.</p>
+                  <p class="member-bio">Oyinlola is passionate about web design and front-end development. She focuses on creating user-friendly and visually appealing interfaces, contributing her skills to ensure the project delivers an engaging and seamless user experience. She thrives in collaborative environments, bringing creativity and attention to detail to every web project.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -285,7 +285,7 @@
               <div class="member-card">
                   <h3 class="member-name">Vatsal</h3>
                   <p class="member-title">Backend Developer</p>
-                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni excepturi sunt quas qui, perferendis molestiae nisi ea eum voluptas dolore tenetur ratione nemo labore quaerat similique quos perspiciatis nihil nobis.</p>
+                  <p class="member-bio">Vatsal is a backend developer with a focus on system architecture and performance optimization. He is dedicated to building scalable solutions that enhance the overall functionality of the Optique platform.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
