@@ -12,20 +12,18 @@
     function: Search page backend
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/searchApp.balde.php" -->
+@extends('layouts.mainLayout')
 
-<head>
+@section('extra-head')
+
     <!-- JS -->
     <script defer src="/js/addToCart.js"></script>
     <script defer src="/js/activeCatagory.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
-</head>
 
-</html>
-
-<!-- This is a child of the "views/layouts/searchApp.balde.php" -->
-@extends('layouts.mainLayout')
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Optique | Products')

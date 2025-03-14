@@ -22,6 +22,11 @@
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
 
+  @yield('extra-head')
+
+  <!-- Tab Icon -->
+  <link rel="icon" href="{{ asset('Images/circleLogo.png') }}" type="image/x-icon">
+
   <title>@yield('title', 'Laravel App')</title>
 </head>
 

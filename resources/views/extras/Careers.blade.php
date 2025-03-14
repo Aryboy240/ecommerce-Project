@@ -1,12 +1,11 @@
-<html lang="en">
-<head>
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ asset('css/careers.css') }}">
-</head>
-</html>
-
 <!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
+
+@section('extra-head')
+
+  <link rel="stylesheet" href="{{ asset('css/careers.css') }}">
+
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Optique | Careers')

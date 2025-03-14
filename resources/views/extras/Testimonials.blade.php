@@ -1,13 +1,14 @@
-<html lang="en">
-<head>
+<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
+@extends('layouts.mainLayout')
+
+@section('extra-head')
+
   <!-- JS -->
   <script src="js/testimonials.js"></script>
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/testimonials.css') }}">
-</head>
 
-<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
-@extends('layouts.mainLayout')
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Optique | Testimonials')

@@ -1,20 +1,17 @@
 <!--
     Developer: Aryan Kora
     university ID: 230059030
-    function: Landing page Frontend
+    function: Landing page Frontend and backend
 -->
-
-<html lang="en">
-
-<head>
-  <script defer src="/js/addToCart.js"></script>
-  <script defer src="js/ProductSlider.js"></script>
-</head>
-
-</html>
 
 <!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
+
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
+  <script defer src="/js/addToCart.js"></script>
+  <script defer src="js/ProductSlider.js"></script>
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Welcome')

@@ -4,16 +4,14 @@
     Function: About page front end
 -->
 
-<html lang="en">
-
-<head>
-  <link href="{{ asset('css/about.css') }}" rel="stylesheet">
-</head>
-
-</html>
-
 <!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
+
+@section('extra-head')
+
+  <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Optique | About Us')
