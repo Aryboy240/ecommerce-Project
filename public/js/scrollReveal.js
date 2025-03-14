@@ -54,6 +54,68 @@ sr.reveal(".f-product-container", {
     delay: 150,
 });
 
+// About
+
+sr.reveal(".mission-box-con", {
+    duration: 1000,
+    interval: 100,
+    delay: 300,
+});
+
+sr.reveal(".about-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".logo-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".company-logo", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".team-section", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
+sr.reveal(".tree-level", {
+    duration: 1000,
+    interval: 100,
+    delay: 250,
+});
+
+sr.reveal(".testimonials-section", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".testimonial-card", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".contact-cta", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".cta-content", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
 //Contact
 
 sr.reveal(".contact-us", {

@@ -16,7 +16,7 @@
 @extends('layouts.mainLayout')
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'about')
+@section('title', 'Optique | About Us')
 
 <!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
@@ -58,7 +58,7 @@
   </div>
   <div class="mission-box-con">
     <div class="mission-box">
-      <p>At Frame Your World, our mission is to transform the eyewear industry by providing opticians with a streamlined 
+      <p>At Optique, our mission is to transform the eyewear industry by providing opticians with a streamlined 
       digital platform that offers premium products, exceptional service, and innovative solutions. We're committed to 
       helping people express their unique style while improving their vision with quality eyewear that exceeds expectations.</p>
     </div>
@@ -91,17 +91,10 @@
         Optique is your home - where every eyeglasses is not just an optical accessory but a window to the
         world.
         <br><br>
-        Revolutionize Eyewear Shopping: To revolutionize the way people buy their eyeglasses by offering the latest technology
-        and friendly services.
-        <br>
-        Combine Functionality with Style: Design various models of sunglasses that provide utility with functional perspectives of
-        taste and personality.
-        <br>
-        Prioritize Customer Satisfaction: The goal is to build trust and long-term relationships with customers, and to achieve it,
-        make sure that each of them leaves with something they would like.
-        <br>
-        Commit to Quality: Offer good quality frames and lenses that are well made, well fitted, and long lasting.
-        <br>
+        We want to Revolutionize Eyewear Shopping. To revolutionize the way people buy their eyeglasses by offering the latest technology
+        and friendly services.Combine Functionality with Style: Design various models of sunglasses that provide utility with functional perspectives of
+        taste and personality. Prioritize Customer Satisfaction: The goal is to build trust and long-term relationships with customers, and to achieve it,
+        make sure that each of them leaves with something they would like. Commit to Quality: Offer good quality frames and lenses that are well made, well fitted, and long lasting.
         Embrace Sustainability: The incorporation of environment-friendly materials and work processes to minimize our impact
         on the biophysical environment during the provision of quality optical solutions.
       </p>
@@ -290,36 +283,36 @@
   <div class="testimonial-container">
     <div class="testimonial-card">
       <div class="quote-mark">"</div>
-      <p class="testimonial-text">Frame Your World has transformed how we operate our optician business. The digital platform is intuitive, and the quality of frames is exceptional. Our customers love the variety of premium brands available.</p>
+      <p class="testimonial-text">Optique has transformed how we operate our optician business. The digital platform is intuitive, and the quality of frames is exceptional. Our customers love the variety of premium brands available.</p>
       <div class="testimonial-author">
         <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
         <div>
           <h4>Brandon Ian Tidmarsh</h4>
-          <p>Vision Care Opticians, London</p>
+          <p>GTFO Opticians, London</p>
         </div>
       </div>
     </div>
     
     <div class="testimonial-card">
       <div class="quote-mark">"</div>
-      <p class="testimonial-text">The team at Frame Your World understands the needs of modern opticians. Their platform has streamlined our ordering process and the customer support is always responsive and helpful.</p>
+      <p class="testimonial-text">The team at Optique understands the needs of modern opticians. Their platform has streamlined our ordering process and the customer support is always responsive and helpful.</p>
       <div class="testimonial-author">
         <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
         <div>
           <h4>Dylan Michel Ellis-Patey</h4>
-          <p>Taylor Eyecare, Wolverhampton</p>
+          <p>Prawn SW Eyecare, Wolverhampton</p>
         </div>
       </div>
     </div>
     
     <div class="testimonial-card">
       <div class="quote-mark">"</div>
-      <p class="testimonial-text">We've seen a significant increase in customer satisfaction since partnering with Frame Your World. The quality of their frames and the efficiency of their delivery service is unmatched in the industry.</p>
+      <p class="testimonial-text">We've seen a significant increase in customer satisfaction since partnering with Optique. The quality of their frames and the efficiency of their delivery service is unmatched in the industry.</p>
       <div class="testimonial-author">
         <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
         <div>
           <h4>Chanel Louise Vernon</h4>
-          <p>Clarity Vision, Liverpool</p>
+          <p>2020 Vision Inc., Liverpool</p>
         </div>
       </div>
     </div>
