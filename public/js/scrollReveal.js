@@ -56,19 +56,19 @@ sr.reveal(".f-product-container", {
 
 // About
 
-sr.reveal(".mission-box-con", {
+sr.reveal(".mission-section", {
     duration: 1000,
     interval: 100,
-    delay: 300,
-});
-
-sr.reveal(".about-wrapper", {
-    duration: 1000,
-    interval: 100,
-    delay: 150,
+    delay: 500,
 });
 
 sr.reveal(".company-image", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
+sr.reveal(".about-wrapper", {
     duration: 1000,
     interval: 100,
     delay: 100,

@@ -227,6 +227,10 @@
     justify-content: center;
 }
 
+#first-member img {
+    object-position: center top; /* Align the image top */
+}
+
 .member-image img {
     position: relative;
     width: 100%;

@@ -101,10 +101,10 @@
     </div>
     <div class="about-image">
       <div class="image-grid">
-        <img src="{{ asset('Images/About/store-front.jpg') }}" alt="Our Store">
-        <img src="{{ asset('Images/About/showroom.jpg') }}" alt="Our Showroom">
-        <img src="{{ asset('Images/About/workshop.jpg') }}" alt="Our Workshop">
-        <img src="{{ asset('Images/About/digital-platform.jpg') }}" alt="Digital Platform">
+        <img src="{{ asset('Images/filler.webp') }}">
+        <img src="{{ asset('Images/filler.webp') }}">
+        <img src="{{ asset('Images/filler.webp') }}">
+        <img src="{{ asset('Images/filler.webp') }}">
       </div>
     </div>
   </div>
@@ -137,7 +137,7 @@
         <div class="team-member">
             <div class="member-wrapper">
               <div class="member-image" id="first-member">
-                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+                <img src="{{ asset('Images/MOT/Aryan.png') }}">
               </div>
             </div>
             <div class="member-card">
@@ -299,7 +299,7 @@
 
 <!-- Testimonials Section -->
 <section class="testimonials-section">
-  <h2 class="section-title">What Our Partners Say</h2>
+  <h2 class="section-title" style="margin-bottom: 50px !important">What Our Partners Say</h2>
   <div class="testimonial-container">
     <div class="testimonial-wrapper">
       <div class="testimonial-card">
