@@ -11,7 +11,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
   <!-- JS -->
   <script defer src="{{ asset('/js/theme.js') }}"></script>
   <script defer src="{{ asset('js/scrollReveal.js') }}"></script>
@@ -210,7 +209,7 @@
       </ul>
     </nav>
   </section>
-  <!-- Navigation  Bar End -->
+  <!-- MOBILE Navigation  Bar End -->
 
   <main>
     @yield('content')
@@ -242,9 +241,9 @@
     </div>
     <div>
       <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
+      <a href="{{ route('OurStory') }}">Our Story</a>
+      <a href="{{ route('Testimonials') }}">Testimonials</a>
+      <a href="{{ route('Careers') }}">Careers</a>
       <a href="#">Store Locator</a>
     </div>
     <div class="social-icons">
