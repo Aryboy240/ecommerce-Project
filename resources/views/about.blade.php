@@ -245,7 +245,7 @@
           <div class="team-member">
             <div class="member-wrapper">
               <div class="member-image">
-                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+                <img src="{{ asset('Images/MOT/Nik.png') }}">
               </div>
             </div>
               <div class="member-card">
