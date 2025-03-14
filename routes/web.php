@@ -22,7 +22,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 // Basic routes
 
-// login system routes - Aryan
+// Login system routes - Aryan
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
@@ -31,6 +31,8 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::get('/', [ProductController::class, 'featuredProducts'])->name('welcome');
 Route::get('/welcome', [ProductController::class, 'featuredProducts'])->name('welcome'); // This sends the 'featured products' information to the homepage
+Route::get('/get-products-by-face-shape', [ProductController::class, 'getProductsByFaceShape']);
+
 
 Route::get('/about', function () {
     return view('about'); // Refers to resources/views/about.blade.php
@@ -102,10 +104,10 @@ Route::get('/account', function () {
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function(){
-    Route::post('/update-username',[UserController::class, 'updateUsername'])->name('update.username');
-    Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
-    Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/update-username', [UserController::class, 'updateUsername'])->name('update.username');
+    Route::post('/update-email', [UserController::class, 'updateEmail'])->name('update.email');
+    Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
 });
 
 // Account Management Routes
@@ -229,5 +231,3 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
-
-

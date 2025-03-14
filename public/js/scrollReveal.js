@@ -24,6 +24,12 @@ sr.reveal(".floaters", {
     delay: 100,
 });
 
+sr.reveal(".fit-button-con", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
 sr.reveal(".section-title", {
     duration: 1000,
     interval: 100,

@@ -80,4 +80,42 @@ class ProductController extends Controller
 
         return view('welcome', compact('products'));
     }
+
+    public function getProductsByFaceShape(Request $request)
+    {
+        $shape = $request->input('shape');
+        
+        // Define a mapping of face shapes to product IDs
+        $faceShapeProducts = [
+            'Round' => [32859935, 32859928, 33039947],
+            'Square' => [33137490, 33135175, 33155449],
+            'Oval' => [33087542, 32860634, 33137346],
+            'Heart' => [33039633, 33145006, 33137353],
+            'Diamond' => [33039640, 33040011, 33145013],
+            'Triangular' => [32677959, 32859942, 32908640],
+        ];
+        
+        // Get the product IDs for the selected shape
+        $productIds = $faceShapeProducts[$shape] ?? [];
+
+        // Fetch the products from the database
+        $products = Product::whereIn('id', $productIds)
+            ->with('category', 'images.imageType')
+            ->get();
+
+        // Format products with an image URL for JavaScript
+        $formattedProducts = $products->map(function ($product) {
+            $frontImage = $product->images->firstWhere('imageType.name', 'front');
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => $product->price,
+                'category' => $product->category->name ?? 'Unknown',
+                'image_url' => $frontImage ? asset($frontImage->image_path) : asset('images/default.png'),
+            ];
+        });
+
+        return response()->json($formattedProducts);
+    }
+
 }

@@ -8,6 +8,8 @@
 
 <head>
   <script defer src="/js/addToCart.js"></script>
+  <link rel="stylesheet" href="{{ asset('css/find_my_fit.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/search.css') }}">
   <script defer src="js/ProductSlider.js"></script>
 </head>
 
@@ -64,6 +66,93 @@
 </section>
 <!-- Floating cards End -->
 
+<!-- FMF-special feature:: Abdul -->
+<section>
+  <div class="fit-button-con">
+    <button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
+  </div>
+
+  <!-- Initial Popup -->
+  <div id="initialPopup" class="initial-popup">
+      <span class="close-modal" onclick="closeInitialPopup()">&times;</span>
+      <h2>Find glasses based on your face shape</h2>
+      <button class="continue-btn" onclick="showModal()">Continue</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="findMyFitModal" class="modal">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Select Your Face Shape</h2>
+      <div class="face-options">
+          <div class="face-item" onclick="showFaceShape('Round')">
+              <img src="{{ asset('images/round.png') }}" alt="Round">
+              <div class="face-label">Round</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Square')">
+              <img src="{{ asset('images/square.png') }}" alt="Square">
+              <div class="face-label">Square</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Oval')">
+              <img src="{{ asset('images/oval.png') }}" alt="Oval">
+              <div class="face-label">Oval</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Heart')">
+              <img src="{{ asset('images/heart.png') }}" alt="Heart">
+              <div class="face-label">Heart</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Diamond')">
+              <img src="{{ asset('images/diamond.png') }}" alt="Diamond">
+              <div class="face-label">Diamond</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Triangular')">
+              <img src="{{ asset('images/triangle.png') }}" alt="Triangular">
+              <div class="face-label">Triangular</div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Recommendations Section -->
+  <div id="recommendations" style="display: none;">
+    <h2>Recommended Glasses</h2>
+    <div id="faceShapeSections">
+        @foreach (['Round', 'Square', 'Oval', 'Heart', 'Diamond', 'Triangular'] as $shape)
+            <section class="search-product-grid face-shape-section" id="section-{{ $shape }}" style="display: none;">
+                @php
+                    $filteredProducts = $products->filter(function ($product) use ($shape) {
+                        return $product->face_shape === $shape; // Ensure face_shape matches
+                    });
+                @endphp
+                
+                @foreach ($filteredProducts as $product)
+                    <div class="search-product-card" data-category="{{ $product->category->name }}">
+                        @foreach($product->images as $image)
+                            @if($image->imageType && $image->imageType->name == 'front')
+                                <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+                                    <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                                </a>
+                                @break
+                            @endif
+                        @endforeach
+                        <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+                            <h3>{{ $product->name }}</h3>
+                            <p>Price: £{{ number_format($product->price, 2) }}</p>
+                        </a>
+                        <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </form>
+                    </div>
+                @endforeach
+            </section>
+        @endforeach
+    </div>
+  </div>
+
+</section>
+<!-- FMF end -->
+
 <!-- Featured Products Section:: Aryan Kora -->
 <section style="margin-top: 100px;">
   <h2 class="section-title">Featured Products</h2>
@@ -74,6 +163,7 @@
       <div class="card-circle"></div>
       <div class="product-card-content">
         <h2>ADIDAS</h2>
+
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
           Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
@@ -275,5 +365,76 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  // Hide the initial popup by default when the page loads
+  document.getElementById('initialPopup').style.display = 'none';
+  });
+
+function resetAndShowModal() {
+  closeModal();
+  closeInitialPopup();
+  document.getElementById('initialPopup').style.display = 'block';
+}
+
+  function showModal() {
+      document.getElementById('initialPopup').style.display = 'none';
+      document.getElementById('findMyFitModal').style.display = 'block';
+  }
+
+  function closeModal() {
+      document.getElementById('findMyFitModal').style.display = 'none';
+      document.getElementById('initialPopup').style.display = 'none';
+      document.getElementById('recommendations').style.display = 'none';
+  }
+
+  function closeInitialPopup() {
+      document.getElementById('initialPopup').style.display = 'none';
+  }
+
+  function showFaceShape(shape) {
+    document.getElementById('findMyFitModal').style.display = 'none';
+    document.getElementById('recommendations').style.display = 'block';
+
+    // Hide all sections first
+    document.querySelectorAll('.face-shape-section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Fetch products dynamically via AJAX
+    fetch(`/get-products-by-face-shape?shape=${shape}`)
+        .then(response => response.json())
+        .then(products => {
+            const section = document.getElementById(`section-${shape}`);
+            section.innerHTML = ''; // Clear previous products
+            
+            if (products.length === 0) {
+                section.innerHTML = '<p>No products available for this face shape.</p>';
+            } else {
+                products.forEach(product => {
+                    section.innerHTML += `
+                        <div class="search-product-card" data-category="${product.category?.name || 'Unknown'}">
+                            <a href="/sproduct/${product.id}" class="search-product-link">
+                                <img src="${product.image_url}" alt="${product.name} - Front">
+                            </a>
+                            <a href="/sproduct/${product.id}" class="search-product-link">
+                                <h3>${product.name}</h3>
+                                <p>Price: £${parseFloat(product.price).toFixed(2)}</p>
+                            </a>
+                            <a href="/sproduct/${product.id}">
+                              <button type="submit">View</button>
+                            </a>
+                        </div>
+                    `;
+                });
+            }
+
+            section.style.display = 'grid'; // Show updated section
+        })
+        .catch(error => console.error('Error fetching products:', error));
+}
+
+</script>
 
 @endsection
