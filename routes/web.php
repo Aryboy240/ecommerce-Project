@@ -176,9 +176,7 @@ Route::get('/customers', function () {
 })->name('customers');
 
 // Report Route
-Route::get('/adminreport', function () {
-    return view('admin/AdminReport'); 
-})->name('adminreport');
+Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminReport'])->name('adminreport');
 
 /*
 |--------------------------------------------------------------------------
