@@ -115,7 +115,9 @@
 <section class="logo-section">
   <div class="logo-container">
     <div class="logo-wrapper">
-      <img src="{{ asset('Images/logo.png') }}" alt="Company Logo" class="company-logo">
+      <div class="company-image">
+        <img src="{{ asset('Images/logo.png') }}" alt="Company Logo" class="company-logo">
+      </div>
       <div class="logo-text">
         <h2>We Are Here To<br> Frame Your World</h2>
         <p>A digital solution for opticians providing premium eyewear collections</p>
@@ -130,30 +132,34 @@
   <h1>Meet Our Team</h1>
   
   <div class="team-tree">
-      <!-- CEO Level -->
+      <!-- First Layer -->
       <div class="tree-level level-1">
-          <div class="team-member">
+        <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image" id="first-member">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
-              <div class="member-card">
-                  <h3 class="member-name">Aryan Kora</h3>
-                  <p class="member-title">Team Leader</p>
-                  <p class="member-bio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum doloremque aperiam ad iste vero, tenetur sunt praesentium tempora alias, nobis velit rem reprehenderit nihil cumque rerum molestias ab dolorem eius.</p>
-                  <div class="member-contact">
-                      <a href="#">Email</a>
-                      <a href="#">LinkedIn</a>
-                  </div>
-              </div>
-          </div>
+            </div>
+            <div class="member-card">
+                <h3 class="member-name">Aryan Kora</h3>
+                <p class="member-title">Team Leader</p>
+                <p class="member-bio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum doloremque aperiam ad iste vero, tenetur sunt praesentium tempora alias, nobis velit rem reprehenderit nihil cumque rerum molestias ab dolorem eius.</p>
+                <div class="member-contact">
+                    <a href="#">Email</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+            </div>
+        </div>
       </div>
       
-      <!-- Second Level - Executives -->
+      <!-- Second Level -->
       <div class="tree-level level-2">
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Abdul</h3>
                   <p class="member-title">Full Stack Developer</p>
@@ -166,9 +172,11 @@
           </div>
           
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Angus</h3>
                   <p class="member-title">Front-end Developer</p>
@@ -181,9 +189,11 @@
           </div>
           
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Aqsa</h3>
                   <p class="member-title">Front-end Developer</p>
@@ -196,12 +206,14 @@
           </div>
       </div>
       
-      <!-- Third Level - Department Managers -->
+      <!-- Third Level -->
       <div class="tree-level level-3">
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Aron</h3>
                   <p class="member-title">Backend Developer</p>
@@ -214,9 +226,11 @@
           </div>
           
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Hussen</h3>
                   <p class="member-title">Backend Developer</p>
@@ -229,9 +243,11 @@
           </div>
           
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Nikhil</h3>
                   <p class="member-title">Backend Developer</p>
@@ -244,8 +260,10 @@
           </div>
           
           <div class="team-member">
-              <div class="member-image">
-                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+              <div class="member-wrapper">
+                <div class="member-image">
+                  <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+                </div>
               </div>
               <div class="member-card">
                   <h3 class="member-name">Oyinlola</h3>
@@ -259,9 +277,11 @@
           </div>
           
           <div class="team-member">
+            <div class="member-wrapper">
               <div class="member-image">
                 <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
+            </div>
               <div class="member-card">
                   <h3 class="member-name">Vatsal</h3>
                   <p class="member-title">Backend Developer</p>
@@ -281,38 +301,44 @@
 <section class="testimonials-section">
   <h2 class="section-title">What Our Partners Say</h2>
   <div class="testimonial-container">
-    <div class="testimonial-card">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">Optique has transformed how we operate our optician business. The digital platform is intuitive, and the quality of frames is exceptional. Our customers love the variety of premium brands available.</p>
-      <div class="testimonial-author">
-        <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
-        <div>
-          <h4>Brandon Ian Tidmarsh</h4>
-          <p>GTFO Opticians, London</p>
+    <div class="testimonial-wrapper">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">Optique has transformed how we operate our optician business. The digital platform is intuitive, and the quality of frames is exceptional. Our customers love the variety of premium brands available.</p>
+        <div class="testimonial-author">
+          <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+          <div>
+            <h4>Brandon Ian Tidmarsh</h4>
+            <p>GTFO Opticians, London</p>
+          </div>
         </div>
       </div>
     </div>
     
-    <div class="testimonial-card">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">The team at Optique understands the needs of modern opticians. Their platform has streamlined our ordering process and the customer support is always responsive and helpful.</p>
-      <div class="testimonial-author">
-        <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
-        <div>
-          <h4>Dylan Michel Ellis-Patey</h4>
-          <p>Prawn SW Eyecare, Wolverhampton</p>
+    <div class="testimonial-wrapper">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">The team at Optique understands the needs of modern opticians. Their platform has streamlined our ordering process and the customer support is always responsive and helpful.</p>
+        <div class="testimonial-author">
+          <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+          <div>
+            <h4>Dylan Michel Ellis-Patey</h4>
+            <p>Prawn SW Eyecare, Wolverhampton</p>
+          </div>
         </div>
       </div>
     </div>
     
-    <div class="testimonial-card">
-      <div class="quote-mark">"</div>
-      <p class="testimonial-text">We've seen a significant increase in customer satisfaction since partnering with Optique. The quality of their frames and the efficiency of their delivery service is unmatched in the industry.</p>
-      <div class="testimonial-author">
-        <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
-        <div>
-          <h4>Chanel Louise Vernon</h4>
-          <p>2020 Vision Inc., Liverpool</p>
+    <div class="testimonial-wrapper">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p class="testimonial-text">We've seen a significant increase in customer satisfaction since partnering with Optique. The quality of their frames and the efficiency of their delivery service is unmatched in the industry.</p>
+        <div class="testimonial-author">
+          <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+          <div>
+            <h4>Chanel Louise Vernon</h4>
+            <p>2020 Vision Inc., Liverpool</p>
+          </div>
         </div>
       </div>
     </div>

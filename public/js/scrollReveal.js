@@ -68,37 +68,31 @@ sr.reveal(".about-wrapper", {
     delay: 150,
 });
 
-sr.reveal(".logo-wrapper", {
-    duration: 1000,
-    interval: 100,
-    delay: 150,
-});
-
-sr.reveal(".company-logo", {
-    duration: 1000,
-    interval: 100,
-    delay: 150,
-});
-
-sr.reveal(".team-section", {
+sr.reveal(".company-image", {
     duration: 1000,
     interval: 100,
     delay: 100,
 });
 
-sr.reveal(".tree-level", {
-    duration: 1000,
-    interval: 100,
-    delay: 250,
-});
-
-sr.reveal(".testimonials-section", {
+sr.reveal(".logo-text", {
     duration: 1000,
     interval: 100,
     delay: 150,
 });
 
-sr.reveal(".testimonial-card", {
+sr.reveal(".member-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".testimonial-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".section-title", {
     duration: 1000,
     interval: 100,
     delay: 150,

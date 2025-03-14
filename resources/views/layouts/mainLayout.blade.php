@@ -14,7 +14,7 @@
   <!-- JS -->
   <script defer src="{{ asset('/js/theme.js') }}"></script>
   <script defer src="{{ asset('js/scrollReveal.js') }}"></script>
-  <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
   <script src="{{ asset('js/scrollBar.js') }}"></script>
 
   <!-- CSS -->
