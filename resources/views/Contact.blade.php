@@ -61,7 +61,7 @@
 <!--Info Cards-->
 <section>
   <div class="card-body">
-    <a href="https://www.instagram.com" target="_blank" class="hyper-hider">
+    <a href="https://www.instagram.com/optique.team28/" target="_blank" class="hyper-hider">
       <div class="card-con">
         <div class="cards">
           <div class="card-image">
@@ -76,7 +76,7 @@
         </div>
     </a>
   </div>
-  <a href="https://www.youtube.com" target="_blank" class="hyper-hider">
+  <a href="https://www.youtube.com/channel/UCEi4d-JlQrqLHOpipMfI34Q" target="_blank" class="hyper-hider">
     <div class="card-con">
       <div class="cards">
         <div class="card-image">
@@ -91,7 +91,7 @@
       </div>
   </a>
   </div>
-  <a href="https://twitter.com" target="_blank" class="hyper-hider">
+  <a href="https://x.com/OptiqueTeam28" target="_blank" class="hyper-hider">
     <div class="card-con">
       <div class="cards">
         <div class="card-image">
@@ -138,19 +138,19 @@
       </div>
       <div class="social-icons">
         <h3>Follow Us</h3>
-        <a href="#" id="social-footer-span">
+        <a href="https://www.facebook.com/profile.php?id=61573793477027" id="social-footer-span">
           <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
           <span>Facebook</span>
         </a>
-        <a href="#" id="social-footer-span">
+        <a href="https://www.instagram.com/optique.team28" id="social-footer-span">
           <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
           <span>Instagram</span>
         </a>
-        <a href="#" id="social-footer-span">
+        <a href="https://x.com/OptiqueTeam28" id="social-footer-span">
           <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
           <span>Twitter</span>
         </a>
-        <a href="#" id="social-footer-span">
+        <a href="https://uk.pinterest.com/optiqueteam28/_profile/" id="social-footer-span">
           <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
           <span>Pintrest</span>
         </a>
