@@ -39,16 +39,16 @@
 <!-- Mission Values Section with Floaters -->
 <section class="container mission-section">
   <div class="floater-body">
-    <div class="floater-containter mission-floaters">
-      <div class="floaters mission-floater">
+    <div class="floater-containter">
+      <div class="floaters">
         <image src="{{ asset('Images/gifs/target.gif') }}">
         <p>Quality First</p>
       </div>
-      <div class="floaters mission-floater">
+      <div class="floaters">
         <image src="{{ asset('Images/gifs/innovation.gif') }}">
         <p>Innovation</p>
       </div>
-      <div class="floaters mission-floater">
+      <div class="floaters">
         <image src="{{ asset('Images/gifs/focus-2651_256.gif') }}">
         <p>Customer Focus</p>
       </div>
@@ -245,7 +245,7 @@
           <div class="team-member">
             <div class="member-wrapper">
               <div class="member-image">
-                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
+                <img src="{{ asset('Images/MOT/Nik.png') }}">
               </div>
             </div>
               <div class="member-card">
