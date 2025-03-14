@@ -140,13 +140,14 @@
                 <img src="{{ asset('Images/MOT/Aryan.png') }}">
               </div>
             </div>
-            <div class="member-card">
+            <div class="member-card" id="first-card">
                 <h3 class="member-name">Aryan Kora</h3>
                 <p class="member-title">Team Leader</p>
                 <p class="member-bio">Aryan is a visionary leader with a passion for innovation in the eyewear industry. With years of experience in both frontend and backend development, he ensures that Optique remains at the forefront of technology and design.</p>
+                <p class="member-bio">I worked on both the frontend and backend of a website, focusing on the frontend with tasks such as creating the landing page, developing user registration, login, and account management systems, designing the navigation bar, implementing light mode, and remaking the account and contact pages. On the backend, I handled adding images to products in the database, managing products, developing checkout and cart functionality, enabling search, and implementing the login system. Additionally, I managed website hosting, maintained the GitHub repository, distributed tasks as the project leader/manager, and provided technical support throughout the development process.</p>
                 <div class="member-contact">
-                    <a href="#">Email</a>
-                    <a href="#">LinkedIn</a>
+                    <a href="mailto:aryan240@outlook.com">Email</a>
+                    <a href="https://linktr.ee/AryanKora">Linktree</a>
                 </div>
             </div>
         </div>
