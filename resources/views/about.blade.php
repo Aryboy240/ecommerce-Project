@@ -308,8 +308,8 @@
         <div class="testimonial-author">
           <img src="{{ asset('Images/testimonial1.jpg') }}">
           <div>
-            <h4>Brandon Ian Tidmarsh</h4>
-            <p>GTFO Opticians, London</p>
+            <h4>Rebecca Barton</h4>
+            <p>Vision Care Opticians, London</p>
           </div>
         </div>
       </div>
@@ -322,8 +322,8 @@
         <div class="testimonial-author">
           <img src="{{ asset('Images/testimonial2.jpg') }}">
           <div>
-            <h4>Dylan Michel Ellis-Patey</h4>
-            <p>Prawn SW Eyecare, Wolverhampton</p>
+            <h4>Evan Jaye</h4>
+            <p>Taylor Eyecare, Wolverhampton</p>
           </div>
         </div>
       </div>
@@ -336,8 +336,9 @@
         <div class="testimonial-author">
           <img src="{{ asset('Images/testimonial3.jpg') }}">
           <div>
-            <h4>Chanel Louise Vernon</h4>
-            <p>2020 Vision Inc., Liverpool</p>
+            <h4>Josh Jacobs
+            </h4>
+            <p>Clarity Vision, Liverpool</p>
           </div>
         </div>
       </div>
