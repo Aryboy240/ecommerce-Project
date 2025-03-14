@@ -109,11 +109,38 @@
         <span class="close-btn">&times;</span>
     </div>
 
+    <!-- Editable Customer Info --> 
     <div class="customer-info">
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> johndoe@gmail.com</p>
-        <p><strong>D.O.B:</strong> dd/mm/yyyy
-        <p><strong>Address:</strong> 123 Main St, Springfield</p>
+    <div class="section">
+        <label>Full Name:</label>
+        <div class="detail-view">
+            <span id="fullNameText">John Doe</span>
+            <input type="text" id="fullNameInput" class="hidden" value="John Doe">
+            <button class="edit-btn" onclick="editField('fullName')">Edit</button>
+            <button class="save-btn hidden" onclick="saveField('fullName')">Save Changes</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Email:</label>
+        <div class="detail-view">
+            <span id="emailText">johndoe@gmail.com</span>
+            <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
+            <button class="edit-btn" onclick="editField('email')">Edit</button>
+            <button class="save-btn hidden" onclick="saveField('email')">Save Changes</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <label>Date of Birth:</label>
+        <div class="detail-view">
+            <span id="dobText">dd/mm/yyyy</span>
+            <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
+            <button class="edit-btn" onclick="editField('dob')">Edit</button>
+            <button class="save-btn hidden" onclick="saveField('dob')">Save Changes</button>
+        </div>
+    </div>
+
     </div>
 
     <div class="order-list">

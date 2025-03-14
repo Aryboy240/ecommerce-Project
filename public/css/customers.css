@@ -103,78 +103,174 @@
     color: var(--darker); 
 }
 
-/* Slide-in customer details panel */
+/* slide-in customer details panel */
 .customer-details-panel {
     position: fixed;
     top: 0;
     right: 0;
-    width: 550px;
+    width: 500px;
     height: 100%;
     background-color: var(--bg-secondary);
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5), 
+                0 0 30px var(--lighter);
     padding: 24px;
     overflow-y: auto;
     z-index: 1050;
     transition: transform 0.3s ease;
-    transform: translateX(0); /* Keep visible for testing */
-    /* transform: translateX(100%); */ /* Uncomment to hide it */
-    box-shadow: -4px 0 15px var(--floater), 
-                0 0 20px var(--lighter);
+    transform: translateX(0);
 }
 
-/* Header */
+/* header */
 .details-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 12px;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
     border-bottom: 1px solid var(--lighter);
 }
 
 .details-header h2 {
-    font-size: 22px;
+    font-size: 20px;
     color: var(--text-primary);
+    font-weight: 700;
 }
 
-/* Customer info */
-.customer-info p {
-    margin: 8px 0;
-    font-size: 16px;
+/* close button */
+.close-btn {
+    font-size: 24px;
+    cursor: pointer;
     color: var(--text-secondary);
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color var(--transition-speed);
 }
 
-/* Orders section */
-.order-list h3 {
-    margin-top: 20px;
-    font-size: 18px;
+.close-btn:hover {
+    color: var(--mint);
+}
+
+/* customer info */
+.customer-info {
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 12px;
     color: var(--text-primary);
+    border: 1px solid var(--lighter); 
+    box-shadow: 0 2px 8px rgba(0, 191, 174, 0.2);
+}
+
+/* section styling */
+.section {
+    margin-bottom: 24px;
+}
+
+label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.detail-view {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* text and input Fields */
+span, input {
+    font-size: 1rem;
+    padding: 10px;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    flex-grow: 1;
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--mint);
+    background-color: var(--bg-primary);
+}
+
+/* buttons */
+button {
+    background-color: var(--mint);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    box-shadow: 0 2px 8px rgba(0, 191, 174, 0.3);
+}
+
+button:hover {
+    background-color: var(--lighter);
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: var(--darker);
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none;
+}
+
+/* orders section */
+.order-list h3 {
+    margin-top: 24px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--lighter);
+    padding-bottom: 8px;
 }
 
 .order-item {
-    padding: 12px;
+    padding: 16px;
     background-color: var(--bg-primary);
     border: 1px solid var(--lighter);
-    border-radius: 8px;
+    border-radius: 10px;
     margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed);
+}
+
+.order-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 191, 174, 0.4);
 }
 
 .order-item p {
-    margin: 4px 0;
-    font-size: 14px;
+    margin: 6px 0;
+    font-size: 0.95rem;
 }
 
+/* dropdown styling */
 .order-status {
-    padding: 6px;
+    padding: 8px;
     border-radius: 5px;
     border: 1px solid var(--lighter);
     background-color: var(--bg-secondary);
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 0.9rem;
     cursor: pointer;
+    transition: border-color var(--transition-speed), background-color var(--transition-speed);
 }
 
 .order-status:focus {
     outline: none;
     border-color: var(--mint);
+    background-color: var(--bg-primary);
 }
 
