@@ -9,6 +9,7 @@
 <head>
   <script defer src="/js/addToCart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/find_my_fit.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/search.css') }}">
   <script defer src="js/ProductSlider.js"></script>
 </head>
 
@@ -65,58 +66,92 @@
 </section>
 <!-- Floating cards End -->
 
-<!-- Find My Fit Feature Start -->
-<div class="overlay" onclick="closeModal()"></div> <!-- Overlay to cover the entire screen when modal is active -->
+<!-- FMF-special feature:: Abdul -->
+<section>
+  <div class="fit-button-con">
+    <button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
+  </div>
+  
+  <!-- Initial Popup -->
+  <div id="initialPopup" class="initial-popup">
+      <span class="close-modal" onclick="closeInitialPopup()">&times;</span>
+      <h2>Find glasses based on your face shape</h2>
+      <button class="continue-btn" onclick="showModal()">Continue</button>
+  </div>
 
-<div class="fit-button-con">
-  <button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
-</div>
-<!-- Initial Popup -->
-<div id="initialPopup" class="initial-popup">
-  <span class="close-modal" onclick="closeInitialPopup()">&times;</span>
-  <h2>Find glasses based on your face shape</h2>
-  <button class="continue-btn" onclick="showModal()">Continue</button>
-</div>
+  <!-- Modal -->
+  <div id="findMyFitModal" class="modal">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Select Your Face Shape</h2>
+      <div class="face-options">
+          <div class="face-item" onclick="showFaceShape('Round')">
+              <img src="{{ asset('images/round.png') }}" alt="Round">
+              <div class="face-label">Round</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Square')">
+              <img src="{{ asset('images/square.png') }}" alt="Square">
+              <div class="face-label">Square</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Oval')">
+              <img src="{{ asset('images/oval.png') }}" alt="Oval">
+              <div class="face-label">Oval</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Heart')">
+              <img src="{{ asset('images/heart.png') }}" alt="Heart">
+              <div class="face-label">Heart</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Diamond')">
+              <img src="{{ asset('images/diamond.png') }}" alt="Diamond">
+              <div class="face-label">Diamond</div>
+          </div>
+          <div class="face-item" onclick="showFaceShape('Triangular')">
+              <img src="{{ asset('images/triangle.png') }}" alt="Triangular">
+              <div class="face-label">Triangular</div>
+          </div>
+      </div>
+  </div>
 
-<!-- Modal for Selecting Face Shape -->
-<div id="findMyFitModal" class="modal">
-  <span class="close-modal" onclick="closeModal()">&times;</span>
-  <h2>Select Your Face Shape</h2>
-  <div class="face-options">
-    <div class="face-item">
-      <img src="{{ asset('images/round.png') }}" alt="Round" onclick="showRecommendations('Round')">
-      <div class="face-label">Round</div>
-    </div>
-    <div class="face-item">
-      <img src="{{ asset('images/square.png') }}" alt="Square" onclick="showRecommendations('Square')">
-      <div class="face-label">Square</div>
-    </div>
-    <div class="face-item">
-      <img src="{{ asset('images/oval.png') }}" alt="Oval" onclick="showRecommendations('Oval')">
-      <div class="face-label">Oval</div>
-    </div>
-    <div class="face-item">
-      <img src="{{ asset('images/heart.png') }}" alt="Heart" onclick="showRecommendations('Heart')">
-      <div class="face-label">Heart</div>
-    </div>
-    <div class="face-item">
-      <img src="{{ asset('images/diamond.png') }}" alt="Diamond" onclick="showRecommendations('Diamond')">
-      <div class="face-label">Diamond</div>
-    </div>
-    <div class="face-item">
-      <img src="{{ asset('images/triangle.png') }}" alt="Triangular" onclick="showRecommendations('Triangular')">
-      <div class="face-label">Triangular</div>
+  <!-- Recommendations Section -->
+  <div id="recommendations" style="display: none;">
+    <h2>Recommended Glasses</h2>
+    <div id="faceShapeSections">
+        @foreach (['Round', 'Square', 'Oval', 'Heart', 'Diamond', 'Triangular'] as $shape)
+            <section class="search-product-grid face-shape-section" id="section-{{ $shape }}" style="display: none;">
+                @php
+                    $filteredProducts = $products->filter(function ($product) use ($shape) {
+                        return $product->face_shape === $shape; // Ensure face_shape matches
+                    });
+                @endphp
+                
+                @foreach ($filteredProducts as $product)
+                    <div class="search-product-card" data-category="{{ $product->category->name }}">
+                        @foreach($product->images as $image)
+                            @if($image->imageType && $image->imageType->name == 'front')
+                                <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+                                    <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                                </a>
+                                @break
+                            @endif
+                        @endforeach
+                        <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
+                            <h3>{{ $product->name }}</h3>
+                            <p>Price: £{{ number_format($product->price, 2) }}</p>
+                        </a>
+                        <form class="add-to-cart-form" onsubmit="addToCart(event, {{ $product->id }})">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="add-to-cart">Add to Cart</button>
+                        </form>
+                    </div>
+                @endforeach
+            </section>
+        @endforeach
     </div>
   </div>
-</div>
 
-<!-- Recommendations Section -->
-<div id="recommendations" style="display: none;">
-  <h2>Recommended Glasses</h2>
-  <div id="glasses-options" class="glasses-options"></div>
-</div>
-<!-- Find My Fit Feature End -->
-
+</section>
+<!-- FMF end -->
 
 <!-- Featured Products Section:: Aryan Kora -->
 <section style="margin-top: 100px;">
@@ -332,114 +367,76 @@
 </section>
 
 <script>
-const basePath = "{{ asset('images') }}/"; // Define the base path for images
+  document.addEventListener("DOMContentLoaded", function() {
+  // Hide the initial popup by default when the page loads
+  document.getElementById('initialPopup').style.display = 'none';
+  });
 
 function resetAndShowModal() {
-    closeModal();
-    closeInitialPopup();
-    document.getElementById('initialPopup').style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block'; // Show overlay
+  closeModal();
+  closeInitialPopup();
+  document.getElementById('initialPopup').style.display = 'block';
 }
 
-function showModal() {
-    document.getElementById('initialPopup').style.display = 'none';
-    document.getElementById('findMyFitModal').style.display = 'block';
-    document.querySelector('.overlay').style.display = 'block'; // Show overlay
-}
+  function showModal() {
+      document.getElementById('initialPopup').style.display = 'none';
+      document.getElementById('findMyFitModal').style.display = 'block';
+  }
 
-function closeModal() {
-    document.getElementById('findMyFitModal').style.display = 'none';
-    document.getElementById('initialPopup').style.display = 'none';
-    document.getElementById('recommendations').style.display = 'none';
-    document.querySelector('.overlay').style.display = 'none'; // Hide overlay
-}
+  function closeModal() {
+      document.getElementById('findMyFitModal').style.display = 'none';
+      document.getElementById('initialPopup').style.display = 'none';
+      document.getElementById('recommendations').style.display = 'none';
+  }
 
-function closeInitialPopup() {
-    document.getElementById('initialPopup').style.display = 'none';
-    document.querySelector('.overlay').style.display = 'none'; // Hide overlay
-}
-function showRecommendations(shape) {
+  function closeInitialPopup() {
+      document.getElementById('initialPopup').style.display = 'none';
+  }
+
+  function showFaceShape(shape) {
     document.getElementById('findMyFitModal').style.display = 'none';
     document.getElementById('recommendations').style.display = 'block';
 
-    const glassesData = {
-      "Round":[
-        { id: "32859935", image: "Adidas/32859935/32859935-front-2000x1125.jpg", name: "Adidas: Product 32859935", price: "100.00" },
-        { id: "32859928", image: "Adidas/32859928/32859928-front-2000x1125.jpg", name: "Adidas: Product 32859928", price: "100.00" },
-        { id: "33039947", image: "DKNY/33039947/33039947-front-2000x1125.jpg", name: "DKNY: Product 33039947", price: "100.00" }
-      ],
-      "Square":[
-        { id: "33137490", image: "Barbour/33137490/33137490-front-2000x1125.jpg", name: "Barbour: Product 33137490", price: "100.00" },
-        { id: "33135175", image: "Karen Millen/33135175/33135175-front-2000x1125.jpg", name: "Karen Millen: Product 33135175", price: "100.00" },
-        { id: "33155449", image: "Harry Potter/33155449/33155449-front-2000x1125.jpg", name: "Harry Potter: Product 33155449", price: "100.00" },
-        ],
-      "Oval":[
-        { id: "33087542", image: "Disney/33087542/33087542-front-2000x1125.jpg", name: "Disney: Product 33087542", price: "100.00" },
-        { id: "32860634", image: "Jeff Banks/32860634/32860634-front-2000x1125.jpg", name: "Jeff Banks: Product 32860634", price: "100.00" },
-        { id: "33137346", image: "HUGO/33137346/33137346-front-2000x1125.jpg", name: "HUGO: Product 33137346", price: "100.00" },
-      ],
-      "Heart":[
-        { id: "33039633", image: "Karen Millen/33039633/33039633-front-2000x1125.jpg", name: "Karen Millen: Product 33039633", price: "100.00" },
-        { id: "33145006", image: "Comfit/33145006/33145006-front-2000x1125.jpg", name: "Comfit: Product 33145006", price: "100.00" },
-        { id: "33137353", image: "HUGO/33137353/33137353-front-2000x1125.jpg", name: "HUGO: Product 33137353", price: "100.00" },   
-      ],
-      "Diamond":[
-      { id: "33039640", image: "Karen Millen/33039640/33039640-front-2000x1125.jpg", name: "Karen Millen: Product 33039640", price: "100.00" },
-      { id: "33040011", image: "DKNY/33040011/33040011-front-2000x1125.jpg", name: "DKNY: Product 33040011", price: "100.00" },
-      { id: "33145013", image: "Comfit/33145013/33145013-front-2000x1125.jpg", name: "Comfit: Product 33145013", price: "100.00" },
-      ],
-      "Triangular":[
-      { id: "32677959", image: "DKNY/32677959/32677959-front-2000x1125.jpg", name: "DKNY: Product 32677959", price: "100.00" },
-      { id: "32859942", image: "Adidas/32859942/32859942-front-2000x1125.jpg", name: "Adidas: Product 32859942", price: "100.00" },
-      { id: "32908640", image: "Harry Potter/32908640/32908640-front-2000x1125.jpg", name: "Harry Potter: Product 32908640", price: "100.00" },
-          
-      ],
-    };
+    // Hide all sections first
+    document.querySelectorAll('.face-shape-section').forEach(section => {
+        section.style.display = 'none';
+    });
 
-    const glassesContainer = document.getElementById('glasses-options');
-    glassesContainer.innerHTML = ''; // Clear previous entries
+    // Fetch products dynamically via AJAX
+    fetch(`/get-products-by-face-shape?shape=${shape}`)
+        .then(response => response.json())
+        .then(products => {
+            const section = document.getElementById(`section-${shape}`);
+            section.innerHTML = ''; // Clear previous products
+            
+            if (products.length === 0) {
+                section.innerHTML = '<p>No products available for this face shape.</p>';
+            } else {
+                products.forEach(product => {
+                    section.innerHTML += `
+                        <div class="search-product-card" data-category="${product.category?.name || 'Unknown'}">
+                            <a href="/sproduct/${product.id}" class="search-product-link">
+                                <img src="${product.image_url}" alt="${product.name} - Front">
+                            </a>
+                            <a href="/sproduct/${product.id}" class="search-product-link">
+                                <h3>${product.name}</h3>
+                                <p>Price: £${parseFloat(product.price).toFixed(2)}</p>
+                            </a>
+                            <form class="add-to-cart-form" onsubmit="addToCart(event, ${product.id})">
+                                <input type="hidden" name="product_id" value="${product.id}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="add-to-cart">Add to Cart</button>
+                            </form>
+                        </div>
+                    `;
+                });
+            }
 
-    if (glassesData[shape]){
-      glassesData[shape].forEach(product =>{
-        glassesContainer.innerHTML += `
-                <div class="glasses-card">
-                    <img src="{{ asset('Images/products/Featured/') }}/${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>£${product.price}</p>
-                    <button>Add to Cart</button>
-                </div>`;
-      });
-    }
-
-    // // Ensure only three recommendations are displayed
-    // glassesData[shape].slice(0, 3).forEach(img => {
-    //     glassesContainer.innerHTML += `
-    //         <div class="glasses-card">
-    //             <img src="${basePath + img}" alt="Recommended Glasses">
-    //             <p>Glasses Model ${img}</p>
-    //             <button>Add to Cart</button>
-    //         </div>`;
-    // });
+            section.style.display = 'grid'; // Show updated section
+        })
+        .catch(error => console.error('Error fetching products:', error));
 }
-// Prevent clicks inside the modal from closing it
-document.getElementById('findMyFitModal').addEventListener('click', function(event) {
-    event.stopPropagation();
-});
 
-document.getElementById('initialPopup').addEventListener('click', function(event) {
-    event.stopPropagation();
-});
-
-document.getElementById('recommendations').addEventListener('click', function(event) {
-    event.stopPropagation();
-});
-
-// Close modal when clicking on the overlay
-document.querySelector('.overlay').addEventListener('click', function(event) {
-    if (event.target === this) {
-        closeModal();
-    }
-});
 </script>
 
 @endsection

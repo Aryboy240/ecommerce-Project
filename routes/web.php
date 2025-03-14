@@ -30,6 +30,8 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::get('/', [ProductController::class, 'featuredProducts'])->name('welcome');
 Route::get('/welcome', [ProductController::class, 'featuredProducts'])->name('welcome'); // This sends the 'featured products' information to the homepage
+Route::get('/get-products-by-face-shape', [ProductController::class, 'getProductsByFaceShape']);
+
 
 Route::get('/about', function () {
     return view('about'); // Refers to resources/views/about.blade.php
