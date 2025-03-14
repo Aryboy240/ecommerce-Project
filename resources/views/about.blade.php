@@ -145,8 +145,8 @@
                 <p class="member-title">Team Leader</p>
                 <p class="member-bio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum doloremque aperiam ad iste vero, tenetur sunt praesentium tempora alias, nobis velit rem reprehenderit nihil cumque rerum molestias ab dolorem eius.</p>
                 <div class="member-contact">
-                    <a href="#">Email</a>
-                    <a href="#">LinkedIn</a>
+                    <a href="mailto:aryan240@outlook.com">Email</a>
+                    <a href="https://linktr.ee/AryanKora">Linktree</a>
                 </div>
             </div>
         </div>
