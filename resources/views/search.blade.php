@@ -28,7 +28,7 @@
 @extends('layouts.mainLayout')
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'Optique | Product Search')
+@section('title', 'Optique | Products')
 
 <!-- The @yeild in searchApp's main is filled by everything in this section -->
 @section('content')

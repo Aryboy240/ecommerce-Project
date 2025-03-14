@@ -11,7 +11,7 @@
 
 @extends('layouts.mainLayout')
 
-@section('title', 'cart')
+@section('title', 'Optique | Cart')
 
 @section('content')
 <!-- Dynamic cart functions:: Aryan Kora -->

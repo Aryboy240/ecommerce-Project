@@ -20,7 +20,7 @@
 @extends('layouts.mainLayout')
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'Contact')
+@section('title', 'Optique | Contact')
 
 <!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
