@@ -1,7 +1,7 @@
 <!--
-    Developer: Abdulrahman Muse
+    Developer: Aryan Kora
     University ID: 230228946
-    Function: about page front end
+    Function: About page front end
 -->
 
 <html lang="en">
@@ -38,53 +38,8 @@
 </section>
 <!-- About Hero End -->
 
-<!-- Company Logo Section -->
-<section class="logo-section">
-  <div class="logo-container">
-    <div class="logo-wrapper">
-      <img src="{{ asset('Images/logo.png') }}" alt="Company Logo" class="company-logo">
-      <div class="logo-text">
-        <h2>We Are Frame Your World</h2>
-        <p>A digital solution for opticians providing premium eyewear collections</p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Company Logo Section End -->
-
-<!-- Our Story Section -->
-<section class="about-story-section">
-  <div class="about-wrapper">
-    <div class="about-content">
-      <h2>Our Story</h2>
-      <p>Founded in 2015, Frame Your World began with a simple mission: to revolutionize how people shop for eyewear. 
-        We believe that glasses are more than just a visual aid—they're an expression of your personal style and identity.
-        <br><br>
-        What started as a small boutique in London has grown into a comprehensive digital platform serving opticians 
-        nationwide. Our journey has been driven by innovation, quality, and a deep understanding of what our customers need.
-        <br><br>
-        Today, we offer a curated collection of premium eyewear from world-renowned brands, making it easier for 
-        opticians to provide their clients with the perfect frames that match both their prescription needs and style preferences.
-        <br><br>
-        Our digital solution simplifies the ordering process, provides detailed product information, and ensures 
-        a seamless experience from browsing to delivery—all while maintaining the highest standards of quality and service.
-      </p>
-    </div>
-    <div class="about-image">
-      <div class="image-grid">
-        <img src="{{ asset('Images/About/store-front.jpg') }}" alt="Our Store">
-        <img src="{{ asset('Images/About/showroom.jpg') }}" alt="Our Showroom">
-        <img src="{{ asset('Images/About/workshop.jpg') }}" alt="Our Workshop">
-        <img src="{{ asset('Images/About/digital-platform.jpg') }}" alt="Digital Platform">
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Our Story Section End -->
-
 <!-- Mission Values Section with Floaters -->
 <section class="container mission-section">
-  <h2 class="section-title">Our Mission & Values</h2>
   <div class="floater-body">
     <div class="floater-containter mission-floaters">
       <div class="floaters mission-floater">
@@ -101,13 +56,81 @@
       </div>
     </div>
   </div>
-  <div class="text-box mission-box">
-    <p>At Frame Your World, our mission is to transform the eyewear industry by providing opticians with a streamlined 
-    digital platform that offers premium products, exceptional service, and innovative solutions. We're committed to 
-    helping people express their unique style while improving their vision with quality eyewear that exceeds expectations.</p>
+  <div class="mission-box-con">
+    <div class="mission-box">
+      <p>At Frame Your World, our mission is to transform the eyewear industry by providing opticians with a streamlined 
+      digital platform that offers premium products, exceptional service, and innovative solutions. We're committed to 
+      helping people express their unique style while improving their vision with quality eyewear that exceeds expectations.</p>
+    </div>
   </div>
 </section>
 <!-- Mission Values Section End -->
+
+<!-- Our Story Section -->
+<section class="about-story-section">
+  <div class="about-wrapper">
+    <div class="about-content">
+      <h2>Our Story</h2>
+      <p>
+        Optique - where vision and style come together with innovation. To the outside world, Optique is an
+        organization that is fully devoted to offering the best eyeglasses that address not only your vision but
+        also your fashion sense. If you are interested in the newest trends or classics, our glasses' selection
+        is created to meet every customer's needs and preferences.
+        It is our goal to make the decision to purchase a pair of glasses as easy, fun, and beneficial as
+        possible. Whether you browse our site from the comfort of your own home or visit our store, we are
+        here to assist you in choosing the right frames and lenses for you. Welcome to a new world of
+        glasses-welcome to Optique.
+        <br><br>
+        We are Optique, a group of professionals who are inspired by a common mission to change people's
+        lives with the help of proper eyewear. We have paid much attention to the quality, appearance, and
+        attitude towards customers, which made us a reputable company in the sphere of selling
+        eyeglasses. Our specialization includes selecting beautiful frames, choosing the best lenses, and
+        making sure that every client sees clearly and feels good.
+        Optique is not just a brand but a group of people who are interested in vision, style, and relations.
+        We're here to help you make sense of the world and communicate your ideas more effectively.
+        Optique is your home - where every eyeglasses is not just an optical accessory but a window to the
+        world.
+        <br><br>
+        Revolutionize Eyewear Shopping: To revolutionize the way people buy their eyeglasses by offering the latest technology
+        and friendly services.
+        <br>
+        Combine Functionality with Style: Design various models of sunglasses that provide utility with functional perspectives of
+        taste and personality.
+        <br>
+        Prioritize Customer Satisfaction: The goal is to build trust and long-term relationships with customers, and to achieve it,
+        make sure that each of them leaves with something they would like.
+        <br>
+        Commit to Quality: Offer good quality frames and lenses that are well made, well fitted, and long lasting.
+        <br>
+        Embrace Sustainability: The incorporation of environment-friendly materials and work processes to minimize our impact
+        on the biophysical environment during the provision of quality optical solutions.
+      </p>
+    </div>
+    <div class="about-image">
+      <div class="image-grid">
+        <img src="{{ asset('Images/About/store-front.jpg') }}" alt="Our Store">
+        <img src="{{ asset('Images/About/showroom.jpg') }}" alt="Our Showroom">
+        <img src="{{ asset('Images/About/workshop.jpg') }}" alt="Our Workshop">
+        <img src="{{ asset('Images/About/digital-platform.jpg') }}" alt="Digital Platform">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Our Story Section End -->
+
+<!-- Company Logo Section -->
+<section class="logo-section">
+  <div class="logo-container">
+    <div class="logo-wrapper">
+      <img src="{{ asset('Images/logo.png') }}" alt="Company Logo" class="company-logo">
+      <div class="logo-text">
+        <h2>We Are Here To<br> Frame Your World</h2>
+        <p>A digital solution for opticians providing premium eyewear collections</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Company Logo Section End -->
 
 <!-- Meet the Team Section -->
 <section class="team-section">
@@ -117,13 +140,13 @@
       <!-- CEO Level -->
       <div class="tree-level level-1">
           <div class="team-member">
-              <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="CEO">
+              <div class="member-image" id="first-member">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">John Smith</h3>
-                  <p class="member-title">CEO & Founder</p>
-                  <p class="member-bio">John founded our company in 2015 with a vision to revolutionize the industry. With over 15 years of experience, he leads our team with passion and innovation.</p>
+                  <h3 class="member-name">Aryan Kora</h3>
+                  <p class="member-title">Team Leader</p>
+                  <p class="member-bio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum doloremque aperiam ad iste vero, tenetur sunt praesentium tempora alias, nobis velit rem reprehenderit nihil cumque rerum molestias ab dolorem eius.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -136,12 +159,12 @@
       <div class="tree-level level-2">
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="CTO">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">Sarah Johnson</h3>
-                  <p class="member-title">Chief Technology Officer</p>
-                  <p class="member-bio">Sarah oversees all technical aspects of the company. Her innovative approach has led to our award-winning product development.</p>
+                  <h3 class="member-name">Abdul</h3>
+                  <p class="member-title">Full Stack Developer</p>
+                  <p class="member-bio">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt ad, alias quasi est dolore voluptatem culpa provident obcaecati voluptatum distinctio nisi. Sapiente modi enim beatae commodi dignissimos? Officia, molestias sapiente!</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -151,12 +174,12 @@
           
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="COO">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">Michael Chen</h3>
-                  <p class="member-title">Chief Operations Officer</p>
-                  <p class="member-bio">Michael ensures our day-to-day operations run smoothly. His strategic planning has helped us expand to three new markets.</p>
+                  <h3 class="member-name">Angus</h3>
+                  <p class="member-title">Front-end Developer</p>
+                  <p class="member-bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores nam facilis officia, sit nihil asperiores placeat inventore, ex dolorum, neque suscipit. Quisquam a beatae iure? Odio ab earum corporis consectetur!</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -166,12 +189,12 @@
           
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="CMO">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">Emily Rodriguez</h3>
-                  <p class="member-title">Chief Marketing Officer</p>
-                  <p class="member-bio">Emily leads our marketing strategies with creativity and data-driven insights, resulting in a 200% growth in brand recognition.</p>
+                  <h3 class="member-name">Aqsa</h3>
+                  <p class="member-title">Front-end Developer</p>
+                  <p class="member-bio">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto iste deleniti consequatur, delectus et cupiditate consequuntur excepturi asperiores provident accusamus quis, ab sapiente neque minus error optio. Sapiente, aperiam ipsum.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -184,12 +207,12 @@
       <div class="tree-level level-3">
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="Dev Manager">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">David Kim</h3>
-                  <p class="member-title">Development Manager</p>
-                  <p class="member-bio">David leads our development team, bringing technical expertise and leadership to our software projects.</p>
+                  <h3 class="member-name">Aron</h3>
+                  <p class="member-title">Backend Developer</p>
+                  <p class="member-bio">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab sequi similique deserunt minima perferendis ducimus natus magnam dicta voluptas neque vero enim eveniet accusantium porro architecto necessitatibus dolor, facilis modi?</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -199,12 +222,12 @@
           
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="Design Manager">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">Lisa Wong</h3>
-                  <p class="member-title">Design Manager</p>
-                  <p class="member-bio">Lisa brings creativity and user focus to our product design, ensuring exceptional user experiences.</p>
+                  <h3 class="member-name">Hussen</h3>
+                  <p class="member-title">Backend Developer</p>
+                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, assumenda cumque nisi impedit deleniti ex. Ipsam quos sapiente dolorum fugiat quisquam quam odio cumque qui vel? In distinctio a quae?</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -214,12 +237,12 @@
           
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="Sales Manager">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">James Wilson</h3>
-                  <p class="member-title">Sales Manager</p>
-                  <p class="member-bio">James drives our sales strategy, building strong client relationships and exceeding targets consistently.</p>
+                  <h3 class="member-name">Nikhil</h3>
+                  <p class="member-title">Backend Developer</p>
+                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime veritatis blanditiis iure reiciendis fuga culpa magnam neque consectetur ipsa qui, distinctio velit voluptatem recusandae? Itaque accusamus explicabo labore ipsa harum?</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -229,12 +252,12 @@
           
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="HR Manager">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">Olivia Martinez</h3>
-                  <p class="member-title">HR Manager</p>
-                  <p class="member-bio">Olivia oversees our talent acquisition and employee development, creating a positive and productive workplace.</p>
+                  <h3 class="member-name">Oyinlola</h3>
+                  <p class="member-title">Front-end Developer</p>
+                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere officiis, veritatis deserunt eos fugit omnis laborum eveniet ducimus enim reprehenderit iure sunt qui sapiente at quod explicabo vel neque nemo.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -244,12 +267,12 @@
           
           <div class="team-member">
               <div class="member-image">
-                  <img src="/api/placeholder/100/100" alt="Finance Manager">
+                <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
               </div>
               <div class="member-card">
-                  <h3 class="member-name">Robert Taylor</h3>
-                  <p class="member-title">Finance Manager</p>
-                  <p class="member-bio">Robert manages our financial planning and analysis, ensuring sustainable growth and profitability.</p>
+                  <h3 class="member-name">Vatsal</h3>
+                  <p class="member-title">Backend Developer</p>
+                  <p class="member-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni excepturi sunt quas qui, perferendis molestiae nisi ea eum voluptas dolore tenetur ratione nemo labore quaerat similique quos perspiciatis nihil nobis.</p>
                   <div class="member-contact">
                       <a href="#">Email</a>
                       <a href="#">LinkedIn</a>
@@ -269,9 +292,9 @@
       <div class="quote-mark">"</div>
       <p class="testimonial-text">Frame Your World has transformed how we operate our optician business. The digital platform is intuitive, and the quality of frames is exceptional. Our customers love the variety of premium brands available.</p>
       <div class="testimonial-author">
-        <img src="{{ asset('Images/Testimonials/testimonial1.jpg') }}" alt="John Smith">
+        <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
         <div>
-          <h4>John Smith</h4>
+          <h4>Brandon Ian Tidmarsh</h4>
           <p>Vision Care Opticians, London</p>
         </div>
       </div>
@@ -281,10 +304,10 @@
       <div class="quote-mark">"</div>
       <p class="testimonial-text">The team at Frame Your World understands the needs of modern opticians. Their platform has streamlined our ordering process and the customer support is always responsive and helpful.</p>
       <div class="testimonial-author">
-        <img src="{{ asset('Images/Testimonials/testimonial2.jpg') }}" alt="Lisa Taylor">
+        <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
         <div>
-          <h4>Lisa Taylor</h4>
-          <p>Taylor Eyecare, Manchester</p>
+          <h4>Dylan Michel Ellis-Patey</h4>
+          <p>Taylor Eyecare, Wolverhampton</p>
         </div>
       </div>
     </div>
@@ -293,10 +316,10 @@
       <div class="quote-mark">"</div>
       <p class="testimonial-text">We've seen a significant increase in customer satisfaction since partnering with Frame Your World. The quality of their frames and the efficiency of their delivery service is unmatched in the industry.</p>
       <div class="testimonial-author">
-        <img src="{{ asset('Images/Testimonials/testimonial3.jpg') }}" alt="David Clarke">
+        <img src="{{ asset('Images/Users/Profile_Pics/Default/default_pf.png') }}">
         <div>
-          <h4>David Clarke</h4>
-          <p>Clarity Vision, Edinburgh</p>
+          <h4>Chanel Louise Vernon</h4>
+          <p>Clarity Vision, Liverpool</p>
         </div>
       </div>
     </div>
