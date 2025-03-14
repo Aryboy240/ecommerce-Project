@@ -256,6 +256,11 @@
     z-index: 100;
 }
 
+#first-card {
+    width: 300px;
+    left: -112%;
+}
+
 .team-member:hover .member-card {
     opacity: 1;
     visibility: visible;

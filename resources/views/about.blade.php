@@ -140,10 +140,10 @@
                 <img src="{{ asset('Images/MOT/Aryan.png') }}">
               </div>
             </div>
-            <div class="member-card">
+            <div class="member-card" id="first-card">
                 <h3 class="member-name">Aryan Kora</h3>
                 <p class="member-title">Team Leader</p>
-                <p class="member-bio">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum doloremque aperiam ad iste vero, tenetur sunt praesentium tempora alias, nobis velit rem reprehenderit nihil cumque rerum molestias ab dolorem eius.</p>
+                <p class="member-bio">I worked on both the frontend and backend of a website, focusing on the frontend with tasks such as creating the landing page, developing user registration, login, and account management systems, designing the navigation bar, implementing light mode, and remaking the account and contact pages. On the backend, I handled adding images to products in the database, managing products, developing checkout and cart functionality, enabling search, and implementing the login system. Additionally, I managed website hosting, maintained the GitHub repository, distributed tasks as the project leader/manager, and provided technical support throughout the development process.</p>
                 <div class="member-contact">
                     <a href="mailto:aryan240@outlook.com">Email</a>
                     <a href="https://linktr.ee/AryanKora">Linktree</a>
