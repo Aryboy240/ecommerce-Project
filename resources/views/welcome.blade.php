@@ -71,7 +71,7 @@
   <div class="fit-button-con">
     <button class="find-my-fit-btn" onclick="resetAndShowModal()">Find My Fit</button>
   </div>
-  
+
   <!-- Initial Popup -->
   <div id="initialPopup" class="initial-popup">
       <span class="close-modal" onclick="closeInitialPopup()">&times;</span>
@@ -422,11 +422,9 @@ function resetAndShowModal() {
                                 <h3>${product.name}</h3>
                                 <p>Price: £${parseFloat(product.price).toFixed(2)}</p>
                             </a>
-                            <form class="add-to-cart-form" onsubmit="addToCart(event, ${product.id})">
-                                <input type="hidden" name="product_id" value="${product.id}">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit" class="add-to-cart">Add to Cart</button>
-                            </form>
+                            <a href="/sproduct/${product.id}">
+                              <button type="submit">View</button>
+                            </a>
                         </div>
                     `;
                 });
