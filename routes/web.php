@@ -23,6 +23,7 @@ Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('
 Route::put('/admin/products/update-stock/{id}', [ProductController::class, 'updateStock'])->name('productadmin.updateStock'); // ✅ FIX ADDED
 Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('productadmin.destroy');
 
+
 // User Authentication Routes
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
@@ -30,7 +31,8 @@ Route::post('/login', [UserController::class, 'login']);
 
 // Home & Landing Pages
 Route::get('/', [ProductController::class, 'featuredProducts'])->name('welcome');
-Route::get('/welcome', [ProductController::class, 'featuredProducts'])->name('welcome');
+Route::get('/welcome', [ProductController::class, 'featuredProducts'])->name('welcome'); // This sends the 'featured products' information to the homepage
+Route::get('/get-products-by-face-shape', [ProductController::class, 'getProductsByFaceShape']);
 
 Route::get('/about', function () {
     return view('about');
@@ -89,10 +91,10 @@ Route::get('/account', function () {
 
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function(){
-    Route::post('/update-username',[UserController::class, 'updateUsername'])->name('update.username');
-    Route::post('/update-email',[UserController::class, 'updateEmail'])->name('update.email');
-    Route::post('/update-password',[UserController::class, 'updatePassword'])->name('update.password');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/update-username', [UserController::class, 'updateUsername'])->name('update.username');
+    Route::post('/update-email', [UserController::class, 'updateEmail'])->name('update.email');
+    Route::post('/update-password', [UserController::class, 'updatePassword'])->name('update.password');
 });
 
 // Account Management Routes
@@ -182,5 +184,4 @@ Route::get('/check-login', function () {
 });
 
 // Checkout Page
-
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
