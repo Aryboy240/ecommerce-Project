@@ -7,7 +7,7 @@
 <body>
     <div class="container mt-5">
         <h1>Orders</h1>
-        <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">Create New Order</a>
+        <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">Go back</a>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
