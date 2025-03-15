@@ -91,7 +91,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->enum('status', ['pending', 'shipped', 'delivered'])->default('pending');
+            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'completed', 'cancelled', 'refund_requested'])->default('pending');
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
             $table->index('user_id');
