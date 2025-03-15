@@ -44,4 +44,20 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+    
+    /**
+     * Decrease the stock quantity.
+     *
+     * @param int $quantity
+     * @return bool
+     */
+    public function decreaseStock($quantity)
+    {
+        if ($this->stock_quantity >= $quantity) {
+            $this->stock_quantity -= $quantity;
+            return $this->save();
+        }
+        
+        return false;
+    }
 }

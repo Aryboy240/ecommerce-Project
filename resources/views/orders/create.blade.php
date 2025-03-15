@@ -19,9 +19,9 @@
                 <label class="form-label">Customer:</label>
                 <select name="customer_id" class="form-select" required>
                     <option value="">Select Customer</option>
-                    @foreach(\App\Models\Customer::all() as $customer)
+                    @foreach(\App\Models\User::all() as $customer)
                         <option value="{{ $customer->id }}">
-                            {{ $customer->first_name }} {{ $customer->last_name }}
+                            {{ $customer->name }}
                         </option>
                     @endforeach
                 </select>

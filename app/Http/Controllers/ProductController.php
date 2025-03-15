@@ -4,69 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
-
     /* 
-        All this function does is:
-        
-        1.  Fetch data from the database
-        2.  Pass this data to the views for rendering
-        3.  Handle user inputs (search query)
+        This controller:
+        1. Fetches data from the database
+        2. Passes this data to the views for rendering
+        3. Handles user inputs (search queries and filtering)
     */
 
-    /* We also need to add filters, but I'm sure you could do that without me */
     public function index(Request $request)
     {
         $query = Product::query();
-    
+
         // Search functionality
         if ($request->has('search') && $request->search !== null) {
             $searchTerm = $request->search;
             $query->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+                  ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
-    
-        // Category filtering
-        if ($request->has('category') && $request->category !== 'all') {
-            $query->whereHas('category', function ($query) use ($request) {
-                $query->where('name', $request->category);
-            });
+
+        // Category filtering (Fixed "All Categories" issue)
+        if ($request->has('category') && $request->category !== 'all' && $request->category !== '') {
+            $query->where('category_id', $request->category);
         }
-    
-        // Price filtering (min and max price)
-        if ($request->has('min_price') && is_numeric($request->min_price)) {
-            $query->where('price', '>=', $request->min_price);  // Filter by min price
-        }
-        if ($request->has('max_price') && is_numeric($request->max_price)) {
-            $query->where('price', '<=', $request->max_price);  // Filter by max price
-        }
-    
-        // Price sorting (if requested)
-        if ($request->has('sort_by_price') && $request->sort_by_price !== 'none') {
-            $sortOrder = $request->sort_by_price == 'asc' ? 'asc' : 'desc';
-            $query->orderBy('price', $sortOrder);
-        } else {
-            // Default to sorting by ID if no price sort is selected
-            $query->orderBy('id', 'asc');
-        }
-    
-        // Retrieve products with their related images, image types, and category
-        $products = $query->with(['images.imageType', 'category'])->get();
-    
-        $minPrice = Product::min('price'); // Get the minimum price
-        $maxPrice = Product::max('price'); // Get the maximum price
-    
-        return view('search', compact('products', 'minPrice', 'maxPrice'));
+
+        // Retrieve products with pagination
+        $products = $query->with('category', 'images')->paginate(5);
+
+        // Fetch all available categories from the database
+        $categories = ProductCategory::all();
+
+        // Calculate stock tracking data
+        $totalFramesInStock = Product::sum('stock_quantity');
+        $lowStockFrames = Product::where('stock_quantity', '<', 10)->count();
+        $outOfStockFrames = Product::where('stock_quantity', '=', 0)->count();
+        $newThisMonth = Product::whereMonth('created_at', now()->month)->count();
+
+        return view('admin.AdminProduct', compact(
+            'products', 
+            'categories', 
+            'totalFramesInStock', 
+            'lowStockFrames', 
+            'outOfStockFrames', 
+            'newThisMonth'
+        ));
     }
-    
+
     public function show($id)
     {
         $product = Product::with([
-            'images.imageType',
+            'images',
             'category',
-            'reviews.user' // Load reviews with user data
+            'reviews.user'
         ])->findOrFail($id);
 
         return view('sproduct', compact('product'));
@@ -76,11 +68,51 @@ class ProductController extends Controller
     {
         $products = Product::whereIn('id', [
             32859928, 33137483, 32861686, 33087542, 32677959, 33137346, 32860634, 33039633
-        ])->with('category', 'images.imageType')->get();
+        ])->with('category', 'images')->get();
 
         return view('welcome', compact('products'));
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'stock_quantity' => 'required|integer|min:0'
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock_quantity = $request->stock_quantity;
+        $product->save();
+
+        return response()->json(['success' => true, 'message' => 'Product updated successfully']);
+    }
+
+    public function updateStock(Request $request, $id)
+    {
+        $request->validate([
+            'stock_quantity' => 'required|integer|min:0'
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->stock_quantity = $request->stock_quantity;
+        $product->save();
+
+        return redirect()->route('productadmin')->with('success', 'Stock updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('productadmin')->with('success', 'Product deleted successfully.');
+    }
+  
     public function getProductsByFaceShape(Request $request)
     {
         $shape = $request->input('shape');
@@ -117,5 +149,11 @@ class ProductController extends Controller
 
         return response()->json($formattedProducts);
     }
-
 }
+
+
+
+
+
+
+
