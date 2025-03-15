@@ -36,11 +36,15 @@
         </ul>
     </nav>
 
+    <!-- Main Content Area -->
     <div class="main-content">
+        <!-- Search Bar -->
         <div class="search-bar">
             <input type="text" placeholder="Search customers..." class="search-input">
             <button class="search-button">Search</button>
         </div>
+
+        <!-- Customer Table Section -->
         <section class="customer-table">
             <table>
                 <thead>
@@ -53,14 +57,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Example Rows for Customer Data -->
                     <tr>
                         <td>1</td>
                         <td>John Doe</td>
                         <td>johndoe@gmail.com</td>
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-delete">Delete</a>
+                            <button class="btn btn-view">View</button>
+                            <button class="btn btn-delete">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -69,8 +74,8 @@
                         <td>janesmith@example.com</td>
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-delete">Delete</a>
+                            <button class="btn btn-view">View</button>
+                            <button class="btn btn-delete">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -79,8 +84,8 @@
                         <td>emilywilson@outlook.com</td>
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-delete">Delete</a>
+                            <button class="btn btn-view">View</button>
+                            <button class="btn btn-delete">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -89,8 +94,8 @@
                         <td>michaeljohnson@outlook.com</td>
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-delete">Delete</a>
+                            <button class="btn btn-view">View</button>
+                            <button class="btn btn-delete">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -99,52 +104,60 @@
     </div>
 </div>
 
+<!-- Customer Details Panel (Hidden until 'View' is clicked) -->
 <div class="customer-details-panel">
     <div class="details-header">
         <h2>Edit Customer</h2>
+        <!-- Close Button -->
         <span class="close-btn">&times;</span>
     </div>
 
     <!-- Editable Customer Info --> 
     <div class="customer-info">
-    <div class="section">
-        <label>Full Name:</label>
-        <div class="detail-view">
-            <span id="fullNameText">John Doe</span>
-            <input type="text" id="fullNameInput" class="hidden" value="John Doe">
-            <button class="btn btn-edit" onclick="editField('fullName')">Edit</button>
-            <button class="btn btn-save hidden" onclick="saveField('fullName')">Save Changes</button>
+
+        <!-- Full Name Field -->
+        <div class="info-field">
+            <label>Full Name:</label>
+            <div class="detail-view">
+                <span id="fullNameText">John Doe</span>
+                <input type="text" id="fullNameInput" class="hidden" value="John Doe">
+                <button class="btn btn-edit" onclick="editField('fullName')">Edit</button>
+                <button class="btn btn-save hidden" onclick="saveField('fullName')">Save Changes</button>
+            </div>
         </div>
-    </div>
 
-    <div class="section">
-        <label>Email:</label>
-        <div class="detail-view">
-            <span id="emailText">johndoe@gmail.com</span>
-            <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
-            <button class="btn btn-edit" onclick="editField('email')">Edit</button>
-            <button class="btn btn-save hidden" onclick="saveField('email')">Save Changes</button>
+        <!-- Email Field --> 
+        <div class="info-field">
+            <label>Email:</label>
+            <div class="detail-view">
+                <span id="emailText">johndoe@gmail.com</span>
+                <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
+                <button class="btn btn-edit" onclick="editField('email')">Edit</button>
+                <button class="btn btn-save hidden" onclick="saveField('email')">Save Changes</button>
+            </div>
         </div>
-    </div>
 
-    <div class="section">
-        <label>Date of Birth:</label>
-        <div class="detail-view">
-            <span id="dobText">dd/mm/yyyy</span>
-            <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
-            <button class="btn btn-edit" onclick="editField('dob')">Edit</button>
-            <button class="btn btn-save hidden" onclick="saveField('dob')">Save Changes</button>
+        <!-- D.O.B Field -->
+        <div class="info-field">
+            <label>Date of Birth:</label>
+            <div class="detail-view">
+                <span id="dobText">dd/mm/yyyy</span>
+                <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
+                <button class="btn btn-edit" onclick="editField('dob')">Edit</button>
+                <button class="btn btn-save hidden" onclick="saveField('dob')">Save Changes</button>
+            </div>
         </div>
-    </div>
 
     </div>
 
+    <!-- Customer Orders -->
     <div class="order-list">
         <h3>Orders</h3>
         <div class="order-item">
             <p><strong>Order #12345</strong></p>
             <p>Ray-Ban Aviator Classic - £129.99</p>
             <div class="order-status-row">
+                <!-- Order Status Dropdown -->
                 <select class="order-status">
                     <option value="Pending">Pending</option>
                     <option value="Dispatched">Dispatched</option>
@@ -158,6 +171,7 @@
             <p><strong>Order #12346</strong></p>
             <p>Adidas Sunglasses - £199.99</p>
             <div class="order-status-row">  
+                <!-- Order Status Dropdown -->
                 <select class="order-status">
                     <option value="Pending">Pending</option>
                     <option value="Dispatched">Dispatched</option>
@@ -169,6 +183,19 @@
     </div>
 </div>
 
+<!-- Delete Confirmation Modal -->  
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Confirm Deletion</h2>
+        <p>Please enter your password to delete this user.</p>
+        <input type="password" placeholder="Enter password">
+        <button class="btn btn-delete">Delete</button>
+    </div>
+</div>
+
+<!-- Link to JavaScript File -->
 <script src="{{ asset('js/customers.js') }}"></script>
+
 </body>
 </html>

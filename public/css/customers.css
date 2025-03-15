@@ -13,10 +13,9 @@
     gap: 20px;
 }
         
+/* Customer Table Styling */
 .customer-table {
-    background-color: var(--bg-secondary);
     border-radius: 5px;
-    overflow: hidden;
     width: 100%;
 }
 
@@ -25,28 +24,32 @@
     border-collapse: collapse;
 }
 
+/* Cell Styling */
 .customer-table th, .customer-table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid var(--lighter);
 }
 
+/* Table Heading */
 .customer-table th {
     background-color: var(--mint);
     color: var(--text-primary);
 }
 
-
+/* Row Hover Effects */
 .customer-table tbody tr:hover {
     background-color: var(--floater);
 }
 
+/* Action Cell Styling */
 .actions {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
+/* Button Styling */
 .btn {
     margin: 5px;
     padding: 6px 12px;
@@ -61,23 +64,54 @@
     transition: background-color 0.2s, transform 0.2s;
 }
 
+/* View Button Styling */
 .btn-view {
     background-color: var(--lighter);
     color: var(--text-primary);
     border: 1px solid var(--text-primary);
 }
 
+/* Delete Button Styling */
 .btn-delete {
     background-color: #dc3545;
     color: white;
     border: 1px solid #dc3545;
 }
 
+/* Button Hover Effects */
 .btn:hover {
     transform: scale(1.05);
     filter: brightness(90%);
 }
 
+/* Modal Styling */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* Modal Content Styling */
+.modal-content {
+    width: 420px;
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border: 3px solid var(--mint); 
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button Styling */
 .close-btn {
     position: absolute;
     top: 10px;
@@ -87,14 +121,30 @@
     color: var(--text-primary);
     cursor: pointer;
     transition: color 0.3s ease-in-out;
+    background: none;
+    border: none;
 }
 
+/* Close Button Hover Effects */
 .close-btn:hover {
     color: var(--darker); 
 }
 
-/* slide-in customer details panel */
+/* Modal Input Field Styling */
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+/* Customer Details Panel */
 .customer-details-panel {
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -110,7 +160,7 @@
     transform: translateX(0);
 }
 
-/* header */
+/* Side Panel Header */
 .details-header {
     display: flex;
     justify-content: space-between;
@@ -126,21 +176,6 @@
     font-weight: 700;
 }
 
-/* close button */
-.close-btn {
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--text-secondary);
-    background: none;
-    border: none;
-    padding: 0;
-    transition: color var(--transition-speed);
-}
-
-.close-btn:hover {
-    color: var(--mint);
-}
-
 /* customer info */
 .customer-info {
     background-color: var(--bg-primary);
@@ -151,8 +186,8 @@
     box-shadow: 0 2px 8px rgba(0, 191, 174, 0.2);
 }
 
-/* section styling */
-.section {
+/* Field Styling */
+.info-field {
     margin-bottom: 24px;
 }
 
@@ -189,7 +224,7 @@ input:focus {
 }
 
 /* buttons */
-button {
+.customer-details-panel button {
     background-color: var(--mint);
     color: var(--text-primary);
     border: none;
@@ -202,12 +237,12 @@ button {
     box-shadow: 0 2px 8px rgba(0, 191, 174, 0.3);
 }
 
-button:hover {
+.customer-details-panel button:hover {
     background-color: var(--lighter);
     transform: translateY(-2px);
 }
 
-button:active {
+.customer-details-panel button:active {
     background-color: var(--darker);
     transform: translateY(0);
 }
@@ -216,7 +251,7 @@ button:active {
     display: none;
 }
 
-/* orders section */
+/* Orders Section */
 .order-list h3 {
     margin-top: 24px;
     font-size: 18px;
@@ -253,7 +288,7 @@ button:active {
     gap: 12px;
 }
 
-/* dropdown styling */
+/* Dropdown Styling */
 .order-status {
     padding: 8px;
     border-radius: 5px;
