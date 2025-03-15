@@ -44,8 +44,9 @@
 .customer-table tbody tr {
     transition: ease 0.3s;
 }
+
 .customer-table tbody tr:hover {
-    background-color: var(--floater);
+    background-color: color-mix(in srgb, var(--mint) 10%, transparent);
 }
 
 .actions {
