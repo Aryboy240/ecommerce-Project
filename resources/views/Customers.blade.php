@@ -102,95 +102,95 @@
             </table>
         </section>
     </div>
-</div>
+    
+    <!-- Customer Details Panel (Hidden until 'View' is clicked) -->
+    <div class="customer-details-panel">
+        <div class="details-header">
+            <h2>Edit Customer</h2>
+            <!-- Close Button -->
+            <span class="close-btn">&times;</span>
+        </div>
 
-<!-- Customer Details Panel (Hidden until 'View' is clicked) -->
-<div class="customer-details-panel">
-    <div class="details-header">
-        <h2>Edit Customer</h2>
-        <!-- Close Button -->
-        <span class="close-btn">&times;</span>
+        <!-- Editable Customer Info --> 
+        <div class="customer-info">
+
+            <!-- Full Name Field -->
+            <div class="info-field">
+                <label>Full Name:</label>
+                <div class="detail-view">
+                    <span id="fullNameText">John Doe</span>
+                    <input type="text" id="fullNameInput" class="hidden" value="John Doe">
+                    <button class="btn btn-edit" onclick="editField('fullName')">Edit</button>
+                    <button class="btn btn-save hidden" onclick="saveField('fullName')">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- Email Field --> 
+            <div class="info-field">
+                <label>Email:</label>
+                <div class="detail-view">
+                    <span id="emailText">johndoe@gmail.com</span>
+                    <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
+                    <button class="btn btn-edit" onclick="editField('email')">Edit</button>
+                    <button class="btn btn-save hidden" onclick="saveField('email')">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- D.O.B Field -->
+            <div class="info-field">
+                <label>Date of Birth:</label>
+                <div class="detail-view">
+                    <span id="dobText">dd/mm/yyyy</span>
+                    <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
+                    <button class="btn btn-edit" onclick="editField('dob')">Edit</button>
+                    <button class="btn btn-save hidden" onclick="saveField('dob')">Save Changes</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Customer Orders -->
+        <div class="order-list">
+            <h3>Orders</h3>
+            <div class="order-item">
+                <p><strong>Order #12345</strong></p>
+                <p>Ray-Ban Aviator Classic - £129.99</p>
+                <div class="order-status-row">
+                    <!-- Order Status Dropdown -->
+                    <select class="order-status">
+                        <option value="Pending">Pending</option>
+                        <option value="Dispatched">Dispatched</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                    <button class="btn btn-save">Save Changes</button>
+                </div>
+            </div>
+
+            <div class="order-item">
+                <p><strong>Order #12346</strong></p>
+                <p>Adidas Sunglasses - £199.99</p>
+                <div class="order-status-row">  
+                    <!-- Order Status Dropdown -->
+                    <select class="order-status">
+                        <option value="Pending">Pending</option>
+                        <option value="Dispatched">Dispatched</option>
+                        <option value="Delivered">Delivered</option>
+                    </select>
+                    <button class="btn btn-save">Save Changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Editable Customer Info --> 
-    <div class="customer-info">
-
-        <!-- Full Name Field -->
-        <div class="info-field">
-            <label>Full Name:</label>
-            <div class="detail-view">
-                <span id="fullNameText">John Doe</span>
-                <input type="text" id="fullNameInput" class="hidden" value="John Doe">
-                <button class="btn btn-edit" onclick="editField('fullName')">Edit</button>
-                <button class="btn btn-save hidden" onclick="saveField('fullName')">Save Changes</button>
-            </div>
+    <!-- Delete Confirmation Modal -->  
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Confirm Deletion</h2>
+            <p>Please enter your password to delete this user.</p>
+            <input type="password" placeholder="Enter password">
+            <button class="btn btn-delete">Delete</button>
         </div>
-
-        <!-- Email Field --> 
-        <div class="info-field">
-            <label>Email:</label>
-            <div class="detail-view">
-                <span id="emailText">johndoe@gmail.com</span>
-                <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
-                <button class="btn btn-edit" onclick="editField('email')">Edit</button>
-                <button class="btn btn-save hidden" onclick="saveField('email')">Save Changes</button>
-            </div>
-        </div>
-
-        <!-- D.O.B Field -->
-        <div class="info-field">
-            <label>Date of Birth:</label>
-            <div class="detail-view">
-                <span id="dobText">dd/mm/yyyy</span>
-                <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
-                <button class="btn btn-edit" onclick="editField('dob')">Edit</button>
-                <button class="btn btn-save hidden" onclick="saveField('dob')">Save Changes</button>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Customer Orders -->
-    <div class="order-list">
-        <h3>Orders</h3>
-        <div class="order-item">
-            <p><strong>Order #12345</strong></p>
-            <p>Ray-Ban Aviator Classic - £129.99</p>
-            <div class="order-status-row">
-                <!-- Order Status Dropdown -->
-                <select class="order-status">
-                    <option value="Pending">Pending</option>
-                    <option value="Dispatched">Dispatched</option>
-                    <option value="Delivered">Delivered</option>
-                </select>
-                <button class="btn btn-save">Save Changes</button>
-            </div>
-        </div>
-
-        <div class="order-item">
-            <p><strong>Order #12346</strong></p>
-            <p>Adidas Sunglasses - £199.99</p>
-            <div class="order-status-row">  
-                <!-- Order Status Dropdown -->
-                <select class="order-status">
-                    <option value="Pending">Pending</option>
-                    <option value="Dispatched">Dispatched</option>
-                    <option value="Delivered">Delivered</option>
-                </select>
-                <button class="btn btn-save">Save Changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Delete Confirmation Modal -->  
-<div id="deleteModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Confirm Deletion</h2>
-        <p>Please enter your password to delete this user.</p>
-        <input type="password" placeholder="Enter password">
-        <button class="btn btn-delete">Delete</button>
     </div>
 </div>
 
