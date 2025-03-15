@@ -214,6 +214,7 @@
   <main>
     @yield('content')
 
+    <!-- Admin icon -->
     @auth
       @if(auth()->user()->is_admin)
           <div class="admin-access">

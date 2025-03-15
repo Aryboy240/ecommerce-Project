@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // Create test user with proper fields
         $user = User::create([
             'name' => 'testuser',
-            'fullName' => 'Aryan Kora',
+            'fullName' => 'User1',
             'email' => 'test@example.com',
             'password' => Hash::make('password123'),
             'birthday' => '2000-01-01'
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // Creates a default admin user
         $adminUser = User::create([
             'name' => 'Admin001',
-            'fullName' => 'Aryan Kora',
+            'fullName' => 'Admin User',
             'email' => 'Admin001@example.com',
             'password' => Hash::make('Admin001'),
             'birthday' => '2000-01-01',
