@@ -59,7 +59,7 @@
                                     <div class="info-per">+{{ $revenueGrowth }}%</div>
                                 </div>
                                 <div class="info-secound">
-                                    ${{ $totalRevenue }}
+                                    £{{ $totalRevenue }}
                                 </div>
                             </div>
                             <div class="info-detail">
@@ -93,15 +93,6 @@
                             </div>
                         </div>
 
-                        <!-- Order Charts Section -->
-                        <div class="chart-container">
-                            <canvas id="ordersChart"></canvas>
-                        </div>
-                        
-                        <!-- Customers Over Time Chart -->
-                        <div class="chart-container">
-                            <canvas id="customersChart"></canvas>
-                        </div>
                     </div>
 
                     <div class="table">
@@ -114,11 +105,14 @@
                                     <div class="rankproduct">
                                         <p>{{ $product->name }}</p>
                                         <div class="table-img">
-                                            @if($product->images->count() > 0)
-                                                <img src="{{ asset($product->images->first()->path) }}" alt="{{ $product->name }}">
-                                            @else
-                                                <img src="{{ asset('Images/products/glasses1.jpeg') }}" alt="Default Product Image">
-                                            @endif
+                                            @foreach($product->images as $image)
+                                                @if($image->imageType && $image->imageType->name == 'front')
+                                                    <a href="{{ route('product.details', ['id' => $product->id]) }}" >
+                                                        <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" class="item-img">
+                                                    </a>
+                                                    @break
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                     <p>{{ $product->sales_percentage }}%</p>
@@ -147,11 +141,14 @@
                     @if(count($incomingOrders) > 0)
                         @foreach($incomingOrders as $item)
                         <div class="itemlist">                             
-                            @if($item->product->images->count() > 0)
-                                <img src="{{ asset($item->product->images->first()->path) }}" alt="{{ $item->product->name }}" class="item-img">
-                            @else
-                                <img src="{{ asset('Images/products/Featured/Comfit/33145006/33145006-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                            @endif
+                            @foreach($item->product->images as $image)
+                                @if($image->imageType && $image->imageType->name == 'front')
+                                    <a href="{{ route('product.details', ['id' => $item->product->id]) }}" >
+                                        <img src="{{ asset($image->image_path) }}" alt="{{ $item->product->name }} - Front" class="item-img">
+                                    </a>
+                                    @break
+                                @endif
+                            @endforeach
                             <p class="itemid">{{ $item->product->id }}</p> 
                             <p class="stock">{{ $item->quantity }}</p>
                             <p class="date">{{ $item->created_at->format('d/m/Y') }}</p>                        
@@ -178,11 +175,14 @@
                     @if(count($outgoingOrders) > 0)
                         @foreach($outgoingOrders as $item)
                         <div class="itemlist">                             
-                            @if($item->product->images->count() > 0)
-                                <img src="{{ asset($item->product->images->first()->path) }}" alt="{{ $item->product->name }}" class="item-img">
-                            @else
-                                <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                            @endif
+                            @foreach($item->product->images as $image)
+                                @if($image->imageType && $image->imageType->name == 'front')
+                                    <a href="{{ route('product.details', ['id' => $item->product->id]) }}" >
+                                        <img src="{{ asset($image->image_path) }}" alt="{{ $item->product->name }} - Front" class="item-img">
+                                    </a>
+                                    @break
+                                @endif
+                            @endforeach
                             <div class="listdetail">
                                 <div class="listdetail1">
                                     <p class="itemid">{{ $item->product->id }}</p> 
@@ -233,11 +233,14 @@
                         @foreach($products as $product)
                         <div class="report-container">
                             <div class="report-glass">
-                                @if($product->images->count() > 0)
-                                    <img src="{{ asset($product->images->first()->path) }}" alt="{{ $product->name }}" class="product-img">
-                                @else
-                                    <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
-                                @endif
+                                @foreach($product->images as $image)
+                                    @if($image->imageType && $image->imageType->name == 'front')
+                                        <a href="{{ route('product.details', ['id' => $product->id]) }}" >
+                                            <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" class="product-img">
+                                        </a>
+                                        @break
+                                    @endif
+                                @endforeach
                                 <p>{{ $product->category->name ?? 'Uncategorized' }}</p>
                                 <p>{{ $product->id }}</p>
                             </div>

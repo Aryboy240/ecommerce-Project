@@ -275,18 +275,20 @@ class OrderController extends Controller
         $totalProducts = $productCount; // For clarity in the view
         
         // Get top 3 bestselling products
-        $topProducts = Product::select('products.id', 'products.name', 'products.price', 
-        DB::raw('COALESCE(SUM(order_items.quantity), 0) as total_sold'))
+        $topProducts = Product::with('images') 
+        ->select('products.id', 'products.name', 'products.price', 
+            DB::raw('COALESCE(SUM(order_items.quantity), 0) as total_sold'))
         ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
         ->leftJoin('orders', 'orders.id', '=', 'order_items.order_id')
         ->where(function($query) {
             $query->where('orders.status', 'completed')
-                  ->orWhereNull('orders.status');
+                ->orWhereNull('orders.status');
         })
-        ->groupBy('products.id', 'products.name', 'products.price') 
+        ->groupBy('products.id', 'products.name', 'products.price')
         ->orderByDesc('total_sold')
         ->limit(3)
         ->get();
+
             
         // Calculate sales percentage for each top product
         $totalSold = OrderItem::join('orders', 'orders.id', '=', 'order_items.order_id')

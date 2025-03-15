@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         // Calculate stock tracking data
         $totalFramesInStock = Product::sum('stock_quantity');
-        $lowStockFrames = Product::where('stock_quantity', '<=', 10)->count();
+        $lowStockFrames = Product::where('stock_quantity', '<', 10)->count();
         $outOfStockFrames = Product::where('stock_quantity', '=', 0)->count();
         $newThisMonth = Product::whereMonth('created_at', now()->month)->count();
 
