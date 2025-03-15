@@ -56,26 +56,56 @@ window.addEventListener('click', function(event) {
 });
 
 
+
+// Developer: Aqsa Amjad
+// University ID: 230066670
+// Function: editing the customer info
+
+// get the edit buttons 
+const editButtons = document.querySelectorAll('.btn-edit');
+// get the save buttons 
+const saveButtons = document.querySelectorAll('.btn-save');
+
+// function to edit customer info
 function editField(field) {
+    // hide the text and show the input field
     document.getElementById(`${field}Text`).classList.add('hidden');
     document.getElementById(`${field}Input`).classList.remove('hidden');
 
-    // show the correct buttons by targeting within the parent element
+    // hide the edit button and show the save button
     const parent = document.getElementById(`${field}Input`).closest('.detail-view');
-    parent.querySelector('.edit-btn').classList.add('hidden');
-    parent.querySelector('.save-btn').classList.remove('hidden');
+    parent.querySelector('.btn-edit').classList.add('hidden');
+    parent.querySelector('.btn-save').classList.remove('hidden');
 }
 
+// function to save customer info
 function saveField(field) {
     const input = document.getElementById(`${field}Input`);
     const text = document.getElementById(`${field}Text`);
     
+    // update the text content with the input value
     text.textContent = input.value;
     input.classList.add('hidden');
     text.classList.remove('hidden');
 
-    // show the correct buttons by targeting within the parent element
+    // show the edit button and hide the save button
     const parent = input.closest('.detail-view');
-    parent.querySelector('.edit-btn').classList.remove('hidden');
-    parent.querySelector('.save-btn').classList.add('hidden');
+    parent.querySelector('.btn-edit').classList.remove('hidden');
+    parent.querySelector('.btn-save').classList.add('hidden');
 }
+
+// add event listeners to the 'edit' buttons
+editButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const field = button.closest('.info-field').querySelector('span').id.replace('Text', ''); // extract field name dynamically
+        editField(field);
+    });
+});
+
+// add event listeners to the 'save' buttons
+saveButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const field = button.closest('.info-field').querySelector('span').id.replace('Text', ''); // extract field name dynamically
+        saveField(field);
+    });
+});

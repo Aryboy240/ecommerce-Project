@@ -102,7 +102,7 @@
             </table>
         </section>
     </div>
-    
+
     <!-- Customer Details Panel (Hidden until 'View' is clicked) -->
     <div class="customer-details-panel">
         <div class="details-header">
@@ -120,8 +120,8 @@
                 <div class="detail-view">
                     <span id="fullNameText">John Doe</span>
                     <input type="text" id="fullNameInput" class="hidden" value="John Doe">
-                    <button class="btn btn-edit" onclick="editField('fullName')">Edit</button>
-                    <button class="btn btn-save hidden" onclick="saveField('fullName')">Save Changes</button>
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-save hidden" >Save Changes</button>
                 </div>
             </div>
 
@@ -131,8 +131,8 @@
                 <div class="detail-view">
                     <span id="emailText">johndoe@gmail.com</span>
                     <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
-                    <button class="btn btn-edit" onclick="editField('email')">Edit</button>
-                    <button class="btn btn-save hidden" onclick="saveField('email')">Save Changes</button>
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-save hidden">Save Changes</button>
                 </div>
             </div>
 
@@ -142,8 +142,8 @@
                 <div class="detail-view">
                     <span id="dobText">dd/mm/yyyy</span>
                     <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
-                    <button class="btn btn-edit" onclick="editField('dob')">Edit</button>
-                    <button class="btn btn-save hidden" onclick="saveField('dob')">Save Changes</button>
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-save hidden">Save Changes</button>
                 </div>
             </div>
 
