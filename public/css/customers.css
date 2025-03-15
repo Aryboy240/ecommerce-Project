@@ -16,7 +16,7 @@
     flex-direction: column;
     gap: 20px;
 }
-        
+
 .customer-table {
     background-color: var(--bg-secondary);
     border-radius: 5px;
@@ -29,7 +29,8 @@
     border-collapse: collapse;
 }
 
-.customer-table th, .customer-table td {
+.customer-table th,
+.customer-table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid var(--lighter);
@@ -39,7 +40,6 @@
     background-color: var(--mint);
     color: var(--text-primary);
 }
-
 
 .customer-table tbody tr:hover {
     background-color: var(--floater);
@@ -99,14 +99,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    display:none;
+    display: none;
 }
 
 .modal-content {
     width: 420px;
     background-color: var(--bg-secondary);
     padding: 25px;
-    border: 3px solid var(--mint); 
+    border: 3px solid var(--mint);
     border-radius: 12px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -125,7 +125,7 @@
 }
 
 .close-btn:hover {
-    color: var(--darker); 
+    color: var(--darker);
 }
 
 .modal-content input {

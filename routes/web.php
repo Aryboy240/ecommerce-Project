@@ -108,7 +108,6 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('/update-personal-info', [UserController::class, 'updatePersonalInfo'])->name('update.personal.info');
 
-
 /*
 |--------------------------------------------------------------------------
 | Admin Account Routes
@@ -133,9 +132,17 @@ Route::get('/adminprofile', function () {
     return view('admin/AdminProfile');
 })->name('adminprofile');
 
-Route::get('/customers', function () {
-    return view('admin/AdminCustomers');
-})->name('customers');
+// web.php (Route for showing all users in the AdminCustomers page)
+Route::get('/customers', [UserController::class, 'showCustomers'])->name('customers');
+
+// Route for updating a user
+Route::post('/admin/users/{user}/update', [UserController::class, 'updateUser'])->name('admin.users.update');
+
+// Route for deleting a user
+Route::post('/admin/users/{user}/delete', [UserController::Class, 'deleteUser'])->name('deleteuser');
+
+Route::get('/admin/users/{id}', [UserController::class, 'getUserInfo']);
+
 
 // Report Route
 Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminReport'])->name('adminreport');

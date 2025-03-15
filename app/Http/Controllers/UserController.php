@@ -141,8 +141,6 @@ class UserController extends Controller
         return response()->json(['success' => 'Personal information updated successfully!']);
     }
     
-
-
     public function checkLogin()
     {
         return response()->json([
@@ -150,5 +148,63 @@ class UserController extends Controller
         ]);
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin User Update thingy
+    |--------------------------------------------------------------------------
+    */
+    public function showCustomers()
+    {
+        // Fetch all users
+        $users = User::all();
+        
+        // Return the view with the users data
+        return view('admin.AdminCustomers', compact('users'));
+    }
+
+    public function getUserInfo($id)
+    {
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        return response()->json([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'fullName' => $user->fullName ?? '', // Use an empty string if null
+            'birthday' => $user->birthday->format('Y-m-d'),
+        ]);
+    }
+
+    public function updateUser(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'fullName' => 'nullable|string|max:255', // Adding validation for fullName
+            'birthday' => 'required|date',
+        ]);
+
+        // Update the user details, including fullName
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'fullName' => $request->fullName, // Update fullName
+            'birthday' => $request->birthday,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteUser(Request $request, $id)
+    {
+        
+        $user = User::findOrFail($id);
+        $user->delete();
+    
+        return redirect('/customers');
+    }
+    
 
 }
