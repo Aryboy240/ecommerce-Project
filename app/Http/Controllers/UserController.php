@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -118,19 +119,29 @@ class UserController extends Controller
         return response()->json(['success' => true, 'message' => 'Successfully updated your Password!']);
     }
 
-    // This allows the user to update their email in the account page - Hussen
-    public function updateEmail(Request $request){
+    public function updatePersonalInfo(Request $request)
+    {
+        // Validate input data
         $request->validate([
-            'new_email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
-            'password' => 'required|current_password',
+            'fullName' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'birthday' => 'required|date',
         ]);
-
-        auth()->user()->update([
-            'email' => $request->new_email
-        ]);
-        return back()->with('success','Successfully updated your Email!');
-
+    
+        // Get the authenticated user
+        $user = Auth::user();
+    
+        // Update user details
+        $user->fullName = $request->fullName;
+        $user->email = $request->email;
+        $user->birthday = $request->birthday;
+        $user->save();
+    
+        // Return success response
+        return response()->json(['success' => 'Personal information updated successfully!']);
     }
+    
+
 
     public function checkLogin()
     {

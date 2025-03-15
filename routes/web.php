@@ -106,6 +106,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])->name('update.billing-address');
 });
 
+Route::post('/update-personal-info', [UserController::class, 'updatePersonalInfo'])->name('update.personal.info');
+
+
 /*
 |--------------------------------------------------------------------------
 | Admin Account Routes
