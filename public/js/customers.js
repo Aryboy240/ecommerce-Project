@@ -72,6 +72,8 @@ editButtons.forEach((button) => {
                     user.fullName),
                     (document.getElementById("edit-birthday").value =
                         user.birthday);
+                document.getElementById("edit-is-admin").checked =
+                    user.is_admin == 1;
             })
             .catch((error) => {
                 console.error("Error fetching user data:", error);
@@ -86,9 +88,13 @@ document
         event.preventDefault();
 
         const userId = document.getElementById("edit-user-id").value;
+        const fullName = document.getElementById("edit-fullName").value;
         const name = document.getElementById("edit-name").value;
         const email = document.getElementById("edit-email").value;
         const birthday = document.getElementById("edit-birthday").value;
+        const is_admin = document.getElementById("edit-is-admin").checked
+            ? 1
+            : 0;
 
         fetch(`/admin/users/${userId}/update`, {
             method: "POST",
@@ -98,7 +104,7 @@ document
                 ).content,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, email, birthday }),
+            body: JSON.stringify({ fullName, name, email, birthday, is_admin }),
         })
             .then((response) => response.json())
             .then((data) => {

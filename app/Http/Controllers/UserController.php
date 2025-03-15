@@ -181,6 +181,7 @@ class UserController extends Controller
             'email' => $user->email,
             'fullName' => $user->fullName ?? '', // Use an empty string if null
             'birthday' => $user->birthday->format('Y-m-d'),
+            'is_admin' => $user->is_admin
         ]);
     }
 
@@ -191,6 +192,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255',
             'fullName' => 'nullable|string|max:255', // Adding validation for fullName
             'birthday' => 'required|date',
+            'is_admin' => 'boolean'
         ]);
 
         // Update the user details, including fullName
@@ -199,6 +201,7 @@ class UserController extends Controller
             'email' => $request->email,
             'fullName' => $request->fullName, // Update fullName
             'birthday' => $request->birthday,
+            'is_admin' => $request->is_admin
         ]);
 
         return response()->json(['success' => true]);

@@ -49,6 +49,36 @@
     background-color: color-mix(in srgb, var(--mint) 10%, transparent);
 }
 
+.role-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.admin {
+    background-color: red;
+    color: white;
+    border: 2px solid darkred;
+}
+
+.customer {
+    background-color: green;
+    color: white;
+    border: 2px solid darkgreen;
+}
+
+.input-group {
+    cursor: var(--cursor);
+}
+
+#edit-is-admin {
+    cursor: var(--pointer);
+}
+
+.input-group label {
+    cursor: var(--text);
+}
+
 .actions {
     display: flex;
     justify-content: center;
@@ -65,7 +95,7 @@
     display: inline-block;
     text-align: center;
     border: none;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: background-color 0.2s, transform 0.2s;
 }
 
@@ -124,7 +154,7 @@
     font-size: 22px;
     font-weight: bold;
     color: var(--text-primary);
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: color 0.3s ease-in-out;
 }
 

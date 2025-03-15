@@ -52,6 +52,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>D.O.B</th>
+                        <th>Account Type</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -64,6 +65,9 @@
                             <td>{{ $user->fullName }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->birthday->format('d/m/Y') }}</td> <!-- Format DOB as dd/mm/yyyy -->
+                            <td><span class="role-badge {{ $user->is_admin ? 'admin' : 'customer' }}">
+                                {{ $user->is_admin ? 'Admin' : 'Customer' }}
+                            </span></td>
                             <td class="actions">
                                 <a href="#" class="btn btn-edit" data-id="{{ $user->id }}">Edit</a>
                                 <form action="{{ route('deleteuser', $user->id) }}" method="post" style="margin-bottom: 0" id="delete-form-{{ $user->id }}">
@@ -102,6 +106,12 @@
                 <label>Date of Birth</label>
                 <input type="date" id="edit-birthday" name="birthday" required>
             </div>
+            <div class="input-group">
+                <label>
+                    <input type="checkbox" id="edit-is-admin" name="is_admin">
+                    Make Admin
+                </label>
+            </div>            
             <input type="hidden" id="edit-user-id"> <!-- Hidden field for user ID -->
             <button type="submit" class="btn btn-save">Save Changes</button>
             <button type="button" class="btn btn-cancel">Cancel</button>
