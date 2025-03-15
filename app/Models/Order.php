@@ -67,6 +67,6 @@ class Order extends Model
      */
     public function canBeRefunded()
     {
-        return in_array($this->status, ['shipped', 'delivered']);
+        return in_array($this->status, ['shipped', 'delivered', 'pending']);
     }
 }

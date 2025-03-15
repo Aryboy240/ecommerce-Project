@@ -97,7 +97,7 @@
                     <strong>Email:</strong> {{ $order->user->email }}
                 </p>
                 
-                @if(!Auth::user()->is_admin)
+                @if($order->canBeRefunded())
                 <div class="mt-3">
                     <h5>Refund Options</h5>
                     <form action="{{ route('orders.refund', $order) }}" method="POST">
