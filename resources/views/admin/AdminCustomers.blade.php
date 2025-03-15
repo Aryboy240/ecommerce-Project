@@ -48,6 +48,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Username</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>D.O.B</th>
@@ -60,6 +61,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td> <!-- Display the index number -->
                             <td>{{ $user->name }}</td>
+                            <td>{{ $user->fullName }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->birthday->format('d/m/Y') }}</td> <!-- Format DOB as dd/mm/yyyy -->
                             <td class="actions">

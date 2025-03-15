@@ -18,6 +18,7 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:8', 'max:25'],              // Min 8 characters, confirmed (with Password_confirmation)
             'confirmPassword' => ['required', 'same:password'],                   // Matches Password
             'birthday' => ['required', 'date', 'before:2006-01-01'],              // Valid date, must be before today
+            'fullName' => ['required', 'string', 'max:255'],                      // Full Name: required, string, max length of 255 characters
         ], [
             // Custom validation messages - Nikhil
             'name.required' => 'The username is required.',
@@ -36,6 +37,9 @@ class UserController extends Controller
             'birthday.required' => 'The birthdate is required.',
             'birthday.date' => 'The birthdate must be a valid date.',
             'birthday.before' => 'You must be 18 or older to make an account!',
+            'fullName.required' => 'Full name is required.',
+            'fullName.string' => 'Full name must be a valid string.',
+            'fullName.max' => 'Full name cannot exceed 255 characters.',
         ]);
 
         // Extra check for username uniqueness - Aryan
@@ -43,14 +47,17 @@ class UserController extends Controller
             return back()->withErrors(['name' => 'This username is already taken.'])->onlyInput('name');
         }
 
-        // You need to encrypt the password too - Aryan
+        // Encrypt the password
         $incomingFields['password'] = bcrypt($incomingFields['password']);
-        $user = User::create($incomingFields);
-        auth()->login($user); // Then you need to log the user in
 
-        // Redirect back to the homepage after sucsessful register - Nikhil
+        // Create the user with the fullName included
+        $user = User::create($incomingFields);
+        auth()->login($user); // Log the user in
+
+        // Redirect to the homepage after successful registration
         return redirect()->route('welcome')->with('success', 'You are now registered!');
     }
+
     
     // The login system wasn't implemented so I'll make a basic one for now. You can add to this one if you wish - Aryan
     public function login(Request $request)
