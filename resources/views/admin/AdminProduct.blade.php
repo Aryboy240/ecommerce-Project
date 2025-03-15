@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Admin Dashboard </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,37 +12,26 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation-->
-        <nav class="sidebar">
-            <div class="logo">
-                <img src="{{ asset('Images/logo.png') }}" alt="Logo">
-                <h2>Admin Dashboard</h2>
-            </div>
-            <ul class="nav-links">
-                <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-                <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-                <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-            </ul>
-        </nav>
+<!-- Sidebar Navigation (Fixed Navigation Issues) -->
+<nav class="sidebar">
+    <div class="logo">
+        <img src="{{ asset('Images/logo.png') }}" alt="Logo">
+        <h2>Admin Dashboard</h2>
+    </div>
+    <ul class="nav-links">
+        <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="{{ route('productadmin') }}" class="active"><i class="fas fa-box"></i> Products</a></li>
+        <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
+        <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+        <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
+        <li><a href="{{ route('adminprofile') }}"><i class="fas fa-user"></i> Profile</a></li>
+        <li><a href="javascript:void(0);" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</nav>
         <div class="main-content">
-
             <main class="dashboard">
-                <!-- Product Management Header -->
                 <div class="page-header">
                     <h1>Product Management</h1>
-                    <div class="header-actions">
-                        <button class="action-btn">
-                            <i class="fas fa-plus"></i>
-                            Add New Product
-                        </button>
-                        <button class="action-btn secondary">
-                            <i class="fas fa-download"></i>
-                            Export Products
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Product Statistics -->
@@ -53,17 +42,17 @@
                         </div>
                         <div class="stat-details">
                             <h3>Total Frames</h3>
-                            <p class="stat-value">500</p>
+                            <p class="stat-value">{{ $totalFramesInStock ?? 0 }}</p>
                         </div>
                     </div>
-
+                    
                     <div class="stat-card">
                         <div class="stat-icon warning">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
                         <div class="stat-details">
                             <h3>Low Stock Frames</h3>
-                            <p class="stat-value">35</p>
+                            <p class="stat-value">{{ $lowStockFrames ?? 0 }}</p>
                         </div>
                     </div>
 
@@ -73,7 +62,7 @@
                         </div>
                         <div class="stat-details">
                             <h3>Out of Stock</h3>
-                            <p class="stat-value">12</p>
+                            <p class="stat-value">{{ $outOfStockFrames ?? 0 }}</p>
                         </div>
                     </div>
 
@@ -83,40 +72,8 @@
                         </div>
                         <div class="stat-details">
                             <h3>New This Month</h3>
-                            <p class="stat-value">15</p>
+                            <p class="stat-value">{{ $newThisMonth ?? 0 }}</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Product Filters -->
-                <div class="filters-section">
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search frames...">
-                        <button><i class="fas fa-search"></i></button>
-                    </div>
-                    <div class="filter-controls">
-                        <select class="filter-select">
-                            <option value="">All Categories</option>
-                            <option value="sunglasses">Sunglasses</option>
-                            <option value="eyeglasses">Eyeglasses</option>
-                            <option value="sports">Sports Glasses</option>
-                            <option value="kids">Kids Frames</option>
-                        </select>
-                        <select class="filter-select">
-                            <option value="">Frame Material</option>
-                            <option value="metal">Metal</option>
-                            <option value="plastic">Plastic</option>
-                            <option value="acetate">Acetate</option>
-                            <option value="titanium">Titanium</option>
-                        </select>
-                        <select class="filter-select">
-                            <option value="">Frame Shape</option>
-                            <option value="round">Round</option>
-                            <option value="square">Square</option>
-                            <option value="oval">Oval</option>
-                            <option value="rectangle">Rectangle</option>
-                            <option value="cat-eye">Cat Eye</option>
-                        </select>
                     </div>
                 </div>
 
@@ -127,56 +84,132 @@
                             <tr>
                                 <th>Image</th>
                                 <th>Frame Name</th>
-                                <th>SKU</th>
+                                <th>Description</th>
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Category</th>
-                                <th>Frame Material</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <img src="frame-image.jpg" alt="Frame" class="product-thumbnail">
-                                </td>
-                                <td>Ray-Ban Aviator</td>
-                                <td>RB-3025</td>
-                                <td>£129.99</td>
-                                <td>
-                                    <span class="stock-status in-stock">In Stock (24)</span>
-                                </td>
-                                <td>Sunglasses</td>
-                                <td>Metal</td>
-                                <td class="action-buttons">
-                                    <button class="icon-btn edit">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button class="icon-btn delete">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                    <button class="icon-btn view">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <!-- More product rows... -->
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset(optional($product->images->first())->image_path ?? 'Images/default.png') }}" alt="Frame" class="product-thumbnail">
+                                    </td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ \Illuminate\Support\Str::limit($product->description, 100) }}</td>
+                                    <td>£{{ number_format($product->price, 2) }}</td>
+                                    <td class="stock-update">
+                                        <form method="POST" action="{{ route('productadmin.updateStock', $product->id) }}">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="number" name="stock_quantity" value="{{ $product->stock_quantity }}" min="0" required class="stock-input">
+                                            <button type="submit" class="update-btn">Update</button>
+                                        </form>
+                                    </td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td class="action-buttons">
+                                        <!-- Edit Button (Restored Original Size) -->
+                                        <button class="edit-btn" data-id="{{ $product->id }}">Edit</button>
+
+                                        <!-- Delete Button Below Edit -->
+                                        <form method="POST" action="{{ route('productadmin.destroy', $product->id) }}" onsubmit="return confirm('Are you sure?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete-btn"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Pagination -->
-                <div class="pagination">
-                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                    <span class="page-ellipsis">...</span>
-                    <button class="page-btn">10</button>
-                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                <div class="pagination-container">
+                    {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
                 </div>
             </main>
         </div>
     </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Edit Product</h2>
+
+            <!-- Success Message (Initially Hidden) -->
+            <div id="successMessage" class="success-message">✔ Added new product</div>
+
+            <form id="editForm" method="POST">
+                @csrf
+                @method('PUT')
+
+                <div class="input-group">
+                    <input type="text" name="name" id="editName" placeholder="Product Name" required>
+                </div>
+
+                <div class="input-group">
+                    <textarea name="description" id="editDescription" placeholder="Product Description" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <input type="number" name="price" id="editPrice" placeholder="Price (£)" step="0.01" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="number" name="stock_quantity" id="editStock" placeholder="Stock Quantity" required>
+                </div>
+
+                <button type="submit" class="save-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("editModal");
+        const closeModal = document.querySelector(".close-btn");
+        const successMessage = document.getElementById("successMessage");
+
+        document.querySelectorAll(".edit-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                const id = this.getAttribute("data-id");
+                document.getElementById("editForm").action = `/admin/products/${id}`;
+                modal.style.display = "flex";
+            });
+        });
+
+        closeModal.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        document.getElementById("editForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const form = this;
+
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                modal.style.display = "none";
+                successMessage.style.display = "block";
+                setTimeout(() => {
+                    successMessage.style.display = "none";
+                }, 3000);
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    });
+    </script>
 </body>
 </html>
+
+
+
+
+
