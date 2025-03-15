@@ -60,7 +60,6 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -71,7 +70,6 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -82,7 +80,6 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -93,7 +90,6 @@
                         <td>dd/mm/yyyy</td>
                         <td class="actions">
                             <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
                             <a href="" class="btn btn-delete">Delete</a>
                         </td>
                     </tr>
@@ -116,8 +112,8 @@
         <div class="detail-view">
             <span id="fullNameText">John Doe</span>
             <input type="text" id="fullNameInput" class="hidden" value="John Doe">
-            <button class="edit-btn" onclick="editField('fullName')">Edit</button>
-            <button class="save-btn hidden" onclick="saveField('fullName')">Save Changes</button>
+            <button class="btn btn-edit" onclick="editField('fullName')">Edit</button>
+            <button class="btn btn-save hidden" onclick="saveField('fullName')">Save Changes</button>
         </div>
     </div>
 
@@ -126,8 +122,8 @@
         <div class="detail-view">
             <span id="emailText">johndoe@gmail.com</span>
             <input type="email" id="emailInput" class="hidden" value="johndoe@gmail.com">
-            <button class="edit-btn" onclick="editField('email')">Edit</button>
-            <button class="save-btn hidden" onclick="saveField('email')">Save Changes</button>
+            <button class="btn btn-edit" onclick="editField('email')">Edit</button>
+            <button class="btn btn-save hidden" onclick="saveField('email')">Save Changes</button>
         </div>
     </div>
 
@@ -136,8 +132,8 @@
         <div class="detail-view">
             <span id="dobText">dd/mm/yyyy</span>
             <input type="date" id="dobInput" class="hidden" value="dd/mm/yyyy">
-            <button class="edit-btn" onclick="editField('dob')">Edit</button>
-            <button class="save-btn hidden" onclick="saveField('dob')">Save Changes</button>
+            <button class="btn btn-edit" onclick="editField('dob')">Edit</button>
+            <button class="btn btn-save hidden" onclick="saveField('dob')">Save Changes</button>
         </div>
     </div>
 
@@ -148,25 +144,27 @@
         <div class="order-item">
             <p><strong>Order #12345</strong></p>
             <p>Ray-Ban Aviator Classic - £129.99</p>
-            <p>Status: 
+            <div class="order-status-row">
                 <select class="order-status">
                     <option value="Pending">Pending</option>
                     <option value="Dispatched">Dispatched</option>
                     <option value="Delivered">Delivered</option>
                 </select>
-            </p>
+                <button class="btn btn-save">Save Changes</button>
+            </div>
         </div>
 
         <div class="order-item">
             <p><strong>Order #12346</strong></p>
             <p>Adidas Sunglasses - £199.99</p>
-            <p>Status: 
+            <div class="order-status-row">  
                 <select class="order-status">
                     <option value="Pending">Pending</option>
                     <option value="Dispatched">Dispatched</option>
                     <option value="Delivered">Delivered</option>
                 </select>
-            </p>
+                <button class="btn btn-save">Save Changes</button>
+            </div>
         </div>
     </div>
 </div>
