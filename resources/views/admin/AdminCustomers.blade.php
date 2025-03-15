@@ -42,7 +42,11 @@
         <div class="search-bar">
             <input type="text" placeholder="Search customers..." class="search-input">
             <button class="search-button">Search</button>
+            <div class="create-user-btn">
+                <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
+            </div>
         </div>
+        
         <section class="customer-table">
             <table>
                 <thead>
@@ -130,6 +134,43 @@
     </div>
 </div>
 
+<!-- Create Modal -->
+<div id="createUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Create New User</h2>
+        <form id="createUserForm">
+            @csrf
+            <label for="name">Username</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" required />
+
+            <label for="role">Role</label>
+            <select id="role" name="role">
+                <option value="0">Customer</option>
+                <option value="1">Admin</option>
+            </select>
+
+            <button type="submit" class="btn btn-success">Create User</button>
+        </form>
+    </div>
+</div>
+
+
 <script src="{{ asset('js/customers.js') }}"></script>
 
 <script>
@@ -154,6 +195,43 @@
         }
         closeDeleteModal(); // Close the modal after the action
     }
+
+    // Create User
+
+    document
+        .getElementById("openCreateUserModal")
+        .addEventListener("click", function () {
+            document.getElementById("createUserModal").style.display = "flex";
+        });
+
+    document.querySelector(".close").addEventListener("click", function () {
+        document.getElementById("createUserModal").style.display = "none";
+    });
+
+    document
+        .getElementById("createUserForm")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch("{{ route('admin.createUser') }}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]')
+                        .value,
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        location.reload(); // Refresh the page to show the new user
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                });
+        });
 </script>
 </body>
 </html>

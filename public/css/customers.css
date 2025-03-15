@@ -17,6 +17,23 @@
     gap: 20px;
 }
 
+.search-bar {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    gap: 0.5rem;
+}
+
+.search-bar .create-user-btn {
+    background-color: var(--mint);
+    border: none;
+    justify-content: space-between;
+    border-radius: 5px;
+    color: var(--text-primary);
+    cursor: var(--pointer);
+    transition: background-color var(--transition-speed) ease;
+}
+
 .customer-table {
     background-color: var(--bg-secondary);
     border-radius: 5px;

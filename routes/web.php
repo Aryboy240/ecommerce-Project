@@ -145,6 +145,7 @@ Route::post('/admin/users/{user}/delete', [UserController::Class, 'deleteUser'])
 
 Route::get('/admin/users/{id}', [UserController::class, 'getUserInfo']);
 
+Route::post('/admin/create-user', [AdminController::class, 'storeUser'])->name('admin.createUser');
 
 // Report Route
 Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminReport'])->name('adminreport');
