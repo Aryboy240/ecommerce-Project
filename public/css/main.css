@@ -8,6 +8,34 @@ body {
     padding: 0;
 }
 
+.admin-access {
+    width: 100%;
+    bottom: 0;
+    transform: translate(-10px, -20px);
+    position: fixed;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    z-index: 10000000;
+}
+
+.admin-access a {
+    border-radius: 50%;
+    transition: ease 0.3s;
+}
+
+.admin-access a img {
+    background-color: var(--mint);
+    padding: 15px;
+    border-radius: 50%;
+    width: 25px;
+}
+
+.admin-access a:hover {
+    transform: translate(0, -10px) rotate(360deg);
+    box-shadow: 0 0 15px var(--darker);
+}
+
 /* Notifications */
 
 .notification {

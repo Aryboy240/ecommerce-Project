@@ -59,17 +59,40 @@ class AccountController extends Controller
     public function updatePersonalInfo(Request $request)
     {
         $request->validate([
+            'email' => 'required|string|email|max:255',
             'name' => ['required', 'string', 'max:255'],
+            'fullName' => 'required|string|max:255',
             'birthday' => ['required', 'date'],
         ]);
 
         $user = Auth::user();
+        $user->email = $request->email;
         $user->name = $request->name;
+        $user->fullName = $request->fullName;
         $user->birthday = $request->birthday;
         $user->save();
 
         return back()->with('success', 'Personal information updated successfully!');
     }
+
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+            'name' => 'required|string|max:255',
+            'birthday' => 'required|date',
+        ]);
+
+        $user->update([
+            'email' => $request->email,
+            'name' => $request->name,
+            'birthday' => $request->birthday,
+        ]);
+
+        return response()->json(['success' => true]);
+    }
+
+    
 
     public function updateProfilePicture(Request $request)
     {

@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('fullName')->nullable();
             $table->date('birthday');
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
