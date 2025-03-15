@@ -213,6 +213,17 @@
 
   <main>
     @yield('content')
+
+    @auth
+      @if(auth()->user()->is_admin)
+          <div class="admin-access">
+              <a href="{{ route('adminpanel') }}">
+                  <img src="{{ asset('Images/adminPanel.png') }}">
+              </a>
+          </div>
+      @endif
+    @endauth
+
   </main>
 
   <!-- Footer Section:: Esta -->
