@@ -200,7 +200,8 @@ Route::prefix('orders')->group(function () {
     Route::get('/{order}', [OrderController::class, 'show'])->name('orders.show');
     Route::get('/', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/', [OrderController::class, 'store'])->name('orders.store');
-    Route::put('/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+    Route::put('/{order}/status', [OrderController::class, 'updateOrderStatus'])->name('orders.updateStatus');
+    Route::post('/{order}/refund', [OrderController::class, 'refund'])->name('orders.refund');
     
     // Order items routes
     Route::post('/{order}/items', [OrderItemController::class, 'store'])->name('orderItems.store');
@@ -227,5 +228,3 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
-
-

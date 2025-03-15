@@ -48,6 +48,26 @@ class OrderController extends Controller
     }
 
     /**
+     * Display the checkout form
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        $cartItems = Auth::user()->cartItems()->with('product')->get();
+        
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.view')->with('error', 'Your cart is empty');
+        }
+
+        $total = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        return view('orders.create', compact('cartItems', 'total'));
+    }
+
+    /**
      * Display details of a specific order
      *
      * @param Order $order
@@ -112,7 +132,7 @@ class OrderController extends Controller
                 ]);
                 
                 // Update product stock
-                $product->decrement('stock_quantity', $cartItem->quantity);
+                $product->decreaseStock($cartItem->quantity);
                 
                 // Calculate total
                 $totalAmount += $product->price * $cartItem->quantity;
@@ -156,6 +176,43 @@ class OrderController extends Controller
         $order->update(['status' => $validatedData['status']]);
         
         return back()->with('success', 'Order status updated successfully');
+    }
+    
+    /**
+     * Process a refund request for an order.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function refund(Request $request, Order $order)
+    {
+        // Check if the order belongs to the authenticated user
+         if ($order->user_id !== Auth::id()) {
+            return redirect()->route('orders.index')->with('error', 'Unauthorized access');
+        }
+
+        // Check if the order can be refunded
+        if (!$order->canBeRefunded()) {
+            return back()->with('error', 'This order cannot be refunded');
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Update order status
+            $order->status = 'refund_requested';
+            $order->save();
+
+            // Additional logic for processing the refund could go here
+
+            DB::commit();
+
+            return back()->with('success', 'Refund request submitted successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
     
     /**
