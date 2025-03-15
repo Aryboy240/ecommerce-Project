@@ -41,6 +41,9 @@
     color: var(--text-primary);
 }
 
+.customer-table tbody tr {
+    transition: ease 0.3s;
+}
 .customer-table tbody tr:hover {
     background-color: var(--floater);
 }
