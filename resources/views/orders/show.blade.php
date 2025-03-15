@@ -145,7 +145,7 @@
                                 <div class="product-info">
                                     <h5>{{ $item->product->name }}</h5>
                                     <p class="mb-0">Category: {{ $item->product->category->name ?? 'N/A' }}</p>
-                                    <p class="mb-0">Price: ${{ number_format($item->price, 2) }}</p>
+                                    <p class="mb-0">Price: £{{ number_format($item->price, 2) }}</p>
                                     <p class="mb-0">Quantity: {{ $item->quantity }}</p>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                         <div class="col-md-4 text-end d-flex align-items-center justify-content-end">
                             <div>
                                 <p class="mb-0 fw-bold">Subtotal:</p>
-                                <h5>${{ number_format($item->price * $item->quantity, 2) }}</h5>
+                                <h5>£{{ number_format($item->price * $item->quantity, 2) }}</h5>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="col-md-8"></div>
                     <div class="col-md-4 text-end">
                         <p class="fw-bold">Order Total:</p>
-                        <h4>${{ number_format($order->total_amount, 2) }}</h4>
+                        <h4>£{{ number_format($order->total_amount, 2) }}</h4>
                     </div>
                 </div>
             </div>

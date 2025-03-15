@@ -59,7 +59,7 @@
                                     <div class="info-per">+{{ $revenueGrowth }}%</div>
                                 </div>
                                 <div class="info-secound">
-                                    ${{ $totalRevenue }}
+                                    £{{ $totalRevenue }}
                                 </div>
                             </div>
                             <div class="info-detail">
