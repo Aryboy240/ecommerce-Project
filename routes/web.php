@@ -150,6 +150,14 @@ Route::post('/admin/create-user', [AdminController::class, 'storeUser'])->name('
 // Report Route
 Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminReport'])->name('adminreport');
 
+
+// REVIEW PAGE
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/reviews', [ReviewController::class, 'index'])->name('admin.reviews');
+    Route::put('/admin/reviews/{id}', [ReviewController::class, 'update'])->name('admin.reviews.update');
+    Route::delete('/admin/reviews/{id}', [ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Search Routes
