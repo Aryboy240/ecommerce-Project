@@ -1,0 +1,135 @@
+/* Improved Row Spacing & Layout */
+.review-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 16px; /* Adds more spacing between rows */
+}
+
+.review-table th {
+    color: var(--mint);
+    font-weight: bold;
+    padding: 1.8rem;
+    text-align: left;
+}
+
+.review-table td {
+    padding: 1.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--darker);
+}
+
+.review-table a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.action-buttons {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+.edit-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--mint);
+    padding: 0.8rem 1.2rem; /* Matches Delete Button */
+    border-radius: 5px;
+    cursor: var(--pointer);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 50%;
+}
+
+/* Edit Button Icon */
+.edit-btn i {
+    font-size: 1rem;
+}
+
+/* Ensure modal is hidden by default */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* Modal Content */
+.modal-content {
+    width: 420px;
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border: 3px solid var(--mint);
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text-primary);
+    cursor: var(--pointer);
+    transition: color 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    color: var(--darker);
+}
+
+.modal-content input {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.modal-content textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.save-btn {
+    margin-top: 10px;
+    font-weight: 600;
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    padding: 8px;
+    border: 1px solid var(--mint);
+    border-radius: 8px;
+    transition: ease 0.3s;
+}
+
+.save-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px color-mix(in srgb, var(--mint) 100%, transparent 50%);
+}

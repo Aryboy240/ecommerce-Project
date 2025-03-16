@@ -145,9 +145,18 @@ Route::post('/admin/users/{user}/delete', [UserController::Class, 'deleteUser'])
 
 Route::get('/admin/users/{id}', [UserController::class, 'getUserInfo']);
 
+Route::post('/admin/create-user', [AdminController::class, 'storeUser'])->name('admin.createUser');
 
 // Report Route
 Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminReport'])->name('adminreport');
+
+
+// REVIEW PAGE
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/reviews', [ReviewController::class, 'index'])->name('admin.reviews');
+    Route::put('/admin/reviews/{id}', [ReviewController::class, 'update'])->name('admin.reviews.update');
+    Route::delete('/admin/reviews/{id}', [ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
+});
 
 /*
 |--------------------------------------------------------------------------

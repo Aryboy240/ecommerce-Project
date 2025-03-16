@@ -33,8 +33,10 @@
             <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
             <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
             <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            <li><a href="{{ route('adminprofile') }}"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="{{ route('admin.reviews') }}" class="active"><i class="fas fa-star"></i> Reviews</a></li>
+            <li><a href="javascript:void(0);" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </nav>
 
@@ -42,7 +44,11 @@
         <div class="search-bar">
             <input type="text" placeholder="Search customers..." class="search-input">
             <button class="search-button">Search</button>
+            <div class="create-user-btn">
+                <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
+            </div>
         </div>
+        
         <section class="customer-table">
             <table>
                 <thead>
@@ -52,6 +58,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>D.O.B</th>
+                        <th>Account Type</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -64,6 +71,9 @@
                             <td>{{ $user->fullName }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->birthday->format('d/m/Y') }}</td> <!-- Format DOB as dd/mm/yyyy -->
+                            <td><span class="role-badge {{ $user->is_admin ? 'admin' : 'customer' }}">
+                                {{ $user->is_admin ? 'Admin' : 'Customer' }}
+                            </span></td>
                             <td class="actions">
                                 <a href="#" class="btn btn-edit" data-id="{{ $user->id }}">Edit</a>
                                 <form action="{{ route('deleteuser', $user->id) }}" method="post" style="margin-bottom: 0" id="delete-form-{{ $user->id }}">
@@ -102,6 +112,12 @@
                 <label>Date of Birth</label>
                 <input type="date" id="edit-birthday" name="birthday" required>
             </div>
+            <div class="input-group">
+                <label>
+                    <input type="checkbox" id="edit-is-admin" name="is_admin">
+                    Make Admin
+                </label>
+            </div>            
             <input type="hidden" id="edit-user-id"> <!-- Hidden field for user ID -->
             <button type="submit" class="btn btn-save">Save Changes</button>
             <button type="button" class="btn btn-cancel">Cancel</button>
@@ -119,6 +135,43 @@
         <button class="btn btn-cancel" onclick="closeDeleteModal()">Cancel</button>
     </div>
 </div>
+
+<!-- Create Modal -->
+<div id="createUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Create New User</h2>
+        <form id="createUserForm">
+            @csrf
+            <label for="name">Username</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" required />
+
+            <label for="role">Role</label>
+            <select id="role" name="role">
+                <option value="0">Customer</option>
+                <option value="1">Admin</option>
+            </select>
+
+            <button type="submit" class="btn btn-success">Create User</button>
+        </form>
+    </div>
+</div>
+
 
 <script src="{{ asset('js/customers.js') }}"></script>
 
@@ -144,6 +197,43 @@
         }
         closeDeleteModal(); // Close the modal after the action
     }
+
+    // Create User
+
+    document
+        .getElementById("openCreateUserModal")
+        .addEventListener("click", function () {
+            document.getElementById("createUserModal").style.display = "flex";
+        });
+
+    document.querySelector(".close").addEventListener("click", function () {
+        document.getElementById("createUserModal").style.display = "none";
+    });
+
+    document
+        .getElementById("createUserForm")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch("{{ route('admin.createUser') }}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]')
+                        .value,
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        location.reload(); // Refresh the page to show the new user
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                });
+        });
 </script>
 </body>
 </html>
