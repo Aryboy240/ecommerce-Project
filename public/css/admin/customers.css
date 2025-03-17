@@ -11,10 +11,19 @@
 .main-content {
     margin: 20px;
     padding: 30px;
-    background-color: var(--bg-secondary);
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
 .search-bar {
@@ -31,11 +40,18 @@
     border-radius: 5px;
     color: var(--text-primary);
     cursor: var(--pointer);
-    transition: background-color var(--transition-speed) ease;
+}
+
+.search-bar button:hover:hover {
+    background-color: var(--mint) !important;
+}
+
+.btn:hover {
+    transform: scale(1) !important;
+    filter: none !important;
 }
 
 .customer-table {
-    background-color: var(--bg-secondary);
     border-radius: 5px;
     overflow: hidden;
     width: 100%;
@@ -50,7 +66,6 @@
 .customer-table td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid var(--lighter);
 }
 
 .customer-table th {
@@ -60,10 +75,11 @@
 
 .customer-table tbody tr {
     transition: ease 0.3s;
+    border-bottom: 1px solid var(--lighter);
 }
 
 .customer-table tbody tr:hover {
-    background-color: color-mix(in srgb, var(--mint) 10%, transparent);
+    background-color: color-mix(in srgb, white 10%, transparent);
 }
 
 .role-badge {
@@ -231,4 +247,15 @@
 .btn-confirmDelete:hover {
     filter: brightness(90%);
     transform: scale(1.05);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between; /* Pushes title to the left, search to the right */
+    align-items: center; /* Vertically aligns title and search bar */
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding: 0 20px; /* Optional: Adds spacing on the sides */
 }

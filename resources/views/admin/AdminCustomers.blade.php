@@ -20,11 +20,14 @@
 
 
 <div class="main-content">
-    <div class="search-bar">
-        <input type="text" placeholder="Search customers..." class="search-input">
-        <button class="search-button">Search</button>
-        <div class="create-user-btn">
-            <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
+    <div class="page-header">
+        <h1>Customer Accounts</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search customers..." class="search-input">
+            <button class="search-button">Search</button>
+            <div class="create-user-btn">
+                <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
+            </div>
         </div>
     </div>
     

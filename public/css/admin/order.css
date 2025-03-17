@@ -65,7 +65,7 @@
     margin-right: 5px; /* Space between date inputs */
     background: var(--bg-secondary);
     border: 1px solid var(--darker);
-    color: var(--text-primary); 
+    color: var(--text-primary);
 }
 
 /* Reset Button Styles */
@@ -80,7 +80,6 @@
 
 /* Transaction Table */
 .transaction-table {
-    background-color: var(--bg-secondary);
     border-radius: 5px;
     overflow: hidden;
 }
@@ -90,7 +89,8 @@
     border-collapse: collapse;
 }
 
-.transaction-table th, .transaction-table td {
+.transaction-table th,
+.transaction-table td {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid var(--lighter);
@@ -224,11 +224,19 @@
 
 /* Main Dashboard Content */
 .dashboard {
-    background-color: var(--bg-secondary); /* Use the secondary background color */
-    padding: 20px; /* Add padding for spacing */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    margin-top: 20px; /* Space above the dashboard */
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
 /* Header Styles within Dashboard */
