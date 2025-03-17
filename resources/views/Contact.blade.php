@@ -55,31 +55,41 @@
 <!--Info Cards-->
 <section>
   <div class="card-body">
-    <div class="social-cards">
-      <a href="https://www.instagram.com" target="_blank" class="hyper-hider">
-        <div class="card-con">
-          <div class="cards">
-            <div class="card-image">
-              <img src="{{ asset('Images/socials/instagram.png') }}" width="100px" />
-            </div>
-            <div class="card-detail">
-              <h1>Instagram</h1>
-              <p>Follow us on Instagram!</p>
-            </div>
+    <a href="https://www.instagram.com/optique.team28/" target="_blank" class="hyper-hider">
+      <div class="card-con">
+        <div class="cards">
+          <div class="card-image">
+            <img src="{{ asset('Images/socials/instagram.png') }}" width="200px" />
+          </div>
+          <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
+            <h1>Instagram</h1>
+            <p>
+              Follow us on Instagram!
+            </p>
           </div>
         </div>
-      </a>
-      <a href="https://www.youtube.com" target="_blank" class="hyper-hider">
-        <div class="card-con">
-          <div class="cards">
-            <div class="card-image">
-              <img src="{{ asset('Images/socials/youtube.png') }}" width="100px" />
-            </div>
-            <div class="card-detail">
-              <h1>YouTube</h1>
-              <p>Follow us on YouTube!</p>
-            </div>
-          </div>
+    </a>
+  </div>
+  <a href="https://www.youtube.com/channel/UCEi4d-JlQrqLHOpipMfI34Q" target="_blank" class="hyper-hider">
+    <div class="card-con">
+      <div class="cards">
+        <div class="card-image">
+          <img src="{{ asset('Images/socials/youtube.png') }}" width="220px" />
+        </div>
+        <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
+          <h1>YouTube</h1>
+          <p>
+            Follow us on YouTube!
+          </p>
+        </div>
+      </div>
+  </a>
+  </div>
+  <a href="https://x.com/OptiqueTeam28" target="_blank" class="hyper-hider">
+    <div class="card-con">
+      <div class="cards">
+        <div class="card-image">
+          <img src="{{ asset('Images/socials/twitter.png') }}" width="190px" />
         </div>
       </a>
       <a href="https://twitter.com" target="_blank" class="hyper-hider">

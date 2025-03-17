@@ -174,22 +174,25 @@
                     <h2>Personal Information</h2>
                     <div class="profile-info">
                         <form id="personal-info-form">
+                            @csrf
                             <div class="input-group">
                                 <label>Full Name</label>
-                                <input type="text" placeholder="Your full name">
+                                <input type="text" id="fullName" name="fullName" value="{{ auth()->user()->fullName }}" required>
                             </div>
                             <div class="input-group">
                                 <label>Email</label>
-                                <input type="email" placeholder="Your email">
+                                <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" required>
                             </div>
                             <div class="input-group">
                                 <label>Date of Birth</label>
-                                <input type="date">
+                                <input type="date" id="birthday" name="birthday" value="{{ auth()->user()->birthday->format('Y-m-d') }}" required>
                             </div>
                             <button type="submit">Save Changes</button>
+                            <p id="updateMessage" style="display: none;"></p>
                         </form>
                     </div>
                 </div>
+
 
                 <!-- Purchases Tab -->
                 <div class="tab-content" id="purchases">
@@ -198,62 +201,8 @@
                         <h2>Your Purchases</h2>
                     </div>
 
-                    <div class="purchase-history">
-                        <!-- Purchase Item 1 -->
-                        <div class="purchase-item">
-                            <div class="purchase-header" onclick="togglePurchase(this)">
-                                <h4>
-                                    <i class="fa-solid fa-box"></i>
-                                    Order #12345
-                                </h4>
-                                <div class="purchase-meta">
-                                    <span class="purchase-date">March 15, 2024</span>
-                                    <i class="fas fa-chevron-down expand-icon"></i>
-                                </div>
-                            </div>
-                            <div class="purchase-details">
-                                <div class="product-info">
-                                    <img src="{{ asset('images/glasses1.jpg') }}" alt="Product" class="product-thumbnail">
-                                    <div class="product-text">
-                                        <h5>Ray-Ban Aviator Classic</h5>
-                                        <p>Color: Gold</p>
-                                        <p>Quantity: 1</p>
-                                    </div>
-                                </div>
-                                <div class="purchase-status">
-                                    <span class="status-badge delivered">Delivered</span>
-                                    <span class="purchase-price">£129.99</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Purchase Item 2 -->
-                        <div class="purchase-item">
-                            <div class="purchase-header" onclick="togglePurchase(this)">
-                                <h4>
-                                    <i class="fa-solid fa-box"></i>
-                                    Order #12346
-                                </h4>
-                                <div class="purchase-meta">
-                                    <span class="purchase-date">March 10, 2024</span>
-                                    <i class="fas fa-chevron-down expand-icon"></i>
-                                </div>
-                            </div>
-                            <div class="purchase-details">
-                                <div class="product-info">
-                                    <img src="{{ asset('images/glasses2.jpg') }}" alt="Product" class="product-thumbnail">
-                                    <div class="product-text">
-                                        <h5>Oakley Holbrook</h5>
-                                        <p>Color: Matte Black</p>
-                                        <p>Quantity: 1</p>
-                                    </div>
-                                </div>
-                                <div class="purchase-status">
-                                    <span class="status-badge processing">Processing</span>
-                                    <span class="purchase-price">£119.99</span>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="purchase-history" style="width: 25% !important">
+                        <a href="{{ route('orders.index') }}" class="btn-order"><span>See Previous Orders</span></a>
                     </div>
 
                     <div class="form-container billing-address">
@@ -823,5 +772,37 @@ document.getElementById('password-form').addEventListener('submit', function(eve
         }
     );
 });
+
+document.getElementById('personal-info-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    let formData = new FormData(this);
+    let updateMessage = document.getElementById('updateMessage');
+
+    fetch("{{ route('update.personal.info') }}", {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            updateMessage.textContent = data.success;
+            updateMessage.style.color = "green";
+        } else {
+            updateMessage.textContent = data.error;
+            updateMessage.style.color = "red";
+        }
+        updateMessage.style.display = "block";
+    })
+    .catch(error => {
+        updateMessage.textContent = "An error occurred!";
+        updateMessage.style.color = "red";
+        updateMessage.style.display = "block";
+    });
+});
+
 </script>
 @endsection

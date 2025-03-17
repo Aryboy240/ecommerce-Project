@@ -27,68 +27,192 @@
     gap: 1rem;
 }
 
+/* Restored Category Dropdown */
 .filter-select {
     background: var(--bg-primary);
     color: var(--text-primary);
-    border: 1px solid var(--darker);
-    padding: 0.5rem;
+    border: 1px solid var(--mint);
+    padding: 0.6rem;
     border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
 }
 
-/* Product Table */
+.filter-select:hover {
+    background: var(--darker);
+}
+
+/* Search Bar */
+.filters-section input[type="text"] {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--mint);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    width: 280px;
+    outline: none;
+}
+
+.filters-section button {
+    padding: 0.8rem;
+    border-radius: 8px;
+    background: var(--mint);
+    color: var(--text-primary);
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.filters-section button:hover {
+    background: #3aa774;
+}
+
+/* Product Table - Increased Spacing */
 .table-container {
     background: var(--bg-secondary);
     border-radius: 10px;
-    padding: 1rem;
+    padding: 2rem;
     margin-bottom: 2rem;
     overflow-x: auto;
 }
 
+/* Improved Row Spacing & Layout */
 .product-table {
     width: 100%;
-    border-collapse: collapse;
-}
-
-.product-table th,
-.product-table td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid var(--darker);
+    border-collapse: separate;
+    border-spacing: 0 16px; /* Adds more spacing between rows */
 }
 
 .product-table th {
     color: var(--mint);
     font-weight: bold;
+    padding: 1.8rem;
+    text-align: left;
 }
 
+.product-table td {
+    padding: 1.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--darker);
+    vertical-align: middle;
+}
+
+/* Ensure images are well spaced */
 .product-thumbnail {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.stock-status {
-    padding: 0.25rem 0.5rem;
+/* Description Column - More Space */
+.product-table td:nth-child(3) {
+    max-width: 500px;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Stock and Update Button Side-by-Side */
+.stock-update-wrapper {
+    display: flex;
+    flex-direction: column; /* Stack input above update button */
+    align-items: center;
+}
+
+/* Stock Input */
+input[name="stock_quantity"] {
+    width: 80px;
+    padding: 0.5rem;
+    text-align: center;
     border-radius: 5px;
-    font-size: 0.9rem;
+    border: 1px solid var(--mint);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    margin-bottom: 10px; /* Moves the input slightly higher */
 }
 
-.stock-status.in-stock {
-    background: rgba(74, 222, 128, 0.2);
-    color: #4ade80;
+/* Removes number input arrows in Chrome, Edge, Safari */
+input[name="stock_quantity"]::-webkit-outer-spin-button,
+input[name="stock_quantity"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-.stock-status.low-stock {
-    background: rgba(250, 204, 21, 0.2);
-    color: #facc15;
+/* Update Button */
+.update-btn {
+    background: var(--mint);
+    color: var(--text-primary);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
 }
 
-.stock-status.out-stock {
-    background: rgba(248, 113, 113, 0.2);
-    color: #f87171;
+.update-btn:hover {
+    background: #3aa774;
 }
 
+/* Delete Button */
+.delete-btn {
+    background: #f87171;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background: #d14646;
+}
+
+/* Improved Pagination Styling */
+.pagination-container nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Centers all pagination items */
+}
+
+.pagination-container nav ul li {
+    display: inline-block;
+}
+
+/* Style both <a> (links) and <span> (active/disabled) elements */
+.pagination-container nav ul li a,
+.pagination-container nav ul li span {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.7rem 1.4rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background var(--transition-speed) ease;
+}
+
+/* Hover and active states */
+.pagination-container nav ul li a:hover,
+.pagination-container nav ul li span:hover {
+    background: var(--mint);
+    color: var(--text-primary);
+}
+
+/* Active page styling (Bootstrap uses <span> for the active page) */
+.pagination-container nav ul li.active span {
+    background: var(--mint);
+    color: var(--text-primary);
+}
+
+
+/* Icon Buttons */
 .icon-btn {
     background: none;
     border: none;
@@ -106,31 +230,222 @@
     color: #f87171;
 }
 
-/* Pagination */
-.pagination {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 2rem;
-}
-
-.page-btn {
-    background: var(--bg-secondary);
-    border: none;
-    color: var(--text-secondary);
-    padding: 0.5rem 1rem;
+/* Edit Button - Matches Delete Button */
+.edit-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--mint);
+    padding: 0.8rem 1.2rem; /* Matches Delete Button */
     border-radius: 5px;
     cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
 }
 
-.page-btn:hover,
-.page-btn.active {
+/* Edit Button Icon */
+.edit-btn i {
+    font-size: 1rem;
+}
+
+/* Align Edit & Delete Button with a Small Space */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 8px;
+    width: 450px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close-btn {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: color 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    color: var(--mint);
+}
+
+/* Input Fields */
+.input-group {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--mint);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    outline: none;
+    transition: border 0.3s ease-in-out;
+}
+
+/* Textarea Styling */
+.input-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* Save Button */
+.save-btn {
     background: var(--mint);
     color: var(--text-primary);
+    border: none;
+    padding: 12px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    font-weight: bold;
 }
 
-.page-ellipsis {
-    color: var(--text-secondary);
-    padding: 0.5rem;
+.save-btn:hover {
+    background: #3aa774;
+}
+
+/* Success Message */
+.success-message {
+    display: none;
+    background: var(--mint);
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filters-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+/* Search Bar on the Left */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Move Category Dropdown to the Right */
+.category-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: calc(8px * 130);/* Pushes it to the right */
+}
+
+/* Category Dropdown Styling */
+.filter-select {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--mint);
+    padding: 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.filter-select:hover {
+    background: var(--darker);
+}
+
+.add-product-btn {
+    background: var(--mint);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.add-product-btn:hover {
+    background: #3aa774;
+}
+
+/* ------------------------------------ */
+/* NEW: Matching Theme for "Upload Image" and "Select Category" in Modals */
+/* ------------------------------------ */
+
+/* Style the label so it matches other text in the form */
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+/* Style the select & file input to match your theme */
+.input-group select,
+.input-group input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--mint);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    outline: none;
+    transition: border 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.input-group select:hover,
+.input-group input[type="file"]:hover {
+    border-color: #3aa774;
 }
