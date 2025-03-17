@@ -128,6 +128,11 @@
             <p>Don't have an account? <a href="{{ route('register') }}">Sign up!</a></p>
           </div>
 
+          <!-- Forgot Password -->
+          <div class="input">
+            <p>Forgot your Password? <a href="{{ route('password.request') }}">Reset it!</a></p>
+          </div>
+
         </form>
 
         <!-- Socials -->
