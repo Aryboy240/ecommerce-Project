@@ -22,7 +22,6 @@ body {
 
 .container {
     display: flex;
-    min-height: 100vh;
     width: 100vw;
 }
 
@@ -32,8 +31,12 @@ body {
     min-height: 100vh;
     background-color: var(--bg-secondary);
     padding: 1rem;
-    transition: width var(--transition-speed) ease;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    position: fixed; /* Optional: Keeps it always visible */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000; /* Ensures it's above other content */
 }
 
 .logo {
@@ -87,9 +90,11 @@ body {
 /* Main Content Area */
 .main-content {
     flex: 1;
-    min-height: 100vh;
+    margin-left: 300px !important; /* Adjust based on sidebar width */
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header Styles */

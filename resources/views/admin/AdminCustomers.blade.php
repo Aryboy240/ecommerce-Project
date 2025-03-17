@@ -4,89 +4,67 @@
     Function: Front end for the Customers page (for admins)
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
+@extends('layouts.adminLayout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title> Customer Management </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
     <link rel="stylesheet" href="{{ asset('css/customers.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-</head>
+@endsection
 
-<body>
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Admin Users')
 
-<div class="container">
-    <!-- Sidebar Navigation-->
-    <nav class="sidebar">
-        <div class="logo">
-            <img src="{{ asset('Images/logo.png') }}" alt="Logo">
-            <h2>Admin Dashboard</h2>
+<!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
+@section('content')
+
+
+<div class="main-content">
+    <div class="search-bar">
+        <input type="text" placeholder="Search customers..." class="search-input">
+        <button class="search-button">Search</button>
+        <div class="create-user-btn">
+            <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
         </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-            <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-            <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            <li><a href="{{ route('adminprofile') }}"><i class="fas fa-user"></i> Profile</a></li>
-            <li><a href="{{ route('admin.reviews') }}" class="active"><i class="fas fa-star"></i> Reviews</a></li>
-            <li><a href="javascript:void(0);" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-        </ul>
-    </nav>
-
-    <div class="main-content">
-        <div class="search-bar">
-            <input type="text" placeholder="Search customers..." class="search-input">
-            <button class="search-button">Search</button>
-            <div class="create-user-btn">
-                <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
-            </div>
-        </div>
-        
-        <section class="customer-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>D.O.B</th>
-                        <th>Account Type</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <!-- Admin Users Table -->
-                <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td> <!-- Display the index number -->
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->fullName }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->birthday->format('d/m/Y') }}</td> <!-- Format DOB as dd/mm/yyyy -->
-                            <td><span class="role-badge {{ $user->is_admin ? 'admin' : 'customer' }}">
-                                {{ $user->is_admin ? 'Admin' : 'Customer' }}
-                            </span></td>
-                            <td class="actions">
-                                <a href="#" class="btn btn-edit" data-id="{{ $user->id }}">Edit</a>
-                                <form action="{{ route('deleteuser', $user->id) }}" method="post" style="margin-bottom: 0" id="delete-form-{{ $user->id }}">
-                                    @csrf
-                                    <button type="button" class="btn btn-delete" data-id="{{ $user->id }}" onclick="openDeleteModal({{ $user->id }})">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </section>
     </div>
+    
+    <section class="customer-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>D.O.B</th>
+                    <th>Account Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <!-- Admin Users Table -->
+            <tbody>
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td> <!-- Display the index number -->
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->fullName }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->birthday->format('d/m/Y') }}</td> <!-- Format DOB as dd/mm/yyyy -->
+                        <td><span class="role-badge {{ $user->is_admin ? 'admin' : 'customer' }}">
+                            {{ $user->is_admin ? 'Admin' : 'Customer' }}
+                        </span></td>
+                        <td class="actions">
+                            <a href="#" class="btn btn-edit" data-id="{{ $user->id }}">Edit</a>
+                            <form action="{{ route('deleteuser', $user->id) }}" method="post" style="margin-bottom: 0" id="delete-form-{{ $user->id }}">
+                                @csrf
+                                <button type="button" class="btn btn-delete" data-id="{{ $user->id }}" onclick="openDeleteModal({{ $user->id }})">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </section>
 </div>
 
 <!-- Edit Modal -->
@@ -235,5 +213,4 @@
                 });
         });
 </script>
-</body>
-</html>
+@endsection

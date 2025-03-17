@@ -1,34 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction Management System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
+<!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
+@extends('layouts.adminLayout')
+
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
     <link rel="stylesheet" href="{{ asset('css/order.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-</head>
-<body>
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="logo">
-                <img src="Images/logo.png" alt="Logo">
-                <h2>Admin Dashboard</h2>
-            </div>
-            <ul class="nav-links">
-                <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-                <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-                <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
-                <li><a href="{{ route('adminprofile') }}"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="{{ route('admin.reviews') }}" class="active"><i class="fas fa-star"></i> Reviews</a></li>
-                <li><a href="javascript:void(0);" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-            </ul>
-        </nav>
+@endsection
+
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Admin Orders')
+
+<!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
+@section('content')
 
         <div class="main-content">
             
@@ -176,7 +158,6 @@
                 </section>
             </main>
         </div>
-    </div>
 
     <!-- Modal for Order Details -->
     <div id="orderDetailsModal" class="modal">
@@ -215,7 +196,4 @@
 
     <!-- Notification Container -->
     <div id="notificationContainer" class="notification-container"></div>
-
-    
-</body>
-</html>
+@endsection

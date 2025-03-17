@@ -1,179 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Admin Dashboard </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
+<!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
+@extends('layouts.adminLayout')
+
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
     <link rel="stylesheet" href="{{ asset('css/productpanel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-</head>
-<body>
-    <div class="container">
-<!-- Sidebar Navigation (Fixed Navigation Issues) -->
-<nav class="sidebar">
-    <div class="logo">
-        <img src="{{ asset('Images/logo.png') }}" alt="Logo">
-        <h2>Admin Dashboard</h2>
-    </div>
-    <ul class="nav-links">
-        <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-        <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-        <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-        <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-        <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
-        <li><a href="{{ route('adminprofile') }}"><i class="fas fa-user"></i> Profile</a></li>
-        <li><a href="{{ route('admin.reviews') }}" class="active"><i class="fas fa-star"></i> Reviews</a></li>
-        <li><a href="javascript:void(0);" onclick="openLogoutModal()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-</nav>
-        <div class="main-content">
-            <main class="dashboard">
-                <div class="page-header">
-                    <h1>Product Management</h1>
-                </div>
-                
-                <!-- 🔎 Categories & Search Bar -->
-                <div class="filters-section" style="position: relative;">
-                    <form method="GET" action="{{ route('productadmin') }}" class="filter-controls">
-                        <!-- Search Bar (floated left) -->
-                        <div class="search-container" style="float: left;">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products...">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </div>
+@endsection
 
-                        <!-- Category Dropdown (floated right) -->
-                        <div class="category-container" style="float: right;">
-                            <select name="category" class="filter-select" onchange="this.form.submit()">
-                                <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>All Categories</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </form>
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Admin Products')
 
-                    <!-- Add Product Button (centered horizontally and vertically) -->
-                    <button 
-                        class="add-product-btn" 
-                        type="button" 
-                        style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
-                    >
-                        Add Product
-                    </button>
-                </div>
-
-                <!-- (Alerts Removed: both low-stock and out-of-stock alerts have been taken out.) -->
-
-                <!-- Product Statistics -->
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="fas fa-glasses"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>Total Frames</h3>
-                            <p class="stat-value">{{ $totalFramesInStock ?? 0 }}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon warning">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>Low Stock Frames</h3>
-                            <p class="stat-value">{{ $lowStockFrames ?? 0 }}</p>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon danger">
-                            <i class="fas fa-times-circle"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>Out of Stock</h3>
-                            <p class="stat-value">{{ $outOfStockFrames ?? 0 }}</p>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon success">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="stat-details">
-                            <h3>New This Month</h3>
-                            <p class="stat-value">{{ $newThisMonth ?? 0 }}</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Table -->
-                <div class="table-container">
-                    <table class="product-table">
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Frame Name</th>
-                                <th>Description</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Category</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($products as $product)
-                                @php
-                                    $stockClass = '';
-                                    if ($product->stock_quantity == 0) {
-                                        $stockClass = 'out-of-stock';
-                                    } elseif ($product->stock_quantity <= 10) {
-                                        $stockClass = 'low-stock';
-                                    }
-                                @endphp
-                                <tr class="{{ $stockClass }}">
-                                    <td>
-                                        <img src="{{ asset(optional($product->images->first())->image_path ?? 'Images/default.png') }}" alt="Frame" class="product-thumbnail">
-                                    </td>
-                                    <td><a href="{{ route('product.details', ['id' => $product->id]) }}" style="text-decoration: none; color: inherit;">{{ $product->name }}</a></td>
-                                    <td>{{ \Illuminate\Support\Str::limit($product->description, 100) }}</td>
-                                    <td>£{{ number_format($product->price, 2) }}</td>
-                                    <td class="stock-update">
-                                        <form method="POST" action="{{ route('productadmin.updateStock', $product->id) }}">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="number" name="stock_quantity" value="{{ $product->stock_quantity }}" min="0" required class="stock-input">
-                                            <button type="submit" class="update-btn">Update</button>
-                                        </form>
-                                    </td>
-                                    <td>{{ $product->category->name }}</td>
-                                    <td class="action-buttons">
-                                        <!-- Edit Button (Restored Original Size) -->
-                                        <button class="edit-btn" data-id="{{ $product->id }}">Edit</button>
-                                        <!-- Delete Button Below Edit -->
-                                        <form method="POST" action="{{ route('productadmin.destroy', $product->id) }}" onsubmit="return confirm('Are you sure?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete-btn"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Pagination -->
-                <div class="pagination-container">
-                    {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
-                </div>
-            </main>
+<!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
+@section('content')
+<div class="main-content">
+    <main class="dashboard">
+        <div class="page-header">
+            <h1>Product Management</h1>
         </div>
+        
+        <!-- 🔎 Categories & Search Bar -->
+        <div class="filters-section" style="position: relative;">
+            <form method="GET" action="{{ route('productadmin') }}" class="filter-controls">
+                <!-- Search Bar (floated left) -->
+                <div class="search-container" style="float: left;">
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+
+                <!-- Category Dropdown (floated right) -->
+                <div class="category-container" style="float: right;">
+                    <select name="category" class="filter-select" onchange="this.form.submit()">
+                        <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>All Categories</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
+
+            <!-- Add Product Button (centered horizontally and vertically) -->
+            <button 
+                class="add-product-btn" 
+                type="button" 
+                style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
+            >
+                Add Product
+            </button>
+        </div>
+
+        <!-- (Alerts Removed: both low-stock and out-of-stock alerts have been taken out.) -->
+
+        <!-- Product Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-glasses"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>Total Frames</h3>
+                    <p class="stat-value">{{ $totalFramesInStock ?? 0 }}</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>Low Stock Frames</h3>
+                    <p class="stat-value">{{ $lowStockFrames ?? 0 }}</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon danger">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>Out of Stock</h3>
+                    <p class="stat-value">{{ $outOfStockFrames ?? 0 }}</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon success">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="stat-details">
+                    <h3>New This Month</h3>
+                    <p class="stat-value">{{ $newThisMonth ?? 0 }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Table -->
+        <div class="table-container">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Frame Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($products as $product)
+                        @php
+                            $stockClass = '';
+                            if ($product->stock_quantity == 0) {
+                                $stockClass = 'out-of-stock';
+                            } elseif ($product->stock_quantity <= 10) {
+                                $stockClass = 'low-stock';
+                            }
+                        @endphp
+                        <tr class="{{ $stockClass }}">
+                            <td>
+                                <img src="{{ asset(optional($product->images->first())->image_path ?? 'Images/default.png') }}" alt="Frame" class="product-thumbnail">
+                            </td>
+                            <td><a href="{{ route('product.details', ['id' => $product->id]) }}" style="text-decoration: none; color: inherit;">{{ $product->name }}</a></td>
+                            <td>{{ \Illuminate\Support\Str::limit($product->description, 100) }}</td>
+                            <td>£{{ number_format($product->price, 2) }}</td>
+                            <td class="stock-update">
+                                <form method="POST" action="{{ route('productadmin.updateStock', $product->id) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="number" name="stock_quantity" value="{{ $product->stock_quantity }}" min="0" required class="stock-input">
+                                    <button type="submit" class="update-btn">Update</button>
+                                </form>
+                            </td>
+                            <td>{{ $product->category->name }}</td>
+                            <td class="action-buttons">
+                                <!-- Edit Button (Restored Original Size) -->
+                                <button class="edit-btn" data-id="{{ $product->id }}">Edit</button>
+                                <!-- Delete Button Below Edit -->
+                                <form method="POST" action="{{ route('productadmin.destroy', $product->id) }}" onsubmit="return confirm('Are you sure?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="delete-btn"><i class="fas fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
+            </div>
+        </main>
     </div>
 
     <!-- Edit Product Modal -->
@@ -337,8 +318,7 @@
             border: 3px solid red !important;
         }
     </style>
-</body>
-</html>
+@endsection
 
 
 
