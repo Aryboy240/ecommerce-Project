@@ -174,34 +174,44 @@ input[name="stock_quantity"]::-webkit-inner-spin-button {
     background: #d14646;
 }
 
-/* Pagination */
-.pagination-container {
+/* Improved Pagination Styling */
+.pagination-container nav ul {
     display: flex;
-    justify-content: center;
+    list-style: none;
     gap: 0.7rem;
-    margin-top: 2rem;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Centers all pagination items */
 }
 
-.page-btn {
+.pagination-container nav ul li {
+    display: inline-block;
+}
+
+/* Style both <a> (links) and <span> (active/disabled) elements */
+.pagination-container nav ul li a,
+.pagination-container nav ul li span {
     background: var(--bg-secondary);
-    border: none;
     color: var(--text-secondary);
     padding: 0.7rem 1.4rem;
     border-radius: 5px;
-    cursor: pointer;
-    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+    transition: background var(--transition-speed) ease;
 }
 
-.page-btn:hover,
-.page-btn.active {
+/* Hover and active states */
+.pagination-container nav ul li a:hover,
+.pagination-container nav ul li span:hover {
     background: var(--mint);
     color: var(--text-primary);
 }
 
-.page-ellipsis {
-    color: var(--text-secondary);
-    padding: 0.5rem;
+/* Active page styling (Bootstrap uses <span> for the active page) */
+.pagination-container nav ul li.active span {
+    background: var(--mint);
+    color: var(--text-primary);
 }
+
 
 /* Icon Buttons */
 .icon-btn {
@@ -354,6 +364,93 @@ input[name="stock_quantity"]::-webkit-inner-spin-button {
         transform: translateY(0);
     }
 }
+
+.filters-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+/* Search Bar on the Left */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Move Category Dropdown to the Right */
+.category-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: calc(8px * 130);/* Pushes it to the right */
+}
+
+/* Category Dropdown Styling */
+.filter-select {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--mint);
+    padding: 0.6rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.filter-select:hover {
+    background: var(--darker);
+}
+
+.add-product-btn {
+    background: var(--mint);
+    color: var(--text-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.add-product-btn:hover {
+    background: #3aa774;
+}
+
+/* ------------------------------------ */
+/* NEW: Matching Theme for "Upload Image" and "Select Category" in Modals */
+/* ------------------------------------ */
+
+/* Style the label so it matches other text in the form */
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-primary);
+    font-weight: bold;
+}
+
+/* Style the select & file input to match your theme */
+.input-group select,
+.input-group input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid var(--mint);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    outline: none;
+    transition: border 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.input-group select:hover,
+.input-group input[type="file"]:hover {
+    border-color: #3aa774;
+}
+
 
 
 

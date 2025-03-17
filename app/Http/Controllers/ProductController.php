@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Session; // Added for flashing session alerts
 
 class ProductController extends Controller
 {
@@ -102,6 +103,13 @@ class ProductController extends Controller
         $product->stock_quantity = $request->stock_quantity;
         $product->save();
 
+        // Store the alert in the session
+        if ($product->stock_quantity == 0) {
+            Session::flash('out_of_stock_alert', "⚠️ {$product->name} is now out of stock!");
+        } elseif ($product->stock_quantity <= config('constants.low_stock_threshold')) {
+            Session::flash('low_stock_alert', "⚠️ {$product->name} is low on stock!");
+        }
+
         return redirect()->route('productadmin')->with('success', 'Stock updated successfully.');
     }
 
@@ -113,6 +121,38 @@ class ProductController extends Controller
         return redirect()->route('productadmin')->with('success', 'Product deleted successfully.');
     }
   
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'stock_quantity' => 'required|integer|min:0',
+            'category_id' => 'required|exists:product_categories,id',
+            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Save Product
+        $product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock_quantity = $request->stock_quantity;
+        $product->category_id = $request->category_id;
+        $product->save();
+
+        // Save Product Image
+        if ($request->hasFile('product_image')) {
+            $imagePath = $request->file('product_image')->store('product_images', 'public');
+
+            $product->images()->create([
+                'image_path' => $imagePath
+            ]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Product added successfully']);
+    }
+
     public function getProductsByFaceShape(Request $request)
     {
         $shape = $request->input('shape');
@@ -150,6 +190,8 @@ class ProductController extends Controller
         return response()->json($formattedProducts);
     }
 }
+
+
 
 
 

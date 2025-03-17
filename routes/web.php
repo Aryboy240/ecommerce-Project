@@ -18,9 +18,10 @@ use App\Http\Controllers\AdminController;
 */
 
 // Product Admin Routes
+Route::post('/admin/products', [ProductController::class, 'store'])->name('productadmin.store');
 Route::get('/admin/products', [ProductController::class, 'index'])->name('productadmin');
 Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('productadmin.update');
-Route::put('/admin/products/update-stock/{id}', [ProductController::class, 'updateStock'])->name('productadmin.updateStock'); // ✅ FIX ADDED
+Route::put('/admin/products/update-stock/{id}', [ProductController::class, 'updateStock'])->name('productadmin.updateStock'); 
 Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('productadmin.destroy');
 
 
