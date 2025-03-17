@@ -22,18 +22,31 @@ body {
 
 .container {
     display: flex;
-    min-height: 100vh;
     width: 100vw;
 }
 
 /* Sidebar Styles */
 .sidebar {
+    margin-top: 20px;
+    margin-left: 25px;
     width: 250px;
-    min-height: 100vh;
-    background-color: var(--bg-secondary);
+    max-height: 450px;
     padding: 1rem;
-    transition: width var(--transition-speed) ease;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000; /* Ensures it's above other content */
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
 .logo {
@@ -79,6 +92,27 @@ body {
     color: var(--text-primary);
 }
 
+.nav-links button {
+    font-weight: 400;
+    font-size: 15;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all var(--transition-speed) ease;
+    width: 100%;
+}
+
+.nav-links button:hover {
+    background-color: var(--darker);
+    color: var(--text-primary);
+}
+
 .nav-links i {
     width: 20px;
     color: var(--mint);
@@ -87,18 +121,29 @@ body {
 /* Main Content Area */
 .main-content {
     flex: 1;
-    min-height: 100vh;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header Styles */
 .header {
-    background-color: var(--bg-secondary);
     padding: 1rem;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
 .search-bar {
@@ -156,9 +201,10 @@ body {
     min-width: 160px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
 }
 
-.dropdown-content a {
+.dropdown-content .content-1 {
     color: var(--text-secondary);
     padding: 0.75rem 1rem;
     text-decoration: none;
@@ -166,7 +212,26 @@ body {
     transition: all var(--transition-speed) ease;
 }
 
-.dropdown-content a:hover {
+.dropdown-content .content-1:hover {
+    background-color: var(--darker);
+    color: var(--text-primary);
+}
+
+.dropdown-content .content-2 {
+    font-size: 15px;
+    text-align: left;
+    color: var(--text-secondary);
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: all var(--transition-speed) ease;
+    margin-bottom: 0;
+}
+
+.dropdown-content .content-2:hover {
     background-color: var(--darker);
     color: var(--text-primary);
 }
@@ -177,9 +242,20 @@ body {
 
 /* Dashboard Content */
 .dashboard {
+    z-index: 0;
     flex: 1;
     padding: 2rem;
     overflow-y: auto;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
 .dashboard-header {
@@ -197,12 +273,18 @@ body {
 }
 
 .stat-card {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translate(0, -10px);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--mint) 100%, transparent 50%);
 }
 
 .stat-icon {
@@ -232,7 +314,8 @@ body {
 }
 
 .quick-actions {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -264,9 +347,10 @@ body {
 }
 
 .activity-list {
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .activity-item {

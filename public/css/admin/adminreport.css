@@ -4,9 +4,18 @@
     Function: Styling for the admin report page.
 */
 .main-content {
-    padding: 0px;
-    margin: 45px;
-    margin-right: 90px;
+    padding: 15px;
+    margin: 20px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 .dashboarditem {
     display: flex;
@@ -17,12 +26,15 @@
     align-content: flex-start;
     margin: 0px;
 }
+
 .dashboard {
-    background-color: var(--bg-secondary);
+    background: none !important;
+    background-color: var(--bg-primary) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .report-container {
     display: flex;
@@ -121,10 +133,16 @@
 
 .info-detail {
     width: 40%;
-    border-radius: 5px;
-    background-color: black;
+    border-radius: 8px;
+    background-color: var(--bg-primary);
     margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-detail:hover {
+    transform: translate(0, -10px);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--mint) 100%, transparent 50%);
 }
 
 .info-first {
@@ -139,8 +157,6 @@
 }
 .info-title {
     padding-block: 5px;
-    text-decoration-line: underline;
-    text-decoration-color: var(--lighter);
 }
 .info-per {
     font-weight: bold;
@@ -155,16 +171,17 @@
     font-family: "Lato";
 }
 .table {
-    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     margin-top: 20px;
     margin-left: 35px;
-    border-radius: 20px;
-    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
     height: 325px;
     flex: 1 1 300px;
     width: auto;
     min-width: 280px;
     align-items: stretch;
+    padding: 20px;
 }
 .tabletitle {
     font-size: 24px;
@@ -219,16 +236,14 @@
 .outcomeorder {
     color: #dc3545;
 }
+
 .inoutcomeboard {
-    border: #28a745;
-}
-.inoutcomeboard {
-    border-radius: 5px;
+    border-radius: 8px;
     margin-top: 40px;
     margin-bottom: 40px;
     display: flex;
-    background-color: black;
-    box-shadow: 0 2px 4px rgba(0, 191, 174, 0.1);
+    background-color: var(--bg-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 .board {
     width: 50%;
