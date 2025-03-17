@@ -10,8 +10,6 @@ namespace App\Services;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Models\OrderAddress;
-use App\Models\OrderStatusHistory;
 use App\Models\OrderLog;
 use App\Events\OrderCreated;
 use Illuminate\Support\Facades\DB;
@@ -48,19 +46,6 @@ class OrderService
                 'total_amount' => 0,
                 'payment_method' => $paymentMethod,
                 'payment_transaction_id' => $paymentTransactionId
-            ]);
-            
-            // Create shipping address
-            $order->addresses()->create([
-                'type' => 'shipping',
-                'first_name' => $shippingData['fname'],
-                'last_name' => $shippingData['lname'],
-                'email' => $shippingData['email'],
-                'phone' => $shippingData['phone'],
-                'address_line1' => $shippingData['shipping_address'],
-                'city' => $shippingData['city'],
-                'postal_code' => $shippingData['postcode'],
-                'country' => 'United Kingdom'
             ]);
             
             $totalAmount = 0;
@@ -255,7 +240,7 @@ class OrderService
      */
     public function getUserOrders($userId, $limit = 10)
     {
-        return Order::with(['items.product.images', 'addresses'])
+        return Order::with(['items.product.images'])
             ->where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->limit($limit)
@@ -274,8 +259,6 @@ class OrderService
     {
         $query = Order::with([
             'items.product.images', 
-            'addresses', 
-            'statusHistory.user',
             'user'
         ]);
         

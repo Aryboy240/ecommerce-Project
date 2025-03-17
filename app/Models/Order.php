@@ -69,38 +69,6 @@ class Order extends Model
     }
     
     /**
-     * Get the addresses for the order.
-     */
-    public function addresses()
-    {
-        return $this->hasMany(OrderAddress::class);
-    }
-
-    /**
-     * Get the shipping address for the order.
-     */
-    public function shippingAddress()
-    {
-        return $this->hasOne(OrderAddress::class)->where('type', 'shipping');
-    }
-
-    /**
-     * Get the billing address for the order.
-     */
-    public function billingAddress()
-    {
-        return $this->hasOne(OrderAddress::class)->where('type', 'billing');
-    }
-    
-    /**
-     * Get the status history for the order.
-     */
-    public function statusHistory()
-    {
-        return $this->hasMany(OrderStatusHistory::class)->orderBy('created_at', 'desc');
-    }
-    
-    /**
      * Get the logs for the order.
      */
     public function logs()
@@ -188,15 +156,6 @@ class Order extends Model
         $oldStatus = $this->status;
         $this->status = $newStatus;
         $this->save();
-        
-        // Log the status change for auditing
-        OrderStatusHistory::create([
-            'order_id' => $this->id,
-            'old_status' => $oldStatus,
-            'new_status' => $newStatus,
-            'changed_by' => $userId,
-            'notes' => $notes
-        ]);
         
         // Fire event for the status change
         event(new \App\Events\OrderStatusChanged($this, $oldStatus, $newStatus));
