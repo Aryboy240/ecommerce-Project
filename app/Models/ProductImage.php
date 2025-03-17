@@ -8,6 +8,7 @@ class ProductImage extends Model
 {
     protected $fillable = [
         'product_id',
+        'image_type_id', // Add this to allow mass assignment
         'image_path',
     ];
 
@@ -18,6 +19,6 @@ class ProductImage extends Model
 
     public function imageType()
     {
-        return $this->belongsTo(ImageType::class);
+        return $this->belongsTo(ImageType::class, 'image_type_id');
     }
 }

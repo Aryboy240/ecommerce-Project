@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
-use Illuminate\Support\Facades\Session; // Added for flashing session alerts
+use App\Models\ImageType;
+use Illuminate\Support\Facades\Session; // For flashing session alerts
+use Illuminate\Support\Facades\Storage; // For file storage handling
+use Illuminate\Support\Facades\Log; // For logging debug information
 
 class ProductController extends Controller
 {
@@ -120,9 +123,11 @@ class ProductController extends Controller
 
         return redirect()->route('productadmin')->with('success', 'Product deleted successfully.');
     }
-  
+
+    // Made by Aryan Kora 👍
     public function store(Request $request)
     {
+        // Validate incoming request
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
@@ -131,8 +136,11 @@ class ProductController extends Controller
             'category_id' => 'required|exists:product_categories,id',
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
-
-        // Save Product
+    
+        // Retrieve the category name
+        $category = ProductCategory::findOrFail($request->category_id);
+    
+        // Save Product details
         $product = new Product();
         $product->name = $request->name;
         $product->description = $request->description;
@@ -140,16 +148,52 @@ class ProductController extends Controller
         $product->stock_quantity = $request->stock_quantity;
         $product->category_id = $request->category_id;
         $product->save();
-
-        // Save Product Image
+    
+        // Handle image upload
         if ($request->hasFile('product_image')) {
-            $imagePath = $request->file('product_image')->store('product_images', 'public');
+            $imageFile = $request->file('product_image');
+            \Log::info('File uploaded:', ['file' => $imageFile]);
+    
+            // Ensure the product ID exists or eerything will break
+            $productId = $product->id;
+    
+            // The image type is just set to 'front' cos I'm lazy (only shows thumbnail for product)
+            $imageType = 'front';
+            $fileExtension = $imageFile->getClientOriginalExtension();
+            $fileName = "{$productId}-{$imageType}-2000x1125.{$fileExtension}";
+    
+            // Stores the storage path in a varaible because I cba to keep copying and pasting
+            $storagePath = storage_path("app/public/Images/products/Featured/{$category->name}/{$productId}/");
+    
+            // Ensure the directory exists, create if not
+            if (!file_exists($storagePath)) {
+                mkdir($storagePath, 0777, true); // Makes the new directory with max perms hopefully
+                \Log::info('Created directory:', ['path' => $storagePath]);
+            }
+    
+            // Move and copy the file to the specified directory
+            $imageFilePath = $imageFile->getRealPath();
+            $destinationPath = $storagePath . $fileName;
+    
+            // Copy the file to the new location with the new name
+            if (copy($imageFilePath, $destinationPath)) {
+                \Log::info('File successfully copied:', ['destination' => $destinationPath]);
+            } else {
+                \Log::error('File copy failed:', ['destination' => $destinationPath]);
+            }
 
+            /* LOGS LOGS LOGS LOGS LOGS NOTHING IS WORKING AAAA */
+            /* Never mind, after checking the logs it was saving it to a new folder location  (app/sotrage, not public/Images) */
+            /* So changing the image path below to that location makes the image show up, yippeeee */
+    
+            // Save the image path in the database
+            $imagePath = "storage/Images/products/Featured/{$category->name}/{$productId}/{$fileName}";
             $product->images()->create([
-                'image_path' => $imagePath
+                'image_path' => $imagePath,
+                'image_type_id' => ImageType::where('name', 'front')->first()->id
             ]);
         }
-
+    
         return response()->json(['success' => true, 'message' => 'Product added successfully']);
     }
 

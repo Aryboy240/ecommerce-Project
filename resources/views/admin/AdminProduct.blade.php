@@ -313,12 +313,16 @@
                     addSuccessMessage.style.display = "block";
                     setTimeout(() => {
                         addSuccessMessage.style.display = "none";
-                        location.reload();
+                        location.reload();  // Reload the page after adding the product
                     }, 2000);
                 }
             })
-            .catch(error => console.error("Error:", error));
+            .catch(error => {
+                console.error("Error:", error);
+                location.reload();  // In case of an error, reload the page anyway
+            });
         });
+
     });
     </script>
 
