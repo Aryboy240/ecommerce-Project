@@ -3,7 +3,7 @@
 
 <!-- Any extra head content for this page in specific -->
 @section('extra-head')
-    <link rel="stylesheet" href="{{ asset('css/order.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/order.css') }}">
 @endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
@@ -144,20 +144,6 @@
             </div>
         </main>
     </div>
-
-    <!-- Logout Modal -->
-<div id="logoutModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeLogoutModal()">&times;</span>
-        <h2>Confirm Logout</h2>
-        <p>Are you sure you want to log out?</p>
-        <p>Logged in as <strong>Admin User</strong>.</p>
-        <div class="modal-actions">
-            <button class="btn-primary" onclick="logout()">Confirm Logout</button>
-            <button class="btn-secondary" onclick="closeLogoutModal()">Cancel</button>
-        </div>
-    </div>
-</div>
 
 <script src="{{ asset('js/order.js') }}"></script>
 @endsection

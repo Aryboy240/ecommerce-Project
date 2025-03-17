@@ -14,8 +14,8 @@
 
 <!-- Any extra head content for this page in specific -->
 @section('extra-head')
-    <link rel="stylesheet" href="{{ asset('css/order.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/adminreport.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/order.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/adminreport.css') }}">
 @endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->

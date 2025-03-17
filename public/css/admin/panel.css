@@ -82,6 +82,27 @@ body {
     color: var(--text-primary);
 }
 
+.nav-links button {
+    font-weight: 400;
+    font-size: 15;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    transition: all var(--transition-speed) ease;
+    width: 100%;
+}
+
+.nav-links button:hover {
+    background-color: var(--darker);
+    color: var(--text-primary);
+}
+
 .nav-links i {
     width: 20px;
     color: var(--mint);

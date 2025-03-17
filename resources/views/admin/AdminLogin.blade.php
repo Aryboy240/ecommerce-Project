@@ -18,7 +18,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href={{  asset('css/main.css') }}>
   <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-  <link rel="stylesheet" href={{  asset('css/adminlogin.css') }}>
+  <link rel="stylesheet" href={{  asset('css/admin/adminlogin.css') }}>
   <title>Admin Login | Optique</title>
 </head>
 

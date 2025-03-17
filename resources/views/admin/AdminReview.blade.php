@@ -3,7 +3,7 @@
 
 <!-- Any extra head content for this page in specific -->
 @section('extra-head')
-    <link rel="stylesheet" href="{{ asset('css/AdminReviews.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/AdminReviews.css') }}">
 @endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
