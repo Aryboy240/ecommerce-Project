@@ -134,7 +134,7 @@ Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminR
 
 // Product Admin Routes
 Route::post('/admin/products', [ProductController::class, 'store'])->name('productadmin.store');
-Route::get('/admin/products', [ProductController::class, 'index'])->name('productadmin');
+Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('productadmin');
 Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('productadmin.update');
 Route::put('/admin/products/update-stock/{id}', [ProductController::class, 'updateStock'])->name('productadmin.updateStock'); 
 Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('productadmin.destroy');

@@ -22,6 +22,49 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $query = Product::query();
+    
+        // Search functionality
+        if ($request->has('search') && $request->search !== null) {
+            $searchTerm = $request->search;
+            $query->where('name', 'LIKE', "%{$searchTerm}%")
+                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+        }
+    
+        // Category filtering
+        if ($request->has('category') && $request->category !== 'all') {
+            $query->whereHas('category', function ($query) use ($request) {
+                $query->where('name', $request->category);
+            });
+        }
+    
+        // Price filtering (min and max price)
+        if ($request->has('min_price') && is_numeric($request->min_price)) {
+            $query->where('price', '>=', $request->min_price);  // Filter by min price
+        }
+        if ($request->has('max_price') && is_numeric($request->max_price)) {
+            $query->where('price', '<=', $request->max_price);  // Filter by max price
+        }
+    
+        // Price sorting (if requested)
+        if ($request->has('sort_by_price') && $request->sort_by_price !== 'none') {
+            $sortOrder = $request->sort_by_price == 'asc' ? 'asc' : 'desc';
+            $query->orderBy('price', $sortOrder);
+        } else {
+            // Default to sorting by ID if no price sort is selected
+            $query->orderBy('id', 'asc');
+        }
+    
+        // Retrieve products with their related images, image types, and category
+        $products = $query->with(['images.imageType', 'category'])->get();
+    
+        $minPrice = Product::min('price'); // Get the minimum price
+        $maxPrice = Product::max('price'); // Get the maximum price
+    
+        return view('search', compact('products', 'minPrice', 'maxPrice'));
+    }
+
+    public function adminIndex(Request $request){
+        $query = Product::query();
 
         // Search functionality
         if ($request->has('search') && $request->search !== null) {
@@ -42,7 +85,7 @@ class ProductController extends Controller
         $categories = ProductCategory::all();
 
         // Calculate stock tracking data
-        $totalFramesInStock = Product::sum('stock_quantity');
+        $totalFramesInStock = Product::count();
         $lowStockFrames = Product::where('stock_quantity', '<', 10)->count();
         $outOfStockFrames = Product::where('stock_quantity', '=', 0)->count();
         $newThisMonth = Product::whereMonth('created_at', now()->month)->count();
@@ -56,6 +99,7 @@ class ProductController extends Controller
             'newThisMonth'
         ));
     }
+    
 
     public function show($id)
     {
