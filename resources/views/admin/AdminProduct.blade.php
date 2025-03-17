@@ -140,7 +140,7 @@
                                     <td>
                                         <img src="{{ asset(optional($product->images->first())->image_path ?? 'Images/default.png') }}" alt="Frame" class="product-thumbnail">
                                     </td>
-                                    <td>{{ $product->name }}</td>
+                                    <td><a href="{{ route('product.details', ['id' => $product->id]) }}" style="text-decoration: none; color: inherit;">{{ $product->name }}</a></td>
                                     <td>{{ \Illuminate\Support\Str::limit($product->description, 100) }}</td>
                                     <td>£{{ number_format($product->price, 2) }}</td>
                                     <td class="stock-update">
