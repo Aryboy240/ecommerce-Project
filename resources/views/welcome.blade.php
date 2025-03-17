@@ -1,22 +1,19 @@
 <!--
     Developer: Aryan Kora
     university ID: 230059030
-    function: Landing page Frontend
+    function: Landing page Frontend and backend
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
+@extends('layouts.mainLayout')
 
-<head>
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
   <script defer src="/js/addToCart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/find_my_fit.css') }}">
   <link rel="stylesheet" href="{{ asset('css/search.css') }}">
   <script defer src="js/ProductSlider.js"></script>
-</head>
-
-</html>
-
-<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
-@extends('layouts.mainLayout')
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Welcome')
@@ -165,9 +162,7 @@
         <h2>ADIDAS</h2>
 
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Discover the perfect blend of performance and style with Adidas eyewear. Designed for athletes and fashion enthusiasts alike, these frames offer durability and comfort, ensuring you look great while staying active.
         </p>
         <a href="/products?category=Adidas">Starting from £100</a>
       </div>
@@ -179,9 +174,7 @@
       <div class="product-card-content">
         <h2>HUGO</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          HUGO eyewear combines contemporary design with high-quality materials. Perfect for those who appreciate modern aesthetics, these frames are a statement piece that enhances any outfit.
         </p>
         <a href="/products?category=HUGO">Starting from £100</a>
       </div>
@@ -193,9 +186,7 @@
       <div class="product-card-content">
         <h2>DKNY</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Embrace urban sophistication with DKNY eyewear. These stylish frames are designed for the modern individual, offering a chic look that is perfect for both casual and formal occasions.
         </p>
         <a href="/products?category=DKNY">Starting from £100</a>
       </div>
@@ -210,9 +201,7 @@
       <div class="product-card-content">
         <h2>Disney</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Bring a touch of magic to your eyewear collection with Disney frames. Perfect for kids and adults alike, these fun and colorful designs are sure to delight fans of all ages.
         </p>
         <a href="/products?category=Disney">Starting from £100</a>
       </div>
@@ -224,9 +213,7 @@
       <div class="product-card-content">
         <h2>Karen Millen</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Karen Millen eyewear is synonymous with elegance and sophistication. These frames are crafted for those who appreciate timeless style and high-quality craftsmanship.
         </p>
         <a href="/products?category=Karen+Millen">Starting from £100</a>
       </div>
@@ -238,9 +225,7 @@
       <div class="product-card-content">
         <h2>Jeff Banks</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Jeff Banks eyewear offers a unique blend of classic and contemporary styles. Ideal for those who want to make a statement, these frames are designed to stand out while providing comfort and durability.
         </p>
         <a href="/products?category=Jeff+Banks">Starting from £100</a>
       </div>
@@ -255,9 +240,7 @@
       <div class="product-card-content">
         <h2>Harry Potter</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Step into the wizarding world with Harry Potter eyewear. These frames are perfect for fans of all ages, combining magical designs with high-quality materials for a comfortable fit.
         </p>
         <a href="/products?category=Harry+Potter">Starting from £100</a>
       </div>
@@ -269,9 +252,7 @@
       <div class="product-card-content">
         <h2>Barbour</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Barbour eyewear reflects the brand's heritage of quality and craftsmanship. These frames are designed for those who appreciate classic British style and outdoor adventure.
         </p>
         <a href="/products?category=Barbour">Starting from £100</a>
       </div>
@@ -283,9 +264,7 @@
       <div class="product-card-content">
         <h2>Comfit</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt voluptatum itaque nemo amet?
-          Neque voluptatibus ad pariatur modi esse impedit id, laborum, molestias quam dolor maxime
-          delectus eveniet iusto tenetur.
+          Comfit eyewear is designed for ultimate comfort and style. Perfect for everyday wear, these frames provide a lightweight feel without compromising on durability.
         </p>
         <a href="/products?category=Comfit">Starting from £100</a>
       </div>
@@ -334,24 +313,14 @@
   <div class="about-wrapper">
     <div class="about-content">
       <h2>Learn about us and what sets us apart</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea sint nostrum harum laudantium laborum,
-        voluptatem repudiandae. Architecto incidunt quis facere. Voluptatibus, quod illo! Provident suscipit
-        labore animi aspernatur quisquam tempora ipsam deleniti dolor doloremque, magni adipisci voluptatem
-        ullam vel. Provident, sed. Harum, veniam iure! Quasi rerum itaque quis modi enim fugiat ex? Atque
-        dolorum delectus omnis incidunt quia! Perferendis architecto consectetur sint pariatur repellendus,
-        deleniti inventore fugit, similique veritatis laborum voluptatibus! Placeat totam, aliquid adipisci
-        fugit veniam quas fugiat tempora rem quidem nam laudantium blanditiis cupiditate debitis qui
-        voluptate expedita. Nam recusandae velit vero architecto sunt, ab sapiente ullam possimus.
+      <p>
+        At Optique, we are dedicated to revolutionizing the eyewear industry by providing innovative solutions that combine style and functionality. Our journey began with a simple vision: to make high-quality eyewear accessible to everyone. We believe that eyewear is not just a necessity but a fashion statement that reflects your personality.
         <br><br>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil tempora perspiciatis minus dicta
-        numquam blanditiis qui earum, rem excepturi veniam eum quibusdam, eos quidem ipsa accusantium
-        aliquid ipsam, fugit quas! Tenetur fugiat itaque, eveniet eligendi atque harum eos repellendus
-        tempora laborum corporis natus sit pariatur excepturi ab sed possimus eius non similique ut quae
-        veniam? Corrupti mollitia nesciunt nostrum voluptatem, quia aliquid hic illum expedita excepturi
-        similique voluptates, beatae sed? Laudantium quam, praesentium molestias itaque reiciendis hic
-        commodi accusantium, aperiam dolorem quibusdam ipsa suscipit cupiditate soluta deleniti fugiat modi.
-        Odio similique animi doloremque nihil adipisci, rem quidem. Doloremque, dignissimos blanditiis?
+        Our team of experts is passionate about curating a diverse range of eyewear that caters to various styles and preferences. We prioritize quality, ensuring that every product meets our high standards. Our commitment to customer satisfaction drives us to continuously improve our offerings and services.
         <br><br>
+        We also believe in sustainability and are committed to using eco-friendly materials in our products. By choosing Optique, you are not only enhancing your vision but also contributing to a more sustainable future.
+        <br><br>
+        Join us on this journey to redefine eyewear. Explore our collection today and discover the perfect blend of vision and style.
       </p>
       <a class="about-button" href="{{ route('about') }}">Learn More</a>
     </div>

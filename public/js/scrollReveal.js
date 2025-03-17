@@ -60,6 +60,62 @@ sr.reveal(".f-product-container", {
     delay: 150,
 });
 
+// About
+
+sr.reveal(".mission-section", {
+    duration: 1000,
+    interval: 100,
+    delay: 500,
+});
+
+sr.reveal(".company-image", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
+sr.reveal(".about-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
+sr.reveal(".logo-text", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".member-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".testimonial-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".section-title", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".contact-cta", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".cta-content", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
 //Contact
 
 sr.reveal(".contact-us", {

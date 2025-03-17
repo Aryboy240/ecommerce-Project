@@ -14,13 +14,18 @@
   <!-- JS -->
   <script defer src="{{ asset('/js/theme.js') }}"></script>
   <script defer src="{{ asset('js/scrollReveal.js') }}"></script>
-  <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
   <script src="{{ asset('js/scrollBar.js') }}"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+
+  @yield('extra-head')
+
+  <!-- Tab Icon -->
+  <link rel="icon" href="{{ asset('Images/circleLogo.png') }}" type="image/x-icon">
 
   <title>@yield('title', 'Laravel App')</title>
 </head>

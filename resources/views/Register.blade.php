@@ -31,6 +31,8 @@
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
   />
+
+  <link rel="icon" href="{{ asset('Images/circleLogo.png') }}" type="image/x-icon">
 </head>
 
 <body>
