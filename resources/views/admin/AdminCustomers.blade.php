@@ -13,7 +13,7 @@
 @endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'Optique | Admin Users')
+@section('title', 'Optique | Admin Customers')
 
 <!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
 @section('content')
