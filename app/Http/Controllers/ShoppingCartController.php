@@ -92,9 +92,6 @@ class ShoppingCartController extends Controller
                 $cartItem->save();
             }
 
-            // Update the product stock
-            $product->decrement('stock_quantity', $request->quantity);
-
             DB::commit();
 
             return response()->json(['success' => 'Product added to cart successfully']);

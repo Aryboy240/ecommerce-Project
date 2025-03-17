@@ -1,17 +1,24 @@
-<html lang="en">
+<!--
+    Developer: Oyinlola Arowolo
+	  University ID: 230402373
+    Function: Front end for the cart page
 
-<head>
+    Developer: Aryan Kora
+    university ID: 230059030
+    function: Backend and front end for cart page
+-->
+
+
+@extends('layouts.mainLayout')
+
+@section('extra-head')
 
   <script defer src="/js/addToCart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
-</head>
+@endsection
 
-</html>
-
-@extends('layouts.mainLayout')
-
-@section('title', 'cart')
+@section('title', 'Optique | Cart')
 
 @section('content')
 <!-- Dynamic cart functions:: Aryan Kora -->

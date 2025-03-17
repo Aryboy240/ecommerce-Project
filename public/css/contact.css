@@ -40,12 +40,9 @@ body {
 }
 
 .contact-us p {
-    font-size: 30px;
     color: #dcdcdc;
-    font-weight: 400;
     line-height: 36px;
     padding-top: 55px;
-
     transition: 600s;
 }
 
@@ -299,9 +296,9 @@ body {
 */
 
 .contact-page-text {
-    font-family: "Dosis", sans-serif;
-    font-size: 20px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     white-space: normal;
     width: 100%;
     margin: auto;
@@ -315,18 +312,26 @@ body {
 }
 
 .contact-text-box {
+    font-size: 17px;
     position: relative;
-    max-width: 1450px;
+    padding: 75px;
+    width: 100%;
     height: auto;
     background: var(--bg-secondary);
     margin: 50px 10px;
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
     border-radius: 50px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     transition: var(--transition-speed) ease-out;
     cursor: default;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
 
 .contact-text-box:hover {
@@ -629,4 +634,42 @@ body {
     .formCon .contactForm .formBox .inputBox.w50 {
         width: 100%;
     }
+}
+
+.card-body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+}
+
+.social-cards {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.card-con {
+    background-color: var(--mint); /* Change to your preferred background color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    text-align: center;
+    width: 200px; /* Fixed width for cards */
+}
+
+.card-con:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-detail {
+    padding: 15px;
+    color: white; /* Change text color for better contrast */
+}
+
+.card-image img {
+    width: 80%; /* Adjust image size */
+    margin: 10px 0; /* Space around the image */
 }
