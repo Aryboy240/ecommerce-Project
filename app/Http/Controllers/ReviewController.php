@@ -12,8 +12,10 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = ProductReview::with('user', 'product')->paginate(10);
+        return view('admin.AdminReview', compact('reviews'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -68,16 +70,29 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'rating' => 'required|numeric|min:0|max:5',
+            'comment' => 'required|string|max:500',
+        ]);
+
+        $review = ProductReview::findOrFail($id);
+        $review->rating = $request->input('rating');
+        $review->comment = $request->input('comment');
+        $review->save();
+
+        return redirect()->back()->with('success', 'Review updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $review = ProductReview::findOrFail($id);
+        $review->delete();
+
+        return redirect()->back()->with('success', 'Review deleted successfully!');
     }
 }

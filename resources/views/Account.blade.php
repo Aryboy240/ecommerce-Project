@@ -176,22 +176,25 @@
                     <h2>Personal Information</h2>
                     <div class="profile-info">
                         <form id="personal-info-form">
+                            @csrf
                             <div class="input-group">
                                 <label>Full Name</label>
-                                <input type="text" placeholder="Your full name">
+                                <input type="text" id="fullName" name="fullName" value="{{ auth()->user()->fullName }}" required>
                             </div>
                             <div class="input-group">
                                 <label>Email</label>
-                                <input type="email" placeholder="Your email">
+                                <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" required>
                             </div>
                             <div class="input-group">
                                 <label>Date of Birth</label>
-                                <input type="date">
+                                <input type="date" id="birthday" name="birthday" value="{{ auth()->user()->birthday->format('Y-m-d') }}" required>
                             </div>
                             <button type="submit">Save Changes</button>
+                            <p id="updateMessage" style="display: none;"></p>
                         </form>
                     </div>
                 </div>
+
 
                 <!-- Purchases Tab -->
                 <div class="tab-content" id="purchases">
@@ -771,5 +774,37 @@ document.getElementById('password-form').addEventListener('submit', function(eve
         }
     );
 });
+
+document.getElementById('personal-info-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    let formData = new FormData(this);
+    let updateMessage = document.getElementById('updateMessage');
+
+    fetch("{{ route('update.personal.info') }}", {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            updateMessage.textContent = data.success;
+            updateMessage.style.color = "green";
+        } else {
+            updateMessage.textContent = data.error;
+            updateMessage.style.color = "red";
+        }
+        updateMessage.style.display = "block";
+    })
+    .catch(error => {
+        updateMessage.textContent = "An error occurred!";
+        updateMessage.style.color = "red";
+        updateMessage.style.display = "block";
+    });
+});
+
 </script>
 @endsection

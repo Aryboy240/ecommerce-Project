@@ -132,7 +132,6 @@ input[name="stock_quantity"] {
     border: 1px solid var(--mint);
     background: var(--bg-primary);
     color: var(--text-primary);
-    -moz-appearance: textfield;
     margin-bottom: 10px; /* Moves the input slightly higher */
 }
 
@@ -450,7 +449,3 @@ input[name="stock_quantity"]::-webkit-inner-spin-button {
 .input-group input[type="file"]:hover {
     border-color: #3aa774;
 }
-
-
-
-
