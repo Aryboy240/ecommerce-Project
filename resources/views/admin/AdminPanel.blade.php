@@ -27,8 +27,13 @@
                     <div class="dropdown">
                         <button class="dropbtn">Admin User</button>
                         <div class="dropdown-content">
-                            <a href="{{ route('adminprofile') }}">Profile</a>
-                            <a href="javascript:void(0);" onclick="openLogoutModal()">Logout</a>
+                            <a href="{{ route('adminprofile') }}" class="content-1">Profile</a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" id="button-off" class="content-2">
+                                    <a>Logout</a>
+                                </button>
+                              </form>
                         </div>
                     </div>
                 </div>

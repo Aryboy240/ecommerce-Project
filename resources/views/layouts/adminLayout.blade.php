@@ -41,17 +41,8 @@
             <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
             <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
             <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            <li><a href="{{ route('adminprofile') }}"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="{{ route('admin.reviews') }}" class="active"><i class="fas fa-star"></i> Reviews</a></li>
-            <li>
-              <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" id="button-off">
-                      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                      <span>Logout</span>
-                </button>
-              </form>
-            </li>
+            <li><a href="{{ route('welcome') }}" class="active"><i class="fa-solid fa-arrow-right-from-bracket"></i> Exit</a></li>
         </ul>
     </nav>
     

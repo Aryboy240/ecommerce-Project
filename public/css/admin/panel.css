@@ -30,7 +30,7 @@ body {
     margin-top: 20px;
     margin-left: 25px;
     width: 250px;
-    max-height: 500px;
+    max-height: 450px;
     padding: 1rem;
     flex-shrink: 0; /* Prevent sidebar from shrinking */
     left: 0;
@@ -130,6 +130,7 @@ body {
 /* Header Styles */
 .header {
     padding: 1rem;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -200,9 +201,10 @@ body {
     min-width: 160px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 100;
 }
 
-.dropdown-content a {
+.dropdown-content .content-1 {
     color: var(--text-secondary);
     padding: 0.75rem 1rem;
     text-decoration: none;
@@ -210,7 +212,26 @@ body {
     transition: all var(--transition-speed) ease;
 }
 
-.dropdown-content a:hover {
+.dropdown-content .content-1:hover {
+    background-color: var(--darker);
+    color: var(--text-primary);
+}
+
+.dropdown-content .content-2 {
+    font-size: 15px;
+    text-align: left;
+    color: var(--text-secondary);
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: all var(--transition-speed) ease;
+    margin-bottom: 0;
+}
+
+.dropdown-content .content-2:hover {
     background-color: var(--darker);
     color: var(--text-primary);
 }
@@ -221,6 +242,7 @@ body {
 
 /* Dashboard Content */
 .dashboard {
+    z-index: 0;
     flex: 1;
     padding: 2rem;
     overflow-y: auto;
