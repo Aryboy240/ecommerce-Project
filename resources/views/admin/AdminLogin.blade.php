@@ -27,7 +27,7 @@
 
   <div class="top-level">
     <div class="top-icons">
-      <img src="{{ asset('Images/Logo.png') }}" alt="logo">
+      <img src="{{ asset('Images/logo.png') }}" alt="logo">
       <a href="{{ route('welcome') }}">
         <svg
         aria-hidden="true"

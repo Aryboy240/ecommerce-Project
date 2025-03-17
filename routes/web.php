@@ -108,8 +108,9 @@ Route::post('/update-personal-info', [UserController::class, 'updatePersonalInfo
 | Admin Account Routes
 |--------------------------------------------------------------------------
 */
+
 Route::get('/adminlogin', function () {
-    return view('admin/Adminlogin');
+    return view('admin/AdminLogin');
 })->name('adminlogin');
 
 Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
