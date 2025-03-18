@@ -6,6 +6,10 @@
     Developer: Aryan Kora
 	  University ID: 230059030
     Function: Frontend improvements && contact form
+
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Backend for contact form & frontend final edits
 -->
 
 <html lang="en">

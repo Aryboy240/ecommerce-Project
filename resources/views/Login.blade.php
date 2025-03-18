@@ -6,6 +6,10 @@
     Developer: Hussen Ahmed
 	  University ID: 230177600
     Function: Added the backend for logins
+
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Backend and frontend for vaidation messages and reset password feature
 -->
 
 <head>
