@@ -138,11 +138,11 @@
           </li>
           <li>
             <span><img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}"></span>
-            <span>support@optique.com</span>
+            <span>optique.team28@gmail.com</span>
           </li>
           <li>
             <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
-            <span>1 (800) 555-OPTQ</span>
+            <span>07928202588</span>
           </li>
         </ul>
       </div>
