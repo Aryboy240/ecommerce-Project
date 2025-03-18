@@ -3,7 +3,8 @@
 <head>
     <title>Reset Password</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/forgot-password.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
 </head>
 <body>
     <section>
