@@ -29,6 +29,9 @@
                       </svg>
                     </a>
                   </div>
+                  <div class="img-con">
+                    <img src="{{ asset('Images/logo.png') }}" class="login-logo" />
+                </div>
                 <h2>Reset Password</h2>
 
                 <form action="{{ route('password.update') }}" method="POST">
