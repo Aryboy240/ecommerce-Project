@@ -895,7 +895,7 @@ nav:hover {
     outline: none;
     border-radius: 5px;
     transition: 0.5s;
-    cursor: pointer;
+    cursor: var(--pointer);
     opacity: 0;
     background: var(--darker);
     color: #fff;
@@ -1363,6 +1363,43 @@ nav:hover {
     flex-direction: column;
 }
 
+.powered-by {
+    position: relative;
+    display: flex;
+    min-width: 100%;
+    align-items: center;
+}
+
+.QR {
+    position: relative;
+    margin-left: 10px;
+    z-index: 20;
+    cursor: var(--pointer);
+}
+
+/* Initially hidden */
+.QR-over {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    cursor: var(--cursor);
+}
+
+/* QR Code Image */
+.QR-over img {
+    width: 500px;
+    height: 450px;
+    cursor: var(--pointer); /* To indicate interaction */
+}
+
 /* Responsive adjustments */
 @media (max-width: 576px) {
     .footer .social-icons {
@@ -1373,6 +1410,10 @@ nav:hover {
     .footer .social-icons a {
         width: 40px; /* Slightly larger touch targets on mobile */
         height: 40px;
+    }
+
+    .QR {
+        display: none;
     }
 }
 
