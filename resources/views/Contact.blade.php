@@ -13,6 +13,7 @@
 
 @section('extra-head')
 
+  <script defer src="{{ asset('js/contactForm.js') }}"></script>
   <link rel="stylesheet" href={{  asset('css/contact.css') }}>
 
 @endsection

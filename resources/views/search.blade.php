@@ -174,6 +174,11 @@
     </div>
 </div>
 
+<!-- Pagination -->
+<div class="pagination-container">
+    {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
+</div>
+
 <script>
 function toggleFilters() {
     const filtersSection = document.querySelector('.filters');

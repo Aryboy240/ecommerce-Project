@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -78,6 +79,35 @@ class AdminController extends Controller
             return response()->json(['success' => false, 'message' => 'Something went wrong!'], 500);
         }
     }
+
+    public function adminPanelAccess(){
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+        else{
+            return view('admin/AdminPanel');
+        }
+    }
+
+    public function adminOrdersAccess(){
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+        else{
+            return view('admin/AdminOrder');
+        }
+    }
     
+    public function adminProfileAccess(){
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+        else{
+            return view('admin/AdminProfile');
+        }
+    }
 
 }

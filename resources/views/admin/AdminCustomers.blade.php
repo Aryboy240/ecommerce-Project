@@ -22,9 +22,45 @@
 <div class="main-content">
     <div class="page-header">
         <h1>Customer Accounts</h1>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Customer Management </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customers.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <!-- Sidebar Navigation-->
+    <nav class="sidebar">
+        <div class="logo">
+            <img src="{{ asset('Images/logo.png') }}" alt="Logo">
+            <h2>Admin Dashboard</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
+            <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
+            <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+            <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            <li><a href="{{ route('admin.coupons') }}"><i class="fas fa-tag"></i> Coupons</a></li>
+            <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
         <div class="search-bar">
-            <input type="text" placeholder="Search customers..." class="search-input">
-            <button class="search-button">Search</button>
+            <form action="{{ route('customers') }}" method="get">
+                <input type="text" name="search" placeholder="Search customers..." class="search-input" value="{{ request()->search }}">
+                <button type="submit" class="search-button">Search</button>
+            </form>
             <div class="create-user-btn">
                 <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
             </div>

@@ -11,6 +11,7 @@
 
 <!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
 @section('content')
+
     <!-- Main Content Area -->
     <div class="main-content">
         <header class="header">

@@ -163,7 +163,7 @@
         throughout the development process.</p>
         <div class="member-contact">
         <a href="mailto:aryan240@outlook.com">Email</a>
-        <a href="https://linktr.ee/AryanKora">Linktree</a>
+        <a href="https://linktr.ee/AryanKora" target="blank_">Linktree</a>
         </div>
       </div>
       </div>

@@ -197,7 +197,7 @@ input:focus {
     border: none;
     border-radius: 12px;
     font-size: 1.2em;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.2s ease;
     font-weight: 600;
 }

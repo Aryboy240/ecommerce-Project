@@ -36,10 +36,10 @@ sr.reveal(".section-title", {
     delay: 100,
 });
 
-sr.reveal(".product-card-con", {
+sr.reveal(".product-card", {
     duration: 1000,
     interval: 100,
-    delay: 150,
+    delay: 250,
 });
 
 sr.reveal(".category", {
@@ -57,7 +57,7 @@ sr.reveal(".about-section", {
 sr.reveal(".f-product-container", {
     duration: 1000,
     interval: 100,
-    delay: 150,
+    delay: 200,
 });
 
 // About
