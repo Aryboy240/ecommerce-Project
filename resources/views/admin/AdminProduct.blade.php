@@ -213,15 +213,41 @@
                         @endforeach
                     </select>
                 </div>
-                <!-- Upload Image -->
+                <!-- Upload Images -->
                 <div class="input-group">
-                    <label for="productImage">Upload Image:</label>
-                    <input type="file" name="product_image" id="productImage" accept="image/*" required>
+                    <label for="front_image">Front Image:</label>
+                    <input type="file" name="front_image" id="front_image" accept="image/*" required>
+                </div>
+                <div class="input-group">
+                    <label for="side_image">Side Image:</label>
+                    <input type="file" name="side_image" id="side_image" accept="image/*">
+                </div>
+                <div class="input-group">
+                    <label for="angled_image">Angled Image:</label>
+                    <input type="file" name="angled_image" id="angled_image" accept="image/*">
+                </div>
+                <div class="input-group">
+                    <label for="ortho_image">Orthogonal Image:</label>
+                    <input type="file" name="ortho_image" id="ortho_image" accept="image/*">
+                </div>
+                <div class="input-group">
+                    <label for="case_image">Case Image:</label>
+                    <input type="file" name="case_image" id="case_image" accept="image/*">
+                </div>
+                <div class="input-group">
+                    <label for="model_image">Model Image:</label>
+                    <input type="file" name="model_image" id="model_image" accept="image/*">
+                </div>
+                <div class="input-group">
+                    <label for="model2_image">Model 2 Image:</label>
+                    <input type="file" name="model2_image" id="model2_image" accept="image/*">
                 </div>
                 <button type="submit" class="save-btn">Add Product</button>
             </form>
         </div>
     </div>
+
+
 
     <!-- Existing Scripts -->
     <script>
@@ -263,48 +289,68 @@
     </script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const addModal = document.getElementById("addProductModal");
-        const closeAddModal = addModal.querySelector(".close-btn");
-        const addProductBtn = document.querySelector(".add-product-btn");
-        const addSuccessMessage = document.getElementById("addSuccessMessage");
+        document.addEventListener("DOMContentLoaded", function () {
+            const addModal = document.getElementById("addProductModal");
+            const closeAddModal = addModal.querySelector(".close-btn");
+            const addProductBtn = document.querySelector(".add-product-btn");
+            const addSuccessMessage = document.getElementById("addSuccessMessage");
 
-        // Open "Add Product" modal
-        addProductBtn.addEventListener("click", function () {
-            addModal.style.display = "flex";
-        });
-
-        // Close modal
-        closeAddModal.addEventListener("click", function () {
-            addModal.style.display = "none";
-        });
-
-        // AJAX Submit Form
-        document.getElementById("addProductForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            fetch("{{ route('productadmin.store') }}", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    addModal.style.display = "none";
-                    addSuccessMessage.style.display = "block";
-                    setTimeout(() => {
-                        addSuccessMessage.style.display = "none";
-                        location.reload();  // Reload the page after adding the product
-                    }, 2000);
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                location.reload();  // In case of an error, reload the page anyway
+            // Open "Add Product" modal
+            addProductBtn.addEventListener("click", function () {
+                addModal.style.display = "flex";
             });
-        });
 
-    });
+            // Close modal
+            closeAddModal.addEventListener("click", function () {
+                addModal.style.display = "none";
+            });
+
+            // AJAX Submit Form
+            document.getElementById("addProductForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+
+                // For multiple file uploads, you can add each image to the FormData object
+                const imageFields = [
+                    'front_image',
+                    'side_image',
+                    'angled_image',
+                    'ortho_image',
+                    'case_image',
+                    'model_image',
+                    'model2_image'
+                ];
+
+                imageFields.forEach(function(field) {
+                    const fileInput = document.getElementById(field);
+                    if (fileInput && fileInput.files.length > 0) {
+                        formData.append(field, fileInput.files[0]);
+                    }
+                });
+
+                // Perform the AJAX request to submit the form
+                fetch("{{ route('productadmin.store') }}", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        addModal.style.display = "none";
+                        addSuccessMessage.style.display = "block";
+                        setTimeout(() => {
+                            addSuccessMessage.style.display = "none";
+                            location.reload();  // Reload the page after adding the product
+                        }, 2000);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    location.reload();  // In case of an error, reload the page anyway
+                });
+            });
+
+        });
     </script>
 
     <!-- New Inline CSS for Low/Out-of-Stock Rows -->
