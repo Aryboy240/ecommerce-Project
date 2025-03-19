@@ -83,7 +83,7 @@
           </p>
         </div>
       </div>
-  </a>
+    </a>
   </div>
   <a href="https://x.com/OptiqueTeam28" target="_blank" class="hyper-hider">
     <div class="card-con">
@@ -91,21 +91,12 @@
         <div class="card-image">
           <img src="{{ asset('Images/socials/twitter.png') }}" width="190px" />
         </div>
-      </a>
-      <a href="https://twitter.com" target="_blank" class="hyper-hider">
-        <div class="card-con">
-          <div class="cards">
-            <div class="card-image">
-              <img src="{{ asset('Images/socials/twitter.png') }}" width="100px" />
-            </div>
-            <div class="card-detail">
-              <h1>Twitter</h1>
-              <p>Follow us on Twitter!</p>
-            </div>
-          </div>
+        <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
+          <h1>Twitter</h1>
+          <p>Follow us on Twitter!</p>
         </div>
-      </a>
-    </div>
+      </div>
+    </a>
   </div>
 </section>
 <!--Info Cards End-->
