@@ -112,6 +112,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('/update-personal-info', [UserController::class, 'updatePersonalInfo'])->name('update.personal.info');
 
+// Forgot Password feature routes
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');

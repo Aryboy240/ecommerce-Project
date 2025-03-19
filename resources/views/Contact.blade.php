@@ -12,6 +12,7 @@
     Function: Backend for contact form & frontend final edits
 -->
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
