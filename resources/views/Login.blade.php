@@ -145,17 +145,17 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.instagram.com" target="_blank">
+            <a href="https://www.instagram.com/optique.team28/" target="_blank">
               <img src="Images/socials/instagram.png"/>
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com" target="_blank">
+            <a href="https://www.youtube.com/@Optique.Team28" target="_blank">
               <img src="Images/socials/youtube.png"/>
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com" target="_blank">
+            <a href="https://x.com/OptiqueTeam28" target="_blank">
               <img src="Images/socials/twitter.png"/>
             </a>
           </li>
