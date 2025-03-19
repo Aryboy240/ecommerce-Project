@@ -118,15 +118,6 @@ class ProductController extends Controller
         return view('sproduct', compact('product'));
     }
 
-    public function featuredProducts()
-    {
-        $products = Product::whereIn('id', [
-            32859928, 33137483, 32861686, 33087542, 32677959, 33137346, 32860634, 33039633
-        ])->with('category', 'images')->get();
-
-        return view('welcome', compact('products'));
-    }
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -282,6 +273,15 @@ class ProductController extends Controller
         });
 
         return response()->json($formattedProducts);
+    }
+
+    public function featuredProducts()
+    {
+        $products = Product::whereIn('id', [
+            32859928, 33137483, 32861686, 33087542, 32677959, 33137346, 32860634, 33039633
+        ])->with('category', 'images')->get();
+
+        return view('welcome', compact('products'));
     }
 }
 

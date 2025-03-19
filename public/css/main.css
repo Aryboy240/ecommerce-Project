@@ -9,19 +9,20 @@ body {
 }
 
 .admin-access {
-    width: 100%;
-    bottom: 0;
-    transform: translate(-10px, -20px);
+    width: 10%;
+    bottom: 20px;
+    right: 20px;
     position: fixed;
     display: flex;
-    align-items: right;
-    justify-content: right;
+    justify-content: flex-end;
+    align-items: flex-end;
     z-index: 10000000;
+    transform: translate(0, 0);
 }
 
 .admin-access a {
     border-radius: 50%;
-    transition: ease 0.3s;
+    transition: all 0.3s;
 }
 
 .admin-access a img {
@@ -32,7 +33,7 @@ body {
 }
 
 .admin-access a:hover {
-    transform: translate(0, -10px) rotate(360deg);
+    transform: translate(0, -10px) rotate(360deg) scale(1.1);
     box-shadow: 0 0 15px var(--darker);
 }
 
@@ -165,7 +166,7 @@ nav:hover {
     border-radius: 50%;
     z-index: 100;
     transition: var(--transition-speed);
-    cursor: pointer;
+    cursor: var(--pointer);
 }
 
 .navbar-middle:hover {
@@ -332,7 +333,7 @@ nav:hover {
         border-radius: 50%;
         z-index: 100;
         transition: var(--transition-speed);
-        cursor: pointer;
+        cursor: var(--pointer);
         margin-left: 50px;
     }
 
@@ -796,7 +797,7 @@ nav:hover {
 }
 
 .card-detail input:hover {
-    cursor: pointer;
+    cursor: var(--pointer);
     background-color: var(--darker);
 }
 
@@ -968,7 +969,7 @@ nav:hover {
         rgba(255, 255, 255, 0) 0%,
         var(--bg-primary) 100%
     );
-    cursor: pointer;
+    cursor: var(--pointer);
     z-index: 8;
 }
 
@@ -1109,7 +1110,7 @@ nav:hover {
     border: none;
     border-radius: 8px;
     color: white;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -1169,7 +1170,7 @@ nav:hover {
     border-radius: 50px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     transition: var(--transition-speed) ease-out;
-    cursor: default;
+    cursor: var(--cursor);
 }
 
 /* Responsive Design */
@@ -1397,7 +1398,7 @@ nav:hover {
 .QR-over img {
     width: 500px;
     height: 450px;
-    cursor: var(--pointer); /* To indicate interaction */
+    cursor: var(--pointer);
 }
 
 /* Responsive adjustments */
@@ -1413,7 +1414,10 @@ nav:hover {
     }
 
     .QR {
-        display: none;
+        position: relative;
+        margin-left: 10px;
+        z-index: 20;
+        cursor: var(--pointer);
     }
 }
 
