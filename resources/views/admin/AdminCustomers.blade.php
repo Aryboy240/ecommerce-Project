@@ -23,8 +23,10 @@
     <div class="page-header">
         <h1>Customer Accounts</h1>
         <div class="search-bar">
-            <input type="text" placeholder="Search customers..." class="search-input">
-            <button class="search-button">Search</button>
+            <form action="{{ route('customers') }}" method="get">
+                <input type="text" name="search" placeholder="Search customers..." class="search-input" value="{{ request()->search }}">
+                <button type="submit" class="search-button">Search</button>
+            </form>
             <div class="create-user-btn">
                 <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
             </div>
