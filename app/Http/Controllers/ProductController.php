@@ -12,31 +12,24 @@ use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    /* 
-        This controller:
-        1. Fetches data from the database
-        2. Passes this data to the views for rendering
-        3. Handles user inputs (search queries and filtering)
-    */
-
     public function index(Request $request)
     {
         $query = Product::query();
-    
+        
         // Search functionality
         if ($request->has('search') && $request->search !== null) {
             $searchTerm = $request->search;
             $query->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+                  ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
-    
+        
         // Category filtering
         if ($request->has('category') && $request->category !== 'all') {
             $query->whereHas('category', function ($query) use ($request) {
                 $query->where('name', $request->category);
             });
         }
-    
+        
         // Price filtering (min and max price)
         if ($request->has('min_price') && is_numeric($request->min_price)) {
             $query->where('price', '>=', $request->min_price);  // Filter by min price
@@ -44,7 +37,7 @@ class ProductController extends Controller
         if ($request->has('max_price') && is_numeric($request->max_price)) {
             $query->where('price', '<=', $request->max_price);  // Filter by max price
         }
-    
+        
         // Price sorting (if requested)
         if ($request->has('sort_by_price') && $request->sort_by_price !== 'none') {
             $sortOrder = $request->sort_by_price == 'asc' ? 'asc' : 'desc';
@@ -54,12 +47,13 @@ class ProductController extends Controller
             $query->orderBy('id', 'asc');
         }
     
-        // Retrieve products with their related images, image types, and category
-        $products = $query->with(['images.imageType', 'category'])->get();
+        // Retrieve products with their related images, image types, and category, paginated
+        $products = $query->with(['images.imageType', 'category'])->paginate(20); // Use paginate here
     
-        $minPrice = Product::min('price'); // Get the minimum price
-        $maxPrice = Product::max('price'); // Get the maximum price
-    
+        // Get min and max price for filters
+        $minPrice = Product::min('price');
+        $maxPrice = Product::max('price');
+        
         return view('search', compact('products', 'minPrice', 'maxPrice'));
     }
 

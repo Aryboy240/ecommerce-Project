@@ -11,6 +11,7 @@
 
 <!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
 @section('content')
+
 <div class="main-content">
     <main class="dashboard">
         <div class="page-header">
@@ -149,13 +150,13 @@
                 </tbody>
             </table>
         </div>
-
-            <!-- Pagination -->
-            <div class="pagination-container">
-                {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
-            </div>
-        </main>
-    </div>
+        
+        <!-- Pagination -->
+        <div class="pagination-container">
+            {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
+        </div>
+    </main>
+</div>
 
     <!-- Edit Product Modal -->
     <div id="editModal" class="modal">
@@ -247,8 +248,6 @@
         </div>
     </div>
 
-
-
     <!-- Existing Scripts -->
     <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -288,6 +287,7 @@
     });
     </script>
 
+    <!-- Product addition script -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const addModal = document.getElementById("addProductModal");

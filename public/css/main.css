@@ -131,7 +131,11 @@ body {
 }
 
 /* glows on hover */
-nav:hover {
+.navbar-rigth:hover {
+    box-shadow: 0 0 15px var(--mint);
+}
+
+.navbar-left:hover {
     box-shadow: 0 0 15px var(--mint);
 }
 

@@ -160,10 +160,9 @@ Route::middleware(['auth'])->group(function () {
 | Search Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/search', function () {
-    $products = Product::with('images', 'category')->get();
-    return view('search', ['products' => $products]);
-})->name('search');
+
+Route::get('/search', [ProductController::class, 'index'])->name('search');
+
 
 /*
 |--------------------------------------------------------------------------
