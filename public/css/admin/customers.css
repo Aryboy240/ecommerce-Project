@@ -34,6 +34,7 @@
 }
 
 .search-bar .create-user-btn {
+    height: 0;
     background-color: var(--mint);
     border: none;
     justify-content: space-between;
@@ -105,6 +106,10 @@
 }
 
 #edit-is-admin {
+    cursor: var(--pointer);
+}
+
+#openCreateUserModal {
     cursor: var(--pointer);
 }
 

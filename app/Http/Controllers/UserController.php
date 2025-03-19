@@ -161,16 +161,23 @@ class UserController extends Controller
     | Admin User Update thingy
     |--------------------------------------------------------------------------
     */
-    public function showCustomers()
+    public function showCustomers(Request $request)
     {
         // Ensure user is admin
         if (!Auth::user() || !Auth::user()->is_admin) {
             abort(403, 'Unauthorized access');
         }
-
-        // Fetch all users
-        $users = User::all();
-        
+    
+        // Get the search term from the request
+        $searchTerm = $request->input('search');
+    
+        // Fetch users based on the search term if it's provided
+        $users = User::when($searchTerm, function($query) use ($searchTerm) {
+            return $query->where('name', 'LIKE', '%' . $searchTerm . '%')
+                         ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+                         ->orWhere('fullName', 'LIKE', '%' . $searchTerm . '%');
+        })->get();
+    
         // Return the view with the users data
         return view('admin.AdminCustomers', compact('users'));
     }
