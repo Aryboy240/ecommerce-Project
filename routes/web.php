@@ -114,19 +114,15 @@ Route::get('/adminlogin', function () {
 })->name('adminlogin');
 
 Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
-Route::get('/adminpanel', function () {
-    return view('admin/AdminPanel');
-})->name('adminpanel');
 
-Route::get('/admin/products', [ProductController::class, 'index'])->name('productadmin');
+// Admin Panel Route (Ensures Admin Access)
+Route::get('/adminpanel', [App\Http\Controllers\AdminController::class, 'adminPanelAccess'])->name('adminpanel');
 
-Route::get('/AdminOrders', function () {
-    return view('admin/AdminOrder');
-})->name('AdminOrders');
+// Admin Orders Route (Ensures Admin Access)
+Route::get('/AdminOrders', [App\Http\Controllers\AdminController::class, 'adminOrdersAccess'])->name('AdminOrders');
 
-Route::get('/adminprofile', function () {
-    return view('admin/AdminProfile');
-})->name('adminprofile');
+// Admin Profile Route (Ensures Admin Access)
+Route::get('/adminprofile', [App\Http\Controllers\AdminController::class, 'adminOrdersAccess'])->name('adminprofile');
 
 // web.php (Route for showing all users in the AdminCustomers page)
 Route::get('/customers', [UserController::class, 'showCustomers'])->name('customers');

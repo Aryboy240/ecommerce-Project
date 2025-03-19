@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ImageType;
-use Illuminate\Support\Facades\Session; // For flashing session alerts
-use Illuminate\Support\Facades\Storage; // For file storage handling
-use Illuminate\Support\Facades\Log; // For logging debug information
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -64,6 +64,12 @@ class ProductController extends Controller
     }
 
     public function adminIndex(Request $request){
+
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
         $query = Product::query();
 
         // Search functionality
