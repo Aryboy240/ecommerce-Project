@@ -81,27 +81,27 @@
       <h2>Select Your Face Shape</h2>
       <div class="face-options">
           <div class="face-item" onclick="showFaceShape('Round')">
-              <img src="{{ asset('images/round.png') }}" alt="Round">
+              <img src="{{ asset('Images/round.png') }}" alt="Round">
               <div class="face-label">Round</div>
           </div>
           <div class="face-item" onclick="showFaceShape('Square')">
-              <img src="{{ asset('images/square.png') }}" alt="Square">
+              <img src="{{ asset('Images/square.png') }}" alt="Square">
               <div class="face-label">Square</div>
           </div>
           <div class="face-item" onclick="showFaceShape('Oval')">
-              <img src="{{ asset('images/oval.png') }}" alt="Oval">
+              <img src="{{ asset('Images/oval.png') }}" alt="Oval">
               <div class="face-label">Oval</div>
           </div>
           <div class="face-item" onclick="showFaceShape('Heart')">
-              <img src="{{ asset('images/heart.png') }}" alt="Heart">
+              <img src="{{ asset('Images/heart.png') }}" alt="Heart">
               <div class="face-label">Heart</div>
           </div>
           <div class="face-item" onclick="showFaceShape('Diamond')">
-              <img src="{{ asset('images/diamond.png') }}" alt="Diamond">
+              <img src="{{ asset('Images/diamond.png') }}" alt="Diamond">
               <div class="face-label">Diamond</div>
           </div>
           <div class="face-item" onclick="showFaceShape('Triangular')">
-              <img src="{{ asset('images/triangle.png') }}" alt="Triangular">
+              <img src="{{ asset('Images/triangle.png') }}" alt="Triangular">
               <div class="face-label">Triangular</div>
           </div>
       </div>
