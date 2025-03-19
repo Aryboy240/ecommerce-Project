@@ -11,7 +11,6 @@
 @section('extra-head')
   <script defer src="/js/addToCart.js"></script>
   <link rel="stylesheet" href="{{ asset('css/find_my_fit.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/search.css') }}">
   <script defer src="js/ProductSlider.js"></script>
 @endsection
 
@@ -125,7 +124,7 @@
                         @foreach($product->images as $image)
                             @if($image->imageType && $image->imageType->name == 'front')
                                 <a href="{{ route('product.details', ['id' => $product->id]) }}" class="search-product-link">
-                                    <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front">
+                                    <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" width="100px">
                                 </a>
                                 @break
                             @endif
@@ -286,7 +285,9 @@
               <div class="f-product-image">
                 @foreach($product->images as $image)
                     @if($image->imageType && $image->imageType->name == 'front')
+                    <a href="{{ route('product.details', ['id' => $product->id]) }}">
                       <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" class="f-product-thumb">
+                    </a>
                       @break
                     @endif
                 @endforeach

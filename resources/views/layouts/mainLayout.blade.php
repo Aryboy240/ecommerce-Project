@@ -284,8 +284,37 @@
     </div>
     <div class="powered-by">
       <p>© Optique. Crafted for Visionaries.</p>
+      <div class="QR">
+          <img src="{{ asset('Images/smallQR.png') }}" alt="">
+          <div class="QR-over">
+              <img src="{{ asset('Images/QR.png') }}" alt="">
+          </div>
+      </div>
     </div>
   </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const qrButton = document.querySelector(".QR");
+      const qrPopup = document.querySelector(".QR-over");
+
+      // Toggle visibility when clicking the QR code
+      qrButton.addEventListener("click", function () {
+          if (qrPopup.style.display === "flex") {
+              qrPopup.style.display = "none";
+          } else {
+              qrPopup.style.display = "flex";
+          }
+      });
+
+      // Hide the popup when clicking anywhere outside the QR image
+      qrPopup.addEventListener("click", function (event) {
+          if (event.target !== qrPopup && event.target === qrPopup) {
+              qrPopup.style.display = "none";
+          }
+      });
+  });
+  </script>
 </body>
 
 </html>

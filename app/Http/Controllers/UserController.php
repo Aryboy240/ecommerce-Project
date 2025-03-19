@@ -163,6 +163,11 @@ class UserController extends Controller
     */
     public function showCustomers()
     {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
         // Fetch all users
         $users = User::all();
         

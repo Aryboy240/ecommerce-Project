@@ -136,7 +136,7 @@ li a {
     color: var(--text-primary);
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    cursor: pointer;
+    cursor: var(--pointer);
 }
 
 .add-to-cart-btn:hover {
@@ -159,7 +159,7 @@ li a {
     color: var(--text-secondary);
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    cursor: pointer;
+    cursor: var(--pointer);
     margin: 0 0.3rem;
     transition: background-color var(--transition-speed),
         color var(--transition-speed);
@@ -224,7 +224,7 @@ li a {
 
 .small-img-col {
     flex-basis: 24%;
-    cursor: pointer;
+    cursor: var(--pointer);
 }
 
 .small-img {
@@ -312,7 +312,7 @@ li a {
         color: var(--text-primary);
         border: none;
         border-radius: 4px;
-        cursor: pointer;
+        cursor: var(--pointer);
         transition: all 0.3s ease;
     }
 }
@@ -339,7 +339,7 @@ li a {
     color: var(--text-primary);
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
 }
 
@@ -427,7 +427,7 @@ li a {
     height: 16px;
     background: var(--mint);
     border-radius: 50%;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
 }
 
@@ -442,7 +442,7 @@ li a {
     height: 16px;
     background: var(--mint);
     border-radius: 50%;
-    cursor: pointer;
+    cursor: var(--pointer);
     border: none;
     transition: all 0.3s ease;
 }
@@ -458,7 +458,7 @@ li a {
     height: 16px;
     background: var(--mint);
     border-radius: 50%;
-    cursor: pointer;
+    cursor: var(--pointer);
     border: none;
     transition: all 0.3s ease;
 }
@@ -508,7 +508,7 @@ li a {
     border: none;
     color: var(--text-primary);
     font-size: 1.2rem;
-    cursor: pointer;
+    cursor: var(--pointer);
     padding: 0 5px;
     transition: all 0.3s ease;
 }
@@ -525,7 +525,7 @@ li a {
     border: none;
     border-radius: 6px;
     color: var(--text-primary);
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     font-size: 0.9rem;
 }
@@ -573,7 +573,7 @@ li a {
     border: none;
     border-radius: 8px;
     color: var(--text-primary);
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all var(--transition-speed);
 }
 

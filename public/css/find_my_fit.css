@@ -209,3 +209,102 @@
         opacity: 1;
     }
 }
+
+.search-product-link {
+    text-decoration: none !important;
+    color: inherit; /* Ensure it inherits the text color */
+}
+
+/* Product Card Styling */
+.search-product-card {
+    background: rgba(14, 14, 14, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 191, 174, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.light .search-product-card {
+    color: var(--bg-primary);
+}
+
+.search-product-card:hover {
+    transform: translateY(-5px);
+    background: rgba(14, 14, 14, 0.8);
+    border-color: var(--mint);
+    box-shadow: 0 12px 32px 0 rgba(0, 191, 174, 0.2);
+}
+
+.search-product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.search-product-card:hover img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
+}
+
+.search-product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.search-product-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.search-product-card button {
+    margin-top: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid rgba(0, 191, 174, 0.3);
+    background: rgba(0, 191, 174, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-primary);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.light .search-product-card button {
+    color: var(--bg-primary);
+}
+
+.search-product-card button:hover {
+    background: rgba(0, 166, 140, 0.9);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.3);
+}
+
+.search-product-card button:active {
+    transform: translateY(0);
+}
+
+/* Glow Effects */
+.search-product-card:hover img {
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
+}
+
+/* Enhance product grid layout */
+.search-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0;
+}

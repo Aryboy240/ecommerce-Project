@@ -27,6 +27,11 @@
 
 <body>
 
+  <!-- Bubble Background 🫧 --> 
+  <video class="background-video" autoplay loop muted playsinline>
+    <source src="{{ asset('Images/Videos/Bubbles.mp4') }}" type="video/mp4">
+  </video>
+
   <div class="container">
 
     <!-- Navigation bar -->

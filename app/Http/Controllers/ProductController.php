@@ -6,37 +6,30 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ImageType;
-use Illuminate\Support\Facades\Session; // For flashing session alerts
-use Illuminate\Support\Facades\Storage; // For file storage handling
-use Illuminate\Support\Facades\Log; // For logging debug information
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
-    /* 
-        This controller:
-        1. Fetches data from the database
-        2. Passes this data to the views for rendering
-        3. Handles user inputs (search queries and filtering)
-    */
-
     public function index(Request $request)
     {
         $query = Product::query();
-    
+        
         // Search functionality
         if ($request->has('search') && $request->search !== null) {
             $searchTerm = $request->search;
             $query->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhere('description', 'LIKE', "%{$searchTerm}%");
+                  ->orWhere('description', 'LIKE', "%{$searchTerm}%");
         }
-    
+        
         // Category filtering
         if ($request->has('category') && $request->category !== 'all') {
             $query->whereHas('category', function ($query) use ($request) {
                 $query->where('name', $request->category);
             });
         }
-    
+        
         // Price filtering (min and max price)
         if ($request->has('min_price') && is_numeric($request->min_price)) {
             $query->where('price', '>=', $request->min_price);  // Filter by min price
@@ -44,7 +37,7 @@ class ProductController extends Controller
         if ($request->has('max_price') && is_numeric($request->max_price)) {
             $query->where('price', '<=', $request->max_price);  // Filter by max price
         }
-    
+        
         // Price sorting (if requested)
         if ($request->has('sort_by_price') && $request->sort_by_price !== 'none') {
             $sortOrder = $request->sort_by_price == 'asc' ? 'asc' : 'desc';
@@ -54,16 +47,23 @@ class ProductController extends Controller
             $query->orderBy('id', 'asc');
         }
     
-        // Retrieve products with their related images, image types, and category
-        $products = $query->with(['images.imageType', 'category'])->get();
+        // Retrieve products with their related images, image types, and category, paginated
+        $products = $query->with(['images.imageType', 'category'])->paginate(20); // Use paginate here
     
-        $minPrice = Product::min('price'); // Get the minimum price
-        $maxPrice = Product::max('price'); // Get the maximum price
-    
+        // Get min and max price for filters
+        $minPrice = Product::min('price');
+        $maxPrice = Product::max('price');
+        
         return view('search', compact('products', 'minPrice', 'maxPrice'));
     }
 
     public function adminIndex(Request $request){
+
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+
         $query = Product::query();
 
         // Search functionality
@@ -110,15 +110,6 @@ class ProductController extends Controller
         ])->findOrFail($id);
 
         return view('sproduct', compact('product'));
-    }
-
-    public function featuredProducts()
-    {
-        $products = Product::whereIn('id', [
-            32859928, 33137483, 32861686, 33087542, 32677959, 33137346, 32860634, 33039633
-        ])->with('category', 'images')->get();
-
-        return view('welcome', compact('products'));
     }
 
     public function update(Request $request, $id)
@@ -178,12 +169,18 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock_quantity' => 'required|integer|min:0',
             'category_id' => 'required|exists:product_categories,id',
-            'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'front_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'side_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'angled_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'ortho_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'case_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'model_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'model2_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+        
         // Retrieve the category name
         $category = ProductCategory::findOrFail($request->category_id);
-    
+        
         // Save Product details
         $product = new Product();
         $product->name = $request->name;
@@ -192,52 +189,42 @@ class ProductController extends Controller
         $product->stock_quantity = $request->stock_quantity;
         $product->category_id = $request->category_id;
         $product->save();
+        
+        // Handle image uploads for each type
+        $images = [
+            'front_image' => 'front',
+            'side_image' => 'side',
+            'angled_image' => 'angled',
+            'ortho_image' => 'ortho',
+            'case_image' => 'case',
+            'model_image' => 'model',
+            'model2_image' => 'model2'
+        ];
     
-        // Handle image upload
-        if ($request->hasFile('product_image')) {
-            $imageFile = $request->file('product_image');
-            \Log::info('File uploaded:', ['file' => $imageFile]);
+        foreach ($images as $inputName => $imageType) {
+            if ($request->hasFile($inputName)) {
+                $imageFile = $request->file($inputName);
+                $fileExtension = $imageFile->getClientOriginalExtension();
+                $fileName = "{$product->id}-{$imageType}-2000x1125.{$fileExtension}";
+                
+                $storagePath = storage_path("app/public/Images/products/Featured/{$category->name}/{$product->id}/");
+                if (!file_exists($storagePath)) {
+                    mkdir($storagePath, 0777, true);
+                }
     
-            // Ensure the product ID exists or eerything will break
-            $productId = $product->id;
+                $imageFilePath = $imageFile->getRealPath();
+                $destinationPath = $storagePath . $fileName;
     
-            // The image type is just set to 'front' cos I'm lazy (only shows thumbnail for product)
-            $imageType = 'front';
-            $fileExtension = $imageFile->getClientOriginalExtension();
-            $fileName = "{$productId}-{$imageType}-2000x1125.{$fileExtension}";
-    
-            // Stores the storage path in a varaible because I cba to keep copying and pasting
-            $storagePath = storage_path("app/public/Images/products/Featured/{$category->name}/{$productId}/");
-    
-            // Ensure the directory exists, create if not
-            if (!file_exists($storagePath)) {
-                mkdir($storagePath, 0777, true); // Makes the new directory with max perms hopefully
-                \Log::info('Created directory:', ['path' => $storagePath]);
+                if (copy($imageFilePath, $destinationPath)) {
+                    // Save image path in database
+                    $imagePath = "storage/Images/products/Featured/{$category->name}/{$product->id}/{$fileName}";
+                    $product->images()->create([
+                        'image_path' => $imagePath,
+                        'image_type_id' => ImageType::where('name', $imageType)->first()->id
+                    ]);
+                }
             }
-    
-            // Move and copy the file to the specified directory
-            $imageFilePath = $imageFile->getRealPath();
-            $destinationPath = $storagePath . $fileName;
-    
-            // Copy the file to the new location with the new name
-            if (copy($imageFilePath, $destinationPath)) {
-                \Log::info('File successfully copied:', ['destination' => $destinationPath]);
-            } else {
-                \Log::error('File copy failed:', ['destination' => $destinationPath]);
-            }
-
-            /* LOGS LOGS LOGS LOGS LOGS NOTHING IS WORKING AAAA */
-            /* Never mind, after checking the logs it was saving it to a new folder location  (app/sotrage, not public/Images) */
-            /* So changing the image path below to that location makes the image show up, yippeeee */
-    
-            // Save the image path in the database
-            $imagePath = "storage/Images/products/Featured/{$category->name}/{$productId}/{$fileName}";
-            $product->images()->create([
-                'image_path' => $imagePath,
-                'image_type_id' => ImageType::where('name', 'front')->first()->id
-            ]);
         }
-    
         return response()->json(['success' => true, 'message' => 'Product added successfully']);
     }
 
@@ -276,6 +263,15 @@ class ProductController extends Controller
         });
 
         return response()->json($formattedProducts);
+    }
+
+    public function featuredProducts()
+    {
+        $products = Product::whereIn('id', [
+            32859928, 33137483, 32861686, 33087542, 32677959, 33137346, 32860634, 33039633
+        ])->with('category', 'images')->get();
+
+        return view('welcome', compact('products'));
     }
 }
 

@@ -321,7 +321,7 @@ body {
     margin: 50px 10px;
     border-radius: 50px;
     transition: var(--transition-speed) ease-out;
-    cursor: default;
+    cursor: var(--cursor);
     background: linear-gradient(
         135deg,
         rgb(255, 255, 255, 0.1),
@@ -404,7 +404,7 @@ body {
     display: flex;
     flex-direction: row;
     margin: 20px 0;
-    cursor: pointer;
+    cursor: var(--pointer);
     align-items: center;
     box-sizing: border-box;
 }
@@ -548,7 +548,7 @@ body {
 
 .formCon .contactForm .formBox .inputBox input[type="button"] {
     position: relative;
-    cursor: pointer;
+    cursor: var(--pointer);
     background: var(--mint);
     color: white;
     border: none;

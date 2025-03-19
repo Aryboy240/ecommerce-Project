@@ -400,11 +400,10 @@
     color: var(--text-primary);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    cursor: var(--pointer);
 }
 
 /* Empty Cart Styles */
