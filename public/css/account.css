@@ -435,7 +435,7 @@ button:hover {
 
 .slider {
     position: absolute;
-    cursor: pointer;
+    cursor: var(--pointer);
     top: 0;
     left: 0;
     right: 0;

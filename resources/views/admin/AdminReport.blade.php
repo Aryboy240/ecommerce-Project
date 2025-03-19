@@ -1,293 +1,281 @@
 <!--
     Developer: man huen Angus kwok
-	  University ID: 230049488
+    University ID: 230049488
     Function: Front end for the admin report page
+    
+    Modified by: Vatsal
+    Student code: 220408633
+    Modifications: Added dynamic data for reports, charts, and order processing
+    Updated to always show real values from the database
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Admin Reports </title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-        <!-- CSS -->
-        <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/order.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/adminreport.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <!-- Sidebar Navigation-->
-            <nav class="sidebar">
-                <div class="logo">
-                    <img src="{{ asset('Images/logo.png') }}" alt="Logo">
-                    <h2>Admin Dashboard</h2>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-                    <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-                    <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-                    <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                    <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-                    <li><a href="{{ route('admin.coupons') }}"><i class="fas fa-tag"></i> Coupons</a></li>
-                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
+<!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
+@extends('layouts.adminLayout')
 
-            <!-- Main Content Area -->
-            <div class="main-content">
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
+    <link rel="stylesheet" href="{{ asset('css/admin/order.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/adminreport.css') }}">
+@endsection
+
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Admin Reports')
+
+<!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
+@section('content')
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        
+        <div class="hearer">
+            <p class="title">Report Dashboard</p>
+        </div>
+        <div class="bar1">
                 
-                <div class="hearer">
-                    <p class="title">Report</p>
+            <div class="info">
+                <div class="info1">
+                    <div class="info-detail">
+                        <div class="info-first">
+                            <div class="info-title">Total Revenue</div>
+                            <div class="info-per">+{{ $revenueGrowth }}%</div>
+                        </div>
+                        <div class="info-secound">
+                            £{{ $totalRevenue }}
+                        </div>
+                    </div>
+                    <div class="info-detail">
+                        <div class="info-first">
+                            <div class="info-title">New Orders</div>
+                            <div class="info-per">+{{ $orderGrowth }}%</div>
+                        </div>
+                        <div class="info-secound">
+                            {{ $newOrdersCount }}
+                        </div>
+                    </div>
                 </div>
-                <div class="bar1">
-                        
-                    <div class="info">
-                        <div class="info1">
-                            <div class="info-detail">
-                                <div class="info-first">
-                                    <div class="info-title">Revenue</div>
-                                    <div class="info-per">+33%</div>
-                                </div>
-                                <div class="info-secound">
-                                    $4510
-                                </div>
-                            </div>
-                            <div class="info-detail">
-                                <div class="info-first">
-                                    <div class="info-title">New order</div>
-                                    <div class="info-per">+10%</div>
-                                </div>
-                                <div class="info-secound">
-                                    59
-                                </div>
-                            </div>
+                <div class="info1">
+                    <div class="info-detail">
+                        <div class="info-first">
+                            <div class="info-title">Total Products</div>
+                            <div class="info-per">{{ $totalProducts }}</div>
                         </div>
-                        <div class="info1">
-                            <div class="info-detail">
-                                <div class="info-first">
-                                    <div class="info-title">Total page view</div>
-                                    <div class="info-per">+398</div>
-                                </div>
-                                <div class="info-secound">
-                                    4,358
-                                </div>
-                            </div>
-                            <div class="info-detail">
-                                <div class="info-first">
-                                    <div class="info-title">User</div>
-                                    <div class="info-per">+102</div>
-                                </div>
-                                <div class="info-secound">
-                                    2,360
-                                </div>
-                            </div>
+                        <div class="info-secound">
+                            {{ $productCount }}
                         </div>
                     </div>
+                    <div class="info-detail">
+                        <div class="info-first">
+                            <div class="info-title">New Customers</div>
+                            <div class="info-per">+{{ $customerGrowth }}</div>
+                        </div>
+                        <div class="info-secound">
+                            {{ $newCustomersCount }}
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="table">
-                        <div class="tabletitle">Top 3 sales</div>
-                        <div class="tablerank">
-                            
-                            <div class="glassrank">
-                                <p class="rankp">no1</p>
-                                <div class="rankproduct">
-                                    <p>Square Frame Glasses</p>
-                                    <div class="table-img">
-                                        <img src="{{ asset('Images/products/glasses1.jpeg') }}" alt="Product Image">
-                                    </div>
-                                </div>
-                                <p>19%</p>
-                            </div>
-                            <div class="glassrank">
-                                <p class="rankp">no2</p>
-                                <div class="rankproduct">
-                                    <p>Square Sunglasses</p>
-                                    <div class="table-img">
-                                        <img src="{{ asset('Images/products/sun2.jpeg') }}" alt="Product Image">
-                                    </div>
-                                </div>
-                                <p>12%</p>
-                            </div>
-                            <div class="glassrank">
-                                <p class="rankp">no3</p>
-                                <div class="rankproduct">
-                                    <p>Classic Round Glasses</p>
-                                    <div class="table-img">
-                                        <img src="{{ asset('Images/products/glasses2.png') }}" alt="Product Image">
-                                    </div>
-                                </div>    
-                                <p>8%</p>
-                            </div>
-                        </div>
-                    </div>
             </div>
 
-            <main class="inoutcomeboard">
-                <div class="board incomeboard">
-                    <p>Incoming Order</p>
-                    <div class="boardlist">
-                        <p>Item Image</p>
-                        <p>Item Id</p>
-                        <p>Stock</p>
-                        <p>Date</p>
-                        <p>Order Id</p>
-                    </div>
-                    <div class="itemlist">                             
-                        <img src="{{ asset('Images/products/Featured/Comfit/33145006/33145006-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                        <p class="itemid">33145006</p> 
-                        <p class="stock">8</p>
-                        <p class="date">01/04/2025</p>                        
-                        <p class="orderid">0001</p>
-                        
-                    </div>
-                    <div class="itemlist">                             
-                        <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                        <p class="itemid">32859928</p> 
-                        <p class="stock">2</p>
-                        <p class="date">03/09/2025</p>
-                        <p class="orderid">0002</p>
-                    </div>
-                    
+            <div class="table">
+                <div class="tabletitle">Top 3 Bestsellers</div>
+                <div class="tablerank">
+                    @if(count($topProducts) > 0)
+                        @foreach($topProducts as $index => $product)
+                        <div class="glassrank">
+                            <p class="rankp">no{{ $index + 1 }}</p>
+                            <div class="rankproduct">
+                                <p>{{ $product->name }}</p>
+                                <div class="table-img">
+                                    @foreach($product->images as $image)
+                                        @if($image->imageType && $image->imageType->name == 'front')
+                                            <a href="{{ route('product.details', ['id' => $product->id]) }}" >
+                                                <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" class="item-img">
+                                            </a>
+                                            @break
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                            <p>{{ $product->sales_percentage }}%</p>
+                        </div>
+                        @endforeach
+                    @else
+                        <div class="glassrank">
+                            <p>No sales data available yet</p>
+                        </div>
+                    @endif
                 </div>
-                <div class="board outcomeboard">
-                    <p>Outcoming Order</p>
-                    <div class="boardlist">
-                        <p>Item Image</p>
-                        <p>Item Id</p>
-                        <p>Stock</p>
-                        <p>Date</p>
-                        <p>Order Id</p>
-                    </div>
-                    <div class="boarditem">
-                    <div class="itemlist">                             
-                        <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="item-img">
-                        <div class="listdetail">
-                            <div class="listdetail1">
-                                <p class="itemid">32859935</p> 
-                                <p class="stock">3</p>
-                                <p class="date">5/02/2023</p>
-                            </div>
-                        <p class="orderid">0003</p>
+            </div>
+    </div>
+
+    <main class="inoutcomeboard">
+        <div class="board incomeboard">
+            <p>Incoming Orders</p>
+            <div class="boardlist">
+                <p>Item Image</p>
+                <p>Item Id</p>
+                <p>Stock</p>
+                <p>Date</p>
+                <p>Order Id</p>
+            </div>
+            
+            @if(count($incomingOrders) > 0)
+                @foreach($incomingOrders as $item)
+                <div class="itemlist">                             
+                    @foreach($item->product->images as $image)
+                        @if($image->imageType && $image->imageType->name == 'front')
+                            <a href="{{ route('product.details', ['id' => $item->product->id]) }}" >
+                                <img src="{{ asset($image->image_path) }}" alt="{{ $item->product->name }} - Front" class="item-img">
+                            </a>
+                            @break
+                        @endif
+                    @endforeach
+                    <p class="itemid">{{ $item->product->id }}</p> 
+                    <p class="stock">{{ $item->quantity }}</p>
+                    <p class="date">{{ $item->created_at->format('d/m/Y') }}</p>                        
+                    <p class="orderid">{{ $item->order_id }}</p>
+                </div>
+                @endforeach
+            @else
+                <div class="itemlist">
+                    <p colspan="5" style="text-align: center;">No incoming orders yet</p>
+                </div>
+            @endif
+        </div>
+        
+        <div class="board outcomeboard">
+            <p>Outgoing Orders</p>
+            <div class="boardlist">
+                <p>Item Image</p>
+                <p>Item Id</p>
+                <p>Stock</p>
+                <p>Date</p>
+                <p>Order Id</p>
+            </div>
+            <div class="boarditem">
+            @if(count($outgoingOrders) > 0)
+                @foreach($outgoingOrders as $item)
+                <div class="itemlist">                             
+                    @foreach($item->product->images as $image)
+                        @if($image->imageType && $image->imageType->name == 'front')
+                            <a href="{{ route('product.details', ['id' => $item->product->id]) }}" >
+                                <img src="{{ asset($image->image_path) }}" alt="{{ $item->product->name }} - Front" class="item-img">
+                            </a>
+                            @break
+                        @endif
+                    @endforeach
+                    <div class="listdetail">
+                        <div class="listdetail1">
+                            <p class="itemid">{{ $item->product->id }}</p> 
+                            <p class="stock">{{ $item->quantity }}</p>
+                            <p class="date">{{ $item->created_at->format('d/m/Y') }}</p>
                         </div>
-                    </div>
+                        <p class="orderid">{{ $item->order_id }}</p>
                     </div>
                 </div>
-            </main>
-
-                
-                <main class="dashboard">
-                    <div class="dashboard-bar">
-                        <div class="bar-nota">
-                            
-                            <img src="{{ asset('Images/error.png') }}" alt="Product Image" class="error-img">
-                            <p class="out-of-stock warn">1 item out of stock</p>
-                            <div class="hidden-ids warn">
-                            32859935
-                            </div>
-                        </div>
-                        <div class="searchbar">
-                            <input type="text" placeholder="Search orders..." class="search-bar">
-                            <button class="search-bar-button">Search</button>
-                        </div>
-                    </div>
-                    <main class="dashboarditem">
-                    <div class="report-container">
-                        <div class="report-glass">
-                            <img src="{{ asset('Images/products/Featured/Adidas/32859928/32859928-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
-                            <p>Adidas</p>
-                            <p>32859928</p>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-name">Square Frame Glasses</div>
-                            <div class="order stockorder">
-                                <p>In stock:</p>
-                                <p>10</p>
-                            </div>
-                            <div class="order incomeorder">
-                                <p>Income order:</p>
-                                <p>0</p>
-                            </div>
-                            <div class="order outcomeorder">
-                                <p>Outcome order:</p>
-                                <p>0</p>
-                            </div>
-                        </div>
-                        <div class="product-inoutcome">
-                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
-                            <div class="inoutcome-detail"><p>27/1</p><p class="Done">Done</p><p>in</p><p>001</p></div>
-                            <div class="inoutcome-detail"><p>23/2</p><p class="Done">Done</p><p>out</p><p>002</p></div>
-                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
-                        </div>
-                    </div>
-
-                    <div class="report-container">
-                        <div class="report-glass">
-                            <img src="{{ asset('Images/products/Featured/Adidas/32859935/32859935-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
-                            <p>Adidas</p>
-                            <p>32859935</p>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-name">Square Frame Glasses</div>
-                            <div class="order stockorder warn">
-                                <p>In stock:</p>
-                                <p>0</p>
-                            </div>
-                            <div class="order incomeorder">
-                                <p>Income order:</p>
-                                <p>3</p>
-                            </div>
-                            <div class="order outcomeorder">
-                                <p>Outcome order:</p>
-                                <p>2</p>
-                            </div>
-                        </div>
-                        <div class="product-inoutcome">
-                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
-                            <div class="inoutcome-detail"><p>1/2</p><p class="Done">Done</p><p>in</p><p>004</p></div>
-                            <div class="inoutcome-detail"><p>3/2</p><p class="Done">Done</p><p>out</p><p>003</p></div>
-                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
-                            <div class="inoutcome-outofstock warn"><p>Out Of Stock !</p></div>
-                        </div>
-                    </div>
-
-                    <div class="report-container">
-                        <div class="report-glass">
-                            <img src="{{ asset('Images/products/Featured/Adidas/32859942/32859942-front-2000x1125.jpg') }}" alt="Product Image" class="product-img">
-                            <p>Adidas</p>
-                            <p>32859942</p>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-name">Square Frame Glasses</div>
-                            <div class="order stockorder">
-                                <p>In stock:</p>
-                                <p>3</p>
-                            </div>
-                            <div class="order incomeorder">
-                                <p>Income order:</p>
-                                <p>3</p>
-                            </div>
-                            <div class="order outcomeorder">
-                                <p>Outcome order:</p>
-                                <p>3</p>
-                            </div>
-                        </div>
-                        <div class="product-inoutcome">
-                            <div class="inoutcome-status"><p>Date</p><p>staus</p><p>type</p><p>id</p></div>
-                            <div class="inoutcome-detail"><p>3/4</p><p class="Done">Done</p><p>in</p><p>005</p></div>
-                            <div class="inoutcome-detail"><p>5/3</p><p class="warn">UnDone</p><p>out</p><p>006</p></div>
-                            <div class="inoutcome-viewdetail"><p>view detail</p></div>
-                        </div>
-                    </div>
-                    </main> 
-                </main>
+                @endforeach
+            @else
+                <div class="itemlist">
+                    <p colspan="5" style="text-align: center;">No outgoing orders yet</p>
+                </div>
+            @endif
             </div>
         </div>
+    </main>
 
-        <!-- Logout Modal -->
+        
+    <main class="dashboard">
+        <div class="dashboard-bar">
+            <div class="bar-nota">
+                @if(count($outOfStockProducts) > 0)
+                    <img src="{{ asset('Images/error.png') }}" alt="Error Image" class="error-img">
+                    <p class="out-of-stock warn">{{ count($outOfStockProducts) }} {{ count($outOfStockProducts) == 1 ? 'item' : 'items' }} out of stock</p>
+                    <div class="hidden-ids warn">
+                        @foreach($outOfStockProducts as $product)
+                            {{ $product->id }}
+                            @if(!$loop->last),@endif
+                        @endforeach
+                    </div>
+                @else
+                    <img src="{{ asset('Images/error.png') }}" alt="Product Image" class="error-img">
+                    <p class="out-of-stock">No items out of stock</p>
+                    <div class="hidden-ids">
+                        No items out of stock
+                    </div>
+                @endif
+            </div>
+            <div class="searchbar">
+                <input type="text" id="productSearch" placeholder="Search products..." class="search-bar">
+                <button class="search-bar-button" onclick="searchProducts()">Search</button>
+            </div>
+        </div>
+        <main class="dashboarditem">
+            @if(count($products) > 0)
+                @foreach($products as $product)
+                <div class="report-container">
+                    <div class="report-glass">
+                        @foreach($product->images as $image)
+                            @if($image->imageType && $image->imageType->name == 'front')
+                                <a href="{{ route('product.details', ['id' => $product->id]) }}" >
+                                    <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" class="product-img">
+                                </a>
+                                @break
+                            @endif
+                        @endforeach
+                        <p>{{ $product->category->name ?? 'Uncategorized' }}</p>
+                        <p>{{ $product->id }}</p>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">{{ $product->name }}</div>
+                        <div class="order stockorder {{ $product->stock_quantity <= 0 ? 'warn' : '' }}">
+                            <p>In stock:</p>
+                            <p>{{ $product->stock_quantity }}</p>
+                        </div>
+                        <div class="order incomeorder">
+                            <p>Income order:</p>
+                            <p>{{ $product->incoming_count }}</p>
+                        </div>
+                        <div class="order outcomeorder">
+                            <p>Outcome order:</p>
+                            <p>{{ $product->outgoing_count }}</p>
+                        </div>
+                    </div>
+                    <div class="product-inoutcome">
+                        <div class="inoutcome-status"><p>Date</p><p>Status</p><p>Type</p><p>ID</p></div>
+                        
+                        @if(count($product->recent_orders) > 0)
+                            @foreach($product->recent_orders as $order)
+                            <div class="inoutcome-detail">
+                                <p>{{ \Carbon\Carbon::parse($order->created_at)->format('d/m') }}</p>
+                                <p class="{{ $order->status == 'completed' ? 'Done' : 'warn' }}">{{ ucfirst($order->status) }}</p>
+                                <p>{{ $order->type }}</p>
+                                <p>{{ $order->id }}</p>
+                            </div>
+                            @endforeach
+                        @else
+                            <div class="inoutcome-detail">
+                                <p colspan="4" style="text-align: center;">No order history</p>
+                            </div>
+                        @endif
+                        
+                        <div class="inoutcome-viewdetail"><p>view detail</p></div>
+                        
+                        @if($product->stock_quantity <= 0)
+                        <div class="inoutcome-outofstock warn"><p>Out Of Stock!</p></div>
+                        @endif
+                    </div>
+                </div>
+                @endforeach
+            @else
+                <div class="report-container">
+                    <p>No products available</p>
+                </div>
+            @endif
+        </main> 
+    </main>
+    </div>
+    
+    <!-- Logout Modal -->
     <div id="logoutModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeLogoutModal()">&times;</span>
@@ -301,6 +289,88 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/adminreport.js') }}"></script>
+    <script>
+        // Function to search products
+        function searchProducts() {
+            const searchTerm = document.getElementById('productSearch').value.toLowerCase();
+            const products = document.querySelectorAll('.report-container');
+            
+            products.forEach(container => {
+                const productName = container.querySelector('.product-name').textContent.toLowerCase();
+                const productId = container.querySelector('.report-glass p:last-child').textContent;
+                
+                if (productName.includes(searchTerm) || productId.includes(searchTerm)) {
+                    container.style.display = 'flex';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+        }
+        
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Orders per month chart
+            const ordersCtx = document.getElementById('ordersChart').getContext('2d');
+            const ordersChart = new Chart(ordersCtx, {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode($orderChartLabels) !!},
+                    datasets: [{
+                        label: 'Orders Per Month',
+                        data: {!! json_encode($orderChartData) !!},
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Monthly Orders'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Customers over time chart
+            const customersCtx = document.getElementById('customersChart').getContext('2d');
+            const customersChart = new Chart(customersCtx, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($customerChartLabels) !!},
+                    datasets: [{
+                        label: 'Total Customers',
+                        data: {!! json_encode($customerChartData) !!},
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Customer Growth'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
     <script src="{{ asset('js/order.js') }}"></script>
-    </body>
-</html>
+@endsection

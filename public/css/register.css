@@ -222,7 +222,7 @@
     background-color: var(--darker);
     border-radius: 30px;
     transition: var(--transition-speed);
-    cursor: pointer;
+    cursor: var(--pointer);
 }
 
 .input button:hover {
@@ -267,7 +267,7 @@ li {
     align-items: center;
     border-radius: 50%;
     margin: 0 15px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: 0.4s;
     transition: var(--transition-speed);
 }

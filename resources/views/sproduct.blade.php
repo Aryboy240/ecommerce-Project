@@ -8,9 +8,10 @@
     function: Frontend reworks and Review system
 -->
 
-<html lang="en">
+@extends('layouts.mainLayout')
 
-<head>
+@section('extra-head')
+
     <!-- Add meta description for SEO -->
     <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
     <!-- JS -->
@@ -19,12 +20,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/feedback.css') }}">
-</head>
 
-</html>
-
-
-@extends('layouts.mainLayout')
+@endsection
 
 @section('title', 'Product Information')
 
@@ -51,6 +48,18 @@
             <h6>Home / {{ $product->category->name }}</h6>
             <h4>{{ $product->name }}</h4>
             <h2>£{{ $product->price }}</h2>
+
+            {{-- Stock Status --}}
+            <p>
+                <strong>Status: </strong>
+                @if ($product->stock_quantity == 0)
+                    <span style="color: red; font-weight: bold;">Out of Stock</span>
+                @elseif ($product->stock_quantity < 10)
+                    <span style="color: orange; font-weight: bold;">Low Stock ({{ $product->stock_quantity }} left)</span>
+                @else
+                    <span style="color: green; font-weight: bold;">In Stock</span>
+                @endif
+            </p>
 
             <select>
                 <option>Select Frame Size</option>
@@ -120,7 +129,7 @@
                         <!-- Reviews -->
                         <div class="reviews">
                             @for ($i = 1; $i <= 5; $i++)
-                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '☆' }}</b>
+                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '•' }}</b>
                             @endfor
                         </div>
                     </div>

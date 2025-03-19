@@ -114,7 +114,7 @@ body {
     color: var(--text-primary);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: background-color 0.3s;
 }
 
@@ -227,7 +227,7 @@ body {
     -webkit-backdrop-filter: blur(4px);
     color: var(--text-primary);
     border-radius: 8px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     margin-top: 10px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -284,7 +284,7 @@ body {
     color: var(--text-primary);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -387,7 +387,7 @@ body {
     color: var(--text-primary);
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -542,7 +542,7 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
+    cursor: var(--pointer);
     transition: color 0.3s ease;
 }
 
@@ -945,4 +945,52 @@ body {
 
 .category-btn.active::before {
     text-shadow: 0 0 10px rgba(0, 191, 174, 0.5);
+}
+
+/* Improved Pagination Styling */
+.pagination-container {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.pagination-container nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0;
+    justify-content: center; /* Centers all pagination items */
+}
+
+.pagination-container nav ul li {
+    display: inline-block;
+}
+
+/* Style both <a> (links) and <span> (active/disabled) elements */
+.pagination-container nav ul li a,
+.pagination-container nav ul li span {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    padding: 0.7rem 1.4rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background var(--transition-speed) ease;
+}
+
+/* Hover and active states */
+.pagination-container nav ul li a:hover,
+.pagination-container nav ul li span:hover {
+    background: var(--mint);
+    color: var(--text-primary);
+}
+
+/* Active page styling (Bootstrap uses <span> for the active page) */
+.pagination-container nav ul li.active span {
+    background: var(--mint);
+    color: var(--text-primary);
 }
