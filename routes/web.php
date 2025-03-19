@@ -10,6 +10,7 @@ use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminCouponController;
 
 /*
 |--------------------------------------------------------------------------
@@ -200,3 +201,13 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+// Admin Coupon Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/coupons', [AdminCouponController::class, 'coupons'])->name('admin.coupons');
+    Route::get('/coupons/add', [AdminCouponController::class, 'add'])->name('admin.coupons.add');
+    Route::post('/coupons', [AdminCouponController::class, 'store'])->name('admin.coupons.store');
+    Route::get('/coupons/{coupon}/edit', [AdminCouponController::class, 'edit'])->name('admin.coupons.edit');
+    Route::put('/coupons/{coupon}', [AdminCouponController::class, 'update'])->name('admin.coupons.update');
+    Route::delete('/coupons/{coupon}', [AdminCouponController::class, 'destroy'])->name('admin.coupons.destroy');
+});
