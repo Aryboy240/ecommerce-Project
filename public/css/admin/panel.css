@@ -42,7 +42,7 @@ body {
     margin-top: 20px;
     margin-left: 25px;
     width: 250px;
-    max-height: 450px;
+    max-height: 480px;
     padding: 1rem;
     flex-shrink: 0; /* Prevent sidebar from shrinking */
     left: 0;
