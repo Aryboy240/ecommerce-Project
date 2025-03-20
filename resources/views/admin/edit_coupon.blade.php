@@ -58,13 +58,13 @@
                 <div class="form-col">
                     <div class="form-group">
                         <label for="valid_from">Valid From:</label>
-                        <input type="date" name="valid_from" id="valid_from" value="{{ $coupon->valid_from }}" required>
+                        <input type="date" name="valid_from" id="valid_from" value="{{ $coupon->valid_from->format('Y-m-d')}}" required>
                     </div>
                 </div>
                 <div class="form-col">
                     <div class="form-group">
                         <label for="valid_until">Valid Until:</label>
-                        <input type="date" name="valid_until" id="valid_until" value="{{ $coupon->valid_unti }}" required>
+                        <input type="date" name="valid_until" id="valid_until" value="{{ $coupon->valid_until->format('Y-m-d')}}" required>
                     </div>
                 </div>
             </div>
