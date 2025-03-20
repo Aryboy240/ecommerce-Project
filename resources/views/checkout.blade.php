@@ -1,29 +1,18 @@
 <!--
     Developer: Oyinlola Arowolo
-	University ID: 230402373
+    University ID: 230402373
     Function: Front end for the checkout page
-
     Developer: Aqsa Amjad
     University ID: 230066670
     Function: Front end for the checkout page
 -->
-
-<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
-
 @section('extra-head')
-
-    <script defer src="{{ asset('js\checkout_page.js') }}"></script>
+    <script defer src="{{ asset('js/checkout_page.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
-    
 @endsection
-
-<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Checkout')
-
-<!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
-
 <!-- Checkout  -->
 <section class="hero" style="padding: 40px 20px;">
     <div class="hero-content">
@@ -141,12 +130,27 @@
                         </div>
                     @endforeach
                 </div>
-
+                <!-- ✅ Coupon Section (Add inside .checkout-summary) -->
+                <div class="coupon-section">
+                    <input type="text" id="coupon-code" placeholder="Enter coupon code">
+                    <button type="button" id="apply-coupon">Apply</button>
+                    <button type="button" id="remove-coupon">Remove Coupon</button>
+                    <p id="coupon-message"></p>
+                </div>
                 <div class="summary-total">
                     <div class="summary-row">
                         <!-- Print Subtotal -->
                         <p>Subtotal</p>
                         <p>£{{ number_format($total, 2) }}</p>
+                    </div>
+                    <!-- ✅ Add Discount Display Inside .summary-total -->
+                    <div class="summary-row">
+                        <p>Discount</p>
+                        <p id="discount">£0.00</p>
+                    </div>
+                    <div class="summary-row">
+                        <p>Total</p>
+                        <p id="total">£{{ number_format($total, 2) }}</p>
                     </div>
                 </div>
                 <button type="submit" class="checkout-btn">
@@ -182,4 +186,53 @@
         });
     });
 </script>
+<!-- ✅ JavaScript for Handling Coupon Logic -->
+<script>
+    document.getElementById('apply-coupon').addEventListener('click', function() {
+        let couponCode = document.getElementById('coupon-code').value;
+        fetch("{{ route('coupon.apply') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ coupon: couponCode })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('discount').textContent = `-£${data.discount}`;
+                document.getElementById('total').textContent = `£${data.newTotal}`;
+                document.getElementById('coupon-message').textContent = 'Coupon Applied!';
+                document.getElementById('coupon-message').style.color = 'green';
+            } else {
+                document.getElementById('coupon-message').textContent = data.message;
+                document.getElementById('coupon-message').style.color = 'red';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    // ✅ Remove Coupon Function
+    document.getElementById('remove-coupon').addEventListener('click', function() {
+        fetch("{{ route('coupon.remove') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('discount').textContent = `£0.00`;
+                document.getElementById('total').textContent = `£{{ number_format($total, 2) }}`;
+                document.getElementById('coupon-message').textContent = 'Coupon Removed!';
+                document.getElementById('coupon-message').style.color = 'red';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 @endsection
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ShoppingCartItem;
+use App\Models\Coupon; // Added for coupon functionality
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,8 +43,6 @@ class ShoppingCartController extends Controller
             return redirect()->back()->with('error', 'Error loading cart: ' . $e->getMessage());
         }
     }
-
-
 
     /**
      * Add an item to the shopping cart.
@@ -101,14 +100,11 @@ class ShoppingCartController extends Controller
         }
     }
 
-
-
     public function showHomePage()
     {
         $products = Product::all(); // Fetch all products from the database
         return view('welcome', compact('products'));
     }
-
 
     /**
      * Update the quantity of a cart item.
@@ -181,7 +177,6 @@ class ShoppingCartController extends Controller
         }
     }
     
-
     /**
      * Remove an item from the cart.
      */
@@ -232,7 +227,6 @@ class ShoppingCartController extends Controller
             ], 500);
         }
     }
-
 
     /**
      * Clear the entire cart for the current user.
@@ -299,5 +293,62 @@ class ShoppingCartController extends Controller
     
         // Return the checkout view with the cart items and total
         return view('checkout', compact('cartItems', 'total'));
+    }
+
+    // ─── NEW COUPON METHODS ──────────────────────────────────────────────────
+
+    public function applyCoupon(Request $request)
+    {
+        $request->validate(['coupon' => 'required']);
+
+        // Fetch the coupon from the database
+        $coupon = Coupon::where('code', $request->coupon)
+                        ->where('is_active', 1)
+                        ->whereDate('valid_from', '<=', now())
+                        ->whereDate('valid_until', '>=', now())
+                        ->first();
+
+        if (!$coupon) {
+            return response()->json(['success' => false, 'message' => 'Invalid or expired coupon.'], 400);
+        }
+
+        // Get the user's cart total
+        $cartItems = ShoppingCartItem::where('user_id', Auth::id())->with('product')->get();
+        $total = $cartItems->sum(function ($item) {
+            return $item->product->price * $item->quantity;
+        });
+
+        // Ensure minimum cart amount is met
+        if ($coupon->min_cart_amount && $total < $coupon->min_cart_amount) {
+            return response()->json(['success' => false, 'message' => 'Minimum cart amount not met.'], 400);
+        }
+
+        // Calculate discount
+        $discount = ($coupon->type === 'percent') ? ($total * ($coupon->value / 100)) : $coupon->value;
+        $discountedTotal = max($total - $discount, 0);
+
+        // Store applied coupon in session
+        session(['applied_coupon' => [
+            'code' => $coupon->code,
+            'discount' => number_format($discount, 2),
+            'new_total' => number_format($discountedTotal, 2)
+        ]]);
+
+        return response()->json([
+            'success' => true,
+            'discount' => number_format($discount, 2),
+            'newTotal' => number_format($discountedTotal, 2),
+        ]);
+    }
+
+    public function removeCoupon()
+    {
+        // Remove coupon from session
+        session()->forget('applied_coupon');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Coupon removed successfully.',
+        ]);
     }
 }
