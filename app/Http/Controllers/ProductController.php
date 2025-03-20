@@ -151,15 +151,44 @@ class ProductController extends Controller
         return redirect()->route('productadmin')->with('success', 'Stock updated successfully.');
     }
 
+    // This removes the product from the database and  deletes the images:: Aryan Kora 💖
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+    
+        // Get the category name
+        $categoryName = $product->category->name ?? 'Unknown';
+    
+        // Get all associated images
+        $images = $product->images;
+    
+        // Path to the product's directory
+        $productDirectory = storage_path("app/public/Images/products/Featured/{$categoryName}/{$product->id}/");
+    
+        // Delete each image file
+        foreach ($images as $image) {
+            $imagePath = storage_path("app/public/" . str_replace('storage/', '', $image->image_path));
+    
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+    
+            // Delete image record from the database
+            $image->delete();
+        }
+    
+        // Remove the product directory if empty
+        if (is_dir($productDirectory) && count(scandir($productDirectory)) == 2) {
+            rmdir($productDirectory);
+        }
+    
+        // Delete the product
         $product->delete();
-
+    
         return redirect()->route('productadmin')->with('success', 'Product deleted successfully.');
     }
 
-    // Made by Aryan Kora 👍
+    // This properly adds products to the database (images included):: Aryan Kora 💖
     public function store(Request $request)
     {
         // Validate incoming request
