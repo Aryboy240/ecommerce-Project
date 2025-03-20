@@ -26,8 +26,19 @@
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products...">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </div>
+            </form>
 
-                <!-- Category Dropdown (floated right) -->
+            <!-- Add Product Button (centered horizontally and vertically) -->
+            <button 
+                class="add-product-btn" 
+                type="button" 
+                style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
+            >
+                Add Product
+            </button>
+
+            <!-- Category Dropdown (floated right) -->
+            <form method="GET" action="{{ route('productadmin') }}" class="filter-controls">
                 <div class="category-container" style="float: right;">
                     <select name="category" class="filter-select" onchange="this.form.submit()">
                         <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>All Categories</option>
@@ -39,15 +50,6 @@
                     </select>
                 </div>
             </form>
-
-            <!-- Add Product Button (centered horizontally and vertically) -->
-            <button 
-                class="add-product-btn" 
-                type="button" 
-                style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
-            >
-                Add Product
-            </button>
         </div>
 
         <!-- (Alerts Removed: both low-stock and out-of-stock alerts have been taken out.) -->

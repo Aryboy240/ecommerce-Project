@@ -110,4 +110,14 @@ class AdminController extends Controller
         }
     }
 
+    public function wallpapersAccess(){
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+        else{
+            return view('admin/AdminWallpaper');
+        }
+    }
+
 }

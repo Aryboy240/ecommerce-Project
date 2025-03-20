@@ -28,9 +28,14 @@
 <body>
 
   <!-- Bubble Background 🫧 --> 
+  @php
+    $selectedWallpaper = \App\Models\Wallpaper::where('is_selected', true)->first();
+  @endphp
+
   <video class="background-video" autoplay loop muted playsinline>
-    <source src="{{ asset('Images/Videos/Bubbles.mp4') }}" type="video/mp4">
+      <source src="{{ asset($selectedWallpaper->video_path ?? 'Images/Videos/Bubbles.mp4') }}" type="video/mp4">
   </video>
+
 
   <div class="container">
 
@@ -47,6 +52,7 @@
             <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
             <li><a href="{{ route('adminreport') }}"><i class="fas fa-chart-bar"></i> Reports</a></li>
             <li><a href="{{ route('admin.reviews') }}" class="active"><i class="fas fa-star"></i> Reviews</a></li>
+            <li><a href="{{ route('wallpapers') }}" class="active"><i class="fas fa-gear"></i> Settings</a></li>
             <li><a href="{{ route('welcome') }}" class="active"><i class="fa-solid fa-arrow-right-from-bracket"></i> Exit</a></li>
         </ul>
     </nav>
