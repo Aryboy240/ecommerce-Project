@@ -192,6 +192,10 @@ Route::middleware(['auth'])->prefix('cart')->group(function () {
     Route::post('/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
     Route::post('/update', [ShoppingCartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
+// Coupon Application Routes
+Route::post('/apply-coupon', [ShoppingCartController::class, 'applyCoupon'])->name('coupon.apply');
+Route::post('/remove-coupon', [ShoppingCartController::class, 'removeCoupon'])->name('coupon.remove');
+
 });
 
 // Login Check API
@@ -210,4 +214,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/coupons/{coupon}/edit', [AdminCouponController::class, 'edit'])->name('admin.coupons.edit');
     Route::put('/coupons/{coupon}', [AdminCouponController::class, 'update'])->name('admin.coupons.update');
     Route::delete('/coupons/{coupon}', [AdminCouponController::class, 'destroy'])->name('admin.coupons.destroy');
+    
 });
