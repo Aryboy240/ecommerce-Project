@@ -10,9 +10,10 @@ use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminCouponController;
 use App\Http\Controllers\WallpaperController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('/update-personal-info', [UserController::class, 'updatePersonalInfo'])->name('update.personal.info');
 
+// Forgot Password feature routes
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Account Routes
@@ -198,6 +205,10 @@ Route::middleware(['auth'])->prefix('cart')->group(function () {
     Route::post('/add', [ShoppingCartController::class, 'addToCart'])->name('cart.add');
     Route::post('/update', [ShoppingCartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/remove', [ShoppingCartController::class, 'removeFromCart'])->name('cart.remove');
+// Coupon Application Routes
+Route::post('/apply-coupon', [ShoppingCartController::class, 'applyCoupon'])->name('coupon.apply');
+Route::post('/remove-coupon', [ShoppingCartController::class, 'removeCoupon'])->name('coupon.remove');
+
 });
 
 // Login Check API
@@ -216,4 +227,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/coupons/{coupon}/edit', [AdminCouponController::class, 'edit'])->name('admin.coupons.edit');
     Route::put('/coupons/{coupon}', [AdminCouponController::class, 'update'])->name('admin.coupons.update');
     Route::delete('/coupons/{coupon}', [AdminCouponController::class, 'destroy'])->name('admin.coupons.destroy');
+    
 });

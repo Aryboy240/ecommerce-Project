@@ -6,6 +6,10 @@
     Developer: Hussen Ahmed
 	  University ID: 230177600
     Function: Added the backend for logins
+
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Backend and frontend for vaidation messages and reset password feature
 -->
 
 <head>
@@ -130,6 +134,11 @@
             <p>Don't have an account? <a href="{{ route('register') }}">Sign up!</a></p>
           </div>
 
+          <!-- Forgot Password -->
+          <div class="input">
+            <p>Forgot your Password? <a href="{{ route('password.request') }}">Reset it!</a></p>
+          </div>
+
         </form>
 
         <!-- Socials -->
@@ -138,17 +147,17 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.instagram.com" target="_blank">
+            <a href="https://www.instagram.com/optique.team28/" target="_blank">
               <img src="Images/socials/instagram.png"/>
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com" target="_blank">
+            <a href="https://www.youtube.com/@Optique.Team28" target="_blank">
               <img src="Images/socials/youtube.png"/>
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com" target="_blank">
+            <a href="https://x.com/OptiqueTeam28" target="_blank">
               <img src="Images/socials/twitter.png"/>
             </a>
           </li>

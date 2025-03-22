@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -10,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
 /**
  * Handles all order-related operations for the e-commerce website
  * 
@@ -31,7 +28,6 @@ class OrderController extends Controller
     {
         $this->middleware('auth')->except(['adminReport', 'updateOrderStatus']);
     }
-
     /**
      * Display all orders for the authenticated user
      *
@@ -46,7 +42,6 @@ class OrderController extends Controller
             
         return view('orders.index', compact('orders'));
     }
-
     /**
      * Display the checkout form
      *
@@ -59,14 +54,11 @@ class OrderController extends Controller
         if ($cartItems->isEmpty()) {
             return redirect()->route('cart.view')->with('error', 'Your cart is empty');
         }
-
         $total = $cartItems->sum(function ($item) {
             return $item->product->price * $item->quantity;
         });
-
         return view('orders.create', compact('cartItems', 'total'));
     }
-
     /**
      * Display details of a specific order
      *
@@ -79,11 +71,9 @@ class OrderController extends Controller
         if ($order->user_id !== Auth::id() && !Auth::user()->is_admin) {
             abort(403);
         }
-
         $order->load(['items.product']);
         return view('orders.show', compact('order'));
     }
-
     /**
      * Create a new order from the user's cart
      *
@@ -138,14 +128,25 @@ class OrderController extends Controller
                 $totalAmount += $product->price * $cartItem->quantity;
             }
             
-            // Update order total
-            $order->update(['total_amount' => $totalAmount]);
+            // ✅ Apply coupon discount if available
+            $appliedCoupon = session()->get('applied_coupon', null);
+            $discount = $appliedCoupon ? $appliedCoupon['discount'] : 0;
+            $totalPrice = max(0, $totalAmount - $discount);
+            
+            // Update order total and store coupon info if any
+            $order->update([
+                'total_amount' => $totalPrice,
+                'discount'     => $discount,
+                'coupon_code'  => $appliedCoupon ? $appliedCoupon['code'] : null
+            ]);
             
             // Clear cart
             DB::table('shopping_cart_items')
                 ->where('user_id', Auth::id())
                 ->delete();
-
+            
+            // Clear the applied coupon after order placement
+            session()->forget('applied_coupon');
             DB::commit();
             return redirect()->route('orders.show', $order)
                            ->with('success', 'Order placed successfully!');
@@ -191,23 +192,17 @@ class OrderController extends Controller
          if ($order->user_id !== Auth::id()) {
             return redirect()->route('orders.index')->with('error', 'Unauthorized access');
         }
-
         // Check if the order can be refunded
         if (!$order->canBeRefunded()) {
             return back()->with('error', 'This order cannot be refunded');
         }
-
         DB::beginTransaction();
-
         try {
             // Update order status
             $order->status = 'refund_requested';
             $order->save();
-
             // Additional logic for processing the refund could go here
-
             DB::commit();
-
             return back()->with('success', 'Refund request submitted successfully');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -288,7 +283,6 @@ class OrderController extends Controller
         ->orderByDesc('total_sold')
         ->limit(3)
         ->get();
-
             
         // Calculate sales percentage for each top product
         $totalSold = OrderItem::join('orders', 'orders.id', '=', 'order_items.order_id')
