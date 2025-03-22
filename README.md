@@ -23,3 +23,5 @@ This is Team 28's CS2TP website, Optique.
 -   **[Linktree](https://linktr.ee/AryanKora)**
 
 **Nikhil Kainth -** I worked mainly on the website's back-end (account log-in, create new account, search page back-end) and edited front-end pages in order to integrate the back-end features.
+
+**Abdulrahman Muse -** I worked on the front-end, such as the admin panel the product search, and edited existing pages to integrate back-end features. I implemented functionalities like real-time stock updates and the face recommendation feature, while also contributing to the back-end with things such as product management page and the coupon validation logic. 
