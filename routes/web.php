@@ -105,6 +105,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/account/update-profile-picture', [AccountController::class, 'updateProfilePicture'])->name('update.profile-picture');
     Route::post('/account/update-billing-address', [AccountController::class, 'updateBillingAddress'])->name('update.billing-address');
 });
+// Admin Order Management API Routes
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/orders/data', [OrderController::class, 'getAdminOrdersData'])->name('orders.data');
+    Route::get('/orders/{order}', [OrderController::class, 'adminOrderDetail'])->name('orders.show');
+    Route::patch('/orders/{order}/status', [OrderController::class, 'apiUpdateOrderStatus'])->name('orders.update-status');
+    Route::post('/orders/{order}/note', [OrderController::class, 'addNote'])->name('orders.add-note');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -122,9 +129,7 @@ Route::get('/adminpanel', function () {
 
 Route::get('/admin/products', [ProductController::class, 'index'])->name('productadmin');
 
-Route::get('/AdminOrders', function () {
-    return view('admin/AdminOrder');
-})->name('AdminOrders');
+Route::get('/AdminOrders', [OrderController::class, 'adminOrders'])->name('AdminOrders');
 
 Route::get('/adminprofile', function () {
     return view('admin/AdminProfile');
@@ -184,3 +189,20 @@ Route::get('/check-login', function () {
 // Checkout Page
 
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+// Add this debug route to diagnose the issue
+Route::get('/debug-order-api', function() {
+    dd(Auth::user(), Auth::user()->is_admin);
+});
+
+// Check Order model constants
+Route::get('/debug-order-model', function() {
+    try {
+        return [
+            'statuses' => \App\Models\Order::getStatuses(),
+            'sample_order' => \App\Models\Order::first()
+        ];
+    } catch (\Exception $e) {
+        return ['error' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()];
+    }
+});

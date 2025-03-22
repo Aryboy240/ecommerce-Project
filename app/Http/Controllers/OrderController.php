@@ -502,9 +502,11 @@ class OrderController extends Controller
     
     /**
      * Admin orders view with improved filtering and sorting
+     * 
+     * Enhanced to support the admin panel order management interface
      *
      * @param Request $request
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
      */
     public function adminOrders(Request $request)
     {
@@ -549,12 +551,206 @@ class OrderController extends Controller
             $query->latest();
         }
         
+        // If this is an AJAX request for the admin panel, return JSON data
+        if ($request->ajax() || $request->wantsJson()) {
+            $orders = $query->paginate(15);
+            
+            $formattedOrders = $orders->map(function ($order) {
+                return [
+                    'id' => $order->id,
+                    'customer_name' => $order->user->name,
+                    'products' => $order->items->pluck('product.name')->implode(', '),
+                    'date' => $order->created_at->format('Y-m-d'),
+                    'payment_status' => $order->status,
+                    'shipment_status' => $this->mapOrderStatusToShipmentStatus($order->status),
+                    'total_amount' => number_format($order->total_amount, 2)
+                ];
+            });
+            
+            return response()->json([
+                'orders' => $formattedOrders,
+                'pagination' => [
+                    'total' => $orders->total(),
+                    'per_page' => $orders->perPage(),
+                    'current_page' => $orders->currentPage(),
+                    'last_page' => $orders->lastPage()
+                ]
+            ]);
+        }
+        
+        // For regular web requests, continue with the view rendering
         $orders = $query->paginate(15)->withQueryString();
         
         // Get available statuses for the filter dropdown
         $statuses = Order::getStatuses();
         
-        return view('admin.AdminOrders', compact('orders', 'statuses'));
+        return view('admin.AdminOrder', compact('orders', 'statuses'));
+    }
+    
+    /**
+     * Map internal order status to shipment status for the admin panel
+     *
+     * @param string $orderStatus
+     * @return string
+     */
+    private function mapOrderStatusToShipmentStatus($orderStatus)
+    {
+    $mapping = [
+        'pending' => 'Pending',
+        'processing' => 'Processing',
+        'shipped' => 'Shipped',
+        'delivered' => 'Delivered',
+        'completed' => 'Completed',
+        'cancelled' => 'Cancelled',
+        'refund_requested' => 'Cancelled',
+        'refunded' => 'Cancelled',
+        'failed' => 'Failed'
+    ];
+    
+    return $mapping[$orderStatus] ?? 'Processing';
+    }
+    
+    /**
+     * API endpoint for the admin panel to get order data
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAdminOrdersData(Request $request)
+{
+    // Ensure user is admin
+    if (!Auth::user() || !Auth::user()->is_admin) {
+        return response()->json(['error' => 'Unauthorized'], 403);
+    }
+    
+    try {
+        $query = Order::with(['user', 'items.product']);
+        
+        // Apply filters
+        if ($request->has('payment_status') && $request->payment_status) {
+            $query->where('status', $request->payment_status);
+        }
+        
+        if ($request->has('shipment_status') && $request->shipment_status) {
+            // Map shipment status to order status if needed
+            $orderStatus = $this->mapShipmentStatusToOrderStatus($request->shipment_status);
+            $query->where('status', $orderStatus);
+        }
+        
+        if ($request->has('date_from') && $request->date_from) {
+            $query->where('created_at', '>=', Carbon::parse($request->date_from)->startOfDay());
+        }
+        
+        if ($request->has('date_to') && $request->date_to) {
+            $query->where('created_at', '<=', Carbon::parse($request->date_to)->endOfDay());
+        }
+        
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('id', 'like', "%{$search}%")
+                  ->orWhereHas('user', function($userQuery) use ($search) {
+                      $userQuery->where('name', 'like', "%{$search}%")
+                                ->orWhere('email', 'like', "%{$search}%");
+                  });
+            });
+        }
+        
+        // Default sort by most recent
+        $query->latest();
+        
+        // Simplify - only get necessary fields
+        $orders = $query->get();
+        
+        $formattedOrders = $orders->map(function ($order) {
+            // Check if user exists to prevent null errors
+            $userName = $order->user ? $order->user->name : 'Unknown User';
+            
+            // Simple array structure
+            return [
+                'order_id' => $order->id,
+                'customer_name' => $userName,
+                'date' => $order->created_at->format('Y-m-d'),
+                'payment_status' => $order->status,
+                'shipment_status' => $this->mapOrderStatusToShipmentStatus($order->status),
+                'total_amount' => number_format($order->total_amount, 2)
+            ];
+        });
+        
+        return response()->json([
+            'orders' => $formattedOrders->toArray()
+        ]);
+    } catch (\Exception $e) {
+        \Log::error('Error in getAdminOrdersData: ' . $e->getMessage());
+        // Simplified error response
+        return response()->json([
+            'error' => 'Failed to load orders: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+    private function mapShipmentStatusToOrderStatus($shipmentStatus)
+    {
+    $mapping = [
+        'Processing' => 'processing',
+        'Shipped' => 'shipped',
+        'Delivered' => 'delivered',
+        'Cancelled' => 'cancelled'
+    ];
+    
+    return $mapping[$shipmentStatus] ?? 'processing';
+    }
+    
+    /**
+     * API endpoint to update order status from the admin panel
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function apiUpdateOrderStatus(Request $request, Order $order)
+    {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+        
+        $validatedData = $request->validate([
+            'status' => 'required|in:' . implode(',', array_keys(Order::getStatuses()))
+        ]);
+        
+        $oldStatus = $order->status;
+        $newStatus = $validatedData['status'];
+        
+        // Only update if status has changed
+        if ($oldStatus !== $newStatus) {
+            $order->status = $newStatus;
+            $order->save();
+            
+            // Log the status change
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'status_changed',
+                'details' => "Status changed from {$oldStatus} to {$newStatus}"
+            ]);
+            
+            // Trigger the status changed event
+            event(new OrderStatusChanged($order, $oldStatus, $newStatus));
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Order status updated successfully',
+                'new_status' => $newStatus,
+                'shipment_status' => $this->mapOrderStatusToShipmentStatus($newStatus)
+            ]);
+        }
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Order status remains unchanged',
+            'status' => $order->status
+        ]);
     }
     
     /**

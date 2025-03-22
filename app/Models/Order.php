@@ -22,6 +22,7 @@ class Order extends Model
     public const STATUS_CANCELLED = 'cancelled';
     public const STATUS_REFUND_REQUESTED = 'refund_requested';
     public const STATUS_REFUNDED = 'refunded';
+    public const STATUS_FAILED = 'failed';
 
     protected $fillable = [
         'user_id',
@@ -81,16 +82,17 @@ class Order extends Model
      */
     public static function getStatuses()
     {
-        return [
-            self::STATUS_PENDING => 'Pending',
-            self::STATUS_PROCESSING => 'Processing',
-            self::STATUS_SHIPPED => 'Shipped',
-            self::STATUS_DELIVERED => 'Delivered',
-            self::STATUS_COMPLETED => 'Completed',
-            self::STATUS_CANCELLED => 'Cancelled',
-            self::STATUS_REFUND_REQUESTED => 'Refund Requested',
-            self::STATUS_REFUNDED => 'Refunded',
-        ];
+    return [
+        self::STATUS_PENDING => 'Pending',
+        self::STATUS_PROCESSING => 'Processing',
+        self::STATUS_SHIPPED => 'Shipped',
+        self::STATUS_DELIVERED => 'Delivered',
+        self::STATUS_COMPLETED => 'Completed',
+        self::STATUS_CANCELLED => 'Cancelled',
+        self::STATUS_REFUND_REQUESTED => 'Refund Requested',
+        self::STATUS_REFUNDED => 'Refunded',
+        self::STATUS_FAILED => 'Failed'
+    ];
     }
     
     /**
