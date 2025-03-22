@@ -1,3 +1,8 @@
+<!--
+    Developer: Abdulrahman Muse
+    University ID: 230228946
+    Function: back end and front end for product management page
+-->
 <!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
 @extends('layouts.adminLayout')
 
