@@ -1,20 +1,29 @@
 <?php
-
-//<--
-//    Developer: Vatsal Mehta
-//    University ID: 220408633
-//    Function: Event for tracking order status changes
-//-->
+/**
+ * Event triggered when an order's status is changed
+ * 
+ * This event is fired whenever an order transitions from one status
+ * to another, enabling tracking of order lifecycle changes.
+ * 
+ * Modified by: Vatsal
+ * Student code: 220408633
+ * Added complete order status tracking system
+ */
 
 namespace App\Events;
 
 use App\Models\Order;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
 class OrderStatusChanged
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * The order instance.
@@ -24,7 +33,7 @@ class OrderStatusChanged
     public $order;
 
     /**
-     * The old status.
+     * The previous status.
      *
      * @var string
      */
@@ -50,5 +59,17 @@ class OrderStatusChanged
         $this->order = $order;
         $this->oldStatus = $oldStatus;
         $this->newStatus = $newStatus;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
+    public function broadcastOn(): array
+    {
+        return [
+            new PrivateChannel('orders'),
+        ];
     }
 }

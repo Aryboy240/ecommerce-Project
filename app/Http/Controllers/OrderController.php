@@ -1,16 +1,4 @@
 <?php
-
-namespace App\Http\Controllers;
-
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
-use App\Models\OrderItem;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
-
 /**
  * Handles all order-related operations for the e-commerce website
  * 
@@ -21,7 +9,23 @@ use Carbon\Carbon;
  * Student code: 220408633
  * Added admin reporting functionality and order status management
  * Updated to ensure all statistics always reflect actual database values
+ * Enhanced order history tracking for improved auditing
  */
+
+namespace App\Http\Controllers;
+
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
+use App\Models\OrderItem;
+use App\Models\OrderLog;
+use App\Events\OrderStatusChanged;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
+
 class OrderController extends Controller
 {
     /**
@@ -34,7 +38,7 @@ class OrderController extends Controller
 
     /**
      * Display all orders for the authenticated user
-     *
+     * 
      * @return \Illuminate\View\View
      */
     public function index()
@@ -42,7 +46,7 @@ class OrderController extends Controller
         $orders = Order::with(['items.product'])
             ->where('user_id', Auth::id())
             ->latest()
-            ->get();
+            ->paginate(10);
             
         return view('orders.index', compact('orders'));
     }
@@ -80,7 +84,7 @@ class OrderController extends Controller
             abort(403);
         }
 
-        $order->load(['items.product']);
+        $order->load(['items.product', 'logs']);
         return view('orders.show', compact('order'));
     }
 
@@ -107,8 +111,9 @@ class OrderController extends Controller
             // Create order
             $order = Order::create([
                 'user_id' => Auth::id(),
-                'status' => 'pending',
-                'total_amount' => 0 // Will be calculated from items
+                'status' => Order::STATUS_PENDING,
+                'total_amount' => 0, // Will be calculated from items
+                'payment_method' => $request->input('payment_method', 'online')
             ]);
             
             $totalAmount = 0;
@@ -141,6 +146,14 @@ class OrderController extends Controller
             // Update order total
             $order->update(['total_amount' => $totalAmount]);
             
+            // Create order log
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'order_created',
+                'details' => "Order created with " . $cartItems->count() . " items for £" . number_format($totalAmount, 2)
+            ]);
+            
             // Clear cart
             DB::table('shopping_cart_items')
                 ->where('user_id', Auth::id())
@@ -151,6 +164,7 @@ class OrderController extends Controller
                            ->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Order creation failed: ' . $e->getMessage());
             return back()->with('error', 'Failed to place order: ' . $e->getMessage());
         }
     }
@@ -170,12 +184,24 @@ class OrderController extends Controller
         }
         
         $validatedData = $request->validate([
-            'status' => 'required|in:pending,processing,shipped,delivered,cancelled,completed'
+            'status' => 'required|in:' . implode(',', array_keys(Order::getStatuses()))
         ]);
         
-        $order->update(['status' => $validatedData['status']]);
+        $oldStatus = $order->status;
+        $newStatus = $validatedData['status'];
         
-        return back()->with('success', 'Order status updated successfully');
+        // Only update if status has changed
+        if ($oldStatus !== $newStatus) {
+            $order->status = $newStatus;
+            $order->save();
+            
+            // Trigger the status changed event
+            event(new OrderStatusChanged($order, $oldStatus, $newStatus));
+            
+            return back()->with('success', 'Order status updated successfully');
+        }
+        
+        return back()->with('info', 'Order status remains unchanged');
     }
     
     /**
@@ -188,7 +214,7 @@ class OrderController extends Controller
     public function refund(Request $request, Order $order)
     {
         // Check if the order belongs to the authenticated user
-         if ($order->user_id !== Auth::id()) {
+        if ($order->user_id !== Auth::id() && !Auth::user()->is_admin) {
             return redirect()->route('orders.index')->with('error', 'Unauthorized access');
         }
 
@@ -201,17 +227,77 @@ class OrderController extends Controller
 
         try {
             // Update order status
-            $order->status = 'refund_requested';
+            $oldStatus = $order->status;
+            $order->status = Order::STATUS_REFUND_REQUESTED;
+            $order->notes = $request->input('refund_reason', 'Customer requested refund');
             $order->save();
-
-            // Additional logic for processing the refund could go here
+            
+            // Log the refund request
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'refund_requested',
+                'details' => $request->input('refund_reason', 'No reason provided')
+            ]);
+            
+            // Trigger status changed event
+            event(new OrderStatusChanged($order, $oldStatus, Order::STATUS_REFUND_REQUESTED));
 
             DB::commit();
 
             return back()->with('success', 'Refund request submitted successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Refund request failed: ' . $e->getMessage());
             return back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+    
+    /**
+     * Complete a refund for an order (admin only)
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function completeRefund(Request $request, Order $order)
+    {
+        // Check if user is admin
+        if (!Auth::user()->is_admin) {
+            abort(403);
+        }
+        
+        // Check if order is in refund_requested status
+        if ($order->status !== Order::STATUS_REFUND_REQUESTED) {
+            return back()->with('error', 'This order is not awaiting refund');
+        }
+        
+        DB::beginTransaction();
+        
+        try {
+            $oldStatus = $order->status;
+            $order->status = Order::STATUS_REFUNDED;
+            $order->refund_transaction_id = $request->input('refund_transaction_id');
+            $order->save();
+            
+            // Log the refund completion
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'refund_completed',
+                'details' => 'Refund processed by admin' . 
+                    ($request->input('refund_transaction_id') ? ' (Transaction: ' . $request->input('refund_transaction_id') . ')' : '')
+            ]);
+            
+            // Trigger the status changed event
+            event(new OrderStatusChanged($order, $oldStatus, Order::STATUS_REFUNDED));
+            
+            DB::commit();
+            return back()->with('success', 'Refund processed successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Refund completion failed: ' . $e->getMessage());
+            return back()->with('error', 'Failed to process refund: ' . $e->getMessage());
         }
     }
     
@@ -415,21 +501,118 @@ class OrderController extends Controller
     }
     
     /**
-     * Admin orders view
+     * Admin orders view with improved filtering and sorting
      *
+     * @param Request $request
      * @return \Illuminate\View\View
      */
-    public function adminOrders()
+    public function adminOrders(Request $request)
     {
         // Ensure user is admin
         if (!Auth::user() || !Auth::user()->is_admin) {
             abort(403, 'Unauthorized access');
         }
         
-        $orders = Order::with(['user', 'items.product'])
-            ->latest()
-            ->paginate(15);
+        $query = Order::with(['user', 'items.product']);
+        
+        // Filter by status if provided
+        if ($request->has('status') && $request->status) {
+            $query->where('status', $request->status);
+        }
+        
+        // Filter by date range if provided
+        if ($request->has('date_from') && $request->date_from) {
+            $query->where('created_at', '>=', Carbon::parse($request->date_from)->startOfDay());
+        }
+        
+        if ($request->has('date_to') && $request->date_to) {
+            $query->where('created_at', '<=', Carbon::parse($request->date_to)->endOfDay());
+        }
+        
+        // Filter by customer if provided
+        if ($request->has('customer') && $request->customer) {
+            $query->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->customer . '%')
+                  ->orWhere('email', 'like', '%' . $request->customer . '%');
+            });
+        }
+        
+        // Sort orders if sorting parameters are provided
+        if ($request->has('sort') && $request->has('direction')) {
+            $allowedSortFields = ['id', 'created_at', 'status', 'total_amount'];
+            $sortField = in_array($request->sort, $allowedSortFields) ? $request->sort : 'created_at';
+            $sortDirection = in_array(strtolower($request->direction), ['asc', 'desc']) ? $request->direction : 'desc';
             
-        return view('admin.AdminOrders', compact('orders'));
+            $query->orderBy($sortField, $sortDirection);
+        } else {
+            // Default sorting by latest
+            $query->latest();
+        }
+        
+        $orders = $query->paginate(15)->withQueryString();
+        
+        // Get available statuses for the filter dropdown
+        $statuses = Order::getStatuses();
+        
+        return view('admin.AdminOrders', compact('orders', 'statuses'));
+    }
+    
+    /**
+     * Admin order details view with complete history
+     *
+     * @param Order $order
+     * @return \Illuminate\View\View
+     */
+    public function adminOrderDetail(Order $order)
+    {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+        
+        $order->load(['user', 'items.product', 'logs.user']);
+        
+        // Get available statuses for the status update dropdown
+        $statuses = Order::getStatuses();
+        
+        return view('admin.AdminOrderDetail', compact('order', 'statuses'));
+    }
+    
+    /**
+     * Add admin note to an order
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addNote(Request $request, Order $order)
+    {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403);
+        }
+        
+        $validatedData = $request->validate([
+            'note' => 'required|string|max:1000'
+        ]);
+        
+        // Update order notes
+        if ($order->notes) {
+            $order->notes .= "\n\n" . now()->format('d M Y H:i') . " - " . $validatedData['note'];
+        } else {
+            $order->notes = now()->format('d M Y H:i') . " - " . $validatedData['note'];
+        }
+        
+        $order->save();
+        
+        // Log the note addition
+        OrderLog::create([
+            'order_id' => $order->id,
+            'user_id' => Auth::id(),
+            'action' => 'admin_note_added',
+            'details' => $validatedData['note']
+        ]);
+        
+        return back()->with('success', 'Note added successfully');
     }
 }
