@@ -31,6 +31,8 @@
     href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&family=Merriweather:ital,wght@1,300&family=Noto+Sans&family=Pacifico&family=Raleway&display=swap"
     rel="stylesheet"
   />
+
+  <link rel="icon" href="{{ asset('Images/circleLogo.png') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -68,15 +70,25 @@
           
           @csrf <!-- Extra protection against cookies -->
 
-          <!-- Username --> 
+          <!-- name --> 
           <div class="input"> 
               <label for="name">Username</label>
-              <input type="text" id="name" name="name" value="{{ old('name') }}" />  <!-- Stores the current username in field if other validations fail -->
-              <!-- Username validation checks: look at UserController.php in app/Http/Controllers for list of validations -->
+              <input type="text" id="name" name="name" value="{{ old('name') }}" />  <!-- Stores the current name in field if other validations fail -->
+              <!-- name validation checks: look at UserController.php in app/Http/Controllers for list of validations -->
               @error('name')
                   <span>{{ $message }}</span>
               @enderror
           </div>
+
+          <!-- Full Name --> 
+          <div class="input"> 
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" value="{{ old('fullName') }}" />  <!-- Stores the current fullName in field if other validations fail -->
+            @error('fullName')
+                <span>{{ $message }}</span>
+            @enderror
+          </div>
+
           
           <!-- Email -->
           <div class="input">
@@ -133,17 +145,17 @@
         </div>
         <ul class="login-socials">
           <li>
-            <a href="https://www.instagram.com" target="_blank">
+            <a href="https://www.instagram.com/optique.team28/" target="_blank">
               <img src="Images/socials/instagram.png" alt="Instagram" />
             </a>
           </li>
           <li>
-            <a href="https://www.youtube.com" target="_blank">
+            <a href="https://www.youtube.com/@Optique.Team28" target="_blank">
               <img src="Images/socials/youtube.png" alt="YouTube" />
             </a>
           </li>
           <li>
-            <a href="https://www.twitter.com" target="_blank">
+            <a href="https://x.com/OptiqueTeam28" target="_blank">
               <img src="Images/socials/twitter.png" alt="Twitter" />
             </a>
           </li>

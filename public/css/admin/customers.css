@@ -1,0 +1,266 @@
+/*    
+    Developer: Aqsa Amjad
+    University ID: 230066670
+    Function: Front end for the User Account page (for logged-in users)
+
+    Developer: Aryan Kora
+    University ID: 230059030
+    Function: Front end improvements
+*/
+
+.main-content {
+    margin: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: linear-gradient(
+        135deg,
+        rgb(255, 255, 255, 0.1),
+        rgb(255, 255, 255, 0)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
+}
+
+.search-bar {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    gap: 0.5rem;
+}
+
+.search-bar .create-user-btn {
+    height: 0;
+    background-color: var(--mint);
+    border: none;
+    justify-content: space-between;
+    border-radius: 5px;
+    color: var(--text-primary);
+    cursor: var(--pointer);
+}
+
+.search-bar button:hover:hover {
+    background-color: var(--mint) !important;
+}
+
+.btn:hover {
+    transform: scale(1) !important;
+    filter: none !important;
+}
+
+.customer-table {
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.customer-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customer-table th,
+.customer-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.customer-table th {
+    background-color: var(--mint);
+    color: var(--text-primary);
+}
+
+.customer-table tbody tr {
+    transition: ease 0.3s;
+    border-bottom: 1px solid var(--lighter);
+}
+
+.customer-table tbody tr:hover {
+    background-color: color-mix(in srgb, white 10%, transparent);
+}
+
+.role-badge {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.admin {
+    background-color: red;
+    color: white;
+    border: 2px solid darkred;
+}
+
+.customer {
+    background-color: green;
+    color: white;
+    border: 2px solid darkgreen;
+}
+
+.input-group {
+    cursor: var(--cursor);
+}
+
+#edit-is-admin {
+    cursor: var(--pointer);
+}
+
+#openCreateUserModal {
+    cursor: var(--pointer);
+}
+
+.input-group label {
+    cursor: var(--text);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn {
+    margin: 5px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    cursor: var(--pointer);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-view {
+    background-color: var(--lighter);
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+}
+
+.btn-add {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    border: 1px solid var(--mint);
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    filter: brightness(90%);
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.modal-content {
+    width: 420px;
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border: 3px solid var(--mint);
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text-primary);
+    cursor: var(--pointer);
+    transition: color 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    color: var(--darker);
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.btn-edit {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    border: 1px solid var(--mint);
+}
+
+.btn-edit:hover {
+    filter: brightness(90%);
+    transform: scale(1.05);
+}
+
+.btn-save {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    border: 1px solid var(--mint);
+}
+
+.btn-save:hover {
+    filter: brightness(90%);
+    transform: scale(1.05);
+}
+
+.btn-cancel {
+    background-color: var(--lighter);
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+}
+
+.btn-cancel:hover {
+    background-color: var(--floater);
+}
+
+.btn-confirmDelete {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+}
+
+.btn-confirmDelete:hover {
+    filter: brightness(90%);
+    transform: scale(1.05);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between; /* Pushes title to the left, search to the right */
+    align-items: center; /* Vertically aligns title and search bar */
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding: 0 20px; /* Optional: Adds spacing on the sides */
+}

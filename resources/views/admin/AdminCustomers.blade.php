@@ -4,115 +4,72 @@
     Function: Front end for the Customers page (for admins)
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
+@extends('layouts.adminLayout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Customer Management </title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/customers.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-</head>
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
+    <link rel="stylesheet" href="{{ asset('css/admin/customers.css') }}">
+@endsection
 
-<body>
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Admin Customers')
 
-<div class="container">
-    <!-- Sidebar Navigation-->
-    <nav class="sidebar">
-        <div class="logo">
-            <img src="{{ asset('Images/logo.png') }}" alt="Logo">
-            <h2>Admin Dashboard</h2>
-        </div>
-        <ul class="nav-links">
-            <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-            <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-            <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-            <li><a href="{{ route('AdminOrders') }}"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-            <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-            <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-        </ul>
-    </nav>
+<!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
+@section('content')
 
-    <div class="main-content">
+
+<div class="main-content">
+    <div class="page-header">
+        <h1>Customer Accounts</h1>
         <div class="search-bar">
-            <input type="text" placeholder="Search customers..." class="search-input">
-            <button class="search-button">Search</button>
+            <form action="{{ route('customers') }}" method="get">
+                <input type="text" name="search" placeholder="Search customers..." class="search-input" value="{{ request()->search }}">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+            <div class="create-user-btn">
+                <button id="openCreateUserModal" class="btn btn-primary">+ Create User</button>
+            </div>
         </div>
-        <section class="customer-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>D.O.B</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>johndoe@gmail.com</td>
-                        <td>dd/mm/yyyy</td>
-                        <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
-                            <a href="" class="btn btn-delete">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>janesmith@example.com</td>
-                        <td>dd/mm/yyyy</td>
-                        <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
-                            <a href="" class="btn btn-delete">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Emily Wilson</td>
-                        <td>emilywilson@outlook.com</td>
-                        <td>dd/mm/yyyy</td>
-                        <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
-                            <a href="" class="btn btn-delete">Delete</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Michael Johnson</td>
-                        <td>michaeljohnson@outlook.com</td>
-                        <td>dd/mm/yyyy</td>
-                        <td class="actions">
-                            <a href="" class="btn btn-view">View</a>
-                            <a href="" class="btn btn-edit">Edit</a>
-                            <a href="" class="btn btn-delete">Delete</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
     </div>
-</div>
-
-<!-- View Modal -->
-<div id="viewModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2>Customer Details</h2>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> johndoe@gmail.com</p>
-        <p><strong>D.O.B:</strong> dd/mm/yyyy</p>
-        <button class="btn btn-edit">Edit</button>
-    </div>
+    
+    <section class="customer-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>D.O.B</th>
+                    <th>Account Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <!-- Admin Users Table -->
+            <tbody>
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td> <!-- Display the index number -->
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->fullName }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->birthday->format('d/m/Y') }}</td> <!-- Format DOB as dd/mm/yyyy -->
+                        <td><span class="role-badge {{ $user->is_admin ? 'admin' : 'customer' }}">
+                            {{ $user->is_admin ? 'Admin' : 'Customer' }}
+                        </span></td>
+                        <td class="actions">
+                            <a href="#" class="btn btn-edit" data-id="{{ $user->id }}">Edit</a>
+                            <form action="{{ route('deleteuser', $user->id) }}" method="post" style="margin-bottom: 0" id="delete-form-{{ $user->id }}">
+                                @csrf
+                                <button type="button" class="btn btn-delete" data-id="{{ $user->id }}" onclick="openDeleteModal({{ $user->id }})">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </section>
 </div>
 
 <!-- Edit Modal -->
@@ -120,28 +77,145 @@
     <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2>Edit Customer</h2>
-        <input type="text" placeholder="Name">
-        <input type="email" placeholder="Email">
-        <input type="number" placeholder="Orders">
-        <input type="date" placeholder="dd/mm/yyyy">
-        <button class="btn btn-save">Save Changes</button>
-        <button class="btn btn-cancel">Cancel</button>
-
+        <form id="edit-form">
+            @csrf
+            <div class="input-group">
+                <label>Full Name</label>
+                <input type="text" id="edit-fullName" name="fullName">
+            </div>
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" id="edit-name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="edit-email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label>Date of Birth</label>
+                <input type="date" id="edit-birthday" name="birthday" required>
+            </div>
+            <div class="input-group">
+                <label>
+                    <input type="checkbox" id="edit-is-admin" name="is_admin">
+                    Make Admin
+                </label>
+            </div>            
+            <input type="hidden" id="edit-user-id"> <!-- Hidden field for user ID -->
+            <button type="submit" class="btn btn-save">Save Changes</button>
+            <button type="button" class="btn btn-cancel">Cancel</button>
+        </form>
     </div>
 </div>
 
 <!-- Delete Modal -->
 <div id="deleteModal" class="modal">
     <div class="modal-content">
-        <span class="close-btn">&times;</span>
+        <span class="close-btn" onclick="closeDeleteModal()">&times;</span>
         <h2>Confirm Deletion</h2>
-        <p>Please enter your password to delete this user.</p>
-        <input type="password" placeholder="Enter password">
-        <button class="btn btn-confirmDelete">Delete</button>
-        <button class="btn btn-cancel">Cancel</button>
+        <p>Are you sure you'd like to delete this user?</p>
+        <button class="btn btn-confirmDelete" id="confirmDeleteBtn">Delete</button>
+        <button class="btn btn-cancel" onclick="closeDeleteModal()">Cancel</button>
     </div>
 </div>
 
+<!-- Create Modal -->
+<div id="createUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Create New User</h2>
+        <form id="createUserForm">
+            @csrf
+            <label for="name">Username</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required />
+
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" name="birthday" required />
+
+            <label for="role">Role</label>
+            <select id="role" name="role">
+                <option value="0">Customer</option>
+                <option value="1">Admin</option>
+            </select>
+
+            <button type="submit" class="btn btn-success">Create User</button>
+        </form>
+    </div>
+</div>
+
+
 <script src="{{ asset('js/customers.js') }}"></script>
-</body>
-</html>
+
+<script>
+    let currentUserId = null;
+
+    // Open the delete modal
+    function openDeleteModal(userId) {
+        currentUserId = userId;  // Set the current user ID to be deleted
+        document.getElementById('deleteModal').style.display = 'flex'; // Show the modal
+    }
+
+    // Close the delete modal
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none'; // Hide the modal
+        currentUserId = null; // Reset the user ID
+    }
+
+    // Confirm the deletion and submit the form
+    document.getElementById('confirmDeleteBtn').onclick = function() {
+        if (currentUserId !== null) {
+            document.getElementById('delete-form-' + currentUserId).submit(); // Submit the form to delete the user
+        }
+        closeDeleteModal(); // Close the modal after the action
+    }
+
+    // Create User
+
+    document
+        .getElementById("openCreateUserModal")
+        .addEventListener("click", function () {
+            document.getElementById("createUserModal").style.display = "flex";
+        });
+
+    document.querySelector(".close").addEventListener("click", function () {
+        document.getElementById("createUserModal").style.display = "none";
+    });
+
+    document
+        .getElementById("createUserForm")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch("{{ route('admin.createUser') }}", {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-CSRF-TOKEN": document.querySelector('input[name="_token"]')
+                        .value,
+                },
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        location.reload(); // Refresh the page to show the new user
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                });
+        });
+</script>
+@endsection

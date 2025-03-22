@@ -1,0 +1,197 @@
+/* Improved Row Spacing & Layout */
+.review-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 16px; /* Adds more spacing between rows */
+}
+
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-table th {
+    color: var(--mint);
+    font-weight: bold;
+    padding: 1.8rem;
+    text-align: left;
+}
+
+.review-table td {
+    padding: 1.8rem;
+    text-align: left;
+    border-bottom: 1px solid var(--darker);
+}
+
+.review-table a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.action-buttons {
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+.edit-btn {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--mint);
+    padding: 0.8rem 1.2rem; /* Matches Delete Button */
+    border-radius: 5px;
+    cursor: var(--pointer);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 50%;
+}
+
+.delete-btn {
+    background: none;
+    color: red;
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 10px;
+    border: none;
+    transform: scale(1.3);
+}
+
+.delete-btn:hover {
+    animation: shake 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: scale(1.3) rotate(0deg) translateX(0);
+    }
+    10% {
+        transform: scale(1.3) rotate(-10deg) translateX(-2px);
+    }
+    20% {
+        transform: scale(1.3) rotate(10deg) translateX(2px);
+    }
+    30% {
+        transform: scale(1.3) rotate(-8deg) translateX(-1px);
+    }
+    40% {
+        transform: scale(1.3) rotate(8deg) translateX(1px);
+    }
+    50% {
+        transform: scale(1.3) rotate(-6deg) translateX(-1px);
+    }
+    60% {
+        transform: scale(1.3) rotate(6deg) translateX(1px);
+    }
+    70% {
+        transform: scale(1.3) rotate(-4deg) translateX(-0.5px);
+    }
+    80% {
+        transform: scale(1.3) rotate(4deg) translateX(0.5px);
+    }
+    90% {
+        transform: scale(1.3) rotate(-2deg) translateX(-0.5px);
+    }
+    100% {
+        transform: scale(1.3) rotate(0deg) translateX(0);
+    }
+}
+
+/* Edit Button Icon */
+.edit-btn i {
+    font-size: 1rem;
+}
+
+/* Ensure modal is hidden by default */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* Modal Content */
+.modal-content {
+    width: 420px;
+    background-color: var(--bg-secondary);
+    padding: 25px;
+    border: 3px solid var(--mint);
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--text-primary);
+    cursor: var(--pointer);
+    transition: color 0.3s ease-in-out;
+}
+
+.review-table th {
+    border-bottom: 1px solid var(--lighter);
+}
+
+.close-btn:hover {
+    color: var(--darker);
+}
+
+.modal-content input {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.modal-content textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--lighter);
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 16px;
+}
+
+.save-btn {
+    margin-top: 10px;
+    font-weight: 600;
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    padding: 8px;
+    border: 1px solid var(--mint);
+    border-radius: 8px;
+    transition: ease 0.3s;
+}
+
+.save-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px color-mix(in srgb, var(--mint) 100%, transparent 50%);
+}

@@ -1,33 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction Management System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/panel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/order.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
-</head>
-<body>
-    <div class="container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
-            <div class="logo">
-                <img src="Images/logo.png" alt="Logo">
-                <h2>Admin Dashboard</h2>
-            </div>
-            <ul class="nav-links">
-                <li><a href="{{ route('adminpanel') }}"><i class="fas fa-home"></i> Dashboard</a></li>
-                <li><a href="{{ route('productadmin') }}"><i class="fas fa-box"></i> Products</a></li>
-                <li><a href="{{ route('customers') }}"><i class="fas fa-users"></i> Customers</a></li>
-                <li><a href="{{ route('AdminOrders') }}" class="active"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                <li><a href="#reports"><i class="fas fa-chart-bar"></i> Reports</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-            </ul>
-        </nav>
+<!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
+@extends('layouts.adminLayout')
+
+<!-- Any extra head content for this page in specific -->
+@section('extra-head')
+    <link rel="stylesheet" href="{{ asset('css/admin/order.css') }}">
+@endsection
+
+<!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
+@section('title', 'Optique | Admin Orders')
+
+<!-- The @yeild in adminLayout's 'content' is filled by everything in this section -->
+@section('content')
 
         <div class="main-content">
             
@@ -175,7 +158,6 @@
                 </section>
             </main>
         </div>
-    </div>
 
     <!-- Modal for Order Details -->
     <div id="orderDetailsModal" class="modal">
@@ -214,10 +196,6 @@
 
     <!-- Notification Container -->
     <div id="notificationContainer" class="notification-container"></div>
-
-    
-</body>
-</html>
 <script>
     // Global variables
     let currentOrderId = null;
@@ -568,3 +546,4 @@
         }, 3000);
     }
 </script>
+@endsection
