@@ -6,6 +6,10 @@
     Developer: Aryan Kora
 	  University ID: 230059030
     Function: Frontend improvements && contact form
+
+    Developer: Nikhil Kainth
+	  University ID: 230069888
+    Function: Backend for contact form & frontend final edits
 -->
 
 <!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
@@ -126,11 +130,11 @@
           </li>
           <li>
             <span><img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}"></span>
-            <span>support@optique.com</span>
+            <span>optique.team28@gmail.com</span>
           </li>
           <li>
             <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
-            <span>1 (800) 555-OPTQ</span>
+            <span>07928202588</span>
           </li>
         </ul>
       </div>
