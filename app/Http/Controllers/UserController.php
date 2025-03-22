@@ -14,11 +14,11 @@ class UserController extends Controller
         // Validate incoming fields with more specific rules - Nikhil
         $incomingFields = $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:15', 'alpha_num'],     // 3-15 characters, alphanumeric
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],    // Valid email, unique in users table
+            'email' => ['required', 'email', 'max:45', 'unique:users,email'],    // Valid email, unique in users table
             'password' => ['required', 'string', 'min:8', 'max:25'],              // Min 8 characters, confirmed (with Password_confirmation)
             'confirmPassword' => ['required', 'same:password'],                   // Matches Password
             'birthday' => ['required', 'date', 'before:2006-01-01'],              // Valid date, must be before today
-            'fullName' => ['required', 'string', 'max:255'],                      // Full Name: required, string, max length of 255 characters
+            'fullName' => ['required', 'string', 'max:45'],                      // Full Name: required, string, max length of 45 characters
         ], [
             // Custom validation messages - Nikhil
             'name.required' => 'The username is required.',
@@ -26,7 +26,7 @@ class UserController extends Controller
             'name.min' => 'The username must be at least 3 characters.',
             'name.max' => 'The username must not exceed 15 characters.',
             'name.unique' => 'This username is already taken.',
-            'email.max' => 'The email must not exceed 255 characters.',
+            'email.max' => 'The email must not exceed 45 characters.',
             'email.required' => 'The email is required.',
             'email.email' => 'The email address must be valid.',
             'email.unique' => 'This email address is already in use.',
@@ -39,7 +39,7 @@ class UserController extends Controller
             'birthday.before' => 'You must be 18 or older to make an account!',
             'fullName.required' => 'Full name is required.',
             'fullName.string' => 'Full name must be a valid string.',
-            'fullName.max' => 'Full name cannot exceed 255 characters.',
+            'fullName.max' => 'Full name cannot exceed 45 characters.',
         ]);
 
         // Extra check for username uniqueness - Aryan
@@ -161,16 +161,23 @@ class UserController extends Controller
     | Admin User Update thingy
     |--------------------------------------------------------------------------
     */
-    public function showCustomers()
+    public function showCustomers(Request $request)
     {
         // Ensure user is admin
         if (!Auth::user() || !Auth::user()->is_admin) {
             abort(403, 'Unauthorized access');
         }
-
-        // Fetch all users
-        $users = User::all();
-        
+    
+        // Get the search term from the request
+        $searchTerm = $request->input('search');
+    
+        // Fetch users based on the search term if it's provided
+        $users = User::when($searchTerm, function($query) use ($searchTerm) {
+            return $query->where('name', 'LIKE', '%' . $searchTerm . '%')
+                         ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+                         ->orWhere('fullName', 'LIKE', '%' . $searchTerm . '%');
+        })->get();
+    
         // Return the view with the users data
         return view('admin.AdminCustomers', compact('users'));
     }

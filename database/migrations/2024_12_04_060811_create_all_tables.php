@@ -116,6 +116,14 @@ return new class extends Migration
             $table->unsignedInteger('quantity');
             $table->timestamps();
         });
+
+        // Wallpapers table
+        Schema::create('wallpapers', function (Blueprint $table) {
+            $table->id();
+            $table->string('video_path'); // Path to the wallpaper video
+            $table->boolean('is_selected')->default(false); // Determines the active wallpaper
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -130,5 +138,6 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('product_images');
         Schema::dropIfExists('image_types');
+        Schema::dropIfExists('wallpapers');
     }
 };

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ImageType;
 use App\Models\ProductImage;
 use App\Models\ProductCategory;
+use App\Models\Wallpaper;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
@@ -15,6 +16,17 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+
+        Wallpaper::insert([
+            ['video_path' => 'Images/Videos/Bubbles.mp4', 'is_selected' => true],
+            ['video_path' => 'Images/Videos/Bubbles2.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles3.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles4.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles5.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles6.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles7.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles8.mp4', 'is_selected' => false],
+        ]);
 
         ImageType::firstOrCreate(['name' => 'front']);
         ImageType::firstOrCreate(['name' => 'side']);
@@ -40,6 +52,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'Admin001@example.com',
             'password' => Hash::make('Admin001'),
             'birthday' => '2000-01-01',
+            'is_admin' => true
+        ]);
+
+        $adminUser = User::create([
+            'name' => 'Hussen1',
+            'fullName' => 'Hussen Ahmed',
+            'email' => 'hahmed221ah@gmail.com',
+            'password' => Hash::make('12345678'),
+            'birthday' => '2003-12-09',
             'is_admin' => true
         ]);
 

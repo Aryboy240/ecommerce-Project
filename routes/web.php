@@ -10,7 +10,10 @@ use App\Http\Controllers\ReviewController;
 use App\Models\Product;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminCouponController;
+use App\Http\Controllers\WallpaperController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +107,12 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('/update-personal-info', [UserController::class, 'updatePersonalInfo'])->name('update.personal.info');
 
+// Forgot Password feature routes
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Account Routes
@@ -154,6 +163,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/reviews/{id}', [ReviewController::class, 'update'])->name('admin.reviews.update');
     Route::delete('/admin/reviews/{id}', [ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
 });
+
+// Wallpapers
+Route::get('/admin/wallpapers', [WallpaperController::class, 'index'])->name('wallpapers');
+Route::post('/admin/change-wallpaper', [WallpaperController::class, 'changeWallpaper'])->name('change.wallpaper');
 
 
 /*

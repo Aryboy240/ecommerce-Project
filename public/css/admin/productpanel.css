@@ -376,7 +376,6 @@ input[name="stock_quantity"]::-webkit-inner-spin-button {
 .category-container {
     display: flex;
     justify-content: flex-end;
-    margin-left: calc(8px * 130); /* Pushes it to the right */
 }
 
 /* Category Dropdown Styling */

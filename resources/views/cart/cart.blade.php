@@ -228,7 +228,7 @@ function showNotification(message, success = true) {
       </div>
       <h2>Your Cart is Empty</h2>
       <p>Looks like you haven't added anything to your cart yet. Explore our collection and find something special!</p>
-      <a href="{{ route('welcome') }}" class="btn-order">Continue Shopping</a>
+      <a href="{{ route('search') }}" class="btn-order">Continue Shopping</a>
     </div>
   @endif
 </section>

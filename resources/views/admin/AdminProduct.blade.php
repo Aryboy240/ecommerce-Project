@@ -26,8 +26,19 @@
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products...">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </div>
+            </form>
 
-                <!-- Category Dropdown (floated right) -->
+            <!-- Add Product Button (centered horizontally and vertically) -->
+            <button 
+                class="add-product-btn" 
+                type="button" 
+                style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
+            >
+                Add Product
+            </button>
+
+            <!-- Category Dropdown (floated right) -->
+            <form method="GET" action="{{ route('productadmin') }}" class="filter-controls">
                 <div class="category-container" style="float: right;">
                     <select name="category" class="filter-select" onchange="this.form.submit()">
                         <option value="all" {{ request('category') == 'all' ? 'selected' : '' }}>All Categories</option>
@@ -39,15 +50,6 @@
                     </select>
                 </div>
             </form>
-
-            <!-- Add Product Button (centered horizontally and vertically) -->
-            <button 
-                class="add-product-btn" 
-                type="button" 
-                style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);"
-            >
-                Add Product
-            </button>
         </div>
 
         <!-- (Alerts Removed: both low-stock and out-of-stock alerts have been taken out.) -->
@@ -158,32 +160,40 @@
     </main>
 </div>
 
-    <!-- Edit Product Modal -->
-    <div id="editModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn">&times;</span>
-            <h2>Edit Product</h2>
-            <!-- Success Message (Initially Hidden) -->
-            <div id="successMessage" class="success-message">✔ Added new product</div>
-            <form id="editForm" method="POST">
-                @csrf
-                @method('PUT')
-                <div class="input-group">
-                    <input type="text" name="name" id="editName" placeholder="Product Name" required>
-                </div>
-                <div class="input-group">
-                    <textarea name="description" id="editDescription" placeholder="Product Description" required></textarea>
-                </div>
-                <div class="input-group">
-                    <input type="number" name="price" id="editPrice" placeholder="Price (£)" step="0.01" required>
-                </div>
-                <div class="input-group">
-                    <input type="number" name="stock_quantity" id="editStock" placeholder="Stock Quantity" required>
-                </div>
-                <button type="submit" class="save-btn">Save Changes</button>
-            </form>
-        </div>
+ <!-- Edit Product Modal -->
+ <div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Edit Product</h2>
+
+        <!-- Success Message (Initially Hidden) -->
+        <div id="successMessage" class="success-message">✔ Added new product</div>
+
+        <form id="editForm" method="POST">
+            @csrf
+            @method('PUT')
+
+            <div class="input-group">
+                <input type="text" name="name" id="editName" placeholder="Product Name" required>
+            </div>
+
+            <div class="input-group">
+                <textarea name="description" id="editDescription" placeholder="Product Description" required></textarea>
+            </div>
+
+            <div class="input-group">
+                <input type="number" name="price" id="editPrice" placeholder="Price (£)" step="0.01" required>
+            </div>
+
+            <div class="input-group">
+                <input type="number" name="stock_quantity" id="editStock" placeholder="Stock Quantity" required>
+            </div>
+
+            <button type="submit" class="save-btn">Save Changes</button>
+        </form>
     </div>
+</div>
+
 
     <!-- Add Product Modal -->
     <div id="addProductModal" class="modal">
@@ -248,43 +258,44 @@
         </div>
     </div>
 
-    <!-- Existing Scripts -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const modal = document.getElementById("editModal");
-        const closeModal = document.querySelector(".close-btn");
-        const successMessage = document.getElementById("successMessage");
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal = document.getElementById("editModal");
+            const closeModal = document.querySelector(".close-btn");
+            const successMessage = document.getElementById("successMessage");
 
-        document.querySelectorAll(".edit-btn").forEach(button => {
-            button.addEventListener("click", function () {
-                const id = this.getAttribute("data-id");
-                document.getElementById("editForm").action = /admin/products/${id};
-                modal.style.display = "flex";
+            document.querySelectorAll(".edit-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = this.getAttribute("data-id");
+                    document.getElementById("editForm").action = `/admin/products/${id}`;
+                    modal.style.display = "flex";
+                });
+            });
+
+            closeModal.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            document.getElementById("editForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const form = this;
+
+                fetch(form.action, {
+                    method: "POST",
+                    body: new FormData(form)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    modal.style.display = "none";
+                    successMessage.style.display = "block";
+                    setTimeout(() => {
+                        successMessage.style.display = "none";
+                        location.reload(); // Refresh the page after success
+                    }, 3000);
+                })
+                .catch(error => console.error("Error:", error));
             });
         });
-
-        closeModal.addEventListener("click", function () {
-            modal.style.display = "none";
-        });
-
-        document.getElementById("editForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const form = this;
-            fetch(form.action, {
-                method: "POST",
-                body: new FormData(form)
-            })
-            .then(response => response.json())
-            .then(data => {
-                modal.style.display = "none";
-                successMessage.style.display = "block";
-                setTimeout(() => {
-                    successMessage.style.display = "none";
-                }, 3000);
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    });
     </script>
 
     <!-- Product addition script -->
