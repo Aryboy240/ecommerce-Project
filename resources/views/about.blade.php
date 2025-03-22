@@ -182,7 +182,9 @@
         <p class="member-title">Full Stack Developer</p>
         <p class="member-bio">Abdul is a skilled full stack developer with expertise in both frontend and
         backend technologies. He is dedicated to creating seamless user experiences and ensuring that
-        the Optique platform runs smoothly.</p>
+        the Optique platform runs smoothly. His work spans across core features and system 
+        functionality,consistently focusing on usability, performance, 
+        and innovative solutions to enhance the overall platform experience.</p>
         <div class="member-contact">
         <a href="#">Email</a>
         <a href="#">LinkedIn</a>
