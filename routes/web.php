@@ -189,20 +189,3 @@ Route::get('/check-login', function () {
 // Checkout Page
 
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
-
-// Add this debug route to diagnose the issue
-Route::get('/debug-order-api', function() {
-    dd(Auth::user(), Auth::user()->is_admin);
-});
-
-// Check Order model constants
-Route::get('/debug-order-model', function() {
-    try {
-        return [
-            'statuses' => \App\Models\Order::getStatuses(),
-            'sample_order' => \App\Models\Order::first()
-        ];
-    } catch (\Exception $e) {
-        return ['error' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()];
-    }
-});
