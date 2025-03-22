@@ -8,17 +8,15 @@
     Function: Front end for the checkout page
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
+@extends('layouts.mainLayout')
 
-<head>
+@section('extra-head')
+
     <script defer src="{{ asset('js\checkout_page.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
-</head>
-
-</html>
-
-<!-- Child of the "views/layouts/mainLayout.balde.php" -->
-@extends('layouts.mainLayout')
+    
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Checkout')

@@ -36,10 +36,10 @@ sr.reveal(".section-title", {
     delay: 100,
 });
 
-sr.reveal(".product-card-con", {
+sr.reveal(".product-card", {
     duration: 1000,
     interval: 100,
-    delay: 150,
+    delay: 250,
 });
 
 sr.reveal(".category", {
@@ -55,6 +55,62 @@ sr.reveal(".about-section", {
 });
 
 sr.reveal(".f-product-container", {
+    duration: 1000,
+    interval: 100,
+    delay: 200,
+});
+
+// About
+
+sr.reveal(".mission-section", {
+    duration: 1000,
+    interval: 100,
+    delay: 500,
+});
+
+sr.reveal(".company-image", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
+sr.reveal(".about-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 100,
+});
+
+sr.reveal(".logo-text", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".member-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".testimonial-wrapper", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".section-title", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".contact-cta", {
+    duration: 1000,
+    interval: 100,
+    delay: 150,
+});
+
+sr.reveal(".cta-content", {
     duration: 1000,
     interval: 100,
     delay: 150,

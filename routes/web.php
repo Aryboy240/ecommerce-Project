@@ -12,19 +12,14 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\AdminCouponController;
+use App\Http\Controllers\WallpaperController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
-// Product Admin Routes
-Route::get('/admin/products', [ProductController::class, 'index'])->name('productadmin');
-Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('productadmin.update');
-Route::put('/admin/products/update-stock/{id}', [ProductController::class, 'updateStock'])->name('productadmin.updateStock'); // ✅ FIX ADDED
-Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('productadmin.destroy');
-
 
 // User Authentication Routes
 Route::post('/register', [UserController::class, 'register']);
@@ -123,24 +118,21 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 | Admin Account Routes
 |--------------------------------------------------------------------------
 */
+
 Route::get('/adminlogin', function () {
-    return view('admin/Adminlogin');
+    return view('admin/AdminLogin');
 })->name('adminlogin');
 
 Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminlogin.post');
-Route::get('/adminpanel', function () {
-    return view('admin/AdminPanel');
-})->name('adminpanel');
 
-Route::get('/admin/products', [ProductController::class, 'index'])->name('productadmin');
+// Admin Panel Route (Ensures Admin Access)
+Route::get('/adminpanel', [App\Http\Controllers\AdminController::class, 'adminPanelAccess'])->name('adminpanel');
 
-Route::get('/AdminOrders', function () {
-    return view('admin/AdminOrder');
-})->name('AdminOrders');
+// Admin Orders Route (Ensures Admin Access)
+Route::get('/AdminOrders', [App\Http\Controllers\AdminController::class, 'adminOrdersAccess'])->name('AdminOrders');
 
-Route::get('/adminprofile', function () {
-    return view('admin/AdminProfile');
-})->name('adminprofile');
+// Admin Profile Route (Ensures Admin Access)
+Route::get('/adminprofile', [App\Http\Controllers\AdminController::class, 'adminOrdersAccess'])->name('adminprofile');
 
 // web.php (Route for showing all users in the AdminCustomers page)
 Route::get('/customers', [UserController::class, 'showCustomers'])->name('customers');
@@ -158,6 +150,12 @@ Route::post('/admin/create-user', [AdminController::class, 'storeUser'])->name('
 // Report Route
 Route::get('/adminreport', [App\Http\Controllers\OrderController::class, 'adminReport'])->name('adminreport');
 
+// Product Admin Routes
+Route::post('/admin/products', [ProductController::class, 'store'])->name('productadmin.store');
+Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('productadmin');
+Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('productadmin.update');
+Route::put('/admin/products/update-stock/{id}', [ProductController::class, 'updateStock'])->name('productadmin.updateStock'); 
+Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('productadmin.destroy');
 
 // REVIEW PAGE
 Route::middleware(['auth'])->group(function () {
@@ -166,15 +164,19 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/reviews/{id}', [ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
 });
 
+// Wallpapers
+Route::get('/admin/wallpapers', [WallpaperController::class, 'index'])->name('wallpapers');
+Route::post('/admin/change-wallpaper', [WallpaperController::class, 'changeWallpaper'])->name('change.wallpaper');
+
+
 /*
 |--------------------------------------------------------------------------
 | Search Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/search', function () {
-    $products = Product::with('images', 'category')->get();
-    return view('search', ['products' => $products]);
-})->name('search');
+
+Route::get('/search', [ProductController::class, 'index'])->name('search');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -212,3 +214,13 @@ Route::get('/check-login', function () {
 
 // Checkout Page
 Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+
+// Admin Coupon Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/coupons', [AdminCouponController::class, 'coupons'])->name('admin.coupons');
+    Route::get('/coupons/add', [AdminCouponController::class, 'add'])->name('admin.coupons.add');
+    Route::post('/coupons', [AdminCouponController::class, 'store'])->name('admin.coupons.store');
+    Route::get('/coupons/{coupon}/edit', [AdminCouponController::class, 'edit'])->name('admin.coupons.edit');
+    Route::put('/coupons/{coupon}', [AdminCouponController::class, 'update'])->name('admin.coupons.update');
+    Route::delete('/coupons/{coupon}', [AdminCouponController::class, 'destroy'])->name('admin.coupons.destroy');
+});

@@ -12,20 +12,18 @@
     Function: Backend for contact form & frontend final edits
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <link rel="stylesheet" href={{  asset('css/contact.css') }}>
-</head>
-
-</html>
-
 <!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
 @extends('layouts.mainLayout')
 
+@section('extra-head')
+
+  <script defer src="{{ asset('js/contactForm.js') }}"></script>
+  <link rel="stylesheet" href={{  asset('css/contact.css') }}>
+
+@endsection
+
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'Contact')
+@section('title', 'Optique | Contact')
 
 <!-- The @yeild in mainLayout's 'main' is filled by everything in this section -->
 @section('content')
@@ -51,14 +49,10 @@
 <div class="contact-page-text">
   <div class="contact-text-box">
     <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam sapiente cumque dolores incidunt beatae
-      laudantium, eum asperiores porro inventore alias soluta voluptate et enim. Nam adipisci, facilis doloribus
-      nulla velit error ducimus illum. Expedita possimus voluptatibus, non nesciunt asperiores saepe aperiam
-      architecto illo earum odit nisi commodi iste iusto est cum laboriosam excepturi atque cupiditate optio
-      laudantium? Quibusdam deleniti, nulla optio maxime consectetur in doloribus nobis vel! Autem temporibus,
-      distinctio quibusdam beatae, magni et tempore nesciunt optio exercitationem error officiis id aliquid?
-      Labore, tempora quod natus numquam quidem magni maiores similique! Debitis consectetur accusamus dolorem
-      ipsa deleniti distinctio! Saepe, corporis.
+      At Optique, we value your feedback and inquiries. Whether you have questions about our products, need assistance with your order, or want to learn more about our services, we are here to help. Our dedicated team is committed to providing you with the best customer service experience possible. Please feel free to reach out to us through the contact form below or via our social media channels. We look forward to hearing from you!
+    </p>
+    <p>
+      Our mission is to provide you with high-quality eyewear solutions that not only enhance your vision but also reflect your personal style. We believe that every customer deserves exceptional service and support, and we are here to ensure that your experience with Optique is nothing short of excellent.
     </p>
   </div>
 </div>
@@ -94,7 +88,7 @@
           </p>
         </div>
       </div>
-  </a>
+    </a>
   </div>
   <a href="https://x.com/OptiqueTeam28" target="_blank" class="hyper-hider">
     <div class="card-con">
@@ -104,13 +98,10 @@
         </div>
         <div class="card-detail" style="margin-top: -50px; font-size: 20px; color: white">
           <h1>Twitter</h1>
-          <p>
-            Follow us on Twitter!
-          </p>
+          <p>Follow us on Twitter!</p>
         </div>
       </div>
-  </a>
-  </div>
+    </a>
   </div>
 </section>
 <!--Info Cards End-->
@@ -118,14 +109,10 @@
 <div class="contact-page-text">
   <div class="contact-text-box">
     <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt facilis dolorum quo dolore illo
-      praesentium illum temporibus sed facere aliquam, asperiores pariatur odio atque, commodi placeat itaque
-      eligendi cumque saepe soluta? Similique, quaerat. Necessitatibus perspiciatis adipisci ratione vel iure
-      beatae error incidunt obcaecati aspernatur, officiis laboriosam consequatur consectetur facere ad non
-      praesentium rem. Eos, voluptatum ipsam iusto quod quos consequatur nam maiores dicta quasi, ea quaerat
-      sequi, non quae qui perspiciatis. Nobis vitae fuga impedit numquam culpa dolorum amet blanditiis
-      exercitationem vero? Voluptates aut dolorum molestias dolorem enim fugiat unde. In repudiandae
-      necessitatibus animi non vero eius explicabo consectetur delectus!
+      Our team is available to assist you with any inquiries you may have. You can contact us via email at support@optique.com or call us at 1 (800) 555-OPTQ. We strive to respond to all inquiries within 24 hours. Thank you for choosing Optique, where we are dedicated to providing you with exceptional eyewear solutions and customer service.
+    </p>
+    <p>
+      Additionally, we encourage you to follow us on our social media platforms to stay updated on the latest trends, promotions, and new product launches. Your satisfaction is our priority, and we are always looking for ways to improve our services and offerings.
     </p>
   </div>
 </div>

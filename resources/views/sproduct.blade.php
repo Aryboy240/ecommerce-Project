@@ -8,9 +8,10 @@
     function: Frontend reworks and Review system
 -->
 
-<html lang="en">
+@extends('layouts.mainLayout')
 
-<head>
+@section('extra-head')
+
     <!-- Add meta description for SEO -->
     <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
     <!-- JS -->
@@ -19,12 +20,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/feedback.css') }}">
-</head>
 
-</html>
-
-
-@extends('layouts.mainLayout')
+@endsection
 
 @section('title', 'Product Information')
 
@@ -132,7 +129,7 @@
                         <!-- Reviews -->
                         <div class="reviews">
                             @for ($i = 1; $i <= 5; $i++)
-                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '☆' }}</b>
+                                <b class="fas fa-star">{{ $i <= $review->rating ? '⭐' : '•' }}</b>
                             @endfor
                         </div>
                     </div>

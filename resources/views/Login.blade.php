@@ -41,6 +41,8 @@
     content="width=device-width, initial-scale=1, maximum-scale=1,
     user-scalable=0"
   />
+
+  <link rel="icon" href="{{ asset('Images/circleLogo.png') }}" type="image/x-icon">
 </head>
 
 <body>

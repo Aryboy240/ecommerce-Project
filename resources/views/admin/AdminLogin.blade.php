@@ -18,7 +18,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href={{  asset('css/main.css') }}>
   <link rel="stylesheet" href={{  asset('css/aryansExtras.css') }}>
-  <link rel="stylesheet" href={{  asset('css/adminlogin.css') }}>
+  <link rel="stylesheet" href={{  asset('css/admin/adminlogin.css') }}>
   <title>Admin Login | Optique</title>
 </head>
 
@@ -27,7 +27,7 @@
 
   <div class="top-level">
     <div class="top-icons">
-      <img src="{{ asset('Images/Logo.png') }}" alt="logo">
+      <img src="{{ asset('Images/logo.png') }}" alt="logo">
       <a href="{{ route('welcome') }}">
         <svg
         aria-hidden="true"
