@@ -242,7 +242,7 @@
       </p>
       <p>
         <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="mailto:optiqe.team28@gmail.com">optique.team28@gmail.com</a>
+        <a href="mailto:optique.team28@gmail.com">optique.team28@gmail.com</a>
       </p>
       <p>
         <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
