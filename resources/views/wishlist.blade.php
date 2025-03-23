@@ -1,9 +1,16 @@
 @extends('layouts.mainLayout')
 
+@section('extra-head')
+    <script defer src="{{ asset('js/addToCart.js') }}"></script>
+    <script defer src="{{ asset('js/wishlist.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
+@endsection
+
 @section('title', 'Wishlist')
 
 @section('content')
-<section class="container wishlist-section">
+<section class="wishlist-container wishlist-section">
     <div class="wishlist-header">
         <h1>Your Wishlist</h1>
         @if($wishlistItems->count() > 0)
@@ -81,8 +88,3 @@
     @endif
 </section>
 @endsection
-
-<script defer src="{{ asset('js/addToCart.js') }}"></script>
-<script defer src="{{ asset('js/wishlist.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
-<link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
