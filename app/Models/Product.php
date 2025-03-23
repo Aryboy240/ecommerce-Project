@@ -60,4 +60,10 @@ class Product extends Model
         
         return false;
     }
+
+    public function wishlist()
+{
+    return $this->hasMany(Wishlist::class);
+}
+
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminCouponController;
 use App\Http\Controllers\WallpaperController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -228,4 +229,10 @@ Route::prefix('admin')->group(function () {
     Route::put('/coupons/{coupon}', [AdminCouponController::class, 'update'])->name('admin.coupons.update');
     Route::delete('/coupons/{coupon}', [AdminCouponController::class, 'destroy'])->name('admin.coupons.destroy');
     
+});
+
+Route::middleware(['auth'])->prefix('wishlist')->group(function () {
+    Route::get('/', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::post('/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
 });
