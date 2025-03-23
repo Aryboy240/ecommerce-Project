@@ -87,4 +87,10 @@
         </div>
     @endif
 </section>
+
+<style>
+    main{
+        margin: 5% 0 10% 0;
+    }
+</style>
 @endsection
