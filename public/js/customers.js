@@ -1,77 +1,76 @@
-// get the modals
+// Developer: Aqsa Amjad
+// University ID: 230066670
+// Function: Handling modals and customer info
+
+// Get the modals and panels
+const deleteModal = document.getElementById("deleteModal");
 const viewModal = document.getElementById("viewModal");
 const editModal = document.getElementById("editModal");
-const deleteModal = document.getElementById("deleteModal");
+const customerDetailsPanel = document.querySelector(".customer-details-panel");
 
-// get the buttons that will trigger the modals
+// Get the buttons that trigger modals and panels
 const viewButtons = document.querySelectorAll(".btn-view");
 const deleteButtons = document.querySelectorAll(".btn-delete");
+const editButtons = document.querySelectorAll(".btn-edit");
 
-// get the buttons inside modals
+// Get the buttons inside modals
 const closeButtons = document.querySelectorAll(".close-btn");
-const saveButton = document.querySelector(".btn-save");
+const saveButtons = document.querySelectorAll(".btn-save");
 const cancelButtons = document.querySelectorAll(".btn-cancel");
 const deleteButton = document.querySelector(".btn-confirmDelete");
 
-// function to open a modal
-function openModal(modal) {
-    modal.style.display = "flex"; // show the modal
-}
+// Function to open a modal
+const openModal = (modal) => {
+    modal.style.display = "flex";
+};
 
-// function to close a modal
-function closeModal(modal) {
-    modal.style.display = "none"; // hide the modal
-}
+// Function to close a modal
+const closeModal = (modal) => {
+    modal.style.display = "none";
+};
 
-// add event listeners to open modals when the buttons are clicked
+// Function to open the customer info panel
+const openSidePanel = () => {
+    customerDetailsPanel.style.display = "block";
+};
+
+// Function to close the customer info panel
+const closeSidePanel = () => {
+    customerDetailsPanel.style.display = "none";
+};
+
+// Add event listeners for view buttons
 viewButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
         e.preventDefault();
-        openModal(viewModal); // open the view modal
+        openSidePanel();
     });
 });
 
-// add event listeners to close modals when the close button is clicked
-closeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        // close the modal associated with the clicked close button
-        button.closest(".modal").style.display = "none";
+// Add event listeners for delete buttons
+deleteButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal(deleteModal);
     });
 });
 
-// add event listeners to close modals when the cancel button is clicked
-cancelButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        // close the modal associated with the clicked cancel button
-        closeModal(button.closest(".modal"));
-    });
-});
-
-// Select all edit buttons
-const editButtons = document.querySelectorAll(".btn-edit");
-
-// Open the edit modal and populate fields with user info
+// Add event listeners for edit buttons
 editButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
         e.preventDefault();
-        const userId = button.getAttribute("data-id"); // Get the user ID from the button
-        openModal(editModal); // Show the edit modal
+        const userId = button.getAttribute("data-id");
+        openModal(editModal);
 
-        // Fetch user data from the backend (assuming you're using a RESTful route)
+        // Fetch user data from backend
         fetch(`/admin/users/${userId}`)
             .then((response) => response.json())
             .then((user) => {
-                // Log the user data to check
-                console.log(user);
-
-                // Populate the modal form fields with the user data
                 document.getElementById("edit-user-id").value = user.id;
-                (document.getElementById("edit-name").value = user.name),
-                    (document.getElementById("edit-email").value = user.email);
-                (document.getElementById("edit-fullName").value =
-                    user.fullName),
-                    (document.getElementById("edit-birthday").value =
-                        user.birthday);
+                document.getElementById("edit-name").value = user.name;
+                document.getElementById("edit-email").value = user.email;
+                document.getElementById("edit-fullName").value = user.fullName;
+                document.getElementById("edit-birthday").value = user.birthday;
                 document.getElementById("edit-is-admin").checked =
                     user.is_admin == 1;
             })
@@ -82,9 +81,9 @@ editButtons.forEach((button) => {
 });
 
 // Handle the save button inside the edit modal
-document
-    .getElementById("edit-form")
-    .addEventListener("submit", function (event) {
+const editForm = document.getElementById("edit-form");
+if (editForm) {
+    editForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
         const userId = document.getElementById("edit-user-id").value;
@@ -109,9 +108,8 @@ document
             .then((response) => response.json())
             .then((data) => {
                 if (data.success) {
-                    // Close modal and refresh the page
                     closeModal(editModal);
-                    window.location.reload(); // This will refresh the page
+                    window.location.reload();
                 } else {
                     alert("Error updating user.");
                 }
@@ -120,3 +118,25 @@ document
                 console.error("Error saving user data:", error);
             });
     });
+}
+
+// Add event listeners for closing modals
+closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        closeModal(button.closest(".modal"));
+    });
+});
+
+// Add event listeners for cancel buttons
+cancelButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        closeModal(button.closest(".modal"));
+    });
+});
+
+// Close modals when clicking outside their content
+window.addEventListener("click", (event) => {
+    if (event.target === deleteModal) {
+        closeModal(deleteModal);
+    }
+});
