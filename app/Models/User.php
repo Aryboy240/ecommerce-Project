@@ -11,6 +11,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'fullName',
         'email',
         'password',
         'birthday',
@@ -44,4 +45,8 @@ class User extends Authenticatable
         return $this->hasMany(ProductReview::class);
     }
 
+    public function wishlist()
+{
+    return $this->hasMany(Wishlist::class);
+}
 }

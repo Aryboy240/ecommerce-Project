@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ImageType;
 use App\Models\ProductImage;
 use App\Models\ProductCategory;
+use App\Models\Wallpaper;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
@@ -15,6 +16,17 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+
+        Wallpaper::insert([
+            ['video_path' => 'Images/Videos/Bubbles.mp4', 'is_selected' => true],
+            ['video_path' => 'Images/Videos/Bubbles2.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles3.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles4.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles5.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles6.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles7.mp4', 'is_selected' => false],
+            ['video_path' => 'Images/Videos/Bubbles8.mp4', 'is_selected' => false],
+        ]);
 
         ImageType::firstOrCreate(['name' => 'front']);
         ImageType::firstOrCreate(['name' => 'side']);
@@ -27,54 +39,144 @@ class DatabaseSeeder extends Seeder
         // Create test user with proper fields
         $user = User::create([
             'name' => 'testuser',
+            'fullName' => 'User1',
             'email' => 'test@example.com',
             'password' => Hash::make('password123'),
             'birthday' => '2000-01-01'
+        ]);
+        
+        // Creates a default admin user
+        $adminUser = User::create([
+            'name' => 'Admin001',
+            'fullName' => 'Admin User',
+            'email' => 'Admin001@example.com',
+            'password' => Hash::make('Admin001'),
+            'birthday' => '2000-01-01',
+            'is_admin' => true
         ]);
 
         // Define products by category
         $productsByCategory = [
             'Adidas' => [
+                32859706,
+                32859737,
+                32859782,
+                32859836,
+                32859867,
+                32859874,
+                32859881,
+                32859898,
+                32859904,
+                32859911,
                 32859928,
                 32859935,
-                32859942,
+                32859942
             ],
             'Barbour' =>[
+                33136974,
+                33136981,
+                33136998,
+                33137001,
+                33137018,
+                33137025,
+                33137032,
+                33137049,
+                33137063,
+                33137070,
+                33137087,
+                33137094,
+                33137100,
+                33137117,
+                33137124,
+                33137476,
                 33137483,
                 33137490,
-                33137506,
+                33137506
             ],
             'Comfit' => [
+                30769113,
+                30830233,
+                32861617,
+                32861624,
+                32861631,
+                32861648,
+                32861655,
+                32861662,
+                32861679,
                 32861686,
                 33145006,
-                33145013,
+                33145013
             ],
             'Disney' => [
+                32861877,
+                32908855,
+                32908862,
+                33039121,
+                33039145,
+                33087481,
+                33087504,
+                33087511,
+                33087535,
                 33087542,
                 33137131,
-                33137148,
+                33137148
             ],
             'DKNY' =>[
+                30825147,
+                30825178,
+                30825185,
+                30825208,
+                30825239,
+                32677928,
+                32677935,
+                32677942,
                 32677959,
                 33039947,
-                33040011,
+                33040011
             ],
             'Harry Potter' =>[
+                32908596,
+                32908602,
                 32908640,
                 33155432,
-                33155449,
+                33155449
             ],
             'HUGO' =>[
+                30826441,
+                32261097,
+                32261110,
+                32915396,
+                32915402,
+                33135151,
+                33137339,
                 33137346,
                 33137353,
                 33137360,
+                33471457,
+                33471464
             ],
             'Jeff Banks' =>[
+                30473393,
+                30473409,
+                30473416,
+                30473423,
+                30571921,
+                32526097,
+                32860443,
                 32860634,
                 33152820,
-                33152882,
+                33152882
             ],
             'Karen Millen' =>[
+                30827332,
+                30827349,
+                32524598,
+                32524604,
+                32524611,
+                32524628,
+                32860764,
+                33039602,
+                33039626,
                 33039633,
                 33039640,
                 33135175

@@ -11,17 +11,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
   <!-- JS -->
   <script defer src="{{ asset('/js/theme.js') }}"></script>
   <script defer src="{{ asset('js/scrollReveal.js') }}"></script>
-  <script src="{{ asset('js/scrollreveal.min.js') }}"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
   <script src="{{ asset('js/scrollBar.js') }}"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ asset('css/main.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aryansExtras.css') }}">
   <link rel="stylesheet" href="{{ asset('css/product_Card.css') }}">
+
+  @yield('extra-head')
+
+  <!-- Tab Icon -->
+  <link rel="icon" href="{{ asset('Images/circleLogo.png') }}" type="image/x-icon">
 
   <title>@yield('title', 'Laravel App')</title>
 </head>
@@ -210,10 +214,22 @@
       </ul>
     </nav>
   </section>
-  <!-- Navigation  Bar End -->
+  <!-- MOBILE Navigation  Bar End -->
 
   <main>
     @yield('content')
+
+    <!-- Admin icon -->
+    @auth
+      @if(auth()->user()->is_admin)
+          <div class="admin-access">
+              <a href="{{ route('adminpanel') }}">
+                  <img src="{{ asset('Images/adminPanel.png') }}">
+              </a>
+          </div>
+      @endif
+    @endauth
+
   </main>
 
   <!-- Footer Section:: Esta -->
@@ -242,9 +258,9 @@
     </div>
     <div>
       <h3>About Optique</h3>
-      <a href="#">Our Story</a>
-      <a href="#">Testimonials</a>
-      <a href="#">Careers</a>
+      <a href="{{ route('OurStory') }}">Our Story</a>
+      <a href="{{ route('Testimonials') }}">Testimonials</a>
+      <a href="{{ route('Careers') }}">Careers</a>
       <a href="#">Store Locator</a>
     </div>
     <div class="social-icons">
@@ -268,8 +284,46 @@
     </div>
     <div class="powered-by">
       <p>© Optique. Crafted for Visionaries.</p>
+      <div class="QR">
+          <img src="{{ asset('Images/smallQR.png') }}" alt="">
+          <div class="QR-over">
+              <img src="{{ asset('Images/QR.png') }}" alt="">
+          </div>
+      </div>
+    </div>
+    <div class="wishlist">
+      <a href="{{ route('wishlist.index') }}" class="wishlist-heart">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32" height="32">
+            <path
+                d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"
+                fill="currentColor" />
+        </svg>
+      </a>
     </div>
   </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const qrButton = document.querySelector(".QR");
+      const qrPopup = document.querySelector(".QR-over");
+
+      // Toggle visibility when clicking the QR code
+      qrButton.addEventListener("click", function () {
+          if (qrPopup.style.display === "flex") {
+              qrPopup.style.display = "none";
+          } else {
+              qrPopup.style.display = "flex";
+          }
+      });
+
+      // Hide the popup when clicking anywhere outside the QR image
+      qrPopup.addEventListener("click", function (event) {
+          if (event.target !== qrPopup && event.target === qrPopup) {
+              qrPopup.style.display = "none";
+          }
+      });
+  });
+  </script>
 </body>
 
 </html>

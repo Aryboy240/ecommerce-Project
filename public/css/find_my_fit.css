@@ -1,0 +1,310 @@
+/* Find My Fit Button */
+.fit-button-con {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.find-my-fit-btn {
+    background: linear-gradient(145deg, #00bfae, #008f7a);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    cursor: var(--pointer);
+    font-size: 1.2rem;
+    margin-top: 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: ease 0.3s;
+}
+
+.find-my-fit-btn:hover {
+    transform: translate(0, -5px);
+    background: linear-gradient(145deg, #008f7a, #006f5a);
+    box-shadow: 0 12px 32px 0 rgba(0, 191, 174, 0.2);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.7
+    ); /* Slightly darker for better contrast */
+    z-index: 998; /* Ensures it is below the modal but above the background */
+    display: none;
+}
+
+/* Initial Popup Styling */
+.initial-popup {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Above the overlay */
+    background: linear-gradient(145deg, #333, #222);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00bfae;
+    width: 600px; /* Larger Modal */
+    animation: popup 0.5s ease-out;
+}
+
+.initial-popup h2 {
+    color: #00bfae;
+}
+
+/* Continue Button */
+.continue-btn {
+    background: linear-gradient(145deg, #00bfae, #008f7a);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: var(--pointer);
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: ease 0.3s;
+}
+
+.continue-btn:hover {
+    background: linear-gradient(145deg, #008f7a, #006f5a);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #333, #222);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00bfae;
+    width: 600px; /* Larger Modal */
+    animation: popup 0.5s ease-out;
+    z-index: 1001; /* Above overlay & previous modal */
+}
+
+.modal h2 {
+    color: #00bfae;
+}
+
+/* Face Selection Options */
+.face-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.face-options img {
+    width: 120px;
+    height: 120px;
+    cursor: var(--pointer);
+    border: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.face-options img:hover {
+    border-color: #00bfae;
+    transform: scale(1.1);
+}
+
+.face-label {
+    color: white;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.close-modal {
+    cursor: var(--pointer);
+    color: #f00;
+    font-size: 1.8rem;
+    float: right;
+    margin: -10px -10px 10px 10px;
+}
+
+#recommendations {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, #333, #222);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00bfae;
+    width: 50%; /* More width for 3 images */
+    height: auto; /* Auto height to remove dead space */
+    animation: popup 0.5s ease-out;
+    z-index: 1002; /* Ensure it’s above everything */
+}
+
+#recommendations h2 {
+    color: #00bfae;
+    margin-bottom: 20px;
+}
+
+/* Spread Out Glasses */
+.glasses-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+/* Individual Glasses Card */
+.glasses-card {
+    background: #1c1c1c;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #00bfae;
+    text-align: center;
+    width: 200px;
+}
+
+.glasses-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.glasses-card button {
+    background: linear-gradient(145deg, #00bfae, #008f7a);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: var(--pointer);
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 5px;
+    transition: ease 0.3s;
+}
+
+.glasses-card button:hover {
+    background: linear-gradient(145deg, #008f7a, #006f5a);
+}
+
+@keyframes popup {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.search-product-link {
+    text-decoration: none !important;
+    color: inherit; /* Ensure it inherits the text color */
+}
+
+/* Product Card Styling */
+.search-product-card {
+    background: rgba(14, 14, 14, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 191, 174, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 191, 174, 0.1);
+    color: var(--text-primary);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.light .search-product-card {
+    color: var(--bg-primary);
+}
+
+.search-product-card:hover {
+    transform: translateY(-5px);
+    background: rgba(14, 14, 14, 0.8);
+    border-color: var(--mint);
+    box-shadow: 0 12px 32px 0 rgba(0, 191, 174, 0.2);
+}
+
+.search-product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.search-product-card:hover img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
+}
+
+.search-product-card h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.search-product-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.search-product-card button {
+    margin-top: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid rgba(0, 191, 174, 0.3);
+    background: rgba(0, 191, 174, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-primary);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.light .search-product-card button {
+    color: var(--bg-primary);
+}
+
+.search-product-card button:hover {
+    background: rgba(0, 166, 140, 0.9);
+    box-shadow: 0 0 15px rgba(0, 191, 174, 0.3);
+}
+
+.search-product-card button:active {
+    transform: translateY(0);
+}
+
+/* Glow Effects */
+.search-product-card:hover img {
+    filter: drop-shadow(0 0 10px rgba(0, 191, 174, 0.3));
+}
+
+/* Enhance product grid layout */
+.search-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0;
+}

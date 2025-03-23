@@ -1,111 +1,142 @@
 // Developer: Aqsa Amjad
 // University ID: 230066670
-// Function: opening/closing the delete modal & customer info panel
+// Function: Handling modals and customer info
 
-// get the delete modal
-const deleteModal = document.getElementById('deleteModal');
-// get the customer info panel
-const customerDetailsPanel = document.querySelector('.customer-details-panel');
-// get the close buttons for both modal and panel
-const closeBtns = document.querySelectorAll('.close-btn');
-// get the buttons that trigger both
-const viewButtons = document.querySelectorAll('.btn-view'); // view button
-const deleteButtons = document.querySelectorAll('.btn-delete'); // delete button
+// Get the modals and panels
+const deleteModal = document.getElementById("deleteModal");
+const viewModal = document.getElementById("viewModal");
+const editModal = document.getElementById("editModal");
+const customerDetailsPanel = document.querySelector(".customer-details-panel");
 
-// function to open the delete modal
-const openDeleteModal = () => {
-    deleteModal.style.display = 'flex'; // show the modal
+// Get the buttons that trigger modals and panels
+const viewButtons = document.querySelectorAll(".btn-view");
+const deleteButtons = document.querySelectorAll(".btn-delete");
+const editButtons = document.querySelectorAll(".btn-edit");
+
+// Get the buttons inside modals
+const closeButtons = document.querySelectorAll(".close-btn");
+const saveButtons = document.querySelectorAll(".btn-save");
+const cancelButtons = document.querySelectorAll(".btn-cancel");
+const deleteButton = document.querySelector(".btn-confirmDelete");
+
+// Function to open a modal
+const openModal = (modal) => {
+    modal.style.display = "flex";
 };
-// function to close the delete modal
-const closeDeleteModal = () => {
-    deleteModal.style.display = 'none'; // hide the modal
+
+// Function to close a modal
+const closeModal = (modal) => {
+    modal.style.display = "none";
 };
 
-// function to open the customer info panel
+// Function to open the customer info panel
 const openSidePanel = () => {
-    customerDetailsPanel.style.display = 'block'; // show the panel
+    customerDetailsPanel.style.display = "block";
 };
-// function to close the customer info panel
+
+// Function to close the customer info panel
 const closeSidePanel = () => {
-    customerDetailsPanel.style.display = 'none'; // hide the panel
+    customerDetailsPanel.style.display = "none";
 };
 
-// add event listeners to close modal when the close button is clicked
-closeBtns.forEach(button => {
-    button.addEventListener('click', () => {
-        // close the modal or side panel associated with the clicked close button
-        button.closest('.modal, .customer-details-panel').style.display = 'none';
+// Add event listeners for view buttons
+viewButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        openSidePanel();
     });
 });
 
-// add event listeners to the delete buttons
-deleteButtons.forEach(button => {
-    button.addEventListener('click', openDeleteModal);
+// Add event listeners for delete buttons
+deleteButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        openModal(deleteModal);
+    });
 });
 
-// add event listeners to the view buttons
-viewButtons.forEach(button => {
-    button.addEventListener('click', openSidePanel);
+// Add event listeners for edit buttons
+editButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const userId = button.getAttribute("data-id");
+        openModal(editModal);
+
+        // Fetch user data from backend
+        fetch(`/admin/users/${userId}`)
+            .then((response) => response.json())
+            .then((user) => {
+                document.getElementById("edit-user-id").value = user.id;
+                document.getElementById("edit-name").value = user.name;
+                document.getElementById("edit-email").value = user.email;
+                document.getElementById("edit-fullName").value = user.fullName;
+                document.getElementById("edit-birthday").value = user.birthday;
+                document.getElementById("edit-is-admin").checked =
+                    user.is_admin == 1;
+            })
+            .catch((error) => {
+                console.error("Error fetching user data:", error);
+            });
+    });
 });
 
-// close the modal if clicked outside the modal content
-window.addEventListener('click', function(event) {
+// Handle the save button inside the edit modal
+const editForm = document.getElementById("edit-form");
+if (editForm) {
+    editForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const userId = document.getElementById("edit-user-id").value;
+        const fullName = document.getElementById("edit-fullName").value;
+        const name = document.getElementById("edit-name").value;
+        const email = document.getElementById("edit-email").value;
+        const birthday = document.getElementById("edit-birthday").value;
+        const is_admin = document.getElementById("edit-is-admin").checked
+            ? 1
+            : 0;
+
+        fetch(`/admin/users/${userId}/update`, {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": document.querySelector(
+                    'meta[name="csrf-token"]'
+                ).content,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ fullName, name, email, birthday, is_admin }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    closeModal(editModal);
+                    window.location.reload();
+                } else {
+                    alert("Error updating user.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error saving user data:", error);
+            });
+    });
+}
+
+// Add event listeners for closing modals
+closeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        closeModal(button.closest(".modal"));
+    });
+});
+
+// Add event listeners for cancel buttons
+cancelButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        closeModal(button.closest(".modal"));
+    });
+});
+
+// Close modals when clicking outside their content
+window.addEventListener("click", (event) => {
     if (event.target === deleteModal) {
-        closeDeleteModal();
+        closeModal(deleteModal);
     }
-});
-
-
-
-// Developer: Aqsa Amjad
-// University ID: 230066670
-// Function: editing the customer info
-
-// get the edit buttons 
-const editButtons = document.querySelectorAll('.btn-edit');
-// get the save buttons 
-const saveButtons = document.querySelectorAll('.btn-save');
-
-// function to edit customer info
-function editField(field) {
-    // hide the text and show the input field
-    document.getElementById(`${field}Text`).classList.add('hidden');
-    document.getElementById(`${field}Input`).classList.remove('hidden');
-
-    // hide the edit button and show the save button
-    const parent = document.getElementById(`${field}Input`).closest('.detail-view');
-    parent.querySelector('.btn-edit').classList.add('hidden');
-    parent.querySelector('.btn-save').classList.remove('hidden');
-}
-
-// function to save customer info
-function saveField(field) {
-    const input = document.getElementById(`${field}Input`);
-    const text = document.getElementById(`${field}Text`);
-    
-    // update the text content with the input value
-    text.textContent = input.value;
-    input.classList.add('hidden');
-    text.classList.remove('hidden');
-
-    // show the edit button and hide the save button
-    const parent = input.closest('.detail-view');
-    parent.querySelector('.btn-edit').classList.remove('hidden');
-    parent.querySelector('.btn-save').classList.add('hidden');
-}
-
-// add event listeners to the 'edit' buttons
-editButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const field = button.closest('.info-field').querySelector('span').id.replace('Text', ''); // extract field name dynamically
-        editField(field);
-    });
-});
-
-// add event listeners to the 'save' buttons
-saveButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const field = button.closest('.info-field').querySelector('span').id.replace('Text', ''); // extract field name dynamically
-        saveField(field);
-    });
 });

@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('fullName')->nullable();
             $table->date('birthday');
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
@@ -91,7 +92,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->enum('status', ['pending', 'shipped', 'delivered'])->default('pending');
+            $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'completed', 'cancelled', 'refund_requested'])->default('pending');
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
             $table->index('user_id');
@@ -115,6 +116,35 @@ return new class extends Migration
             $table->unsignedInteger('quantity');
             $table->timestamps();
         });
+
+        // Wallpapers table
+        Schema::create('wallpapers', function (Blueprint $table) {
+            $table->id();
+            $table->string('video_path'); // Path to the wallpaper video
+            $table->boolean('is_selected')->default(false); // Determines the active wallpaper
+            $table->timestamps();
+        });
+
+        Schema::create('coupons', function (Blueprint $table) {
+            $table->id();
+            $table->string('code')->unique();
+            $table->enum('type', ['fixed', 'percent']); 
+            $table->decimal('value', 8, 2); 
+            $table->decimal('min_cart_amount', 8, 2)->nullable(); 
+            $table->dateTime('valid_from'); 
+            $table->dateTime('valid_until'); 
+            $table->integer('usage_limit')->nullable(); 
+            $table->integer('used_count')->default(0); 
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('wishlists', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -129,5 +159,8 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('product_images');
         Schema::dropIfExists('image_types');
+        Schema::dropIfExists('wallpapers');
+        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('wishlists');
     }
 };

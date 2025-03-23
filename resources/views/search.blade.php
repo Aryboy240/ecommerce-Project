@@ -12,23 +12,21 @@
     function: Search page backend
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/searchApp.balde.php" -->
+@extends('layouts.mainLayout')
 
-<head>
+@section('extra-head')
+
     <!-- JS -->
     <script defer src="/js/addToCart.js"></script>
     <script defer src="/js/activeCatagory.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/search.css') }}">
-</head>
 
-</html>
-
-<!-- This is a child of the "views/layouts/searchApp.balde.php" -->
-@extends('layouts.mainLayout')
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
-@section('title', 'Optique | Product Search')
+@section('title', 'Optique | Products')
 
 <!-- The @yeild in searchApp's main is filled by everything in this section -->
 @section('content')
@@ -61,10 +59,10 @@
                         <input type="hidden" name="search" value="{{ request('search') }}">
                     @endif
                     @if(request('min_price'))
-                        <input type="hidden" name="min_price" value="{{ request('min_price') }}">
+                        <input type="hidden" name="min_price" value="{{ request('min_price') ?? $minPrice ?? 0 }}" step="any">
                     @endif
                     @if(request('max_price'))
-                        <input type="hidden" name="max_price" value="{{ request('max_price') }}">
+                        <input type="hidden" name="max_price" value="{{ request('max_price') ?? $maxPrice ?? 1000 }}" step="any">
                     @endif
                     @if(request('sort_by_price'))
                         <input type="hidden" name="sort_by_price" value="{{ request('sort_by_price') }}">
@@ -113,11 +111,11 @@
                         <div class="price-input-group">
                             <div>
                                 <label for="min_price">Min Price</label>
-                                <input type="number" name="min_price" id="min_price" value="{{ request('min_price') ?? $minPrice ?? 0 }}" placeholder="Min Price" />
+                                <input type="number" name="min_price" id="min_price" value="{{ request('min_price') ?? $minPrice ?? 0 }}" placeholder="Min Price" step="any"/>
                             </div>
                             <div>
                                 <label for="max_price">Max Price</label>
-                                <input type="number" name="max_price" id="max_price" value="{{ request('max_price') ?? $maxPrice ?? 1000 }}" placeholder="Max Price" />
+                                <input type="number" name="max_price" id="max_price" value="{{ request('max_price') ?? $maxPrice ?? 1000 }}" placeholder="Max Price" step="any"/>
                             </div>
                         </div>
                         
@@ -176,6 +174,11 @@
     </div>
 </div>
 
+<!-- Pagination -->
+<div class="pagination-container">
+    {{ $products->appends(request()->query())->links('pagination::bootstrap-4') }}
+</div>
+
 <script>
 function toggleFilters() {
     const filtersSection = document.querySelector('.filters');
@@ -209,5 +212,23 @@ window.addEventListener('resize', () => {
         filtersSection.style.display = 'none';
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    let minPriceInput = document.getElementById("min_price");
+    let maxPriceInput = document.getElementById("max_price");
+
+    minPriceInput.addEventListener("input", function() {
+        if (parseFloat(minPriceInput.value) > parseFloat(maxPriceInput.value)) {
+            maxPriceInput.value = minPriceInput.value;
+        }
+    });
+
+    maxPriceInput.addEventListener("input", function() {
+        if (parseFloat(maxPriceInput.value) < parseFloat(minPriceInput.value)) {
+            minPriceInput.value = maxPriceInput.value;
+        }
+    });
+});
+
 </script>
 @endsection

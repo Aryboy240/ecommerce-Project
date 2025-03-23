@@ -4,19 +4,17 @@
     Function: Front end for the Products page
 -->
 
-<html lang="en">
+<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
+@extends('layouts.mainLayout')
 
-<head>
+@section('extra-head')
+
   <!-- Add meta description for SEO -->
   <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
   <script defer src="{{ asset('js/product_page.js') }}"></script>
   <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
-</head>
 
-</html>
-
-<!-- This is a child of the "views/layouts/mainLayout.balde.php" -->
-@extends('layouts.mainLayout')
+@endsection
 
 <!-- Theres a @yeild in the app's title, so this fills it with the proceeding information -->
 @section('title', 'Product')
