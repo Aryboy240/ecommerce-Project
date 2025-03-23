@@ -1503,3 +1503,17 @@ body {
         padding-left: 0;
     }
 }
+
+.wishlist-heart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    color: #ff5757 !important;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.wishlist-heart:hover {
+    transform: scale(1.2) !important;
+    color: #ff3a3a !important;
+}

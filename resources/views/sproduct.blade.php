@@ -12,14 +12,17 @@
 
 @section('extra-head')
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Add meta description for SEO -->
     <meta name="description" content="Shop Optique's collection of glasses, sunglasses, and contact lenses">
     <!-- JS -->
     <script defer src="{{ asset('js/product_page.js') }}"></script>
     <script defer src="{{ asset('js/addToCart.js') }}"></script>
+    <script defer src="{{ asset('js/wishlist.js') }}"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/product_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/feedback.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
 
 @endsection
 
@@ -76,6 +79,15 @@
                 </div>
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <button type="submit" class="add-to-cart">Add to Cart</button>
+            </form>
+
+            <form action="{{ route('wishlist.add') }}" method="POST" class="wishlist-form">
+                  @csrf
+                  <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  <button type="submit" class="wishlist-button" title="Add to Wishlist">
+                   <i class="far fa-heart"></i>
+                   <i class="fas fa-heart"></i>
+                </button>
             </form>
 
             <h4 id="prod-margin">Product Details</h4>
