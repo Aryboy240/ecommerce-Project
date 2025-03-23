@@ -124,6 +124,27 @@ return new class extends Migration
             $table->boolean('is_selected')->default(false); // Determines the active wallpaper
             $table->timestamps();
         });
+
+        Schema::create('coupons', function (Blueprint $table) {
+            $table->id();
+            $table->string('code')->unique();
+            $table->enum('type', ['fixed', 'percent']); 
+            $table->decimal('value', 8, 2); 
+            $table->decimal('min_cart_amount', 8, 2)->nullable(); 
+            $table->dateTime('valid_from'); 
+            $table->dateTime('valid_until'); 
+            $table->integer('usage_limit')->nullable(); 
+            $table->integer('used_count')->default(0); 
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
+
+        Schema::create('wishlists', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     public function down()
@@ -139,5 +160,7 @@ return new class extends Migration
         Schema::dropIfExists('product_images');
         Schema::dropIfExists('image_types');
         Schema::dropIfExists('wallpapers');
+        Schema::dropIfExists('coupons');
+        Schema::dropIfExists('wishlists');
     }
 };

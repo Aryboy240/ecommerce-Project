@@ -156,43 +156,46 @@
                         <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
                     </div>
                 </section>
+                
+                <!-- Modal for Order Details -->
+                <div id="orderDetailsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Order Details</h2>
+                        <div class="order-info">
+                            <!-- Order details will be populated dynamically -->
+                            <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+                            <p><strong>Customer Name:</strong> <span id="customer-name"></span></p>
+                            <p><strong>Products:</strong> <span id="products"></span></p>
+                            <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
+                            <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+                            <p><strong>Order Date:</strong> <span id="order-date"></span></p>
+                            <p><strong>Receipt:</strong> <span id="receipt"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for Status Update -->
+                <div id="statusUpdateModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Update Shipment Status</h2>
+                        <form id="updateStatusForm">
+                            <select name="shipment_status" required>
+                                <option value="processing">Processing</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                            <button type="submit" class="btn-primary">Update Status</button>
+                        </form>
+                    </div>
+                </div>
+
             </main>
         </div>
 
-    <!-- Modal for Order Details -->
-    <div id="orderDetailsModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Order Details</h2>
-            <div class="order-info">
-                <!-- Order details will be populated dynamically -->
-                <p><strong>Order ID:</strong> <span id="order-id"></span></p>
-                <p><strong>Customer Name:</strong> <span id="customer-name"></span></p>
-                <p><strong>Products:</strong> <span id="products"></span></p>
-                <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
-                <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
-                <p><strong>Order Date:</strong> <span id="order-date"></span></p>
-                <p><strong>Receipt:</strong> <span id="receipt"></span></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for Status Update -->
-    <div id="statusUpdateModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Update Shipment Status</h2>
-            <form id="updateStatusForm">
-                <select name="shipment_status" required>
-                    <option value="processing">Processing</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="cancelled">Cancelled</option>
-                </select>
-                <button type="submit" class="btn-primary">Update Status</button>
-            </form>
-        </div>
-    </div>
+    
 
     <!-- Notification Container -->
     <div id="notificationContainer" class="notification-container"></div>
