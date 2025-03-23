@@ -1,0 +1,247 @@
+main {
+    height: 100%;
+}
+
+.wishlist-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.wishlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--mint);
+    padding-bottom: 0.5rem;
+}
+
+.wishlist-count {
+    color: var(--mint);
+    font-weight: 600;
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.wishlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: var(--bg-secondary);
+}
+
+.wishlist-table th,
+.wishlist-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #333;
+    vertical-align: middle;
+    height: 80px;
+}
+
+.wishlist-table th {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    height: auto;
+}
+
+.wishlist-table tr:hover {
+    background-color: rgba(0, 191, 174, 0.1);
+}
+
+.product-thumbnail {
+    max-width: 80px;
+    max-height: 60px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+}
+
+.product-name-cell {
+    font-weight: 600;
+}
+
+.price-cell {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 6px;
+    flex-direction: row;
+    height: 30px;
+    max-width: 180px;
+}
+
+.add-to-cart-form,
+.wishlist-form {
+    width: 50%;
+    height: 100%;
+}
+
+.icon-btn,
+.remove-from-wishlist {
+    width: 100%;
+    height: 100%;
+    padding: 0 0.3rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    min-height: unset;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+.icon-btn:hover,
+.remove-from-wishlist:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.remove-from-wishlist {
+    background-color: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.remove-from-wishlist:hover {
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.empty-wishlist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1rem;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.empty-heart {
+    font-size: 4rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.wishlist-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.continue-shopping-btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: transparent;
+    color: var(--mint);
+    border: 2px solid var(--mint);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: var(--pointer);
+}
+
+.continue-shopping-btn:hover {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+}
+
+.wishlist-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.wishlist-button:hover {
+    color: #ff4d4d;
+}
+
+.wishlist-button:hover::after {
+    opacity: 1;
+}
+
+.wishlist-button .fas {
+    display: none;
+}
+
+.wishlist-button.active .far {
+    display: none;
+}
+
+.wishlist-button.active .fas {
+    display: inline-block;
+    color: #ff4d4d;
+}
+
+.message-box {
+    position: fixed;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 1000;
+}
+.message-box.show {
+    bottom: 20px;
+    opacity: 1;
+}
+.message-box.error {
+    background-color: red;
+}
+
+.continue-shopping-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    border-width: 1px;
+    line-height: 1;
+    display: inline-block;
+}
+
+.stock-cell {
+    text-align: center;
+    font-weight: bold;
+}
+
+.stock-out {
+    color: red;
+}
+
+.stock-low {
+    color: orange;
+}
+
+.stock-in {
+    color: green;
+}
+.product-name-cell a {
+    color: white;
+    text-decoration: none;
+}
+
+.product-name-cell a:hover {
+    text-decoration: underline;
+}

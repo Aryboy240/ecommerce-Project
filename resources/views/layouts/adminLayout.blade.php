@@ -27,7 +27,7 @@
 
 <body>
 
-  <!-- Bubble Background 🫧 --> 
+  <!-- Bubble Background 🫧 -->
   @php
     $selectedWallpaper = \App\Models\Wallpaper::where('is_selected', true)->first();
   @endphp

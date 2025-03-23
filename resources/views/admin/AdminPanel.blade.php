@@ -28,7 +28,7 @@
                     <div class="dropdown">
                         <button class="dropbtn">Admin User</button>
                         <div class="dropdown-content">
-                            <a href="{{ route('adminprofile') }}" class="content-1">Profile</a>
+                            <a href="{{ route('wallpapers') }}" class="content-1">Profile</a>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" id="button-off" class="content-2">

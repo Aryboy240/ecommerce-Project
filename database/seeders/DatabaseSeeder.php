@@ -55,15 +55,6 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true
         ]);
 
-        $adminUser = User::create([
-            'name' => 'Hussen1',
-            'fullName' => 'Hussen Ahmed',
-            'email' => 'hahmed221ah@gmail.com',
-            'password' => Hash::make('12345678'),
-            'birthday' => '2003-12-09',
-            'is_admin' => true
-        ]);
-
         // Define products by category
         $productsByCategory = [
             'Adidas' => [

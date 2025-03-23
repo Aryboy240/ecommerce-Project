@@ -2,10 +2,12 @@
     Developer: Oyinlola Arowolo
     University ID: 230402373
     Function: Front end for the checkout page
+    
     Developer: Aqsa Amjad
     University ID: 230066670
     Function: Front end for the checkout page
 -->
+
 @extends('layouts.mainLayout')
 @section('extra-head')
     <script defer src="{{ asset('js/checkout_page.js') }}"></script>

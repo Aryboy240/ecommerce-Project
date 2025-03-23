@@ -1,13 +1,31 @@
 <?php
+
+/**
+ * Handles all order-related operations for the e-commerce website
+ * 
+ * This controller manages the creation, display, and management of orders
+ * placed by authenticated users through the website's shopping interface.
+ * 
+ * Modified by: Vatsal
+ * Student code: 220408633
+ * Added admin reporting functionality and order status management
+ * Updated to ensure all statistics always reflect actual database values
+ * Enhanced order history tracking for improved auditing
+ */
+
 namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\OrderItem;
+use App\Models\OrderLog;
+use App\Events\OrderStatusChanged;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+
 /**
  * Handles all order-related operations for the e-commerce website
  * 
@@ -19,6 +37,7 @@ use Carbon\Carbon;
  * Added admin reporting functionality and order status management
  * Updated to ensure all statistics always reflect actual database values
  */
+
 class OrderController extends Controller
 {
     /**
@@ -30,7 +49,7 @@ class OrderController extends Controller
     }
     /**
      * Display all orders for the authenticated user
-     *
+     * 
      * @return \Illuminate\View\View
      */
     public function index()
@@ -38,7 +57,7 @@ class OrderController extends Controller
         $orders = Order::with(['items.product'])
             ->where('user_id', Auth::id())
             ->latest()
-            ->get();
+            ->paginate(10);
             
         return view('orders.index', compact('orders'));
     }
@@ -71,7 +90,8 @@ class OrderController extends Controller
         if ($order->user_id !== Auth::id() && !Auth::user()->is_admin) {
             abort(403);
         }
-        $order->load(['items.product']);
+
+        $order->load(['items.product', 'logs']);
         return view('orders.show', compact('order'));
     }
     /**
@@ -97,8 +117,9 @@ class OrderController extends Controller
             // Create order
             $order = Order::create([
                 'user_id' => Auth::id(),
-                'status' => 'pending',
-                'total_amount' => 0 // Will be calculated from items
+                'status' => Order::STATUS_PENDING,
+                'total_amount' => 0, // Will be calculated from items
+                'payment_method' => $request->input('payment_method', 'online')
             ]);
             
             $totalAmount = 0;
@@ -140,6 +161,14 @@ class OrderController extends Controller
                 'coupon_code'  => $appliedCoupon ? $appliedCoupon['code'] : null
             ]);
             
+            // Create order log
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'order_created',
+                'details' => "Order created with " . $cartItems->count() . " items for £" . number_format($totalAmount, 2)
+            ]);
+            
             // Clear cart
             DB::table('shopping_cart_items')
                 ->where('user_id', Auth::id())
@@ -152,6 +181,7 @@ class OrderController extends Controller
                            ->with('success', 'Order placed successfully!');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Order creation failed: ' . $e->getMessage());
             return back()->with('error', 'Failed to place order: ' . $e->getMessage());
         }
     }
@@ -171,12 +201,24 @@ class OrderController extends Controller
         }
         
         $validatedData = $request->validate([
-            'status' => 'required|in:pending,processing,shipped,delivered,cancelled,completed'
+            'status' => 'required|in:' . implode(',', array_keys(Order::getStatuses()))
         ]);
         
-        $order->update(['status' => $validatedData['status']]);
+        $oldStatus = $order->status;
+        $newStatus = $validatedData['status'];
         
-        return back()->with('success', 'Order status updated successfully');
+        // Only update if status has changed
+        if ($oldStatus !== $newStatus) {
+            $order->status = $newStatus;
+            $order->save();
+            
+            // Trigger the status changed event
+            event(new OrderStatusChanged($order, $oldStatus, $newStatus));
+            
+            return back()->with('success', 'Order status updated successfully');
+        }
+        
+        return back()->with('info', 'Order status remains unchanged');
     }
     
     /**
@@ -189,7 +231,7 @@ class OrderController extends Controller
     public function refund(Request $request, Order $order)
     {
         // Check if the order belongs to the authenticated user
-         if ($order->user_id !== Auth::id()) {
+        if ($order->user_id !== Auth::id() && !Auth::user()->is_admin) {
             return redirect()->route('orders.index')->with('error', 'Unauthorized access');
         }
         // Check if the order can be refunded
@@ -199,14 +241,76 @@ class OrderController extends Controller
         DB::beginTransaction();
         try {
             // Update order status
-            $order->status = 'refund_requested';
+            $oldStatus = $order->status;
+            $order->status = Order::STATUS_REFUND_REQUESTED;
+            $order->notes = $request->input('refund_reason', 'Customer requested refund');
             $order->save();
-            // Additional logic for processing the refund could go here
+            
+            // Log the refund request
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'refund_requested',
+                'details' => $request->input('refund_reason', 'No reason provided')
+            ]);
+            
+            // Trigger status changed event
+            event(new OrderStatusChanged($order, $oldStatus, Order::STATUS_REFUND_REQUESTED));
+
             DB::commit();
             return back()->with('success', 'Refund request submitted successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error('Refund request failed: ' . $e->getMessage());
             return back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+    
+    /**
+     * Complete a refund for an order (admin only)
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function completeRefund(Request $request, Order $order)
+    {
+        // Check if user is admin
+        if (!Auth::user()->is_admin) {
+            abort(403);
+        }
+        
+        // Check if order is in refund_requested status
+        if ($order->status !== Order::STATUS_REFUND_REQUESTED) {
+            return back()->with('error', 'This order is not awaiting refund');
+        }
+        
+        DB::beginTransaction();
+        
+        try {
+            $oldStatus = $order->status;
+            $order->status = Order::STATUS_REFUNDED;
+            $order->refund_transaction_id = $request->input('refund_transaction_id');
+            $order->save();
+            
+            // Log the refund completion
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'refund_completed',
+                'details' => 'Refund processed by admin' . 
+                    ($request->input('refund_transaction_id') ? ' (Transaction: ' . $request->input('refund_transaction_id') . ')' : '')
+            ]);
+            
+            // Trigger the status changed event
+            event(new OrderStatusChanged($order, $oldStatus, Order::STATUS_REFUNDED));
+            
+            DB::commit();
+            return back()->with('success', 'Refund processed successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Refund completion failed: ' . $e->getMessage());
+            return back()->with('error', 'Failed to process refund: ' . $e->getMessage());
         }
     }
     
@@ -409,21 +513,314 @@ class OrderController extends Controller
     }
     
     /**
-     * Admin orders view
+     * Admin orders view with improved filtering and sorting
+     * 
+     * Enhanced to support the admin panel order management interface
      *
-     * @return \Illuminate\View\View
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
      */
-    public function adminOrders()
+    public function adminOrders(Request $request)
     {
         // Ensure user is admin
         if (!Auth::user() || !Auth::user()->is_admin) {
             abort(403, 'Unauthorized access');
         }
         
-        $orders = Order::with(['user', 'items.product'])
-            ->latest()
-            ->paginate(15);
+        $query = Order::with(['user', 'items.product']);
+        
+        // Filter by status if provided
+        if ($request->has('status') && $request->status) {
+            $query->where('status', $request->status);
+        }
+        
+        // Filter by date range if provided
+        if ($request->has('date_from') && $request->date_from) {
+            $query->where('created_at', '>=', Carbon::parse($request->date_from)->startOfDay());
+        }
+        
+        if ($request->has('date_to') && $request->date_to) {
+            $query->where('created_at', '<=', Carbon::parse($request->date_to)->endOfDay());
+        }
+        
+        // Filter by customer if provided
+        if ($request->has('customer') && $request->customer) {
+            $query->whereHas('user', function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->customer . '%')
+                  ->orWhere('email', 'like', '%' . $request->customer . '%');
+            });
+        }
+        
+        // Sort orders if sorting parameters are provided
+        if ($request->has('sort') && $request->has('direction')) {
+            $allowedSortFields = ['id', 'created_at', 'status', 'total_amount'];
+            $sortField = in_array($request->sort, $allowedSortFields) ? $request->sort : 'created_at';
+            $sortDirection = in_array(strtolower($request->direction), ['asc', 'desc']) ? $request->direction : 'desc';
             
-        return view('admin.AdminOrders', compact('orders'));
+            $query->orderBy($sortField, $sortDirection);
+        } else {
+            // Default sorting by latest
+            $query->latest();
+        }
+        
+        // If this is an AJAX request for the admin panel, return JSON data
+        if ($request->ajax() || $request->wantsJson()) {
+            $orders = $query->paginate(15);
+            
+            $formattedOrders = $orders->map(function ($order) {
+                return [
+                    'id' => $order->id,
+                    'customer_name' => $order->user->name,
+                    'products' => $order->items->pluck('product.name')->implode(', '),
+                    'date' => $order->created_at->format('Y-m-d'),
+                    'payment_status' => $order->status,
+                    'shipment_status' => $this->mapOrderStatusToShipmentStatus($order->status),
+                    'total_amount' => number_format($order->total_amount, 2)
+                ];
+            });
+            
+            return response()->json([
+                'orders' => $formattedOrders,
+                'pagination' => [
+                    'total' => $orders->total(),
+                    'per_page' => $orders->perPage(),
+                    'current_page' => $orders->currentPage(),
+                    'last_page' => $orders->lastPage()
+                ]
+            ]);
+        }
+        
+        // For regular web requests, continue with the view rendering
+        $orders = $query->paginate(15)->withQueryString();
+        
+        // Get available statuses for the filter dropdown
+        $statuses = Order::getStatuses();
+        
+        return view('admin.AdminOrder', compact('orders', 'statuses'));
+    }
+    
+    /**
+     * Map internal order status to shipment status for the admin panel
+     *
+     * @param string $orderStatus
+     * @return string
+     */
+    private function mapOrderStatusToShipmentStatus($orderStatus)
+    {
+    $mapping = [
+        'pending' => 'Pending',
+        'processing' => 'Processing',
+        'shipped' => 'Shipped',
+        'delivered' => 'Delivered',
+        'completed' => 'Completed',
+        'cancelled' => 'Cancelled',
+        'refund_requested' => 'Cancelled',
+        'refunded' => 'Cancelled',
+        'failed' => 'Failed'
+    ];
+    
+    return $mapping[$orderStatus] ?? 'Processing';
+    }
+    
+    /**
+     * API endpoint for the admin panel to get order data
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getAdminOrdersData(Request $request)
+{
+    // Ensure user is admin
+    if (!Auth::user() || !Auth::user()->is_admin) {
+        return response()->json(['error' => 'Unauthorized'], 403);
+    }
+    
+    try {
+        $query = Order::with(['user', 'items.product']);
+        
+        // Apply filters
+        if ($request->has('payment_status') && $request->payment_status) {
+            $query->where('status', $request->payment_status);
+        }
+        
+        if ($request->has('shipment_status') && $request->shipment_status) {
+            // Map shipment status to order status if needed
+            $orderStatus = $this->mapShipmentStatusToOrderStatus($request->shipment_status);
+            $query->where('status', $orderStatus);
+        }
+        
+        if ($request->has('date_from') && $request->date_from) {
+            $query->where('created_at', '>=', Carbon::parse($request->date_from)->startOfDay());
+        }
+        
+        if ($request->has('date_to') && $request->date_to) {
+            $query->where('created_at', '<=', Carbon::parse($request->date_to)->endOfDay());
+        }
+        
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('id', 'like', "%{$search}%")
+                  ->orWhereHas('user', function($userQuery) use ($search) {
+                      $userQuery->where('name', 'like', "%{$search}%")
+                                ->orWhere('email', 'like', "%{$search}%");
+                  });
+            });
+        }
+        
+        // Default sort by most recent
+        $query->latest();
+        
+        // Simplify - only get necessary fields
+        $orders = $query->get();
+        
+        $formattedOrders = $orders->map(function ($order) {
+            // Check if user exists to prevent null errors
+            $userName = $order->user ? $order->user->name : 'Unknown User';
+            
+            // Simple array structure
+            return [
+                'order_id' => $order->id,
+                'customer_name' => $userName,
+                'date' => $order->created_at->format('Y-m-d'),
+                'payment_status' => $order->status,
+                'shipment_status' => $this->mapOrderStatusToShipmentStatus($order->status),
+                'total_amount' => number_format($order->total_amount, 2)
+            ];
+        });
+        
+        return response()->json([
+            'orders' => $formattedOrders->toArray()
+        ]);
+    } catch (\Exception $e) {
+        \Log::error('Error in getAdminOrdersData: ' . $e->getMessage());
+        // Simplified error response
+        return response()->json([
+            'error' => 'Failed to load orders: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
+    private function mapShipmentStatusToOrderStatus($shipmentStatus)
+    {
+    $mapping = [
+        'Processing' => 'processing',
+        'Shipped' => 'shipped',
+        'Delivered' => 'delivered',
+        'Cancelled' => 'cancelled'
+    ];
+    
+    return $mapping[$shipmentStatus] ?? 'processing';
+    }
+    
+    /**
+     * API endpoint to update order status from the admin panel
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function apiUpdateOrderStatus(Request $request, Order $order)
+    {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+        
+        $validatedData = $request->validate([
+            'status' => 'required|in:' . implode(',', array_keys(Order::getStatuses()))
+        ]);
+        
+        $oldStatus = $order->status;
+        $newStatus = $validatedData['status'];
+        
+        // Only update if status has changed
+        if ($oldStatus !== $newStatus) {
+            $order->status = $newStatus;
+            $order->save();
+            
+            // Log the status change
+            OrderLog::create([
+                'order_id' => $order->id,
+                'user_id' => Auth::id(),
+                'action' => 'status_changed',
+                'details' => "Status changed from {$oldStatus} to {$newStatus}"
+            ]);
+            
+            // Trigger the status changed event
+            event(new OrderStatusChanged($order, $oldStatus, $newStatus));
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Order status updated successfully',
+                'new_status' => $newStatus,
+                'shipment_status' => $this->mapOrderStatusToShipmentStatus($newStatus)
+            ]);
+        }
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Order status remains unchanged',
+            'status' => $order->status
+        ]);
+    }
+    
+    /**
+     * Admin order details view with complete history
+     *
+     * @param Order $order
+     * @return \Illuminate\View\View
+     */
+    public function adminOrderDetail(Order $order)
+    {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403, 'Unauthorized access');
+        }
+        
+        $order->load(['user', 'items.product', 'logs.user']);
+        
+        // Get available statuses for the status update dropdown
+        $statuses = Order::getStatuses();
+        
+        return view('admin.AdminOrderDetail', compact('order', 'statuses'));
+    }
+    
+    /**
+     * Add admin note to an order
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addNote(Request $request, Order $order)
+    {
+        // Ensure user is admin
+        if (!Auth::user() || !Auth::user()->is_admin) {
+            abort(403);
+        }
+        
+        $validatedData = $request->validate([
+            'note' => 'required|string|max:1000'
+        ]);
+        
+        // Update order notes
+        if ($order->notes) {
+            $order->notes .= "\n\n" . now()->format('d M Y H:i') . " - " . $validatedData['note'];
+        } else {
+            $order->notes = now()->format('d M Y H:i') . " - " . $validatedData['note'];
+        }
+        
+        $order->save();
+        
+        // Log the note addition
+        OrderLog::create([
+            'order_id' => $order->id,
+            'user_id' => Auth::id(),
+            'action' => 'admin_note_added',
+            'details' => $validatedData['note']
+        ]);
+        
+        return back()->with('success', 'Note added successfully');
     }
 }
