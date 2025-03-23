@@ -261,6 +261,5 @@
     font-size: 24px;
     font-weight: bold;
     color: var(--text-primary);
-    margin-bottom: 20px;
     padding: 0 20px; /* Optional: Adds spacing on the sides */
 }
