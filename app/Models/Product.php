@@ -176,4 +176,9 @@ class Product extends Model
            ->limit($limit)
            ->get();
    }
+  
+  public function wishlist()
+  {
+      return $this->hasMany(Wishlist::class);
+  }
 }
