@@ -1,7 +1,11 @@
 /*    
     Developer: Aqsa Amjad
     University ID: 230066670
-    Function: Front end for the Customers page (for admins)
+    Function: Front end for the User Account page (for logged-in users)
+
+    Developer: Aryan Kora
+    University ID: 230059030
+    Function: Front end improvements
 */
 
 .main-content {
@@ -21,8 +25,6 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgb(0, 0, 0, 0.37);
 }
-
-/* Customer Table Styling */
 
 .search-bar {
     display: flex;
@@ -52,6 +54,7 @@
 
 .customer-table {
     border-radius: 5px;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -60,20 +63,17 @@
     border-collapse: collapse;
 }
 
-/* Cell Styling */
 .customer-table th,
 .customer-table td {
     padding: 10px;
     text-align: left;
 }
 
-/* Table Heading */
 .customer-table th {
     background-color: var(--mint);
     color: var(--text-primary);
 }
 
-/* Row Hover Effects */
 .customer-table tbody tr {
     transition: ease 0.3s;
     border-bottom: 1px solid var(--lighter);
@@ -117,14 +117,12 @@
     cursor: var(--text);
 }
 
-/* Action Cell Styling */
 .actions {
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-/* Button Styling */
 .btn {
     margin: 5px;
     padding: 6px 12px;
@@ -139,27 +137,29 @@
     transition: background-color 0.2s, transform 0.2s;
 }
 
-/* View Button Styling */
 .btn-view {
     background-color: var(--lighter);
     color: var(--text-primary);
     border: 1px solid var(--text-primary);
 }
 
-/* Delete Button Styling */
+.btn-add {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    border: 1px solid var(--mint);
+}
+
 .btn-delete {
     background-color: #dc3545;
     color: white;
     border: 1px solid #dc3545;
 }
 
-/* Button Hover Effects */
 .btn:hover {
     transform: scale(1.05);
     filter: brightness(90%);
 }
 
-/* Modal Styling */
 .modal {
     position: fixed;
     z-index: 1000;
@@ -174,7 +174,6 @@
     display: none;
 }
 
-/* Modal Content Styling */
 .modal-content {
     width: 420px;
     background-color: var(--bg-secondary);
@@ -186,7 +185,6 @@
     position: relative;
 }
 
-/* Close Button Styling */
 .close-btn {
     position: absolute;
     top: 10px;
@@ -196,16 +194,12 @@
     color: var(--text-primary);
     cursor: var(--pointer);
     transition: color 0.3s ease-in-out;
-    background: none;
-    border: none;
 }
 
-/* Close Button Hover Effects */
 .close-btn:hover {
     color: var(--darker);
 }
 
-/* Modal Input Field Styling */
 .modal-content input {
     width: 100%;
     padding: 10px;
@@ -217,172 +211,47 @@
     font-size: 16px;
 }
 
-/* Customer Details Panel */
-.customer-details-panel {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 500px;
-    height: 100%;
-    background-color: var(--bg-secondary);
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5), 0 0 30px var(--lighter);
-    padding: 24px;
-    overflow-y: auto;
-    z-index: 1050;
-    transition: transform 0.3s ease;
-    transform: translateX(0);
-}
-
-/* Side Panel Header */
-.details-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 16px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--lighter);
-}
-
-.details-header h2 {
-    font-size: 20px;
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
-/* customer info */
-.customer-info {
-    background-color: var(--bg-primary);
-    padding: 20px;
-    border-radius: 12px;
-    color: var(--text-primary);
-    border: 1px solid var(--lighter);
-    box-shadow: 0 2px 8px rgba(0, 191, 174, 0.2);
-}
-
-/* Field Styling */
-.info-field {
-    margin-bottom: 24px;
-}
-
-label {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    display: block;
-    margin-bottom: 6px;
-}
-
-.detail-view {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* text and input Fields */
-span,
-input {
-    font-size: 1rem;
-    padding: 10px;
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    border: 1px solid var(--lighter);
-    border-radius: 6px;
-    flex-grow: 1;
-    transition: background-color var(--transition-speed),
-        border-color var(--transition-speed);
-}
-
-input:focus {
-    outline: none;
-    border-color: var(--mint);
-    background-color: var(--bg-primary);
-}
-
-/* buttons */
-.customer-details-panel button {
+.btn-edit {
     background-color: var(--mint);
-    color: var(--text-primary);
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color var(--transition-speed),
-        transform var(--transition-speed);
-    box-shadow: 0 2px 8px rgba(0, 191, 174, 0.3);
+    color: var(--bg-primary);
+    border: 1px solid var(--mint);
 }
 
-.customer-details-panel button:hover {
+.btn-edit:hover {
+    filter: brightness(90%);
+    transform: scale(1.05);
+}
+
+.btn-save {
+    background-color: var(--mint);
+    color: var(--bg-primary);
+    border: 1px solid var(--mint);
+}
+
+.btn-save:hover {
+    filter: brightness(90%);
+    transform: scale(1.05);
+}
+
+.btn-cancel {
     background-color: var(--lighter);
-    transform: translateY(-2px);
-}
-
-.customer-details-panel button:active {
-    background-color: var(--darker);
-    transform: translateY(0);
-}
-
-.hidden {
-    display: none;
-}
-
-/* Orders Section */
-.order-list h3 {
-    margin-top: 24px;
-    font-size: 18px;
-    font-weight: 600;
     color: var(--text-primary);
-    border-bottom: 1px solid var(--lighter);
-    padding-bottom: 8px;
+    border: 1px solid var(--text-primary);
 }
 
-.order-item {
-    padding: 16px;
-    background-color: var(--bg-primary);
-    border: 1px solid var(--lighter);
-    border-radius: 10px;
-    margin-bottom: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform var(--transition-speed);
+.btn-cancel:hover {
+    background-color: var(--floater);
 }
 
-.order-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 16px rgba(0, 191, 174, 0.4);
+.btn-confirmDelete {
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
 }
 
-.order-item p {
-    margin: 6px 0;
-    font-size: 0.95rem;
-}
-
-/* status + save button row */
-.order-status-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* Dropdown Styling */
-.order-status {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid var(--lighter);
-    background-color: var(--bg-secondary);
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: border-color var(--transition-speed),
-        background-color var(--transition-speed);
-    flex-grow: 1;
-}
-
-.order-status:focus {
-    outline: none;
-    border-color: var(--mint);
-    background-color: var(--bg-primary);
+.btn-confirmDelete:hover {
+    filter: brightness(90%);
+    transform: scale(1.05);
 }
 
 .page-header {
