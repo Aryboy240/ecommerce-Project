@@ -1,3 +1,9 @@
+<!--
+    Developer: Abdulrahman Muse
+    University ID: 230228946
+    Function: manage coupons
+-->
+
 <!-- This is a child of the "views/layouts/adminLayout.balde.php" -->
 @extends('layouts.adminLayout')
 
