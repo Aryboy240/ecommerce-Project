@@ -238,11 +238,11 @@
       <h3>Customer Support</h3>
       <p>
         <img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}" alt="Phone Icon" />
-        1 (800) 555-OPTQ
+        07777777777
       </p>
       <p>
         <img src="{{ asset('Images/svg/email-svgrepo-com.svg') }}" alt="email Icon" />
-        <a href="mailto:support@optique.com">support@optique.com</a>
+        <a href="mailto:optique.team28@gmail.com">optique.team28@gmail.com</a>
       </p>
       <p>
         <img src="{{ asset('Images/svg/contact-details-svgrepo-com.svg') }}" alt="email Icon" />
@@ -265,19 +265,19 @@
     </div>
     <div class="social-icons">
       <h3>Follow Us</h3>
-      <a href="#" id="social-footer-span">
+      <a href="https://www.facebook.com/profile.php?id=61573793477027" id="social-footer-span">
         <img src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}" alt="email Icon" />
         <span>Facebook</span>
       </a>
-      <a href="#" id="social-footer-span">
+      <a href="https://www.instagram.com/optique.team28/" id="social-footer-span">
         <img src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}" alt="email Icon" />
         <span>Instagram</span>
       </a>
-      <a href="#" id="social-footer-span">
+      <a href="https://x.com/OptiqueTeam28" id="social-footer-span">
         <img src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}" alt="email Icon" />
         <span>Twitter</span>
       </a>
-      <a href="#" id="social-footer-span">
+      <a href="https://uk.pinterest.com/optiqueteam28/" id="social-footer-span">
         <img src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}" alt="email Icon" />
         <span>Pintrest</span>
       </a>

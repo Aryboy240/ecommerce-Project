@@ -182,7 +182,9 @@
         <p class="member-title">Full Stack Developer</p>
         <p class="member-bio">Abdul is a skilled full stack developer with expertise in both frontend and
         backend technologies. He is dedicated to creating seamless user experiences and ensuring that
-        the Optique platform runs smoothly.</p>
+        the Optique platform runs smoothly. His work spans across core features and system 
+        functionality,consistently focusing on usability, performance, 
+        and innovative solutions to enhance the overall platform experience.</p>
         <div class="member-contact">
         <a href="#">Email</a>
         <a href="#">LinkedIn</a>
@@ -278,12 +280,14 @@
       <div class="member-card">
         <h3 class="member-name">Nikhil</h3>
         <p class="member-title">Backend Developer</p>
-        <p class="member-bio">Nikhil is a backend developer who specializes in API development and
-        integration. His work ensures that the Optique platform communicates effectively with various
-        services and applications.</p>
+        <p class="member-bio">Nikhil is a backend developer who specializes in API development and integration. 
+          His work ensures that the Optique platform communicates effectively with various services and applications. 
+          During the project, I contributed to both the frontend and backend development. 
+          I specifically focused on the user and admin login features, password recovery functionality, and integrating Optique’s 
+          contact information across multiple platforms, including email, Instagram, Facebook, and other social media channels.</p>
         <div class="member-contact">
-        <a href="#">Email</a>
-        <a href="#">LinkedIn</a>
+        <a href="mailto:kainthnikhil1@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/nikhil-kainth/">LinkedIn</a>
         </div>
       </div>
       </div>
