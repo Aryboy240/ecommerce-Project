@@ -24,6 +24,6 @@ function updateMailtoLink() {
     } else {
         // Opens the email app with the information filled in, ready to send.
         const mailtoLink = document.getElementById("mailto-link");
-        mailtoLink.href = `mailto:support@optique.com?subject=Contact Us Form&body=I would like to make an admin request...,%0D%0A%0D%0AHere are the details:%0D%0AFirst Name: ${fname}%0D%0ALast Name: ${lname}%0D%0APhone: ${pNumber}%0D%0AEmail: ${email}%0D%0AMessage: ${desc}`;
+        mailtoLink.href = `mailto:optique.team28@gmail.com?subject=Contact Us Form&body=I would like to make an admin request...,%0D%0A%0D%0AHere are the details:%0D%0AFirst Name: ${fname}%0D%0ALast Name: ${lname}%0D%0APhone: ${pNumber}%0D%0AEmail: ${email}%0D%0AMessage: ${desc}`;
     }
 }

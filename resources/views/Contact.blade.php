@@ -134,18 +134,18 @@
           </li>
           <li>
             <span><img src="{{ asset('Images/svg/phone-line-svgrepo-com.svg') }}"></span>
-            <span>07928202588</span>
+            <span>07777777777</span>
           </li>
         </ul>
       </div>
       <ul class="sci">
-        <li><a href="https://www.facebook.com" target="_blank"><img
+        <li><a href="https://www.facebook.com/profile.php?id=61573793477027" target="_blank"><img
               src="{{ asset('Images/svg/facebook-svgrepo-com.svg') }}"></a></li>
-        <li><a href="https://twitter.com" target="_blank"><img
+        <li><a href="https://x.com/OptiqueTeam28" target="_blank"><img
               src="{{ asset('Images/svg/twitter-svgrepo-com.svg') }}"></a></li>
-        <li><a href="https://www.instagram.com" target="_blank"><img
+        <li><a href="https://www.instagram.com/optique.team28/" target="_blank"><img
               src="{{ asset('Images/svg/instagram-svgrepo-com.svg') }}"></a></li>
-        <li><a href="https://uk.pinterest.com/" target="_blank"><img
+        <li><a href="https://uk.pinterest.com/optiqueteam28/" target="_blank"><img
               src="{{ asset('Images/svg/pinterest-180-svgrepo-com.svg') }}"></a></li>
       </ul>
     </div>
