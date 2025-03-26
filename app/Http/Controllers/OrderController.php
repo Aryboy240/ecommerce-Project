@@ -325,94 +325,89 @@ class OrderController extends Controller
         if (!Auth::user() || !Auth::user()->is_admin) {
             abort(403, 'Unauthorized access');
         }
-        
-        // Calculate total revenue from completed orders - exact real value only
-        $totalRevenue = Order::where('status', 'completed')
-            ->sum('total_amount');
-            
+    
+        // Calculate total revenue from all orders - sum of all order amounts
+        $totalRevenue = Order::sum('total_amount'); // This will sum the total amount for all orders regardless of status
+
         // Calculate revenue growth (last 30 days vs previous 30 days)
-        $lastMonth = Order::where('status', 'completed')
-            ->where('created_at', '>=', Carbon::now()->subDays(30))
-            ->sum('total_amount');
-            
-        $previousMonth = Order::where('status', 'completed')
-            ->whereBetween('created_at', [Carbon::now()->subDays(60), Carbon::now()->subDays(30)])
-            ->sum('total_amount');
-            
-        $revenueGrowth = $previousMonth > 0 
-            ? round(($lastMonth - $previousMonth) / $previousMonth * 100) 
-            : 0;
-        
+        $lastMonthRevenue = Order::where('created_at', '>=', Carbon::now()->subDays(30))
+            ->sum('total_amount'); // Revenue for the last 30 days
+
+        $previousMonthRevenue = Order::whereBetween('created_at', [Carbon::now()->subDays(60), Carbon::now()->subDays(30)])
+            ->sum('total_amount'); // Revenue for the previous 30 days
+
+        // Calculate revenue growth percentage
+        $revenueGrowth = $previousMonthRevenue > 0 
+            ? round(($lastMonthRevenue - $previousMonthRevenue) / $previousMonthRevenue * 100) 
+            : ($lastMonthRevenue > 0 ? 100 : 0);  // If previous month was 0, show 100% increase if current month > 0
+
         // Get new orders count (last 30 days) - exact real value only
         $newOrdersCount = Order::where('created_at', '>=', Carbon::now()->subDays(30))
             ->count();
-            
+    
         // Calculate order growth
         $previousOrdersCount = Order::whereBetween('created_at', [Carbon::now()->subDays(60), Carbon::now()->subDays(30)])
             ->count();
-            
+    
         $orderGrowth = $previousOrdersCount > 0 
             ? round(($newOrdersCount - $previousOrdersCount) / $previousOrdersCount * 100) 
-            : 0;
-        
+            : ($newOrdersCount > 0 ? 100 : 0);  // If previous orders count was 0, show 100% increase if current orders > 0
+    
         // Get new customers (last 30 days) - exact real value only
         $newCustomersCount = User::where('created_at', '>=', Carbon::now()->subDays(30))
             ->where('is_admin', false)
             ->count();
-            
+    
         // Calculate customer growth
         $previousCustomersCount = User::whereBetween('created_at', [Carbon::now()->subDays(60), Carbon::now()->subDays(30)])
             ->where('is_admin', false)
             ->count();
-            
-        $customerGrowth = $previousCustomersCount > 0 
-            ? round(($newCustomersCount - $previousCustomersCount) / $previousCustomersCount * 100) 
-            : 0;
-        
+    
+        // Calculate customer growth (show the number of new customers)
+        $customerGrowth = $newCustomersCount - $previousCustomersCount;
+
+    
         // Get total product count - exact real value only
         $productCount = Product::count();
         $totalProducts = $productCount; // For clarity in the view
-        
-        // Get top 3 bestselling products
+    
+        // Get top 3 bestselling products (regardless of order status)
         $topProducts = Product::with('images') 
         ->select('products.id', 'products.name', 'products.price', 
             DB::raw('COALESCE(SUM(order_items.quantity), 0) as total_sold'))
         ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
         ->leftJoin('orders', 'orders.id', '=', 'order_items.order_id')
-        ->where(function($query) {
-            $query->where('orders.status', 'completed')
-                ->orWhereNull('orders.status');
-        })
+        // Removed the where condition to include all orders
         ->groupBy('products.id', 'products.name', 'products.price')
-        ->orderByDesc('total_sold')
+        ->orderByDesc('total_sold') // Sort by total sold in descending order
         ->limit(3)
         ->get();
-            
-        // Calculate sales percentage for each top product
+
+        // Calculate total sold items for sales percentage calculation
         $totalSold = OrderItem::join('orders', 'orders.id', '=', 'order_items.order_id')
-            ->where('orders.status', 'completed')
-            ->sum('order_items.quantity');
-            
+        ->sum('order_items.quantity'); // Sum for all orders, regardless of status
+
+        // Calculate sales percentage for each top product
         foreach ($topProducts as $product) {
-            $product->sales_percentage = $totalSold > 0 
-                ? round(($product->total_sold / $totalSold) * 100) 
-                : 0;
+        $product->sales_percentage = $totalSold > 0 
+            ? round(($product->total_sold / $totalSold) * 100) 
+            : 0;
         }
-        
+    
         // Get products with their incoming and outgoing orders
         $products = Product::with(['images', 'category'])->get();
-        
+    
         foreach ($products as $product) {
             // Get incoming orders count (pending)
             $product->incoming_count = OrderItem::whereHas('order', function($query) {
                 $query->whereIn('status', ['pending', 'processing']);
             })->where('product_id', $product->id)->sum('quantity');
-            
+    
             // Get outgoing orders count (completed)
             $product->outgoing_count = OrderItem::whereHas('order', function($query) {
                 $query->whereIn('status', ['shipped', 'delivered', 'completed']);
             })->where('product_id', $product->id)->sum('quantity');
-            
+    
             // Get recent orders for this product
             $product->recent_orders = OrderItem::select(
                 'order_items.*',
@@ -426,10 +421,10 @@ class OrderController extends Controller
             ->limit(2)
             ->get();
         }
-        
+    
         // Get out of stock products
         $outOfStockProducts = Product::where('stock_quantity', '<=', 0)->get();
-        
+    
         // Get incoming orders (pending)
         $incomingOrders = OrderItem::with(['product.images', 'order'])
             ->whereHas('order', function($query) {
@@ -438,7 +433,7 @@ class OrderController extends Controller
             ->orderByDesc('created_at')
             ->limit(5)
             ->get();
-            
+    
         // Get outgoing orders (shipped, delivered, completed)
         $outgoingOrders = OrderItem::with(['product.images', 'order'])
             ->whereHas('order', function($query) {
@@ -447,7 +442,7 @@ class OrderController extends Controller
             ->orderByDesc('created_at')
             ->limit(5)
             ->get();
-        
+    
         // Generate data for orders per month chart - use actual order data
         $ordersByMonth = Order::select(
                 DB::raw('MONTH(created_at) as month'),
@@ -459,15 +454,15 @@ class OrderController extends Controller
             ->get()
             ->pluck('count', 'month')
             ->toArray();
-            
+    
         $orderChartLabels = [];
         $orderChartData = [];
-        
+    
         for ($i = 1; $i <= 12; $i++) {
             $orderChartLabels[] = date('M', mktime(0, 0, 0, $i, 1));
             $orderChartData[] = $ordersByMonth[$i] ?? 0; // Default to 0 for months with no orders
         }
-        
+    
         // Generate data for customers over time chart - use actual user data
         $customersByMonth = User::select(
                 DB::raw('MONTH(created_at) as month'),
@@ -480,17 +475,17 @@ class OrderController extends Controller
             ->get()
             ->pluck('count', 'month')
             ->toArray();
-        
+    
         $customerChartLabels = [];
         $customerChartData = [];
         $cumulativeCustomers = 0;
-        
+    
         for ($i = 1; $i <= 12; $i++) {
             $customerChartLabels[] = date('M', mktime(0, 0, 0, $i, 1));
             $cumulativeCustomers += $customersByMonth[$i] ?? 0;
             $customerChartData[] = $cumulativeCustomers;
         }
-        
+    
         return view('admin.AdminReport', compact(
             'totalRevenue',
             'revenueGrowth',
@@ -511,6 +506,7 @@ class OrderController extends Controller
             'customerChartData'
         ));
     }
+    
     
     /**
      * Admin orders view with improved filtering and sorting
@@ -598,6 +594,39 @@ class OrderController extends Controller
         
         return view('admin.AdminOrder', compact('orders', 'statuses'));
     }
+
+    public function getOrderDetails($orderId)
+    {
+        // Fetch the order with its related user and order items
+        $order = Order::with(['user', 'orderItems.product'])->find($orderId);
+    
+        // If the order is not found, return a 404 error
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+    
+        // Format and return the order details in the response
+        return response()->json([
+            'order' => [
+                'id' => $order->id,
+                'user' => $order->user ? [
+                    'name' => $order->user->name,
+                    'email' => $order->user->email,
+                ] : null, // Safely check if user is null
+                'items' => $order->orderItems->map(function ($item) {
+                    return [
+                        'product' => $item->product ? [
+                            'name' => $item->product->name,
+                        ] : null, // Safely check if product is null
+                        'quantity' => $item->quantity,
+                        'price' => number_format($item->price, 2),
+                    ];
+                }),
+                'created_at' => $order->created_at->format('Y-m-d H:i:s'),
+            ]
+        ]);
+    }
+    
     
     /**
      * Map internal order status to shipment status for the admin panel

@@ -135,6 +135,10 @@ Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminl
 
 // Admin Panel Route (Ensures Admin Access)
 Route::get('/adminpanel', [App\Http\Controllers\AdminController::class, 'adminPanelAccess'])->name('adminpanel');
+Route::get('/adminpanel/stats', [AdminController::class, 'getStats']);
+Route::get('/adminpanel/recent-activity', [AdminController::class, 'getRecentActivity']);
+
+
 
 // Admin Orders Route (Ensures Admin Access)
 Route::get('/AdminOrders', [App\Http\Controllers\AdminController::class, 'adminOrdersAccess'])->name('AdminOrders');
@@ -145,8 +149,8 @@ Route::get('/adminprofile', [App\Http\Controllers\AdminController::class, 'admin
 // web.php (Route for showing all users in the AdminCustomers page)
 Route::get('/customers', [UserController::class, 'showCustomers'])->name('customers');
 
-
 Route::get('/AdminOrders', [OrderController::class, 'adminOrders'])->name('AdminOrders');
+Route::get('/AdminOrders/orders/{orderId}', [OrderController::class, 'getOrderDetails']);
 
 // Route for updating a user
 Route::post('/admin/users/{user}/update', [UserController::class, 'updateUser'])->name('admin.users.update');

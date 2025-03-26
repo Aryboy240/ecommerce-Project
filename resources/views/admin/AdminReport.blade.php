@@ -82,13 +82,13 @@
                     @if(count($topProducts) > 0)
                         @foreach($topProducts as $index => $product)
                         <div class="glassrank">
-                            <p class="rankp">no{{ $index + 1 }}</p>
+                            <p class="rankp">No {{ $index + 1 }}</p>
                             <div class="rankproduct">
                                 <p>{{ $product->name }}</p>
                                 <div class="table-img">
                                     @foreach($product->images as $image)
                                         @if($image->imageType && $image->imageType->name == 'front')
-                                            <a href="{{ route('product.details', ['id' => $product->id]) }}" >
+                                            <a href="{{ route('product.details', ['id' => $product->id]) }}">
                                                 <img src="{{ asset($image->image_path) }}" alt="{{ $product->name }} - Front" class="item-img">
                                             </a>
                                             @break
@@ -106,7 +106,7 @@
                     @endif
                 </div>
             </div>
-    </div>
+        </div>
 
     <main class="inoutcomeboard">
         <div class="board incomeboard">
