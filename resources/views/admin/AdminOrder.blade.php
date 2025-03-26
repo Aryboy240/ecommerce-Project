@@ -464,7 +464,7 @@
         ];
         
         // Try to get real data first
-        fetch(`/admin/orders/${orderId}`)
+        fetch(`/AdminOrders/orders/${orderId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -472,7 +472,8 @@
                 return response.json();
             })
             .then(data => {
-                const products = data.order ? data.order.items : dummyProducts;
+                // Ensure that we have the correct order data and items, otherwise fall back to dummy data
+                const products = data.order && data.order.items ? data.order.items : dummyProducts;
                 showProductsList(orderId, products);
             })
             .catch(error => {
@@ -480,15 +481,24 @@
                 showProductsList(orderId, dummyProducts);
             });
     }
-    
+
     function showProductsList(orderId, products) {
         let productsList = '';
-        products.forEach(item => {
-            productsList += `${item.product.name} - ${item.quantity} × £${item.price}\n`;
-        });
         
+        products.forEach(item => {
+            // Check if product and item data are available, otherwise set to 'N/A'
+            const productName = item.product ? item.product.name : 'Unknown Product';
+            const productQuantity = item.quantity !== undefined ? item.quantity : 'N/A';
+            const productPrice = item.price !== undefined ? item.price : 'N/A';
+
+            // Append product details to the products list
+            productsList += `${productName} x ${productQuantity} : £${productPrice}\n`;
+        });
+
+        // Show the products in an alert
         alert(`Products in Order #${orderId}:\n\n${productsList}`);
     }
+
     
     // Show update status modal
     function updateStatus(orderId) {
