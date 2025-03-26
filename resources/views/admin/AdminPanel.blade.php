@@ -102,19 +102,19 @@
             <div class="quick-actions">
                 <h2>Quick Actions</h2>
                 <div class="action-buttons">
-                    <button class="action-btn">
+                    <button onclick="location.href='{{ route('productadmin') }}'" class="action-btn">
                         <i class="fas fa-plus"></i>
                         Add New Product
                     </button>
-                    <button class="action-btn">
+                    <button onclick="location.href='{{ route('AdminOrders') }}'" class="action-btn">
                         <i class="fas fa-truck"></i>
                         Process Orders
                     </button>
-                    <button class="action-btn">
+                    <button onclick="location.href='{{ route('productadmin') }}'" class="action-btn">
                         <i class="fas fa-boxes"></i>
                         Update Stock
                     </button>
-                    <button class="action-btn">
+                    <button onclick="location.href='{{ route('admin.coupons') }}'" class="action-btn">
                         <i class="fas fa-tag"></i>
                         Manage Promotions
                     </button>
