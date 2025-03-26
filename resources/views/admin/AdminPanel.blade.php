@@ -44,11 +44,6 @@
         <main class="dashboard">
             <div class="dashboard-header">
                 <h1>Dashboard Overview</h1>
-                <div class="date-filter">
-                    <input type="date" id="startDate">
-                    <span>to</span>
-                    <input type="date" id="endDate">
-                </div>
             </div>
 
             <!-- Quick Stats Cards -->
@@ -229,7 +224,7 @@
         return `${days} days ago`;
     }
 
-    setInterval(fetchRecentActivity, 5000); // Refresh every 5 seconds
+    setInterval(fetchRecentActivity, 5000); // Refresh every 5 seconds because too many requests bad 💥
 </script>
 <style>
     .positive {

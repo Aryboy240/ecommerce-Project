@@ -179,11 +179,6 @@ class AdminController extends Controller
         ]);
     }
 
-    public function dashboard()
-    {
-        
-    }
-
     public function adminOrdersAccess(){
         // Ensure user is admin
         if (!Auth::user() || !Auth::user()->is_admin) {
