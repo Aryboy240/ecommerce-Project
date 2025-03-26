@@ -371,30 +371,27 @@ class OrderController extends Controller
         $productCount = Product::count();
         $totalProducts = $productCount; // For clarity in the view
     
-        // Get top 3 bestselling products
+        // Get top 3 bestselling products (regardless of order status)
         $topProducts = Product::with('images') 
         ->select('products.id', 'products.name', 'products.price', 
             DB::raw('COALESCE(SUM(order_items.quantity), 0) as total_sold'))
         ->leftJoin('order_items', 'products.id', '=', 'order_items.product_id')
         ->leftJoin('orders', 'orders.id', '=', 'order_items.order_id')
-        ->where(function($query) {
-            $query->where('orders.status', 'completed')
-                ->orWhereNull('orders.status');
-        })
+        // Removed the where condition to include all orders
         ->groupBy('products.id', 'products.name', 'products.price')
-        ->orderByDesc('total_sold')
+        ->orderByDesc('total_sold') // Sort by total sold in descending order
         ->limit(3)
         ->get();
-    
-        // Calculate sales percentage for each top product
+
+        // Calculate total sold items for sales percentage calculation
         $totalSold = OrderItem::join('orders', 'orders.id', '=', 'order_items.order_id')
-            ->where('orders.status', 'completed')
-            ->sum('order_items.quantity');
-    
+        ->sum('order_items.quantity'); // Sum for all orders, regardless of status
+
+        // Calculate sales percentage for each top product
         foreach ($topProducts as $product) {
-            $product->sales_percentage = $totalSold > 0 
-                ? round(($product->total_sold / $totalSold) * 100) 
-                : 0;
+        $product->sales_percentage = $totalSold > 0 
+            ? round(($product->total_sold / $totalSold) * 100) 
+            : 0;
         }
     
         // Get products with their incoming and outgoing orders
