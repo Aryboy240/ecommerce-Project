@@ -130,10 +130,18 @@ class AdminController extends Controller
         // Low stock items
         $lowStockItems = Product::where('stock_quantity', '<', 10)->count();
     
-        // Calculate percentage changes
-        $ordersChange = $lastWeekOrders > 0 ? (($currentWeekOrders - $lastWeekOrders) / $lastWeekOrders) * 100 : 0;
-        $revenueChange = $lastWeekRevenue > 0 ? (($currentRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100 : 0;
-        $customersChange = $lastWeekCustomers > 0 ? (($currentCustomers - $lastWeekCustomers) / $lastWeekCustomers) * 100 : 0;
+        // Calculate percentage changes safely
+        $ordersChange = $lastWeekOrders > 0 
+            ? (($currentWeekOrders - $lastWeekOrders) / $lastWeekOrders) * 100 
+            : ($currentWeekOrders > 0 ? 100 : 0); // If last week was 0, show 100% increase if current week > 0
+    
+        $revenueChange = $lastWeekRevenue > 0 
+            ? (($currentRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100 
+            : ($currentRevenue > 0 ? 100 : 0); 
+    
+        $customersChange = $lastWeekCustomers > 0 
+            ? (($currentCustomers - $lastWeekCustomers) / $lastWeekCustomers) * 100 
+            : ($currentCustomers > 0 ? 100 : 0);
     
         return response()->json([
             'totalOrders' => $currentWeekOrders,
@@ -148,7 +156,7 @@ class AdminController extends Controller
             'lowStockItems' => $lowStockItems
         ]);
     }
-
+    
     public function getRecentActivity()
     {
         // Fetch the latest 5 orders
