@@ -162,18 +162,31 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h2>Order Details</h2>
-                        <div class="order-info">
-                            <!-- Order details will be populated dynamically -->
-                            <p><strong>Order ID:</strong> <span id="order-id"></span></p>
-                            <p><strong>Customer Name:</strong> <span id="customer-name"></span></p>
-                            <p><strong>Products:</strong> <span id="products"></span></p>
-                            <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
-                            <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
-                            <p><strong>Order Date:</strong> <span id="order-date"></span></p>
-                            <p><strong>Receipt:</strong> <span id="receipt"></span></p>
-                        </div>
+                        <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+                        <p><strong>Customer Name:</strong> <span id="customer-name"></span></p>
+                        <p><strong>Email:</strong> <span id="customer-email"></span></p>
+                        <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
+                        <p><strong>Transaction ID:</strong> <span id="transaction-id"></span></p>
+                        <p><strong>Order Date:</strong> <span id="order-date"></span></p>
+                        
+                        <h3>Order Items</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order-items">
+                                <!-- Order items will be inserted here -->
+                            </tbody>
+                        </table>
+                
+                        <p><strong>Receipt:</strong> <span id="receipt-url"></span></p>
                     </div>
                 </div>
+                
 
                 <!-- Modal for Status Update -->
                 <div id="statusUpdateModal" class="modal">
@@ -388,22 +401,7 @@
     
     // View order details
     function viewDetails(orderId) {
-        // For demo purposes, show dummy details
-        const dummyOrder = {
-            id: orderId,
-            user: { name: 'Customer #' + orderId },
-            items: [
-                { product: { name: 'Product A' }, quantity: 2, price: '45.00' },
-                { product: { name: 'Product B' }, quantity: 1, price: '30.00' }
-            ],
-            payment_method: 'Credit Card',
-            transaction_id: 'TXN' + (1000000 + parseInt(orderId)),
-            created_at: new Date().toISOString(),
-            receipt_url: null
-        };
-        
-        // Try to get real data first
-        fetch(`/admin/orders/${orderId}`)
+        fetch(`/AdminOrders/orders/${orderId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -411,40 +409,49 @@
                 return response.json();
             })
             .then(data => {
+                console.log("Fetched order data:", data); // Log the fetched data
                 if (data.order) {
                     populateOrderDetails(data.order);
                 } else {
-                    populateOrderDetails(dummyOrder);
+                    console.error("Order data not found.");
                 }
             })
             .catch(error => {
                 console.error('Error fetching order details:', error);
-                populateOrderDetails(dummyOrder);
             });
-            
+
         // Show the modal
         document.getElementById('orderDetailsModal').style.display = 'block';
     }
-    
+
     function populateOrderDetails(order) {
-        document.getElementById('order-id').textContent = order.id;
-        document.getElementById('customer-name').textContent = order.user.name;
-        
-        // Format products list
-        const productsList = order.items.map(item => 
-            `${item.product.name} (${item.quantity} × £${item.price})`
-        ).join(', ');
-        
-        document.getElementById('products').textContent = productsList;
-        document.getElementById('payment-method').textContent = order.payment_method || 'Online';
-        document.getElementById('transaction-id').textContent = order.transaction_id || 'N/A';
-        document.getElementById('order-date').textContent = new Date(order.created_at).toLocaleString();
-        
-        // Show receipt link if available
+        console.log("Populating order details:", order);  // Log order data
+
+        document.getElementById('order-id').innerText = order.id;
+        document.getElementById('customer-name').innerText = order.user.name;
+        document.getElementById('customer-email').innerText = order.user.email;
+        document.getElementById('payment-method').innerText = order.payment_method;
+        document.getElementById('transaction-id').innerText = order.transaction_id;
+        document.getElementById('order-date').innerText = order.created_at;
+
+        let itemsList = document.getElementById('order-items');
+        itemsList.innerHTML = ''; // Clear previous items
+
+        order.items.forEach(item => {
+            let itemRow = `<tr>
+                <td>${item.product.name}</td>
+                <td>${item.quantity}</td>
+                <td>£${item.price}</td>
+            </tr>`;
+            itemsList.innerHTML += itemRow;
+        });
+
+        // Handle receipt URL
+        let receiptLink = document.getElementById('receipt-url');
         if (order.receipt_url) {
-            document.getElementById('receipt').innerHTML = `<a href="${order.receipt_url}" target="_blank">View Receipt</a>`;
+            receiptLink.innerHTML = `<a href="${order.receipt_url}" target="_blank">View Receipt</a>`;
         } else {
-            document.getElementById('receipt').textContent = 'Not available';
+            receiptLink.innerHTML = 'No receipt available';
         }
     }
     

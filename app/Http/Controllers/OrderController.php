@@ -598,6 +598,39 @@ class OrderController extends Controller
         
         return view('admin.AdminOrder', compact('orders', 'statuses'));
     }
+
+    public function getOrderDetails($orderId)
+    {
+        // Fetch the order with its related user and order items
+        $order = Order::with(['user', 'orderItems.product'])->find($orderId);
+    
+        // If the order is not found, return a 404 error
+        if (!$order) {
+            return response()->json(['error' => 'Order not found'], 404);
+        }
+    
+        // Format and return the order details in the response
+        return response()->json([
+            'order' => [
+                'id' => $order->id,
+                'user' => $order->user ? [
+                    'name' => $order->user->name,
+                    'email' => $order->user->email,
+                ] : null, // Safely check if user is null
+                'items' => $order->orderItems->map(function ($item) {
+                    return [
+                        'product' => $item->product ? [
+                            'name' => $item->product->name,
+                        ] : null, // Safely check if product is null
+                        'quantity' => $item->quantity,
+                        'price' => number_format($item->price, 2),
+                    ];
+                }),
+                'created_at' => $order->created_at->format('Y-m-d H:i:s'),
+            ]
+        ]);
+    }
+    
     
     /**
      * Map internal order status to shipment status for the admin panel
