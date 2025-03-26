@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -86,8 +88,92 @@ class AdminController extends Controller
             abort(403, 'Unauthorized access');
         }
         else{
-            return view('admin/AdminPanel');
+            // Fetch total orders
+            $totalOrders = Order::count();
+
+            // Fetch total revenue
+            $totalRevenue = Order::sum('total_amount'); // Assuming 'total_price' column exists
+
+            // Fetch active customers (users who placed at least one order)
+            $activeCustomers = User::whereHas('orders')->count();
+
+            // Fetch low-stock items (assuming stock column exists)
+            $lowStockItems = Product::where('stock_quantity', '<', 10)->count();
+
+            // Pass data to the view
+            return view('admin/AdminPanel', compact(
+                'totalOrders', 
+                'totalRevenue', 
+                'activeCustomers', 
+                'lowStockItems'
+            ));
         }
+    }
+
+    public function getStats()
+    {
+        // Fetch data for current and previous week
+        $currentWeekOrders = Order::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->count();
+        $lastWeekOrders = Order::whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()])->count();
+    
+        $currentRevenue = Order::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->sum('total_amount');
+        $lastWeekRevenue = Order::whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()])->sum('total_amount');
+    
+        $currentCustomers = User::whereHas('orders', function($query) {
+            $query->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+        })->count();
+        
+        $lastWeekCustomers = User::whereHas('orders', function($query) {
+            $query->whereBetween('created_at', [now()->subWeek()->startOfWeek(), now()->subWeek()->endOfWeek()]);
+        })->count();
+    
+        // Low stock items
+        $lowStockItems = Product::where('stock_quantity', '<', 10)->count();
+    
+        // Calculate percentage changes
+        $ordersChange = $lastWeekOrders > 0 ? (($currentWeekOrders - $lastWeekOrders) / $lastWeekOrders) * 100 : 0;
+        $revenueChange = $lastWeekRevenue > 0 ? (($currentRevenue - $lastWeekRevenue) / $lastWeekRevenue) * 100 : 0;
+        $customersChange = $lastWeekCustomers > 0 ? (($currentCustomers - $lastWeekCustomers) / $lastWeekCustomers) * 100 : 0;
+    
+        return response()->json([
+            'totalOrders' => $currentWeekOrders,
+            'ordersChange' => round($ordersChange, 2),
+    
+            'totalRevenue' => $currentRevenue,
+            'revenueChange' => round($revenueChange, 2),
+    
+            'activeCustomers' => $currentCustomers,
+            'customersChange' => round($customersChange, 2),
+    
+            'lowStockItems' => $lowStockItems
+        ]);
+    }
+
+    public function getRecentActivity()
+    {
+        // Fetch the latest 5 orders
+        $recentOrders = Order::latest()->take(5)->get(['id', 'created_at']);
+
+        // Fetch low stock items (only critical stock levels, e.g., stock < 5)
+        $lowStockItems = Product::where('stock_quantity', '<', 5)
+                                ->latest('updated_at')
+                                ->take(5)
+                                ->get(['name', 'updated_at']);
+
+        // Fetch recent user registrations
+        $newUsers = User::latest()->take(5)->get(['name', 'created_at']);
+
+        // Format the response
+        return response()->json([
+            'orders' => $recentOrders,
+            'lowStock' => $lowStockItems,
+            'newUsers' => $newUsers
+        ]);
+    }
+
+    public function dashboard()
+    {
+        
     }
 
     public function adminOrdersAccess(){

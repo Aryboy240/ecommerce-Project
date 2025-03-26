@@ -135,6 +135,10 @@ Route::post('/adminlogin', [AdminController::class, 'adminLogin'])->name('adminl
 
 // Admin Panel Route (Ensures Admin Access)
 Route::get('/adminpanel', [App\Http\Controllers\AdminController::class, 'adminPanelAccess'])->name('adminpanel');
+Route::get('/adminpanel/stats', [AdminController::class, 'getStats']);
+Route::get('/adminpanel/recent-activity', [AdminController::class, 'getRecentActivity']);
+
+
 
 // Admin Orders Route (Ensures Admin Access)
 Route::get('/AdminOrders', [App\Http\Controllers\AdminController::class, 'adminOrdersAccess'])->name('AdminOrders');
